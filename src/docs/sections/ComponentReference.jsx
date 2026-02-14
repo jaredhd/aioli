@@ -108,7 +108,7 @@ const result = component.handleRequest({
       <p className="docs-section__text" style={{ marginTop: '1.5rem' }}>
         For the full interactive gallery with all variants, sizes, and states,
         visit the{' '}
-        <a href="/demo.html">Component Gallery</a>.
+        <a href="demo.html">Component Gallery</a>.
       </p>
     </section>
   );

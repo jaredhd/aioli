@@ -140,7 +140,7 @@ export default function Docs() {
             {darkMode ? '\u2600\uFE0F' : '\uD83C\uDF19'}
           </button>
 
-          <a href="/demo.html" className="docs-header__link">
+          <a href="demo.html" className="docs-header__link">
             Component Gallery &rarr;
           </a>
         </div>

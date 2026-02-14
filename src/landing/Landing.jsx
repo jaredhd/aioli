@@ -196,15 +196,15 @@ export default function Landing() {
       {/* HEADER (sticky)                                                     */}
       {/* =================================================================== */}
       <header className="landing-header">
-        <a href="/" className="landing-header__logo">
+        <a href="./" className="landing-header__logo">
           <span role="img" aria-label="garlic">&#x1F9C4;</span> Aioli
         </a>
 
         <nav className="landing-header__nav" aria-label="Main navigation">
-          <a href="/docs.html" className="landing-header__nav-link">
+          <a href="docs.html" className="landing-header__nav-link">
             Documentation
           </a>
-          <a href="/demo.html" className="landing-header__nav-link">
+          <a href="demo.html" className="landing-header__nav-link">
             Gallery
           </a>
           <a
@@ -254,10 +254,10 @@ export default function Landing() {
 
         {/* -- CTA buttons ------------------------------------------------- */}
         <div className="landing-hero__actions">
-          <a href="/docs.html" className="landing-hero__cta landing-hero__cta--primary">
+          <a href="docs.html" className="landing-hero__cta landing-hero__cta--primary">
             Read the Docs &rarr;
           </a>
-          <a href="/demo.html" className="landing-hero__cta landing-hero__cta--outline">
+          <a href="demo.html" className="landing-hero__cta landing-hero__cta--outline">
             Component Gallery &rarr;
           </a>
         </div>
@@ -347,8 +347,8 @@ export default function Landing() {
       {/* =================================================================== */}
       <footer className="landing-footer">
         <div className="landing-footer__links">
-          <a href="/docs.html" className="landing-footer__link">Documentation</a>
-          <a href="/demo.html" className="landing-footer__link">Component Gallery</a>
+          <a href="docs.html" className="landing-footer__link">Documentation</a>
+          <a href="demo.html" className="landing-footer__link">Component Gallery</a>
           <a
             href="https://github.com/jaredhd/aioli"
             className="landing-footer__link"

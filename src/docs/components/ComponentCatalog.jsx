@@ -152,7 +152,7 @@ export default function ComponentCatalog() {
 
                         <a
                           className="docs-catalog__gallery-link"
-                          href="/demo.html"
+                          href="demo.html"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
