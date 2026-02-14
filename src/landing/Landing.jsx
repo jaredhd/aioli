@@ -11,7 +11,7 @@
  * Uses BEM naming throughout with the `.landing-` prefix.
  */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { COMPONENT_TEMPLATES } from '../../agents/component-generator-agent.js';
 import CodeBlock from '../docs/components/CodeBlock';
 
@@ -120,7 +120,7 @@ const COMPONENT_DEFAULTS = {
   button:  { children: 'Button' },
   card:    { title: 'Card Title', content: 'Card body text goes here.' },
   alert:   {},
-  badge:   { children: 'Badge' },
+  badge:   { children: 'Badge', variant: 'primary' },
   input:   { label: 'Label', placeholder: 'Placeholder…' },
   tabs:    {},
 };
@@ -163,6 +163,7 @@ export default function Landing() {
 
   const [darkMode, setDarkMode] = useState(false);
   const [installCopied, setInstallCopied] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   // -- Dark mode toggle (same pattern as Demo.jsx / Docs.jsx) ---------------
 
@@ -176,6 +177,24 @@ export default function Landing() {
       }
       return next;
     });
+  }, []);
+
+  // -- Mobile nav toggle ----------------------------------------------------
+
+  const toggleMobileNav = useCallback(() => {
+    setMobileNavOpen((prev) => !prev);
+  }, []);
+
+  const closeMobileNav = useCallback(() => {
+    setMobileNavOpen(false);
+  }, []);
+
+  // Close mobile nav on resize to desktop
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 769px)');
+    const handler = () => { if (mq.matches) setMobileNavOpen(false); };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
   // -- Copy install command to clipboard ------------------------------------
@@ -196,9 +215,23 @@ export default function Landing() {
       {/* HEADER (sticky)                                                     */}
       {/* =================================================================== */}
       <header className="landing-header">
-        <a href="./" className="landing-header__logo">
-          <span role="img" aria-label="garlic">&#x1F9C4;</span> Aioli
-        </a>
+        <div className="landing-header__left">
+          <button
+            type="button"
+            className="landing-header__hamburger"
+            onClick={toggleMobileNav}
+            aria-label={mobileNavOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileNavOpen}
+          >
+            <span className="landing-header__hamburger-line" />
+            <span className="landing-header__hamburger-line" />
+            <span className="landing-header__hamburger-line" />
+          </button>
+
+          <a href="./" className="landing-header__logo">
+            <span role="img" aria-label="garlic">&#x1F9C4;</span> Aioli
+          </a>
+        </div>
 
         <nav className="landing-header__nav" aria-label="Main navigation">
           <a href="docs.html" className="landing-header__nav-link">
@@ -206,6 +239,12 @@ export default function Landing() {
           </a>
           <a href="demo.html" className="landing-header__nav-link">
             Gallery
+          </a>
+          <a href="playground.html" className="landing-header__nav-link">
+            Playground
+          </a>
+          <a href="theme.html" className="landing-header__nav-link">
+            Themes
           </a>
           <a
             href="https://github.com/jaredhd/aioli"
@@ -226,6 +265,43 @@ export default function Landing() {
           {darkMode ? '\u2600\uFE0F' : '\uD83C\uDF19'}
         </button>
       </header>
+
+      {/* Mobile nav overlay (visible only when hamburger is toggled) */}
+      {mobileNavOpen && (
+        <>
+          <div
+            className="landing-mobile-nav__backdrop"
+            onClick={closeMobileNav}
+            aria-hidden="true"
+          />
+          <nav
+            className="landing-mobile-nav"
+            aria-label="Mobile navigation"
+          >
+            <a href="docs.html" className="landing-mobile-nav__link" onClick={closeMobileNav}>
+              Documentation
+            </a>
+            <a href="demo.html" className="landing-mobile-nav__link" onClick={closeMobileNav}>
+              Component Gallery
+            </a>
+            <a href="playground.html" className="landing-mobile-nav__link" onClick={closeMobileNav}>
+              Playground
+            </a>
+            <a href="theme.html" className="landing-mobile-nav__link" onClick={closeMobileNav}>
+              Theme Builder
+            </a>
+            <a
+              href="https://github.com/jaredhd/aioli"
+              className="landing-mobile-nav__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileNav}
+            >
+              GitHub
+            </a>
+          </nav>
+        </>
+      )}
 
       {/* =================================================================== */}
       {/* HERO                                                                */}
@@ -349,6 +425,8 @@ export default function Landing() {
         <div className="landing-footer__links">
           <a href="docs.html" className="landing-footer__link">Documentation</a>
           <a href="demo.html" className="landing-footer__link">Component Gallery</a>
+          <a href="playground.html" className="landing-footer__link">Playground</a>
+          <a href="theme.html" className="landing-footer__link">Theme Builder</a>
           <a
             href="https://github.com/jaredhd/aioli"
             className="landing-footer__link"

@@ -124,8 +124,11 @@ export default function Docs() {
             <span className="docs-header__hamburger-line" />
           </button>
 
+          <a href="./" className="docs-header__home" aria-label="Back to Home">
+            <span role="img" aria-label="garlic">&#x1F9C4;</span>
+          </a>
+
           <h1 className="docs-header__title">
-            <span role="img" aria-label="garlic">&#x1F9C4;</span>{' '}
             Aioli Documentation
           </h1>
         </div>

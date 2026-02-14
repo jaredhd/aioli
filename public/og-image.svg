@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="600" y="220" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="700" fill="#f8fafc">
+    <tspan>&#x1F9C4; Aioli</tspan>
+  </text>
+  <text x="600" y="310" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="#94a3b8">AI-Native Design System</text>
+  <text x="600" y="420" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#64748b">
+    <tspan>1,258 Tokens</tspan>
+    <tspan dx="40">31 Components</tspan>
+    <tspan dx="40">6 AI Agents</tspan>
+    <tspan dx="40">WCAG AA</tspan>
+  </text>
+  <rect x="350" y="480" width="500" height="48" rx="24" fill="#2563eb"/>
+  <text x="600" y="512" text-anchor="middle" font-family="monospace" font-size="18" fill="#ffffff">npm install aioli-design</text>
+</svg>

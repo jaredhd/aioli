@@ -21,6 +21,8 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         demo: resolve(__dirname, 'demo.html'),
         docs: resolve(__dirname, 'docs.html'),
+        playground: resolve(__dirname, 'playground.html'),
+        theme: resolve(__dirname, 'theme.html'),
       },
     },
   },

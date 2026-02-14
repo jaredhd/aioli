@@ -52,6 +52,26 @@ html {
   gap: var(--primitive-spacing-3);
 }
 
+.docs-header__home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--primitive-font-size-xl);
+  text-decoration: none;
+  line-height: 1;
+  transition: opacity var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.docs-header__home:hover {
+  opacity: 0.75;
+}
+
+.docs-header__home:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-color-primary-default);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-sm);
+}
+
 .docs-header__title {
   margin: 0;
   font-size: var(--primitive-font-size-xl);

@@ -699,13 +699,20 @@ export default function Demo() {
       {/* HEADER                                                            */}
       {/* ================================================================= */}
       <header className="demo-header">
-        <h1 className="demo-header__title">
-          <span role="img" aria-label="garlic">&#x1F9C4;</span>{' '}
-          Aioli Component Gallery
-        </h1>
+        <div className="demo-header__left">
+          <a href="./" className="demo-header__home" aria-label="Back to Home">
+            <span role="img" aria-label="garlic">&#x1F9C4;</span>
+          </a>
+          <h1 className="demo-header__title">
+            Aioli Component Gallery
+          </h1>
+        </div>
 
         <div className="demo-header__controls">
           <span className="demo-header__count">{countText}</span>
+          <a href="docs.html" className="demo-header__link">
+            Docs
+          </a>
           <button
             type="button"
             className="demo-header__theme-toggle"

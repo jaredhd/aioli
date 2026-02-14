@@ -41,6 +41,14 @@
   box-shadow: var(--semantic-shadow-sm);
 }
 
+/* -- Left group (hamburger + logo) ------------------------------------ */
+
+.landing-header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-3);
+}
+
 /* -- Logo / brand ----------------------------------------------------- */
 
 .landing-header__logo {
@@ -166,6 +174,53 @@
   background: var(--semantic-text-default);
   border-radius: var(--primitive-radius-full);
   transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+
+/* -- Mobile nav overlay (shown when hamburger is toggled) ------------- */
+
+.landing-mobile-nav__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.landing-mobile-nav {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: var(--primitive-spacing-4) var(--primitive-spacing-6);
+  background: var(--semantic-surface-card-default);
+  border-bottom: 1px solid var(--semantic-border-default);
+  box-shadow: var(--semantic-shadow-lg);
+}
+
+.landing-mobile-nav__link {
+  display: block;
+  padding: var(--primitive-spacing-3) 0;
+  font-size: var(--primitive-font-size-base);
+  font-weight: var(--primitive-font-weight-medium);
+  color: var(--semantic-text-default);
+  text-decoration: none;
+  border-bottom: 1px solid var(--semantic-border-subtle);
+}
+
+.landing-mobile-nav__link:last-child {
+  border-bottom: none;
+}
+
+.landing-mobile-nav__link:hover {
+  color: var(--semantic-color-primary-default);
+}
+
+.landing-mobile-nav__link:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-color-primary-default);
+  outline-offset: var(--semantic-focus-ring-offset);
 }
 
 
@@ -506,6 +561,13 @@
 .landing-preview__render {
   padding: var(--primitive-spacing-6);
   background: var(--semantic-surface-page-default);
+}
+
+/* Ensure badges in the preview get a visible pill size even without
+   an explicit size modifier class (the generator only adds variant). */
+.landing-preview__render .badge:not(.badge--sm):not(.badge--md):not(.badge--lg) {
+  padding: var(--component-badge-size-md-padding-y, 0.25em) var(--component-badge-size-md-padding-x, 0.625em);
+  font-size: var(--component-badge-size-md-font-size, 0.75rem);
 }
 
 
@@ -1035,7 +1097,9 @@
 
 @media print {
   .landing-header,
-  .landing-header__hamburger {
+  .landing-header__hamburger,
+  .landing-mobile-nav,
+  .landing-mobile-nav__backdrop {
     display: none;
   }
 
