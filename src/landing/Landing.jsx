@@ -96,7 +96,7 @@ aioli generate "primary button with icon"
 # Run accessibility audit
 aioli audit`;
 
-const API_SNIPPET = `import { createAgentSystem } from 'aioli';
+const API_SNIPPET = `import { createAgentSystem } from 'aioli-design';
 
 const agents = createAgentSystem('./tokens');
 
@@ -181,7 +181,7 @@ export default function Landing() {
   // -- Copy install command to clipboard ------------------------------------
 
   const handleCopyInstall = useCallback(() => {
-    navigator.clipboard.writeText('npm install aioli').then(() => {
+    navigator.clipboard.writeText('npm install aioli-design').then(() => {
       setInstallCopied(true);
       setTimeout(() => setInstallCopied(false), 2000);
     });
@@ -241,7 +241,7 @@ export default function Landing() {
 
         {/* -- Install command block ---------------------------------------- */}
         <div className="landing-hero__install">
-          <code className="landing-hero__install-code">npm install aioli</code>
+          <code className="landing-hero__install-code">npm install aioli-design</code>
           <button
             type="button"
             className="landing-hero__install-copy"
@@ -358,7 +358,7 @@ export default function Landing() {
             GitHub
           </a>
           <a
-            href="https://www.npmjs.com/package/aioli"
+            href="https://www.npmjs.com/package/aioli-design"
             className="landing-footer__link"
             target="_blank"
             rel="noopener noreferrer"

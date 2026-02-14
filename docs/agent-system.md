@@ -152,7 +152,7 @@ const result = orchestrator.runFixCycle(code, 'html');
 ### Full system
 
 ```js
-import { createAgentSystem } from 'aioli';
+import { createAgentSystem } from 'aioli-design';
 
 const { token, a11y, motion, component, codeReview, orchestrator } =
   createAgentSystem('./tokens');
@@ -161,7 +161,7 @@ const { token, a11y, motion, component, codeReview, orchestrator } =
 ### Individual agents
 
 ```js
-import { createDesignTokenAgent, createAccessibilityValidator } from 'aioli';
+import { createDesignTokenAgent, createAccessibilityValidator } from 'aioli-design';
 
 const tokenAgent = createDesignTokenAgent('./tokens');
 const a11yAgent = createAccessibilityValidator({
@@ -173,7 +173,7 @@ const a11yAgent = createAccessibilityValidator({
 ### With AI generation
 
 ```js
-import { AIComponentGenerator, createDesignTokenAgent } from 'aioli';
+import { AIComponentGenerator, createDesignTokenAgent } from 'aioli-design';
 
 const tokenAgent = createDesignTokenAgent('./tokens');
 const aiGen = new AIComponentGenerator({

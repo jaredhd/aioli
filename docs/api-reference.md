@@ -5,7 +5,7 @@
 Create and connect all 6 agents with the orchestrator.
 
 ```js
-import { createAgentSystem } from 'aioli';
+import { createAgentSystem } from 'aioli-design';
 
 const agents = createAgentSystem('./tokens');
 // Returns: { token, a11y, motion, component, codeReview, orchestrator }
@@ -32,7 +32,7 @@ const agents = createAgentSystem('./tokens');
 ### Constructor
 
 ```js
-import { createDesignTokenAgent } from 'aioli';
+import { createDesignTokenAgent } from 'aioli-design';
 const agent = createDesignTokenAgent('./tokens');
 ```
 
@@ -134,7 +134,7 @@ const result = agent.handleRequest({
 ### Constructor
 
 ```js
-import { createAccessibilityValidator } from 'aioli';
+import { createAccessibilityValidator } from 'aioli-design';
 const agent = createAccessibilityValidator({
   tokenAgent,          // DesignTokenAgent instance
   targetLevel: 'AA',   // 'AA' or 'AAA'
@@ -183,7 +183,7 @@ const fixes = agent.suggestFixes(issues);
 ### Utility Functions
 
 ```js
-import { getContrastRatio, parseColor, WCAG_CONTRAST_RATIOS } from 'aioli';
+import { getContrastRatio, parseColor, WCAG_CONTRAST_RATIOS } from 'aioli-design';
 
 getContrastRatio('#ffffff', '#000000'); // 21
 parseColor('#3b82f6');                  // { r, g, b }
@@ -197,7 +197,7 @@ WCAG_CONTRAST_RATIOS.AA.normalText;    // 4.5
 ### Constructor
 
 ```js
-import { createMotionAgent } from 'aioli';
+import { createMotionAgent } from 'aioli-design';
 const agent = createMotionAgent({ tokenAgent });
 ```
 
@@ -251,7 +251,7 @@ const result = agent.validate('transition: width 0.3s ease;');
 ### Constants
 
 ```js
-import { DURATION, EASING, ANIMATION_TYPES, ALLOWED_PROPERTIES, PROHIBITED_PROPERTIES } from 'aioli';
+import { DURATION, EASING, ANIMATION_TYPES, ALLOWED_PROPERTIES, PROHIBITED_PROPERTIES } from 'aioli-design';
 
 DURATION.micro;          // '100ms'
 EASING.enter;            // 'cubic-bezier(...)'
@@ -266,7 +266,7 @@ PROHIBITED_PROPERTIES;   // ['width', 'height', 'margin', 'padding']
 ### Constructor
 
 ```js
-import { createComponentGenerator } from 'aioli';
+import { createComponentGenerator } from 'aioli-design';
 const agent = createComponentGenerator({ tokenAgent, motionAgent });
 ```
 
@@ -293,7 +293,7 @@ const result = agent.generateFromDescription('large danger button with icon');
 ### Constants
 
 ```js
-import { COMPONENT_TEMPLATES } from 'aioli';
+import { COMPONENT_TEMPLATES } from 'aioli-design';
 // Templates for: button, input, card, modal, navigation, form-group, search-field, ...
 ```
 
@@ -304,7 +304,7 @@ import { COMPONENT_TEMPLATES } from 'aioli';
 AI-powered generation using the Anthropic API. Requires `ANTHROPIC_API_KEY`.
 
 ```js
-import { AIComponentGenerator } from 'aioli';
+import { AIComponentGenerator } from 'aioli-design';
 
 const gen = new AIComponentGenerator({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -325,7 +325,7 @@ Falls back to template-based generation when no API key is set.
 ### Constructor
 
 ```js
-import { createOrchestrator } from 'aioli';
+import { createOrchestrator } from 'aioli-design';
 const orchestrator = createOrchestrator({
   'design-token': tokenAgent,
   'accessibility-validator': a11yAgent,
@@ -363,7 +363,7 @@ const result = orchestrator.runFixCycle(htmlCode, 'html');
 ### Constructor
 
 ```js
-import { createCodeReviewAgent } from 'aioli';
+import { createCodeReviewAgent } from 'aioli-design';
 const agent = createCodeReviewAgent({
   tokenAgent, a11yAgent, motionAgent, componentAgent,
 });
@@ -385,5 +385,5 @@ const quick = agent.handleRequest({ action: 'quickCheck', code, type: 'css' });
 ### Constants
 
 ```js
-import { REVIEW_CATEGORIES, SEVERITY } from 'aioli';
+import { REVIEW_CATEGORIES, SEVERITY } from 'aioli-design';
 ```

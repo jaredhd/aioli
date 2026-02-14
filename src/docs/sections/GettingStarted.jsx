@@ -26,12 +26,12 @@ export default function GettingStarted() {
       <CodeBlock
         language="bash"
         title="Global install (CLI)"
-        code="npm install -g aioli"
+        code="npm install -g aioli-design"
       />
       <CodeBlock
         language="bash"
         title="Local install (programmatic)"
-        code="npm install aioli"
+        code="npm install aioli-design"
       />
 
       {/* ------------------------------------------------------------------ */}
@@ -220,7 +220,7 @@ aioli export --format css`}
       <CodeBlock
         language="js"
         title="Programmatic usage"
-        code={`import { createAgentSystem } from 'aioli';
+        code={`import { createAgentSystem } from 'aioli-design';
 
 const agents = createAgentSystem('./tokens');
 

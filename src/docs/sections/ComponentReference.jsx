@@ -81,7 +81,7 @@ aioli generate --ai "responsive pricing table"`}
       <CodeBlock
         language="js"
         title="Programmatic generation"
-        code={`import { createAgentSystem } from 'aioli';
+        code={`import { createAgentSystem } from 'aioli-design';
 
 const { component } = createAgentSystem('./tokens');
 

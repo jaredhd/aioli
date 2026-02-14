@@ -206,7 +206,7 @@ const result = agent.handleRequest(request);
       <CodeBlock
         language="js"
         title="Create full agent system"
-        code={`import { createAgentSystem } from 'aioli';
+        code={`import { createAgentSystem } from 'aioli-design';
 
 const { token, a11y, motion, component, codeReview, orchestrator } =
   createAgentSystem('./tokens');`}
@@ -216,7 +216,7 @@ const { token, a11y, motion, component, codeReview, orchestrator } =
       <CodeBlock
         language="js"
         title="Create individual agents"
-        code={`import { createDesignTokenAgent, createAccessibilityValidator } from 'aioli';
+        code={`import { createDesignTokenAgent, createAccessibilityValidator } from 'aioli-design';
 
 const tokenAgent = createDesignTokenAgent('./tokens');
 const a11yAgent = createAccessibilityValidator({
@@ -229,7 +229,7 @@ const a11yAgent = createAccessibilityValidator({
       <CodeBlock
         language="js"
         title="AI-powered generation"
-        code={`import { AIComponentGenerator, createDesignTokenAgent } from 'aioli';
+        code={`import { AIComponentGenerator, createDesignTokenAgent } from 'aioli-design';
 
 const tokenAgent = createDesignTokenAgent('./tokens');
 const aiGen = new AIComponentGenerator({

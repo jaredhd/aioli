@@ -361,7 +361,7 @@ aioli audit --report reports/a11y-audit.json`}
       <CodeBlock
         language="js"
         title="Programmatic audit"
-        code={`import { createAgentSystem } from 'aioli';
+        code={`import { createAgentSystem } from 'aioli-design';
 
 const { a11y } = createAgentSystem('./tokens');
 

@@ -9,10 +9,10 @@
 
 ```bash
 # Global install (for CLI)
-npm install -g aioli
+npm install -g aioli-design
 
 # Local install (for programmatic use)
-npm install aioli
+npm install aioli-design
 ```
 
 ## Initialize a Project
@@ -120,7 +120,7 @@ aioli export --format css
 ## Programmatic Usage
 
 ```js
-import { createAgentSystem } from 'aioli';
+import { createAgentSystem } from 'aioli-design';
 
 const agents = createAgentSystem('./tokens');
 

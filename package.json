@@ -1,6 +1,6 @@
 {
-  "name": "aioli",
-  "version": "0.1.0",
+  "name": "aioli-design",
+  "version": "0.2.0",
   "description": "Aioli Design System - AI-native design system engine with token management, accessibility validation, and component generation",
   "type": "module",
   "main": "./lib/index.js",

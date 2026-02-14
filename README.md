@@ -1,7 +1,7 @@
 # Aioli
 
 [![CI](https://github.com/jaredhd/aioli/actions/workflows/ci.yml/badge.svg)](https://github.com/jaredhd/aioli/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/aioli.svg)](https://www.npmjs.com/package/aioli)
+[![npm version](https://img.shields.io/npm/v/aioli-design.svg)](https://www.npmjs.com/package/aioli-design)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 AI-native design system engine. Token management, accessibility validation, component generation, and motion standards — all enforced by a 6-agent orchestration system.
@@ -12,7 +12,7 @@ Aioli provides the backbone for building accessible, responsive websites and app
 
 ```bash
 # Install globally for CLI access
-npm install -g aioli
+npm install -g aioli-design
 
 # Initialize a new project
 aioli init --template starter
@@ -33,7 +33,7 @@ aioli audit
 ## Programmatic Usage
 
 ```js
-import { createAgentSystem } from 'aioli';
+import { createAgentSystem } from 'aioli-design';
 
 const agents = createAgentSystem('./tokens');
 
