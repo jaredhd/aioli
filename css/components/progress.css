@@ -1,0 +1,112 @@
+/**
+ * Aioli Design System — Progress Component
+ * Progress bar with size and color variants.
+ * Variants: default, success, warning, danger
+ * Sizes: sm, md, lg
+ *
+ * BEM: .progress, .progress--sm, .progress--md, .progress--lg,
+ *      .progress__header, .progress__label, .progress__value,
+ *      .progress__track, .progress__bar, .progress__bar--{variant}
+ */
+
+/* ========================================================================
+   BASE
+   ======================================================================== */
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-1-5);
+  width: 100%;
+}
+
+/* ========================================================================
+   HEADER (label + value)
+   ======================================================================== */
+
+.progress__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress__label {
+  font-size: var(--component-progress-label-font-size);
+  font-weight: var(--primitive-font-weight-medium);
+  color: var(--component-progress-label-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+.progress__value {
+  font-size: var(--component-progress-label-font-size);
+  font-weight: var(--primitive-font-weight-semibold);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ========================================================================
+   TRACK
+   ======================================================================== */
+
+.progress__track {
+  width: 100%;
+  height: var(--component-progress-track-height);
+  background-color: var(--component-progress-track-bg);
+  border-radius: var(--component-progress-track-radius);
+  overflow: hidden;
+}
+
+/* ========================================================================
+   BAR
+   ======================================================================== */
+
+.progress__bar {
+  height: 100%;
+  border-radius: var(--component-progress-bar-radius);
+  transition: width var(--primitive-motion-duration-slow) var(--primitive-motion-easing-default);
+  min-width: 0;
+}
+
+/* ---- Variant colors ---- */
+
+.progress__bar--default {
+  background-color: var(--component-progress-bar-color-default);
+}
+
+.progress__bar--success {
+  background-color: var(--component-progress-bar-color-success);
+}
+
+.progress__bar--warning {
+  background-color: var(--component-progress-bar-color-warning);
+}
+
+.progress__bar--danger {
+  background-color: var(--component-progress-bar-color-danger);
+}
+
+/* ========================================================================
+   SIZES
+   ======================================================================== */
+
+.progress--sm .progress__track {
+  height: var(--component-progress-size-sm);
+}
+
+.progress--md .progress__track {
+  height: var(--component-progress-size-md);
+}
+
+.progress--lg .progress__track {
+  height: var(--component-progress-size-lg);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .progress__bar {
+    transition: none;
+  }
+}

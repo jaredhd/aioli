@@ -1,0 +1,27 @@
+{
+  "component": {
+    "rating": {
+      "size": {
+        "sm": { "$value": "16px", "$type": "dimension" },
+        "md": { "$value": "24px", "$type": "dimension" },
+        "lg": { "$value": "32px", "$type": "dimension" }
+      },
+      "gap": { "$value": "{primitive.spacing.1}", "$type": "dimension" },
+      "color": {
+        "filled": { "$value": "{primitive.color.amber.400}", "$type": "color" },
+        "empty": { "$value": "{primitive.color.neutral.300}", "$type": "color" },
+        "hover": { "$value": "{primitive.color.amber.300}", "$type": "color" },
+        "disabled": { "$value": "{primitive.color.neutral.200}", "$type": "color" }
+      },
+      "label": {
+        "fontSize": { "$value": "{primitive.font.size.sm}", "$type": "dimension" },
+        "color": { "$value": "{semantic.text.secondary}", "$type": "color" },
+        "gap": { "$value": "{primitive.spacing.2}", "$type": "dimension" }
+      },
+      "focus": {
+        "ringColor": { "$value": "{semantic.color.primary.subtle}", "$type": "color" },
+        "ringWidth": { "$value": "2px", "$type": "dimension" }
+      }
+    }
+  }
+}

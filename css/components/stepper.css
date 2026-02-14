@@ -1,0 +1,163 @@
+/**
+ * Stepper Component — Aioli Design System
+ * Molecule: Step progress indicator (horizontal and vertical)
+ *
+ * BEM classes: .stepper, .stepper--{orientation}, .stepper__list,
+ *              .stepper__item, .stepper__item--{state},
+ *              .stepper__indicator, .stepper__content,
+ *              .stepper__label, .stepper__description, .stepper__connector
+ * States: default, active, completed
+ */
+
+/* ----------------------------------------------------------------
+   Base nav
+   ---------------------------------------------------------------- */
+.stepper {
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   List
+   ---------------------------------------------------------------- */
+.stepper__list {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: stepper;
+}
+
+/* ----------------------------------------------------------------
+   Horizontal layout (default)
+   ---------------------------------------------------------------- */
+.stepper--horizontal .stepper__list {
+  flex-direction: row;
+  gap: var(--component-stepper-gap);
+}
+
+.stepper--horizontal .stepper__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.stepper--horizontal .stepper__connector {
+  position: absolute;
+  top: calc(var(--component-stepper-step-size) / 2);
+  left: calc(50% + var(--component-stepper-step-size) / 2 + var(--primitive-spacing-2));
+  right: calc(-50% + var(--component-stepper-step-size) / 2 + var(--primitive-spacing-2));
+  height: var(--component-stepper-connector-height);
+  background-color: var(--component-stepper-connector-color-default);
+}
+
+/* ----------------------------------------------------------------
+   Vertical layout
+   ---------------------------------------------------------------- */
+.stepper--vertical .stepper__list {
+  flex-direction: column;
+  gap: var(--component-stepper-orientation-vertical-gap);
+}
+
+.stepper--vertical .stepper__item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--primitive-spacing-3);
+  position: relative;
+}
+
+.stepper--vertical .stepper__connector {
+  position: absolute;
+  left: calc(var(--component-stepper-step-size) / 2 - var(--component-stepper-orientation-vertical-connector-width) / 2);
+  top: calc(var(--component-stepper-step-size) + var(--primitive-spacing-2));
+  bottom: calc(-1 * var(--component-stepper-orientation-vertical-gap) + var(--primitive-spacing-2));
+  width: var(--component-stepper-orientation-vertical-connector-width);
+  background-color: var(--component-stepper-connector-color-default);
+}
+
+/* ----------------------------------------------------------------
+   Step indicator (circle)
+   ---------------------------------------------------------------- */
+.stepper__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--component-stepper-step-size);
+  height: var(--component-stepper-step-size);
+  border-radius: var(--component-stepper-step-radius);
+  background-color: var(--component-stepper-step-bg-default);
+  color: var(--component-stepper-step-color-default);
+  font-size: var(--component-stepper-step-font-size);
+  font-weight: var(--component-stepper-step-font-weight);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition:
+    background-color var(--primitive-motion-duration-normal) var(--primitive-motion-easing-default),
+    color var(--primitive-motion-duration-normal) var(--primitive-motion-easing-default);
+}
+
+/* ----------------------------------------------------------------
+   Content (label + description)
+   ---------------------------------------------------------------- */
+.stepper__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-0-5);
+}
+
+.stepper__label {
+  font-size: var(--component-stepper-step-label-font-size);
+  font-weight: var(--primitive-font-weight-medium);
+  color: var(--component-stepper-step-label-color-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+.stepper__description {
+  font-size: var(--component-stepper-step-description-font-size);
+  color: var(--component-stepper-step-description-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   State: Active
+   ---------------------------------------------------------------- */
+.stepper__item--active .stepper__indicator {
+  background-color: var(--component-stepper-step-bg-active);
+  color: var(--component-stepper-step-color-active);
+}
+
+.stepper__item--active .stepper__label {
+  color: var(--component-stepper-step-label-color-active);
+  font-weight: var(--component-stepper-step-font-weight);
+}
+
+/* ----------------------------------------------------------------
+   State: Completed
+   ---------------------------------------------------------------- */
+.stepper__item--completed .stepper__indicator {
+  background-color: var(--component-stepper-step-bg-completed);
+  color: var(--component-stepper-step-color-completed);
+}
+
+.stepper__item--completed .stepper__label {
+  color: var(--component-stepper-step-label-color-completed);
+}
+
+.stepper__item--completed .stepper__connector {
+  background-color: var(--component-stepper-connector-color-completed);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .stepper__indicator {
+    transition: none;
+  }
+}

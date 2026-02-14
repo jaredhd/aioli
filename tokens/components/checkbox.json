@@ -1,0 +1,49 @@
+{
+  "component": {
+    "checkbox": {
+      "size": {
+        "sm": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+        "md": { "$type": "dimension", "$value": "{primitive.spacing.5}" },
+        "lg": { "$type": "dimension", "$value": "{primitive.spacing.6}" }
+      },
+      "radius": { "$type": "dimension", "$value": "{primitive.radius.base}" },
+      "border": {
+        "width": { "$type": "dimension", "$value": "2px" },
+        "color": {
+          "default": { "$type": "color", "$value": "{semantic.border.strong}" },
+          "hover": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+          "checked": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+          "disabled": { "$type": "color", "$value": "{semantic.border.subtle}" },
+          "error": { "$type": "color", "$value": "{semantic.color.danger.default}" }
+        }
+      },
+      "bg": {
+        "default": { "$type": "color", "$value": "{semantic.surface.page.default}" },
+        "checked": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+        "disabled": { "$type": "color", "$value": "{semantic.surface.page.muted}" },
+        "disabledChecked": { "$type": "color", "$value": "{semantic.color.primary.subtle}" }
+      },
+      "icon": {
+        "color": { "$type": "color", "$value": "{primitive.color.neutral.0}" },
+        "size": { "$type": "dimension", "$value": "70%" }
+      },
+      "label": {
+        "gap": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" },
+        "color": {
+          "default": { "$type": "color", "$value": "{semantic.text.default}" },
+          "disabled": { "$type": "color", "$value": "{semantic.text.disabled}" }
+        }
+      },
+      "transition": {
+        "duration": { "$type": "duration", "$value": "{primitive.motion.duration.micro}" },
+        "easing": { "$type": "cubicBezier", "$value": "{primitive.motion.easing.default}" }
+      },
+      "focus": {
+        "ringWidth": { "$type": "dimension", "$value": "2px" },
+        "ringOffset": { "$type": "dimension", "$value": "2px" },
+        "ringColor": { "$type": "color", "$value": "{semantic.color.primary.subtle}" }
+      }
+    }
+  }
+}

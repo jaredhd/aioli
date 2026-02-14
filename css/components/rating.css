@@ -1,0 +1,159 @@
+/**
+ * Aioli Design System — Rating Component
+ * Star rating with filled/empty states and interactive mode.
+ * Sizes: sm, md, lg
+ *
+ * BEM: .rating, .rating--sm, .rating--md, .rating--lg,
+ *      .rating--readonly, .rating--disabled,
+ *      .rating__input, .rating__star, .rating__star--filled
+ */
+
+/* ========================================================================
+   BASE
+   ======================================================================== */
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-rating-gap);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ========================================================================
+   STAR (common)
+   ======================================================================== */
+
+.rating__star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--component-rating-color-empty);
+  font-size: var(--component-rating-size-md);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    transform var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+/* ---- Filled star ---- */
+.rating__star--filled {
+  color: var(--component-rating-color-filled);
+}
+
+/* ========================================================================
+   READONLY MODE
+   ======================================================================== */
+
+.rating--readonly .rating__star {
+  cursor: default;
+}
+
+/* ========================================================================
+   INTERACTIVE MODE (radio inputs)
+   Uses reverse-order HTML (5,4,3,2,1) + CSS direction trick for hover fill.
+   The template outputs stars in reverse order so CSS ~ combinator fills
+   all stars to the left of the hovered/checked star.
+   ======================================================================== */
+
+/* Hide the radio inputs (template adds .visually-hidden, but be safe) */
+.rating__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* All interactive stars start empty */
+.rating:not(.rating--readonly) .rating__star {
+  color: var(--component-rating-color-empty);
+}
+
+/* Checked star and all stars after it (visually to the left due to reverse order) */
+.rating__input:checked ~ .rating__star {
+  color: var(--component-rating-color-filled);
+}
+
+/* Hover: highlight hovered star and all subsequent siblings */
+.rating:not(.rating--disabled) .rating__star:hover,
+.rating:not(.rating--disabled) .rating__star:hover ~ .rating__star {
+  color: var(--component-rating-color-hover);
+}
+
+/* Active press */
+.rating:not(.rating--disabled) .rating__star:active {
+  transform: scale(1.15);
+}
+
+/* ---- Focus-visible ---- */
+.rating__input:focus-visible + .rating__star {
+  outline: var(--component-rating-focus-ring-width) solid var(--component-rating-focus-ring-color);
+  outline-offset: var(--primitive-spacing-0-5);
+  border-radius: var(--primitive-radius-2xs);
+}
+
+/* ========================================================================
+   DISABLED
+   ======================================================================== */
+
+.rating--disabled {
+  pointer-events: none;
+}
+
+.rating--disabled .rating__star {
+  color: var(--component-rating-color-disabled);
+  cursor: not-allowed;
+}
+
+.rating--disabled .rating__input:checked ~ .rating__star {
+  color: var(--component-rating-color-disabled);
+}
+
+/* ========================================================================
+   SIZE MODIFIERS
+   ======================================================================== */
+
+.rating--sm .rating__star {
+  font-size: var(--component-rating-size-sm);
+}
+
+.rating--md .rating__star {
+  font-size: var(--component-rating-size-md);
+}
+
+.rating--lg .rating__star {
+  font-size: var(--component-rating-size-lg);
+}
+
+/* ========================================================================
+   LABEL (optional text beside stars)
+   ======================================================================== */
+
+.rating__label {
+  font-size: var(--component-rating-label-font-size);
+  color: var(--component-rating-label-color);
+  margin-left: var(--component-rating-label-gap);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .rating__star {
+    transition: none;
+  }
+
+  .rating:not(.rating--disabled) .rating__star:active {
+    transform: none;
+  }
+}

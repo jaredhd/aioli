@@ -1,0 +1,18 @@
+/**
+ * Aioli Design System — Full CSS Bundle
+ *
+ * Single-import entry point that loads everything:
+ *   - Design tokens (CSS custom properties)
+ *   - Base styles (reset, dark mode, utilities)
+ *   - All 31 component stylesheets
+ *
+ * Usage:
+ *   @import 'aioli/css';
+ *
+ * Or in JS/bundler:
+ *   import 'aioli/css';
+ */
+
+@import '../dist/css/tokens.css';
+@import './base.css';
+@import './components/index.css';

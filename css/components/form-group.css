@@ -1,0 +1,254 @@
+/**
+ * Form Group Component — Aioli Design System
+ * Molecule: Form layout with labeled fields, validation, and actions
+ *
+ * BEM classes: .form-group, .form-group__title, .form-group__field,
+ *              .form-group__label, .form-group__required,
+ *              .form-group__input, .form-group__helper,
+ *              .form-group__actions
+ * Also covers: .form-field, .form-field--error, .form-field__label,
+ *              .form-field__input, .form-field__required,
+ *              .form-field__error, .form-field__helper, .form-field__char-count
+ */
+
+/* ----------------------------------------------------------------
+   Form container
+   ---------------------------------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-4);
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Form title
+   ---------------------------------------------------------------- */
+.form-group__title {
+  margin: 0 0 var(--primitive-spacing-2) 0;
+  font-size: var(--semantic-typography-heading-h4-font-size);
+  font-weight: var(--semantic-typography-heading-h4-font-weight);
+  line-height: var(--semantic-typography-heading-h4-line-height);
+  color: var(--semantic-text-default);
+}
+
+/* ----------------------------------------------------------------
+   Individual field wrapper
+   ---------------------------------------------------------------- */
+.form-group__field,
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-form-field-gap);
+}
+
+/* ----------------------------------------------------------------
+   Label
+   ---------------------------------------------------------------- */
+.form-group__label,
+.form-field__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-form-field-label-required-gap);
+  font-size: var(--component-form-field-label-font-size);
+  font-weight: var(--component-form-field-label-font-weight);
+  color: var(--component-form-field-label-color-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* Disabled label */
+.form-field--disabled .form-field__label,
+.form-group__field--disabled .form-group__label {
+  color: var(--component-form-field-label-color-disabled);
+}
+
+/* ----------------------------------------------------------------
+   Required indicator
+   ---------------------------------------------------------------- */
+.form-group__required,
+.form-field__required {
+  color: var(--component-form-field-label-required-color);
+  font-weight: var(--primitive-font-weight-bold);
+}
+
+/* ----------------------------------------------------------------
+   Input (within form-group context)
+   ---------------------------------------------------------------- */
+.form-group__input {
+  width: 100%;
+  height: var(--component-input-size-md-height);
+  padding: 0 var(--component-input-size-md-padding-x);
+  border: var(--component-input-border-width) solid var(--component-input-border-color-default);
+  border-radius: var(--component-input-radius);
+  background-color: var(--component-input-bg-default);
+  color: var(--component-input-text-default);
+  font-family: inherit;
+  font-size: var(--component-input-size-md-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  transition:
+    border-color var(--component-input-transition-duration) var(--component-input-transition-easing),
+    box-shadow var(--component-input-transition-duration) var(--component-input-transition-easing);
+}
+
+.form-group__input::placeholder {
+  color: var(--component-input-text-placeholder);
+}
+
+.form-group__input:hover {
+  border-color: var(--component-input-border-color-hover);
+}
+
+.form-group__input:focus {
+  border-color: var(--component-input-border-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--component-input-focus-ring-color);
+}
+
+.form-group__input:focus-visible {
+  border-color: var(--component-input-border-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--component-input-focus-ring-color);
+}
+
+.form-group__input:disabled,
+.form-group__input[aria-disabled="true"] {
+  background-color: var(--component-input-bg-disabled);
+  color: var(--component-input-text-disabled);
+  border-color: var(--component-input-border-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* ----------------------------------------------------------------
+   Input in form-field context
+   ---------------------------------------------------------------- */
+.form-field__input {
+  width: 100%;
+  height: var(--component-input-size-md-height);
+  padding: 0 var(--component-input-size-md-padding-x);
+  border: var(--component-input-border-width) solid var(--component-input-border-color-default);
+  border-radius: var(--component-input-radius);
+  background-color: var(--component-input-bg-default);
+  color: var(--component-input-text-default);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-input-size-md-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  transition:
+    border-color var(--component-input-transition-duration) var(--component-input-transition-easing),
+    box-shadow var(--component-input-transition-duration) var(--component-input-transition-easing);
+}
+
+.form-field__input::placeholder {
+  color: var(--component-input-text-placeholder);
+}
+
+.form-field__input:hover {
+  border-color: var(--component-input-border-color-hover);
+}
+
+.form-field__input:focus,
+.form-field__input:focus-visible {
+  border-color: var(--component-input-border-color-focus);
+  outline: none;
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--component-input-focus-ring-color);
+}
+
+.form-field__input:disabled,
+.form-field__input[aria-disabled="true"] {
+  background-color: var(--component-input-bg-disabled);
+  color: var(--component-input-text-disabled);
+  border-color: var(--component-input-border-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* ----------------------------------------------------------------
+   Error state
+   ---------------------------------------------------------------- */
+.form-field--error .form-field__input,
+.form-field--error .form-group__input {
+  border-color: var(--component-input-border-color-error);
+}
+
+.form-field--error .form-field__input:focus,
+.form-field--error .form-field__input:focus-visible {
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--semantic-focus-ring-color-danger);
+}
+
+/* ----------------------------------------------------------------
+   Success state
+   ---------------------------------------------------------------- */
+.form-field--success .form-field__input {
+  border-color: var(--component-input-border-color-success);
+}
+
+/* ----------------------------------------------------------------
+   Helper text
+   ---------------------------------------------------------------- */
+.form-group__helper,
+.form-field__helper {
+  font-size: var(--component-form-field-helper-font-size);
+  color: var(--component-form-field-helper-color);
+  margin-top: var(--component-form-field-helper-margin-top);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Error text
+   ---------------------------------------------------------------- */
+.form-field__error {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-form-field-error-icon-gap);
+  font-size: var(--component-form-field-error-font-size);
+  color: var(--component-form-field-error-color);
+  margin-top: var(--component-form-field-error-margin-top);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Success text
+   ---------------------------------------------------------------- */
+.form-field__success {
+  font-size: var(--component-form-field-success-font-size);
+  color: var(--component-form-field-success-color);
+  margin-top: var(--component-form-field-success-margin-top);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Character count
+   ---------------------------------------------------------------- */
+.form-field__char-count {
+  font-size: var(--component-form-field-character-count-font-size);
+  color: var(--component-form-field-character-count-color-default);
+  text-align: right;
+}
+
+.form-field__char-count--warning {
+  color: var(--component-form-field-character-count-color-warning);
+}
+
+.form-field__char-count--error {
+  color: var(--component-form-field-character-count-color-error);
+}
+
+/* ----------------------------------------------------------------
+   Actions bar
+   ---------------------------------------------------------------- */
+.form-group__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-3);
+  padding-top: var(--primitive-spacing-2);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .form-group__input,
+  .form-field__input {
+    transition: none;
+  }
+}

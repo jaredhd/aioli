@@ -1,0 +1,124 @@
+/**
+ * Aioli Design System — Textarea Component
+ * Multi-line text input with character count support.
+ *
+ * BEM: .textarea
+ * Wraps in: .form-field, .form-field--error
+ * Uses: .form-field__label, .form-field__required, .form-field__error,
+ *       .form-field__char-count
+ */
+
+/* ========================================================================
+   TEXTAREA BASE
+   ======================================================================== */
+
+.textarea {
+  display: block;
+  width: 100%;
+  min-height: var(--component-textarea-min-height);
+  padding: var(--component-textarea-padding-y) var(--component-textarea-padding-x);
+
+  font-family: inherit;
+  font-size: var(--component-textarea-font-size);
+  line-height: var(--component-textarea-line-height);
+  color: var(--component-textarea-text-default);
+
+  background-color: var(--component-textarea-bg-default);
+  border: var(--component-textarea-border-width) solid var(--component-textarea-border-color-default);
+  border-radius: var(--component-textarea-radius);
+
+  resize: var(--component-textarea-resize);
+
+  transition:
+    border-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+/* Placeholder */
+.textarea::placeholder {
+  color: var(--component-textarea-text-placeholder);
+  opacity: var(--semantic-opacity-placeholder);
+}
+
+/* ========================================================================
+   STATES
+   ======================================================================== */
+
+/* ---- Hover ---- */
+.textarea:hover:not(:disabled):not(:focus) {
+  border-color: var(--component-textarea-border-color-hover);
+}
+
+/* ---- Focus-visible ---- */
+.textarea:focus,
+.textarea:focus-visible {
+  border-color: var(--component-textarea-border-color-focus);
+  outline: none;
+  box-shadow:
+    0 0 0 var(--primitive-spacing-px) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--primitive-spacing-px) + var(--component-textarea-focus-ring-width)) var(--component-textarea-focus-ring-color);
+}
+
+/* ---- Disabled ---- */
+.textarea:disabled,
+.textarea[aria-disabled="true"] {
+  color: var(--component-textarea-text-disabled);
+  background-color: var(--component-textarea-bg-disabled);
+  border-color: var(--component-textarea-border-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+  resize: none;
+}
+
+/* ---- Error ---- */
+.form-field--error .textarea {
+  border-color: var(--component-textarea-border-color-error);
+}
+
+.form-field--error .textarea:focus,
+.form-field--error .textarea:focus-visible {
+  box-shadow:
+    0 0 0 var(--primitive-spacing-px) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--primitive-spacing-px) + var(--component-textarea-focus-ring-width)) var(--semantic-focus-ring-color-danger);
+}
+
+/* ========================================================================
+   CHARACTER COUNT
+   ======================================================================== */
+
+.form-field__char-count {
+  display: block;
+  text-align: right;
+  font-size: var(--component-form-field-character-count-font-size);
+  color: var(--component-form-field-character-count-color-default);
+  margin-top: var(--component-form-field-helper-margin-top);
+}
+
+/* Warning state: approaching limit */
+.form-field__char-count--warning {
+  color: var(--component-form-field-character-count-color-warning);
+}
+
+/* Error state: at or over limit */
+.form-field__char-count--error {
+  color: var(--component-form-field-character-count-color-error);
+}
+
+/* ========================================================================
+   LABEL — disabled state
+   ======================================================================== */
+
+.form-field:has(.textarea:disabled) .form-field__label {
+  color: var(--component-form-field-label-color-disabled);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .textarea {
+    transition: none;
+  }
+}

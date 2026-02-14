@@ -1,0 +1,110 @@
+{
+  "name": "aioli",
+  "version": "0.1.0",
+  "description": "Aioli Design System - AI-native design system engine with token management, accessibility validation, and component generation",
+  "type": "module",
+  "main": "./lib/index.js",
+  "style": "./css/aioli.css",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./css": "./css/aioli.css",
+    "./css/base": "./css/base.css",
+    "./css/tokens": "./dist/css/tokens.css",
+    "./css/components": "./css/components/index.css",
+    "./css/components/*": "./css/components/*.css",
+    "./tokens": "./dist/tokens.json",
+    "./kit": "./lib/kit.js",
+    "./theme": "./lib/theme.js",
+    "./config": "./config.js"
+  },
+  "bin": {
+    "aioli": "./bin/aioli.js"
+  },
+  "files": [
+    "lib/",
+    "bin/",
+    "cli/",
+    "agents/",
+    "tokens/",
+    "css/",
+    "types/",
+    "config.js",
+    "dist/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "demo": "vite --open /demo.html",
+    "docs": "vite --open /docs.html",
+    "build": "node bin/aioli.js build",
+    "build:vite": "vite build",
+    "build:site": "npm run build && vite build",
+    "preview": "vite preview",
+    "build:tokens": "style-dictionary build",
+    "build:tokens:watch": "style-dictionary build --watch",
+    "clean": "rm -rf dist/*",
+    "validate": "node bin/aioli.js validate",
+    "tokens:validate": "node scripts/validate-tokens.js",
+    "agent:token:test": "node agents/test-token-agent.js",
+    "agent:a11y:test": "node agents/test-a11y-agent.js",
+    "agent:a11y:audit": "node agents/full-a11y-audit.js",
+    "agent:motion:test": "node agents/test-motion-agent.js",
+    "agent:orchestrator:test": "node agents/test-orchestrator.js",
+    "agent:test:all": "node agents/test-token-agent.js && node agents/test-a11y-agent.js && node agents/test-motion-agent.js && node agents/test-orchestrator.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build && npm run validate && npm run test",
+    "studio:api": "node src/studio/api-server.js",
+    "studio:dev": "concurrently \"npm run studio:api\" \"npm run dev\"",
+    "studio": "npm run studio:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaredhd/aioli"
+  },
+  "homepage": "https://github.com/jaredhd/aioli#readme",
+  "bugs": {
+    "url": "https://github.com/jaredhd/aioli/issues"
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "dtcg",
+    "style-dictionary",
+    "atomic-design",
+    "accessibility",
+    "wcag",
+    "ai",
+    "agents",
+    "component-generation"
+  ],
+  "author": "Jared",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "prompts": "^2.4.2",
+    "style-dictionary": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "component": {
+    "link": {
+      "color": {
+        "default": { "$value": "{semantic.color.primary.default}", "$type": "color" },
+        "hover": { "$value": "{semantic.color.primary.hover}", "$type": "color" },
+        "active": { "$value": "{semantic.color.primary.active}", "$type": "color" },
+        "visited": { "$value": "{primitive.color.purple.600}", "$type": "color" },
+        "disabled": { "$value": "{semantic.text.disabled}", "$type": "color" }
+      },
+      "decoration": {
+        "default": { "$value": "none", "$type": "strokeStyle" },
+        "hover": { "$value": "underline", "$type": "strokeStyle" }
+      },
+      "fontWeight": { "$value": "{primitive.font.weight.medium}", "$type": "fontWeight" },
+      "focus": {
+        "ringColor": { "$value": "{semantic.color.primary.subtle}", "$type": "color" },
+        "ringWidth": { "$value": "2px", "$type": "dimension" },
+        "ringOffset": { "$value": "2px", "$type": "dimension" }
+      },
+      "variant": {
+        "subtle": {
+          "color": { "$value": "{semantic.text.secondary}", "$type": "color" },
+          "hoverColor": { "$value": "{semantic.text.default}", "$type": "color" }
+        },
+        "inverse": {
+          "color": { "$value": "{semantic.text.inverse}", "$type": "color" },
+          "hoverColor": { "$value": "{primitive.color.neutral.200}", "$type": "color" }
+        }
+      },
+      "external": {
+        "iconSize": { "$value": "0.75em", "$type": "dimension", "$description": "External link icon size" },
+        "iconGap": { "$value": "{primitive.spacing.1}", "$type": "dimension" }
+      }
+    }
+  }
+}

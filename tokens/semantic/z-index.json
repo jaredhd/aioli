@@ -1,0 +1,18 @@
+{
+  "semantic": {
+    "zIndex": {
+      "$type": "number",
+      "hide": { "$value": -1, "$description": "Hidden below base" },
+      "base": { "$value": 0, "$description": "Default stacking" },
+      "raised": { "$value": 1, "$description": "Slightly raised" },
+      "dropdown": { "$value": 1000, "$description": "Dropdown menus" },
+      "sticky": { "$value": 1100, "$description": "Sticky headers" },
+      "fixed": { "$value": 1200, "$description": "Fixed elements" },
+      "modalBackdrop": { "$value": 1300, "$description": "Modal overlay" },
+      "modal": { "$value": 1400, "$description": "Modal content" },
+      "popover": { "$value": 1500, "$description": "Popovers" },
+      "tooltip": { "$value": 1600, "$description": "Tooltips" },
+      "toast": { "$value": 1700, "$description": "Toast notifications" }
+    }
+  }
+}

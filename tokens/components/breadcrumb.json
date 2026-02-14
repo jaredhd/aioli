@@ -1,0 +1,24 @@
+{
+  "component": {
+    "breadcrumb": {
+      "fontSize": { "$value": "{primitive.font.size.sm}", "$type": "dimension" },
+      "gap": { "$value": "{primitive.spacing.2}", "$type": "dimension" },
+      "separator": {
+        "color": { "$value": "{semantic.text.muted}", "$type": "color" },
+        "margin": { "$value": "{primitive.spacing.2}", "$type": "dimension" }
+      },
+      "item": {
+        "color": {
+          "default": { "$value": "{semantic.text.secondary}", "$type": "color" },
+          "hover": { "$value": "{semantic.color.primary.default}", "$type": "color" },
+          "current": { "$value": "{semantic.text.default}", "$type": "color" }
+        },
+        "fontWeight": {
+          "default": { "$value": "{primitive.font.weight.normal}", "$type": "fontWeight" },
+          "current": { "$value": "{primitive.font.weight.medium}", "$type": "fontWeight" }
+        }
+      },
+      "maxWidth": { "$value": "200px", "$type": "dimension", "$description": "Max width before truncation" }
+    }
+  }
+}

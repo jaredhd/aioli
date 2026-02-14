@@ -1,0 +1,207 @@
+/**
+ * Alert Component — Aioli Design System
+ * Molecule: Notification/feedback messages with variant support
+ *
+ * BEM classes: .alert, .alert--{variant}, .alert__icon, .alert__content,
+ *              .alert__title, .alert__message, .alert__dismiss
+ * Variants: info, success, warning, danger
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.alert {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--component-alert-icon-gap);
+  padding: var(--component-alert-padding-y) var(--component-alert-padding-x);
+  border-radius: var(--component-alert-radius);
+  border-width: var(--component-alert-border-width);
+  border-style: solid;
+  font-family: var(--primitive-font-family-sans);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--component-alert-animation-enter-duration) var(--component-alert-animation-enter-easing),
+    transform var(--component-alert-animation-enter-duration) var(--component-alert-animation-enter-easing);
+}
+
+/* Enter animation */
+.alert[data-entering] {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Exit animation */
+.alert[data-exiting] {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity var(--component-alert-animation-exit-duration) var(--component-alert-animation-exit-easing),
+    transform var(--component-alert-animation-exit-duration) var(--component-alert-animation-exit-easing);
+}
+
+/* ----------------------------------------------------------------
+   Icon
+   ---------------------------------------------------------------- */
+.alert__icon {
+  flex-shrink: 0;
+  width: var(--component-alert-icon-size);
+  height: var(--component-alert-icon-size);
+  line-height: 1;
+}
+
+/* ----------------------------------------------------------------
+   Content
+   ---------------------------------------------------------------- */
+.alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.alert__title {
+  display: block;
+  font-size: var(--component-alert-title-font-size);
+  font-weight: var(--component-alert-title-font-weight);
+  line-height: var(--primitive-font-line-height-snug);
+  margin-bottom: var(--component-alert-title-margin-bottom);
+}
+
+.alert__message {
+  font-size: var(--component-alert-description-font-size);
+  line-height: var(--component-alert-description-line-height);
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Dismiss button
+   ---------------------------------------------------------------- */
+.alert__dismiss {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-alert-close-size);
+  height: var(--component-alert-close-size);
+  padding: 0;
+  border: none;
+  border-radius: var(--primitive-radius-base);
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  top: var(--component-alert-close-offset);
+  right: var(--component-alert-close-offset);
+  transition:
+    background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.alert__dismiss:hover {
+  opacity: 0.8;
+}
+
+.alert__dismiss:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.alert__dismiss:active {
+  opacity: 0.6;
+}
+
+/* ----------------------------------------------------------------
+   Variant: info
+   ---------------------------------------------------------------- */
+.alert--info {
+  background-color: var(--component-alert-variant-info-bg);
+  border-color: var(--component-alert-variant-info-border);
+  color: var(--component-alert-variant-info-text);
+}
+
+.alert--info .alert__icon {
+  color: var(--component-alert-variant-info-icon);
+}
+
+.alert--info .alert__title {
+  color: var(--component-alert-variant-info-title);
+}
+
+.alert--info .alert__dismiss {
+  color: var(--component-alert-variant-info-icon);
+}
+
+/* ----------------------------------------------------------------
+   Variant: success
+   ---------------------------------------------------------------- */
+.alert--success {
+  background-color: var(--component-alert-variant-success-bg);
+  border-color: var(--component-alert-variant-success-border);
+  color: var(--component-alert-variant-success-text);
+}
+
+.alert--success .alert__icon {
+  color: var(--component-alert-variant-success-icon);
+}
+
+.alert--success .alert__title {
+  color: var(--component-alert-variant-success-title);
+}
+
+.alert--success .alert__dismiss {
+  color: var(--component-alert-variant-success-icon);
+}
+
+/* ----------------------------------------------------------------
+   Variant: warning
+   ---------------------------------------------------------------- */
+.alert--warning {
+  background-color: var(--component-alert-variant-warning-bg);
+  border-color: var(--component-alert-variant-warning-border);
+  color: var(--component-alert-variant-warning-text);
+}
+
+.alert--warning .alert__icon {
+  color: var(--component-alert-variant-warning-icon);
+}
+
+.alert--warning .alert__title {
+  color: var(--component-alert-variant-warning-title);
+}
+
+.alert--warning .alert__dismiss {
+  color: var(--component-alert-variant-warning-icon);
+}
+
+/* ----------------------------------------------------------------
+   Variant: danger
+   ---------------------------------------------------------------- */
+.alert--danger {
+  background-color: var(--component-alert-variant-danger-bg);
+  border-color: var(--component-alert-variant-danger-border);
+  color: var(--component-alert-variant-danger-text);
+}
+
+.alert--danger .alert__icon {
+  color: var(--component-alert-variant-danger-icon);
+}
+
+.alert--danger .alert__title {
+  color: var(--component-alert-variant-danger-title);
+}
+
+.alert--danger .alert__dismiss {
+  color: var(--component-alert-variant-danger-icon);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .alert,
+  .alert[data-entering],
+  .alert[data-exiting],
+  .alert__dismiss {
+    transition: none;
+  }
+}

@@ -1,0 +1,129 @@
+/* ==========================================================================
+   Divider Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base (horizontal <hr>)
+   -------------------------------------------------------------------------- */
+
+.divider {
+  border: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal Orientation
+   -------------------------------------------------------------------------- */
+
+.divider--horizontal {
+  width: 100%;
+  height: var(--component-divider-thickness);
+  background-color: var(--component-divider-color-default);
+  margin-block: var(--component-divider-spacing-md);
+}
+
+/* --------------------------------------------------------------------------
+   Vertical Orientation
+   -------------------------------------------------------------------------- */
+
+.divider--vertical {
+  width: var(--component-divider-thickness);
+  height: auto;
+  align-self: stretch;
+  background-color: var(--component-divider-color-default);
+  margin-inline: var(--component-divider-spacing-md);
+}
+
+/* --------------------------------------------------------------------------
+   Color Variants
+   -------------------------------------------------------------------------- */
+
+.divider--default {
+  background-color: var(--component-divider-color-default);
+}
+
+.divider--subtle {
+  background-color: var(--component-divider-color-subtle);
+}
+
+.divider--strong {
+  background-color: var(--component-divider-color-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Spacing Variants
+   -------------------------------------------------------------------------- */
+
+.divider--spacing-sm.divider--horizontal {
+  margin-block: var(--component-divider-spacing-sm);
+}
+
+.divider--spacing-sm.divider--vertical {
+  margin-inline: var(--component-divider-spacing-sm);
+}
+
+.divider--spacing-lg.divider--horizontal {
+  margin-block: var(--component-divider-spacing-lg);
+}
+
+.divider--spacing-lg.divider--vertical {
+  margin-inline: var(--component-divider-spacing-lg);
+}
+
+/* --------------------------------------------------------------------------
+   With Label (uses <div> wrapper instead of <hr>)
+   -------------------------------------------------------------------------- */
+
+.divider--with-label {
+  display: flex;
+  align-items: center;
+  gap: var(--component-divider-with-label-gap);
+  background-color: transparent;
+  height: auto;
+}
+
+.divider--with-label.divider--horizontal {
+  flex-direction: row;
+}
+
+.divider--with-label.divider--vertical {
+  flex-direction: column;
+  width: auto;
+}
+
+.divider__line {
+  flex: 1;
+  background-color: var(--component-divider-color-default);
+}
+
+.divider--with-label.divider--horizontal .divider__line {
+  height: var(--component-divider-thickness);
+}
+
+.divider--with-label.divider--vertical .divider__line {
+  width: var(--component-divider-thickness);
+}
+
+/* Inherit variant color */
+.divider--subtle .divider__line {
+  background-color: var(--component-divider-color-subtle);
+}
+
+.divider--strong .divider__line {
+  background-color: var(--component-divider-color-strong);
+}
+
+.divider__label {
+  flex-shrink: 0;
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-divider-with-label-font-size);
+  font-weight: var(--component-divider-with-label-font-weight);
+  color: var(--component-divider-with-label-color);
+  text-transform: var(--component-divider-with-label-text-transform);
+  letter-spacing: var(--component-divider-with-label-letter-spacing);
+  line-height: var(--primitive-font-line-height-none);
+  white-space: nowrap;
+  user-select: none;
+}

@@ -1,0 +1,75 @@
+{
+  "semantic": {
+    "color": {
+      "dark": {
+        "$description": "Dark mode color overrides - WCAG AA compliant",
+        "primary": {
+          "default": { "$value": "{primitive.color.blue.400}" },
+          "hover": { "$value": "{primitive.color.blue.300}" },
+          "active": { "$value": "{primitive.color.blue.500}" },
+          "subtle": { "$value": "rgba(96, 165, 250, 0.2)" }
+        },
+        "success": {
+          "default": { "$value": "{primitive.color.emerald.400}" },
+          "hover": { "$value": "{primitive.color.emerald.300}" },
+          "subtle": { "$value": "rgba(52, 211, 153, 0.2)" }
+        },
+        "warning": {
+          "default": { "$value": "{primitive.color.amber.400}" },
+          "hover": { "$value": "{primitive.color.amber.300}" },
+          "subtle": { "$value": "rgba(251, 191, 36, 0.2)" }
+        },
+        "danger": {
+          "default": { "$value": "{primitive.color.red.400}" },
+          "hover": { "$value": "{primitive.color.red.300}" },
+          "subtle": { "$value": "rgba(248, 113, 113, 0.2)" }
+        },
+        "info": {
+          "default": { "$value": "{primitive.color.blue.400}" },
+          "hover": { "$value": "{primitive.color.blue.300}" },
+          "subtle": { "$value": "rgba(96, 165, 250, 0.2)" }
+        }
+      }
+    },
+    "surface": {
+      "dark": {
+        "$description": "Dark mode surface colors",
+        "page": {
+          "default": { "$value": "{primitive.color.neutral.900}" },
+          "subtle": { "$value": "{primitive.color.neutral.800}" }
+        },
+        "card": {
+          "default": { "$value": "{primitive.color.neutral.800}" },
+          "hover": { "$value": "{primitive.color.neutral.700}" }
+        },
+        "input": {
+          "default": { "$value": "{primitive.color.neutral.800}" },
+          "hover": { "$value": "{primitive.color.neutral.700}" }
+        },
+        "overlay": { "$value": "rgba(0, 0, 0, 0.7)" }
+      }
+    },
+    "border": {
+      "dark": {
+        "$description": "Dark mode border colors - WCAG 3:1 UI component contrast",
+        "default": { "$value": "{primitive.color.neutral.500}" },
+        "subtle": { "$value": "{primitive.color.neutral.600}" },
+        "strong": { "$value": "{primitive.color.neutral.400}" },
+        "focus": { "$value": "{primitive.color.blue.400}" }
+      }
+    },
+    "text": {
+      "dark": {
+        "$description": "Dark mode text colors - WCAG AA compliant (4.5:1 minimum)",
+        "default": { "$value": "{primitive.color.neutral.100}" },
+        "muted": { "$value": "{primitive.color.neutral.400}" },
+        "subtle": { "$value": "{primitive.color.neutral.400}" },
+        "inverse": { "$value": "{primitive.color.neutral.900}" },
+        "disabled": { "$value": "{primitive.color.neutral.500}" },
+        "placeholder": { "$value": "{primitive.color.neutral.400}" },
+        "link": { "$value": "{primitive.color.blue.400}" },
+        "link-hover": { "$value": "{primitive.color.blue.300}" }
+      }
+    }
+  }
+}

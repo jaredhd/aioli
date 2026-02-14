@@ -1,0 +1,56 @@
+{
+  "component": {
+    "avatar": {
+      "size": {
+        "xs": { "$type": "dimension", "$value": "{primitive.spacing.6}" },
+        "sm": { "$type": "dimension", "$value": "{primitive.spacing.8}" },
+        "md": { "$type": "dimension", "$value": "{primitive.spacing.10}" },
+        "lg": { "$type": "dimension", "$value": "{primitive.spacing.12}" },
+        "xl": { "$type": "dimension", "$value": "{primitive.spacing.16}" },
+        "2xl": { "$type": "dimension", "$value": "{primitive.spacing.20}" }
+      },
+      "radius": {
+        "default": { "$type": "dimension", "$value": "{primitive.radius.full}" },
+        "square": { "$type": "dimension", "$value": "{primitive.radius.lg}" }
+      },
+      "bg": {
+        "default": { "$type": "color", "$value": "{primitive.color.neutral.200}" },
+        "primary": { "$type": "color", "$value": "{semantic.color.primary.subtle}" }
+      },
+      "text": {
+        "color": { "$type": "color", "$value": "{primitive.color.neutral.600}" },
+        "fontSize": {
+          "xs": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+          "sm": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+          "md": { "$type": "dimension", "$value": "{primitive.font.size.sm}" },
+          "lg": { "$type": "dimension", "$value": "{primitive.font.size.base}" },
+          "xl": { "$type": "dimension", "$value": "{primitive.font.size.lg}" },
+          "2xl": { "$type": "dimension", "$value": "{primitive.font.size.xl}" }
+        },
+        "fontWeight": { "$type": "fontWeight", "$value": "{primitive.font.weight.medium}" }
+      },
+      "border": {
+        "width": { "$type": "dimension", "$value": "2px" },
+        "color": { "$type": "color", "$value": "{semantic.surface.page.default}" }
+      },
+      "status": {
+        "size": {
+          "xs": { "$type": "dimension", "$value": "{primitive.spacing.1-5}" },
+          "sm": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+          "md": { "$type": "dimension", "$value": "{primitive.spacing.2-5}" },
+          "lg": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+          "xl": { "$type": "dimension", "$value": "{primitive.spacing.3-5}" },
+          "2xl": { "$type": "dimension", "$value": "{primitive.spacing.4}" }
+        },
+        "online": { "$type": "color", "$value": "{primitive.color.emerald.500}" },
+        "offline": { "$type": "color", "$value": "{primitive.color.neutral.400}" },
+        "busy": { "$type": "color", "$value": "{primitive.color.red.500}" },
+        "away": { "$type": "color", "$value": "{primitive.color.amber.500}" }
+      },
+      "group": {
+        "overlap": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+        "border": { "$type": "color", "$value": "{semantic.surface.page.default}" }
+      }
+    }
+  }
+}

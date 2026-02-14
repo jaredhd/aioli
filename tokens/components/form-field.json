@@ -1,0 +1,46 @@
+{
+  "component": {
+    "formField": {
+      "gap": { "$type": "dimension", "$value": "{primitive.spacing.1-5}" },
+      "label": {
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" },
+        "fontWeight": { "$type": "fontWeight", "$value": "{primitive.font.weight.medium}" },
+        "color": {
+          "default": { "$type": "color", "$value": "{semantic.text.default}" },
+          "disabled": { "$type": "color", "$value": "{semantic.text.disabled}" }
+        },
+        "required": {
+          "color": { "$type": "color", "$value": "{semantic.color.danger.default}" },
+          "gap": { "$type": "dimension", "$value": "{primitive.spacing.0-5}" }
+        }
+      },
+      "helper": {
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+        "color": { "$type": "color", "$value": "{semantic.text.muted}" },
+        "marginTop": { "$type": "dimension", "$value": "{primitive.spacing.1}" }
+      },
+      "error": {
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+        "color": { "$type": "color", "$value": "{semantic.color.danger.default}" },
+        "marginTop": { "$type": "dimension", "$value": "{primitive.spacing.1}" },
+        "icon": {
+          "size": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+          "gap": { "$type": "dimension", "$value": "{primitive.spacing.1}" }
+        }
+      },
+      "success": {
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+        "color": { "$type": "color", "$value": "{semantic.color.success.default}" },
+        "marginTop": { "$type": "dimension", "$value": "{primitive.spacing.1}" }
+      },
+      "characterCount": {
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+        "color": {
+          "default": { "$type": "color", "$value": "{semantic.text.muted}" },
+          "warning": { "$type": "color", "$value": "{semantic.color.warning.default}" },
+          "error": { "$type": "color", "$value": "{semantic.color.danger.default}" }
+        }
+      }
+    }
+  }
+}

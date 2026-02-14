@@ -1,0 +1,30 @@
+{
+  "component": {
+    "progress": {
+      "track": {
+        "height": { "$value": "8px", "$type": "dimension" },
+        "radius": { "$value": "{primitive.radius.full}", "$type": "dimension" },
+        "bg": { "$value": "{primitive.color.neutral.200}", "$type": "color" }
+      },
+      "bar": {
+        "radius": { "$value": "{primitive.radius.full}", "$type": "dimension" },
+        "color": {
+          "default": { "$value": "{semantic.color.primary.default}", "$type": "color" },
+          "success": { "$value": "{semantic.color.success.default}", "$type": "color" },
+          "warning": { "$value": "{semantic.color.warning.default}", "$type": "color" },
+          "danger": { "$value": "{semantic.color.danger.default}", "$type": "color" }
+        },
+        "transition": { "$value": "width 300ms ease", "$type": "transition" }
+      },
+      "label": {
+        "fontSize": { "$value": "{primitive.font.size.xs}", "$type": "dimension" },
+        "color": { "$value": "{semantic.text.secondary}", "$type": "color" }
+      },
+      "size": {
+        "sm": { "$value": "4px", "$type": "dimension" },
+        "md": { "$value": "8px", "$type": "dimension" },
+        "lg": { "$value": "12px", "$type": "dimension" }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "semantic": {
+    "focus": {
+      "ring": {
+        "width": { "$value": "2px", "$type": "dimension", "$description": "Focus ring width" },
+        "offset": { "$value": "2px", "$type": "dimension", "$description": "Gap between element and focus ring" },
+        "color": { "$value": "{primitive.color.blue.500}", "$type": "color", "$description": "Default focus ring color" },
+        "colorDanger": { "$value": "{primitive.color.red.500}", "$type": "color", "$description": "Focus ring for error states" },
+        "style": { "$value": "solid", "$type": "strokeStyle", "$description": "Focus ring border style" }
+      },
+      "outline": {
+        "width": { "$value": "2px", "$type": "dimension" },
+        "offset": { "$value": "2px", "$type": "dimension" },
+        "color": { "$value": "{primitive.color.blue.500}", "$type": "color" }
+      }
+    }
+  }
+}

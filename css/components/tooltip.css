@@ -1,0 +1,162 @@
+/**
+ * Aioli Design System — Tooltip Component
+ * Tooltip/hint text with positional variants.
+ * Positions: top, right, bottom, left
+ * Variants: dark (default), light
+ *
+ * BEM: .tooltip, .tooltip--top, .tooltip--right, .tooltip--bottom,
+ *      .tooltip--left, .tooltip--light
+ */
+
+/* ========================================================================
+   BASE
+   ======================================================================== */
+
+.tooltip {
+  position: absolute;
+  z-index: var(--semantic-z-index-tooltip);
+  max-width: var(--component-tooltip-max-width);
+  padding: var(--component-tooltip-padding-y) var(--component-tooltip-padding-x);
+  font-size: var(--component-tooltip-font-size);
+  font-weight: var(--primitive-font-weight-normal);
+  line-height: var(--component-tooltip-line-height);
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  border-radius: var(--component-tooltip-radius);
+  pointer-events: none;
+
+  /* Default: dark variant */
+  background-color: var(--component-tooltip-variant-dark-bg);
+  color: var(--component-tooltip-variant-dark-text);
+
+  /* Entry animation */
+  opacity: 0;
+  transform: scale(0.95);
+  transition:
+    opacity var(--component-tooltip-animation-duration) var(--component-tooltip-animation-easing),
+    transform var(--component-tooltip-animation-duration) var(--component-tooltip-animation-easing);
+  transition-delay: var(--component-tooltip-animation-delay);
+}
+
+/* Visible state — toggled by JS or :hover/:focus on the trigger */
+.tooltip[data-visible="true"],
+.tooltip.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ========================================================================
+   ARROW (shared pseudo-element)
+   ======================================================================== */
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  width: var(--component-tooltip-arrow-size);
+  height: var(--component-tooltip-arrow-size);
+  background-color: inherit;
+  transform: rotate(45deg);
+}
+
+/* ========================================================================
+   POSITIONS
+   ======================================================================== */
+
+/* ---- Top ---- */
+.tooltip--top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  margin-bottom: var(--component-tooltip-offset);
+}
+
+.tooltip--top[data-visible="true"],
+.tooltip--top.is-visible {
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip--top::after {
+  bottom: calc(-1 * var(--component-tooltip-arrow-size) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ---- Right ---- */
+.tooltip--right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+  margin-left: var(--component-tooltip-offset);
+}
+
+.tooltip--right[data-visible="true"],
+.tooltip--right.is-visible {
+  transform: translateY(-50%) scale(1);
+}
+
+.tooltip--right::after {
+  left: calc(-1 * var(--component-tooltip-arrow-size) / 2);
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* ---- Bottom ---- */
+.tooltip--bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  margin-top: var(--component-tooltip-offset);
+}
+
+.tooltip--bottom[data-visible="true"],
+.tooltip--bottom.is-visible {
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip--bottom::after {
+  top: calc(-1 * var(--component-tooltip-arrow-size) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ---- Left ---- */
+.tooltip--left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+  margin-right: var(--component-tooltip-offset);
+}
+
+.tooltip--left[data-visible="true"],
+.tooltip--left.is-visible {
+  transform: translateY(-50%) scale(1);
+}
+
+.tooltip--left::after {
+  right: calc(-1 * var(--component-tooltip-arrow-size) / 2);
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* ========================================================================
+   LIGHT VARIANT
+   ======================================================================== */
+
+.tooltip--light {
+  background-color: var(--component-tooltip-variant-light-bg);
+  color: var(--component-tooltip-variant-light-text);
+  border: var(--primitive-border-width-thin) solid var(--component-tooltip-variant-light-border);
+  box-shadow: var(--component-tooltip-variant-light-shadow);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transition: none;
+    transition-delay: 0ms;
+  }
+}

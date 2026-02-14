@@ -1,0 +1,36 @@
+{
+  "semantic": {
+    "surface": {
+      "$type": "color",
+      "page": {
+        "default": { "$value": "{primitive.color.neutral.0}" },
+        "subtle": { "$value": "{primitive.color.neutral.50}" },
+        "muted": { "$value": "{primitive.color.neutral.100}" }
+      },
+      "card": {
+        "default": { "$value": "{primitive.color.neutral.0}" },
+        "hover": { "$value": "{primitive.color.neutral.50}" }
+      },
+      "inverse": {
+        "default": { "$value": "{primitive.color.neutral.900}" },
+        "subtle": { "$value": "{primitive.color.neutral.800}" }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "default": { "$value": "{primitive.color.neutral.200}" },
+      "subtle": { "$value": "{primitive.color.neutral.100}" },
+      "strong": { "$value": "{primitive.color.neutral.300}" },
+      "focus": { "$value": "{primitive.color.blue.500}" }
+    },
+    "text": {
+      "$type": "color",
+      "default": { "$value": "{primitive.color.neutral.900}" },
+      "secondary": { "$value": "{primitive.color.neutral.600}" },
+      "muted": { "$value": "{primitive.color.neutral.500}" },
+      "disabled": { "$value": "{primitive.color.neutral.400}" },
+      "inverse": { "$value": "{primitive.color.neutral.0}" },
+      "link": { "$value": "{primitive.color.blue.600}" }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+# Studio UI (not distributed)
+src/
+index.html
+demo.html
+docs.html
+vite.config.ts
+tsconfig.json
+
+# Development
+.claude/
+.DS_Store
+reports/
+setup.sh
+
+# Test files
+agents/test-*.js
+agents/full-a11y-audit.js
+test/
+
+# Package management
+package-lock.json
+
+# Git
+.git/
+.gitignore
+
+# GitHub
+.github/
+
+# Community files (not needed in npm package)
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+CLAUDE.md
+
+# Site build output
+dist-site/
+
+# Scripts (development only)
+scripts/

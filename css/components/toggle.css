@@ -1,0 +1,252 @@
+/**
+ * Aioli Design System — Toggle Component
+ * Toggle/switch input with hidden native checkbox.
+ * Sizes: sm, md, lg
+ *
+ * BEM: .toggle, .toggle--sm, .toggle--md, .toggle--lg, .toggle--disabled,
+ *      .toggle__input, .toggle__track, .toggle__thumb, .toggle__label
+ */
+
+/* ========================================================================
+   BASE (label wrapper)
+   ======================================================================== */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-toggle-label-gap);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.toggle--disabled {
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   HIDE NATIVE INPUT
+   ======================================================================== */
+
+.toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================================================
+   TRACK
+   ======================================================================== */
+
+.toggle__track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  /* Default size: md */
+  width: var(--component-toggle-track-size-md-width);
+  height: var(--component-toggle-track-size-md-height);
+
+  background-color: var(--component-toggle-track-bg-off);
+  border-radius: var(--component-toggle-track-radius);
+
+  transition:
+    background-color var(--component-toggle-transition-duration) var(--component-toggle-transition-easing);
+}
+
+/* ========================================================================
+   THUMB
+   ======================================================================== */
+
+.toggle__thumb {
+  position: absolute;
+  left: var(--component-toggle-thumb-offset);
+
+  /* Default size: md */
+  width: var(--component-toggle-thumb-size-md);
+  height: var(--component-toggle-thumb-size-md);
+
+  background-color: var(--component-toggle-thumb-bg-default);
+  border-radius: var(--component-toggle-thumb-radius);
+  box-shadow: var(--component-toggle-thumb-shadow);
+
+  transition:
+    transform var(--component-toggle-transition-duration) var(--component-toggle-transition-easing);
+}
+
+/* ========================================================================
+   STATES
+   ======================================================================== */
+
+/* ---- Hover (off) ---- */
+.toggle:hover .toggle__track {
+  background-color: var(--component-toggle-track-bg-off-hover);
+}
+
+/* ---- Checked (on) ---- */
+.toggle__input:checked + .toggle__track {
+  background-color: var(--component-toggle-track-bg-on);
+}
+
+.toggle__input:checked + .toggle__track .toggle__thumb {
+  /* Translate thumb to the right; distance = track width - thumb size - 2*offset */
+  transform: translateX(
+    calc(
+      var(--component-toggle-track-size-md-width)
+      - var(--component-toggle-thumb-size-md)
+      - var(--component-toggle-thumb-offset) * 2
+    )
+  );
+}
+
+/* ---- Hover (on) ---- */
+.toggle:hover .toggle__input:checked + .toggle__track {
+  background-color: var(--component-toggle-track-bg-on-hover);
+}
+
+/* ---- Focus-visible ---- */
+.toggle__input:focus-visible + .toggle__track {
+  box-shadow:
+    0 0 0 var(--component-toggle-focus-ring-offset) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--component-toggle-focus-ring-offset) + var(--component-toggle-focus-ring-width)) var(--component-toggle-focus-ring-color);
+}
+
+/* ---- Active ---- */
+.toggle__input:active + .toggle__track .toggle__thumb {
+  transform: scaleX(1.1);
+}
+
+.toggle__input:checked:active + .toggle__track .toggle__thumb {
+  transform: translateX(
+    calc(
+      var(--component-toggle-track-size-md-width)
+      - var(--component-toggle-thumb-size-md)
+      - var(--component-toggle-thumb-offset) * 2
+    )
+  ) scaleX(1.1);
+}
+
+/* ---- Disabled ---- */
+.toggle__input:disabled + .toggle__track {
+  background-color: var(--component-toggle-track-bg-disabled);
+  cursor: not-allowed;
+}
+
+.toggle__input:disabled + .toggle__track .toggle__thumb {
+  background-color: var(--component-toggle-thumb-bg-disabled);
+  box-shadow: none;
+}
+
+/* ========================================================================
+   LABEL TEXT
+   ======================================================================== */
+
+.toggle__label {
+  font-size: var(--component-toggle-label-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  color: var(--component-toggle-label-color-default);
+}
+
+.toggle__input:disabled ~ .toggle__label {
+  color: var(--component-toggle-label-color-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   SIZE MODIFIERS
+   ======================================================================== */
+
+/* ---- Small ---- */
+.toggle--sm .toggle__track {
+  width: var(--component-toggle-track-size-sm-width);
+  height: var(--component-toggle-track-size-sm-height);
+}
+
+.toggle--sm .toggle__thumb {
+  width: var(--component-toggle-thumb-size-sm);
+  height: var(--component-toggle-thumb-size-sm);
+}
+
+.toggle--sm .toggle__input:checked + .toggle__track .toggle__thumb {
+  transform: translateX(
+    calc(
+      var(--component-toggle-track-size-sm-width)
+      - var(--component-toggle-thumb-size-sm)
+      - var(--component-toggle-thumb-offset) * 2
+    )
+  );
+}
+
+.toggle--sm .toggle__input:checked:active + .toggle__track .toggle__thumb {
+  transform: translateX(
+    calc(
+      var(--component-toggle-track-size-sm-width)
+      - var(--component-toggle-thumb-size-sm)
+      - var(--component-toggle-thumb-offset) * 2
+    )
+  ) scaleX(1.1);
+}
+
+/* ---- Large ---- */
+.toggle--lg .toggle__track {
+  width: var(--component-toggle-track-size-lg-width);
+  height: var(--component-toggle-track-size-lg-height);
+}
+
+.toggle--lg .toggle__thumb {
+  width: var(--component-toggle-thumb-size-lg);
+  height: var(--component-toggle-thumb-size-lg);
+}
+
+.toggle--lg .toggle__input:checked + .toggle__track .toggle__thumb {
+  transform: translateX(
+    calc(
+      var(--component-toggle-track-size-lg-width)
+      - var(--component-toggle-thumb-size-lg)
+      - var(--component-toggle-thumb-offset) * 2
+    )
+  );
+}
+
+.toggle--lg .toggle__input:checked:active + .toggle__track .toggle__thumb {
+  transform: translateX(
+    calc(
+      var(--component-toggle-track-size-lg-width)
+      - var(--component-toggle-thumb-size-lg)
+      - var(--component-toggle-thumb-offset) * 2
+    )
+  ) scaleX(1.1);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle__track,
+  .toggle__thumb {
+    transition: none;
+  }
+
+  .toggle__input:active + .toggle__track .toggle__thumb,
+  .toggle__input:checked:active + .toggle__track .toggle__thumb {
+    transform: none;
+  }
+
+  /* Still show position change for checked state (no animation) */
+  .toggle__input:checked + .toggle__track .toggle__thumb {
+    transition: none;
+  }
+
+  .toggle--sm .toggle__input:checked:active + .toggle__track .toggle__thumb,
+  .toggle--lg .toggle__input:checked:active + .toggle__track .toggle__thumb {
+    transform: none;
+  }
+}

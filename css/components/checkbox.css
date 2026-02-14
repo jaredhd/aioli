@@ -1,0 +1,198 @@
+/**
+ * Aioli Design System — Checkbox Component
+ * Custom checkbox with hidden native input.
+ * Sizes: sm, md, lg
+ *
+ * BEM: .checkbox, .checkbox--disabled,
+ *      .checkbox__input, .checkbox__control, .checkbox__label
+ * Wraps in: .form-field, .form-field--error, .form-field__error
+ */
+
+/* ========================================================================
+   CHECKBOX LABEL (wrapper)
+   ======================================================================== */
+
+.checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--component-checkbox-label-gap);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox--disabled {
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   HIDE NATIVE INPUT
+   ======================================================================== */
+
+.checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================================================
+   CUSTOM CONTROL
+   ======================================================================== */
+
+.checkbox__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  /* Default size: md */
+  width: var(--component-checkbox-size-md);
+  height: var(--component-checkbox-size-md);
+
+  background-color: var(--component-checkbox-bg-default);
+  border: var(--component-checkbox-border-width) solid var(--component-checkbox-border-color-default);
+  border-radius: var(--component-checkbox-radius);
+
+  transition:
+    background-color var(--component-checkbox-transition-duration) var(--component-checkbox-transition-easing),
+    border-color var(--component-checkbox-transition-duration) var(--component-checkbox-transition-easing),
+    box-shadow var(--component-checkbox-transition-duration) var(--component-checkbox-transition-easing);
+}
+
+/* Checkmark icon (hidden by default) */
+.checkbox__control::after {
+  content: "";
+  display: block;
+  width: var(--component-checkbox-icon-size);
+  height: var(--component-checkbox-icon-size);
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity var(--component-checkbox-transition-duration) var(--component-checkbox-transition-easing),
+    transform var(--component-checkbox-transition-duration) var(--component-checkbox-transition-easing);
+
+  /* Checkmark as inline SVG background */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* ========================================================================
+   STATES
+   ======================================================================== */
+
+/* ---- Hover ---- */
+.checkbox:hover .checkbox__control {
+  border-color: var(--component-checkbox-border-color-hover);
+}
+
+/* ---- Focus-visible ---- */
+.checkbox__input:focus-visible + .checkbox__control {
+  border-color: var(--component-checkbox-border-color-hover);
+  box-shadow:
+    0 0 0 var(--component-checkbox-focus-ring-offset) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--component-checkbox-focus-ring-offset) + var(--component-checkbox-focus-ring-width)) var(--component-checkbox-focus-ring-color);
+}
+
+/* ---- Checked ---- */
+.checkbox__input:checked + .checkbox__control {
+  background-color: var(--component-checkbox-bg-checked);
+  border-color: var(--component-checkbox-border-color-checked);
+}
+
+.checkbox__input:checked + .checkbox__control::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---- Active ---- */
+.checkbox__input:active + .checkbox__control {
+  transform: scale(0.95);
+}
+
+/* ---- Disabled ---- */
+.checkbox__input:disabled + .checkbox__control {
+  background-color: var(--component-checkbox-bg-disabled);
+  border-color: var(--component-checkbox-border-color-disabled);
+  cursor: not-allowed;
+}
+
+.checkbox__input:disabled:checked + .checkbox__control {
+  background-color: var(--component-checkbox-bg-disabled-checked);
+  border-color: var(--component-checkbox-border-color-disabled);
+}
+
+/* ---- Error ---- */
+.form-field--error .checkbox__control {
+  border-color: var(--component-checkbox-border-color-error);
+}
+
+/* ========================================================================
+   LABEL TEXT
+   ======================================================================== */
+
+.checkbox__label {
+  font-size: var(--component-checkbox-label-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  color: var(--component-checkbox-label-color-default);
+  /* Align baseline with the control center */
+  padding-top: var(--primitive-spacing-0-5);
+}
+
+.checkbox__input:disabled ~ .checkbox__label {
+  color: var(--component-checkbox-label-color-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   SIZE MODIFIERS  (applied on the wrapping .checkbox via parent class)
+   ======================================================================== */
+
+/* Small */
+.checkbox--sm .checkbox__control,
+.form-field--sm .checkbox__control {
+  width: var(--component-checkbox-size-sm);
+  height: var(--component-checkbox-size-sm);
+}
+
+/* Large */
+.checkbox--lg .checkbox__control,
+.form-field--lg .checkbox__control {
+  width: var(--component-checkbox-size-lg);
+  height: var(--component-checkbox-size-lg);
+}
+
+/* ========================================================================
+   FORM-FIELD ERROR MESSAGE
+   ======================================================================== */
+
+.form-field--error .form-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--component-form-field-error-icon-gap);
+  margin-top: var(--component-form-field-error-margin-top);
+  font-size: var(--component-form-field-error-font-size);
+  color: var(--component-form-field-error-color);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .checkbox__control,
+  .checkbox__control::after {
+    transition: none;
+  }
+
+  .checkbox__input:active + .checkbox__control {
+    transform: none;
+  }
+}

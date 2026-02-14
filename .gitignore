@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code local settings
+.claude/
+
+# Reports (generated)
+reports/
+
+# Vite site build output (built in CI for GitHub Pages)
+dist-site/
+
+# Note: dist/ is NOT ignored — it contains built design tokens
+# (tokens.css, tokens.json) referenced by package.json exports

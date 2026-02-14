@@ -1,0 +1,30 @@
+{
+  "component": {
+    "spinner": {
+      "size": {
+        "xs": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+        "sm": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+        "md": { "$type": "dimension", "$value": "{primitive.spacing.6}" },
+        "lg": { "$type": "dimension", "$value": "{primitive.spacing.8}" },
+        "xl": { "$type": "dimension", "$value": "{primitive.spacing.12}" }
+      },
+      "borderWidth": {
+        "xs": { "$type": "dimension", "$value": "2px" },
+        "sm": { "$type": "dimension", "$value": "2px" },
+        "md": { "$type": "dimension", "$value": "2px" },
+        "lg": { "$type": "dimension", "$value": "3px" },
+        "xl": { "$type": "dimension", "$value": "4px" }
+      },
+      "color": {
+        "primary": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+        "secondary": { "$type": "color", "$value": "{primitive.color.neutral.400}" },
+        "white": { "$type": "color", "$value": "{primitive.color.neutral.0}" },
+        "track": { "$type": "color", "$value": "{primitive.color.neutral.200}" }
+      },
+      "animation": {
+        "duration": { "$type": "duration", "$value": "600ms" },
+        "easing": { "$type": "cubicBezier", "$value": "{primitive.motion.easing.linear}" }
+      }
+    }
+  }
+}

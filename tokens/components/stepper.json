@@ -1,0 +1,48 @@
+{
+  "component": {
+    "stepper": {
+      "connector": {
+        "height": { "$value": "2px", "$type": "dimension" },
+        "color": {
+          "default": { "$value": "{semantic.border.default}", "$type": "color" },
+          "completed": { "$value": "{semantic.color.primary.default}", "$type": "color" }
+        }
+      },
+      "step": {
+        "size": { "$value": "32px", "$type": "dimension" },
+        "fontSize": { "$value": "{primitive.font.size.sm}", "$type": "dimension" },
+        "fontWeight": { "$value": "{primitive.font.weight.semibold}", "$type": "fontWeight" },
+        "radius": { "$value": "{primitive.radius.full}", "$type": "dimension" },
+        "bg": {
+          "default": { "$value": "{primitive.color.neutral.200}", "$type": "color" },
+          "active": { "$value": "{semantic.color.primary.default}", "$type": "color" },
+          "completed": { "$value": "{semantic.color.primary.default}", "$type": "color" }
+        },
+        "color": {
+          "default": { "$value": "{semantic.text.muted}", "$type": "color" },
+          "active": { "$value": "{primitive.color.neutral.0}", "$type": "color" },
+          "completed": { "$value": "{primitive.color.neutral.0}", "$type": "color" }
+        },
+        "label": {
+          "fontSize": { "$value": "{primitive.font.size.sm}", "$type": "dimension" },
+          "color": {
+            "default": { "$value": "{semantic.text.muted}", "$type": "color" },
+            "active": { "$value": "{semantic.text.default}", "$type": "color" },
+            "completed": { "$value": "{semantic.text.secondary}", "$type": "color" }
+          }
+        },
+        "description": {
+          "fontSize": { "$value": "{primitive.font.size.xs}", "$type": "dimension" },
+          "color": { "$value": "{semantic.text.muted}", "$type": "color" }
+        }
+      },
+      "gap": { "$value": "{primitive.spacing.4}", "$type": "dimension" },
+      "orientation": {
+        "vertical": {
+          "connectorWidth": { "$value": "2px", "$type": "dimension" },
+          "gap": { "$value": "{primitive.spacing.6}", "$type": "dimension" }
+        }
+      }
+    }
+  }
+}

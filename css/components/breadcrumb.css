@@ -1,0 +1,97 @@
+/**
+ * Breadcrumb Component — Aioli Design System
+ * Molecule: Breadcrumb navigation trail
+ *
+ * BEM classes: .breadcrumb, .breadcrumb__list, .breadcrumb__item,
+ *              .breadcrumb__link, .breadcrumb__separator, .breadcrumb__current
+ */
+
+/* ----------------------------------------------------------------
+   Base nav
+   ---------------------------------------------------------------- */
+.breadcrumb {
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-breadcrumb-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   List
+   ---------------------------------------------------------------- */
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--component-breadcrumb-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ----------------------------------------------------------------
+   Item
+   ---------------------------------------------------------------- */
+.breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-breadcrumb-separator-margin);
+  max-width: var(--component-breadcrumb-max-width);
+}
+
+/* ----------------------------------------------------------------
+   Link
+   ---------------------------------------------------------------- */
+.breadcrumb__link {
+  color: var(--component-breadcrumb-item-color-default);
+  font-weight: var(--component-breadcrumb-item-font-weight-default);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.breadcrumb__link:hover {
+  color: var(--component-breadcrumb-item-color-hover);
+  text-decoration: underline;
+}
+
+.breadcrumb__link:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-2xs);
+}
+
+.breadcrumb__link:active {
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------------------
+   Separator
+   ---------------------------------------------------------------- */
+.breadcrumb__separator {
+  flex-shrink: 0;
+  color: var(--component-breadcrumb-separator-color);
+  user-select: none;
+}
+
+/* ----------------------------------------------------------------
+   Current page (last item)
+   ---------------------------------------------------------------- */
+.breadcrumb__current {
+  color: var(--component-breadcrumb-item-color-current);
+  font-weight: var(--component-breadcrumb-item-font-weight-current);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb__link {
+    transition: none;
+  }
+}

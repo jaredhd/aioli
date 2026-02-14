@@ -1,0 +1,167 @@
+/**
+ * Aioli Design System — Select Component
+ * Native <select> element with custom styling.
+ * Sizes: sm, md, lg
+ *
+ * BEM: .select, .select--sm, .select--md, .select--lg
+ * Wraps in: .form-field, .form-field--error
+ * Uses: .form-field__label, .form-field__required, .form-field__error
+ */
+
+/* ========================================================================
+   FORM FIELD WRAPPER
+   ======================================================================== */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-form-field-gap);
+}
+
+/* ========================================================================
+   LABEL
+   ======================================================================== */
+
+.form-field__label {
+  font-size: var(--component-form-field-label-font-size);
+  font-weight: var(--component-form-field-label-font-weight);
+  color: var(--component-form-field-label-color-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+.form-field__required {
+  color: var(--component-form-field-label-required-color);
+  margin-left: var(--component-form-field-label-required-gap);
+}
+
+/* ========================================================================
+   SELECT BASE
+   ======================================================================== */
+
+.select {
+  display: block;
+  width: 100%;
+
+  /* Default size: md */
+  height: var(--component-select-trigger-size-md-height);
+  padding: 0 var(--component-select-trigger-icon-size) 0 var(--component-select-trigger-size-md-padding-x);
+  font-size: var(--component-select-trigger-size-md-font-size);
+
+  color: var(--component-select-trigger-text-default);
+  background-color: var(--component-select-trigger-bg-default);
+  border: var(--component-select-trigger-border-width) solid var(--component-select-trigger-border-color-default);
+  border-radius: var(--component-select-trigger-radius);
+
+  /* Custom arrow */
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 5.646a.5.5 0 01.708 0L8 8.293l2.646-2.647a.5.5 0 01.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 010-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--component-select-trigger-size-md-padding-x) center;
+  background-size: var(--component-select-trigger-icon-size);
+
+  line-height: var(--primitive-font-line-height-normal);
+  cursor: pointer;
+
+  transition:
+    border-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+/* Placeholder option styling */
+.select option[value=""][disabled] {
+  color: var(--component-select-trigger-text-placeholder);
+}
+
+/* ========================================================================
+   STATES
+   ======================================================================== */
+
+/* ---- Hover ---- */
+.select:hover:not(:disabled) {
+  border-color: var(--component-select-trigger-border-color-hover);
+  background-color: var(--component-select-trigger-bg-hover);
+}
+
+/* ---- Focus-visible ---- */
+.select:focus-visible {
+  border-color: var(--component-select-trigger-border-color-focus);
+  outline: none;
+  box-shadow:
+    0 0 0 var(--primitive-spacing-px) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--primitive-spacing-px) + var(--semantic-focus-ring-width)) var(--semantic-focus-ring-color);
+}
+
+/* ---- Disabled ---- */
+.select:disabled,
+.select[aria-disabled="true"] {
+  color: var(--component-select-trigger-text-disabled);
+  background-color: var(--component-select-trigger-bg-disabled);
+  border-color: var(--component-select-trigger-border-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* ---- Error ---- */
+.form-field--error .select {
+  border-color: var(--component-select-trigger-border-color-error);
+}
+
+.form-field--error .select:focus-visible {
+  box-shadow:
+    0 0 0 var(--primitive-spacing-px) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--primitive-spacing-px) + var(--semantic-focus-ring-width)) var(--semantic-focus-ring-color-danger);
+}
+
+/* ========================================================================
+   ERROR MESSAGE
+   ======================================================================== */
+
+.form-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--component-form-field-error-icon-gap);
+  margin-top: var(--component-form-field-error-margin-top);
+  font-size: var(--component-form-field-error-font-size);
+  color: var(--component-form-field-error-color);
+}
+
+/* ========================================================================
+   SIZE MODIFIERS
+   ======================================================================== */
+
+/* ---- Small ---- */
+.select--sm {
+  height: var(--component-select-trigger-size-sm-height);
+  padding-left: var(--component-select-trigger-size-sm-padding-x);
+  padding-right: var(--component-select-trigger-icon-size);
+  font-size: var(--component-select-trigger-size-sm-font-size);
+  background-position: right var(--component-select-trigger-size-sm-padding-x) center;
+}
+
+/* ---- Large ---- */
+.select--lg {
+  height: var(--component-select-trigger-size-lg-height);
+  padding-left: var(--component-select-trigger-size-lg-padding-x);
+  padding-right: var(--component-select-trigger-icon-size);
+  font-size: var(--component-select-trigger-size-lg-font-size);
+  background-position: right var(--component-select-trigger-size-lg-padding-x) center;
+}
+
+/* ========================================================================
+   LABEL — disabled state
+   ======================================================================== */
+
+.form-field:has(.select:disabled) .form-field__label {
+  color: var(--component-form-field-label-color-disabled);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .select {
+    transition: none;
+  }
+}

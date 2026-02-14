@@ -1,0 +1,119 @@
+{
+  "semantic": {
+    "color": {
+      "$type": "color",
+      "primary": {
+        "default": {
+          "$value": "{primitive.color.blue.600}",
+          "$description": "Primary brand color for interactive elements"
+        },
+        "hover": {
+          "$value": "{primitive.color.blue.700}",
+          "$description": "Primary hover state"
+        },
+        "active": {
+          "$value": "{primitive.color.blue.800}",
+          "$description": "Primary active/pressed state"
+        },
+        "subtle": {
+          "$value": "{primitive.color.blue.100}",
+          "$description": "Primary subtle background"
+        },
+        "muted": {
+          "$value": "{primitive.color.blue.50}",
+          "$description": "Primary muted background"
+        }
+      },
+      "secondary": {
+        "default": {
+          "$value": "{primitive.color.neutral.600}",
+          "$description": "Secondary color for less prominent elements"
+        },
+        "hover": {
+          "$value": "{primitive.color.neutral.700}"
+        },
+        "active": {
+          "$value": "{primitive.color.neutral.800}"
+        },
+        "subtle": {
+          "$value": "{primitive.color.neutral.100}"
+        },
+        "muted": {
+          "$value": "{primitive.color.neutral.50}"
+        }
+      },
+      "success": {
+        "default": {
+          "$value": "{primitive.color.emerald.700}",
+          "$description": "Success state — AA contrast on white (5.5:1)"
+        },
+        "hover": {
+          "$value": "{primitive.color.emerald.800}"
+        },
+        "active": {
+          "$value": "{primitive.color.emerald.900}"
+        },
+        "subtle": {
+          "$value": "{primitive.color.emerald.100}"
+        },
+        "muted": {
+          "$value": "{primitive.color.emerald.50}"
+        }
+      },
+      "warning": {
+        "default": {
+          "$value": "{primitive.color.amber.700}",
+          "$description": "Warning state — AA contrast on white (4.9:1)"
+        },
+        "hover": {
+          "$value": "{primitive.color.amber.800}"
+        },
+        "active": {
+          "$value": "{primitive.color.amber.900}"
+        },
+        "subtle": {
+          "$value": "{primitive.color.amber.100}"
+        },
+        "muted": {
+          "$value": "{primitive.color.amber.50}"
+        }
+      },
+      "danger": {
+        "default": {
+          "$value": "{primitive.color.red.700}",
+          "$description": "Danger/error state — AA contrast on white (6.3:1)"
+        },
+        "hover": {
+          "$value": "{primitive.color.red.800}"
+        },
+        "active": {
+          "$value": "{primitive.color.red.900}"
+        },
+        "subtle": {
+          "$value": "{primitive.color.red.100}"
+        },
+        "muted": {
+          "$value": "{primitive.color.red.50}"
+        }
+      },
+      "info": {
+        "default": {
+          "$value": "{primitive.color.blue.600}",
+          "$description": "Informational state — AA contrast on white (5.17:1)"
+        },
+        "hover": {
+          "$value": "{primitive.color.blue.700}"
+        },
+        "active": {
+          "$value": "{primitive.color.blue.800}"
+        },
+        "subtle": {
+          "$value": "{primitive.color.blue.100}"
+        },
+        "muted": {
+          "$value": "{primitive.color.blue.50}"
+        }
+      }
+    }
+  }
+}

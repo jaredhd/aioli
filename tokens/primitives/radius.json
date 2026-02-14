@@ -1,0 +1,40 @@
+{
+  "primitive": {
+    "radius": {
+      "$type": "dimension",
+      "none": {
+        "$value": "0px"
+      },
+      "2xs": {
+        "$value": "2px"
+      },
+      "xs": {
+        "$value": "4px"
+      },
+      "sm": {
+        "$value": 4
+      },
+      "base": {
+        "$value": "4px"
+      },
+      "md": {
+        "$value": "6px"
+      },
+      "lg": {
+        "$value": "8px"
+      },
+      "xl": {
+        "$value": "12px"
+      },
+      "2xl": {
+        "$value": "16px"
+      },
+      "3xl": {
+        "$value": "24px"
+      },
+      "full": {
+        "$value": "9999px"
+      }
+    }
+  }
+}

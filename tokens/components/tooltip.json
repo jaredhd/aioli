@@ -1,0 +1,35 @@
+{
+  "component": {
+    "tooltip": {
+      "padding": {
+        "x": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+        "y": { "$type": "dimension", "$value": "{primitive.spacing.1-5}" }
+      },
+      "radius": { "$type": "dimension", "$value": "{primitive.radius.md}" },
+      "maxWidth": { "$type": "dimension", "$value": "{primitive.spacing.64}" },
+      "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+      "lineHeight": { "$type": "number", "$value": "{primitive.font.lineHeight.normal}" },
+      "variant": {
+        "dark": {
+          "bg": { "$type": "color", "$value": "{primitive.color.neutral.900}" },
+          "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" }
+        },
+        "light": {
+          "bg": { "$type": "color", "$value": "{semantic.surface.page.default}" },
+          "text": { "$type": "color", "$value": "{semantic.text.default}" },
+          "border": { "$type": "color", "$value": "{semantic.border.default}" },
+          "shadow": { "$value": "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }
+        }
+      },
+      "arrow": {
+        "size": { "$type": "dimension", "$value": "{primitive.spacing.2}" }
+      },
+      "offset": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+      "animation": {
+        "duration": { "$type": "duration", "$value": "{primitive.motion.duration.micro}" },
+        "easing": { "$type": "cubicBezier", "$value": "{primitive.motion.easing.enter}" },
+        "delay": { "$type": "duration", "$value": "200ms" }
+      }
+    }
+  }
+}

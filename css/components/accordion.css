@@ -1,0 +1,178 @@
+/**
+ * Accordion Component — Aioli Design System
+ * Molecule: Expandable/collapsible content sections
+ *
+ * BEM classes: .accordion, .accordion__item, .accordion__header,
+ *              .accordion__trigger, .accordion__title, .accordion__icon,
+ *              .accordion__panel, .accordion__content
+ * Variants: default, separated
+ */
+
+/* ----------------------------------------------------------------
+   Base container
+   ---------------------------------------------------------------- */
+.accordion {
+  font-family: var(--primitive-font-family-sans);
+  border-radius: var(--component-accordion-radius);
+  border: var(--component-accordion-border-width) solid var(--component-accordion-border-color);
+  background-color: var(--component-accordion-bg);
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+   Item
+   ---------------------------------------------------------------- */
+.accordion__item {
+  border-bottom: var(--component-accordion-border-width) solid var(--component-accordion-divider-color);
+}
+
+.accordion__item:last-child {
+  border-bottom: none;
+}
+
+/* ----------------------------------------------------------------
+   Header (h3 wrapper)
+   ---------------------------------------------------------------- */
+.accordion__header {
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------------------------------------------------------------
+   Trigger button
+   ---------------------------------------------------------------- */
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--component-accordion-trigger-padding-y) var(--component-accordion-item-padding-x);
+  border: none;
+  background-color: var(--component-accordion-trigger-bg-default);
+  color: var(--component-accordion-trigger-color-default);
+  font-family: inherit;
+  font-size: var(--component-accordion-trigger-font-size);
+  font-weight: var(--component-accordion-trigger-font-weight);
+  line-height: var(--primitive-font-line-height-normal);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color var(--component-accordion-animation-duration) var(--component-accordion-animation-easing),
+    background-color var(--component-accordion-animation-duration) var(--component-accordion-animation-easing);
+}
+
+.accordion__trigger:hover {
+  color: var(--component-accordion-trigger-color-hover);
+  background-color: var(--component-accordion-trigger-bg-hover);
+}
+
+.accordion__trigger:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: calc(-1 * var(--semantic-focus-ring-width));
+  z-index: 1;
+}
+
+.accordion__trigger:active {
+  opacity: 0.9;
+}
+
+.accordion__trigger[disabled],
+.accordion__trigger[aria-disabled="true"] {
+  color: var(--component-accordion-trigger-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* ----------------------------------------------------------------
+   Title text
+   ---------------------------------------------------------------- */
+.accordion__title {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ----------------------------------------------------------------
+   Expand/collapse icon
+   ---------------------------------------------------------------- */
+.accordion__icon {
+  flex-shrink: 0;
+  width: var(--component-accordion-trigger-icon-size);
+  height: var(--component-accordion-trigger-icon-size);
+  color: var(--component-accordion-trigger-icon-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0deg);
+  transition: transform var(--component-accordion-animation-duration) var(--component-accordion-animation-easing);
+}
+
+.accordion__trigger[aria-expanded="true"] .accordion__icon {
+  transform: rotate(180deg);
+}
+
+/* ----------------------------------------------------------------
+   Panel (content region)
+   ---------------------------------------------------------------- */
+.accordion__panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height var(--component-accordion-animation-duration) var(--component-accordion-animation-easing),
+    opacity var(--component-accordion-animation-duration) var(--component-accordion-animation-easing);
+}
+
+.accordion__panel:not([hidden]) {
+  max-height: 500px; /* Sufficiently large for content reveal */
+  opacity: 1;
+}
+
+.accordion__panel[hidden] {
+  display: block; /* Override native hidden for animation */
+  visibility: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+/* ----------------------------------------------------------------
+   Content inside panel
+   ---------------------------------------------------------------- */
+.accordion__content {
+  padding: 0 var(--component-accordion-item-padding-x) var(--component-accordion-content-padding-bottom);
+  font-size: var(--component-accordion-content-font-size);
+  line-height: var(--component-accordion-content-line-height);
+  color: var(--component-accordion-content-color);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Separated
+   ---------------------------------------------------------------- */
+.accordion--separated {
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-accordion-variant-separated-item-gap);
+}
+
+.accordion--separated .accordion__item {
+  border: var(--component-accordion-border-width) solid var(--component-accordion-border-color);
+  border-radius: var(--component-accordion-variant-separated-item-radius);
+  border-bottom: var(--component-accordion-border-width) solid var(--component-accordion-border-color);
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .accordion__trigger,
+  .accordion__icon,
+  .accordion__panel {
+    transition: none;
+  }
+
+  .accordion__panel:not([hidden]) {
+    max-height: none;
+  }
+}

@@ -1,0 +1,338 @@
+/**
+ * Navigation Component — Aioli Design System
+ * Organism: Main navigation bar with responsive hamburger and sticky support
+ *
+ * BEM classes: .nav, .nav__container, .nav__brand, .nav__mobile-trigger,
+ *              .nav__hamburger, .nav__menu, .nav__item,
+ *              .nav__item--active, .nav__divider, .nav__dropdown
+ */
+
+/* ----------------------------------------------------------------
+   Base nav
+   ---------------------------------------------------------------- */
+.nav {
+  width: 100%;
+  height: var(--component-nav-height);
+  background-color: var(--component-nav-bg);
+  border-bottom: var(--component-nav-border-width) solid var(--component-nav-border-color);
+  box-shadow: var(--component-nav-shadow);
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* Sticky variant */
+.nav--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--component-nav-sticky-z-index);
+}
+
+/* Fixed variant */
+.nav--fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--semantic-z-index-fixed);
+}
+
+/* ----------------------------------------------------------------
+   Container (inner layout)
+   ---------------------------------------------------------------- */
+.nav__container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--component-nav-padding-x);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------
+   Brand / Logo
+   ---------------------------------------------------------------- */
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-nav-logo-gap);
+  height: var(--component-nav-logo-height);
+  margin-right: var(--primitive-spacing-6);
+  text-decoration: none;
+  color: var(--semantic-text-default);
+  font-weight: var(--primitive-font-weight-bold);
+  font-size: var(--primitive-font-size-lg);
+  flex-shrink: 0;
+}
+
+.nav__brand:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-base);
+}
+
+.nav__brand img {
+  height: 100%;
+  width: auto;
+}
+
+/* ----------------------------------------------------------------
+   Mobile trigger (hamburger button)
+   ---------------------------------------------------------------- */
+.nav__mobile-trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-nav-mobile-trigger-size);
+  height: var(--component-nav-mobile-trigger-size);
+  padding: 0;
+  border: none;
+  border-radius: var(--component-nav-item-radius);
+  background: transparent;
+  color: var(--semantic-text-default);
+  cursor: pointer;
+  margin-left: auto;
+  transition:
+    background-color var(--component-nav-animation-duration) var(--component-nav-animation-easing),
+    color var(--component-nav-animation-duration) var(--component-nav-animation-easing);
+}
+
+.nav__mobile-trigger:hover {
+  background-color: var(--component-nav-item-bg-hover);
+}
+
+.nav__mobile-trigger:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.nav__mobile-trigger:active {
+  background-color: var(--semantic-surface-page-muted);
+}
+
+/* ----------------------------------------------------------------
+   Hamburger icon (three bars)
+   ---------------------------------------------------------------- */
+.nav__hamburger {
+  display: block;
+  width: var(--component-nav-mobile-trigger-icon-size);
+  height: 2px;
+  background-color: currentColor;
+  position: relative;
+  transition: background-color var(--component-nav-animation-duration) var(--component-nav-animation-easing);
+}
+
+.nav__hamburger::before,
+.nav__hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transition: transform var(--component-nav-animation-duration) var(--component-nav-animation-easing);
+}
+
+.nav__hamburger::before {
+  top: -6px;
+}
+
+.nav__hamburger::after {
+  bottom: -6px;
+}
+
+/* Hamburger → X transformation when open */
+.nav__mobile-trigger[aria-expanded="true"] .nav__hamburger {
+  background-color: transparent;
+}
+
+.nav__mobile-trigger[aria-expanded="true"] .nav__hamburger::before {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.nav__mobile-trigger[aria-expanded="true"] .nav__hamburger::after {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* ----------------------------------------------------------------
+   Menu (menubar)
+   ---------------------------------------------------------------- */
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--component-nav-group-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+}
+
+/* ----------------------------------------------------------------
+   Nav item (link/button)
+   ---------------------------------------------------------------- */
+.nav__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-nav-item-gap);
+  padding: var(--component-nav-item-padding-y) var(--component-nav-item-padding-x);
+  border-radius: var(--component-nav-item-radius);
+  background-color: var(--component-nav-item-bg-default);
+  color: var(--component-nav-item-color-default);
+  font-size: var(--component-nav-item-font-size);
+  font-weight: var(--component-nav-item-font-weight);
+  line-height: var(--primitive-font-line-height-normal);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  transition:
+    color var(--component-nav-animation-duration) var(--component-nav-animation-easing),
+    background-color var(--component-nav-animation-duration) var(--component-nav-animation-easing);
+}
+
+.nav__item:hover {
+  color: var(--component-nav-item-color-hover);
+  background-color: var(--component-nav-item-bg-hover);
+}
+
+.nav__item:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.nav__item:active {
+  opacity: 0.9;
+}
+
+/* Active state */
+.nav__item--active {
+  color: var(--component-nav-item-color-active);
+  background-color: var(--component-nav-item-bg-active);
+}
+
+/* Active indicator underline */
+.nav__item--active::after {
+  content: "";
+  position: absolute;
+  bottom: calc(-1 * var(--component-nav-item-padding-y));
+  left: var(--component-nav-item-padding-x);
+  right: var(--component-nav-item-padding-x);
+  height: var(--component-nav-item-indicator-height);
+  background-color: var(--component-nav-item-indicator-color);
+  border-radius: var(--primitive-radius-full);
+}
+
+/* ----------------------------------------------------------------
+   Divider
+   ---------------------------------------------------------------- */
+.nav__divider {
+  width: var(--component-nav-divider-width);
+  height: var(--component-nav-divider-height);
+  margin: 0 var(--component-nav-divider-margin-x);
+  background-color: var(--component-nav-divider-color);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Dropdown submenu
+   ---------------------------------------------------------------- */
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: var(--semantic-z-index-dropdown);
+  min-width: var(--component-nav-dropdown-min-width);
+  margin-top: var(--component-nav-dropdown-offset);
+  padding: var(--component-nav-dropdown-padding);
+  background-color: var(--component-nav-dropdown-bg);
+  border: var(--primitive-border-width-thin) solid var(--component-nav-dropdown-border);
+  border-radius: var(--component-nav-dropdown-radius);
+  box-shadow: var(--component-nav-dropdown-shadow);
+  list-style: none;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--component-nav-animation-duration) var(--component-nav-animation-easing),
+    transform var(--component-nav-animation-duration) var(--component-nav-animation-easing);
+}
+
+.nav__dropdown[hidden] {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Responsive: mobile breakpoint
+   ---------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .nav__mobile-trigger {
+    display: flex;
+  }
+
+  .nav__menu {
+    position: absolute;
+    top: var(--component-nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--component-nav-mobile-menu-padding);
+    background-color: var(--component-nav-mobile-menu-bg);
+    border-bottom: var(--component-nav-border-width) solid var(--component-nav-border-color);
+    box-shadow: var(--component-nav-shadow);
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity var(--component-nav-animation-duration) var(--component-nav-animation-easing),
+      transform var(--component-nav-animation-duration) var(--component-nav-animation-easing);
+  }
+
+  .nav__menu[hidden] {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+
+  .nav__item {
+    padding: var(--component-nav-mobile-menu-item-padding-y) var(--component-nav-item-padding-x);
+    border-radius: var(--component-nav-item-radius);
+    width: 100%;
+  }
+
+  /* Remove underline indicator on mobile */
+  .nav__item--active::after {
+    display: none;
+  }
+
+  .nav__divider {
+    width: 100%;
+    height: var(--component-nav-divider-width);
+    margin: var(--primitive-spacing-2) 0;
+  }
+
+  .nav__dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding-left: var(--primitive-spacing-4);
+    margin-top: 0;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .nav__mobile-trigger,
+  .nav__hamburger,
+  .nav__hamburger::before,
+  .nav__hamburger::after,
+  .nav__item,
+  .nav__menu,
+  .nav__dropdown {
+    transition: none;
+  }
+}

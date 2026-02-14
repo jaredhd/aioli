@@ -1,0 +1,121 @@
+/**
+ * Pagination Component — Aioli Design System
+ * Molecule: Page navigation controls
+ *
+ * BEM classes: .pagination, .pagination__list, .pagination__item,
+ *              .pagination__item--active, .pagination__prev,
+ *              .pagination__next, .pagination__ellipsis
+ */
+
+/* ----------------------------------------------------------------
+   Base nav
+   ---------------------------------------------------------------- */
+.pagination {
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   List
+   ---------------------------------------------------------------- */
+.pagination__list {
+  display: flex;
+  align-items: center;
+  gap: var(--component-pagination-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ----------------------------------------------------------------
+   Item (button)
+   ---------------------------------------------------------------- */
+.pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--component-pagination-item-size);
+  height: var(--component-pagination-item-size);
+  padding: 0 var(--primitive-spacing-1);
+  border: var(--component-pagination-item-border-width) solid var(--component-pagination-item-border-color);
+  border-radius: var(--component-pagination-item-radius);
+  background-color: var(--component-pagination-item-bg-default);
+  color: var(--component-pagination-item-color-default);
+  font-family: inherit;
+  font-size: var(--component-pagination-item-font-size);
+  font-weight: var(--component-pagination-item-font-weight);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    border-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.pagination__item:hover {
+  background-color: var(--component-pagination-item-bg-hover);
+  color: var(--component-pagination-item-color-hover);
+}
+
+.pagination__item:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  z-index: 1;
+}
+
+.pagination__item:active {
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------------------
+   Active page
+   ---------------------------------------------------------------- */
+.pagination__item--active {
+  background-color: var(--component-pagination-item-bg-active);
+  color: var(--component-pagination-item-color-active);
+  border-color: var(--component-pagination-item-bg-active);
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Disabled (prev/next when at boundary)
+   ---------------------------------------------------------------- */
+.pagination__item[disabled],
+.pagination__item[aria-disabled="true"] {
+  background-color: var(--component-pagination-item-bg-disabled);
+  color: var(--component-pagination-item-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* ----------------------------------------------------------------
+   Prev / Next arrows
+   ---------------------------------------------------------------- */
+.pagination__prev,
+.pagination__next {
+  font-size: var(--primitive-font-size-base);
+}
+
+/* ----------------------------------------------------------------
+   Ellipsis
+   ---------------------------------------------------------------- */
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--component-pagination-item-size);
+  height: var(--component-pagination-item-size);
+  color: var(--component-pagination-ellipsis-color);
+  font-size: var(--component-pagination-item-font-size);
+  cursor: default;
+  user-select: none;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pagination__item {
+    transition: none;
+  }
+}

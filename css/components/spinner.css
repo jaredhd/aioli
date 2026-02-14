@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Spinner Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+
+.spinner--xs {
+  width: var(--component-spinner-size-xs);
+  height: var(--component-spinner-size-xs);
+}
+
+.spinner--sm {
+  width: var(--component-spinner-size-sm);
+  height: var(--component-spinner-size-sm);
+}
+
+.spinner--md {
+  width: var(--component-spinner-size-md);
+  height: var(--component-spinner-size-md);
+}
+
+.spinner--lg {
+  width: var(--component-spinner-size-lg);
+  height: var(--component-spinner-size-lg);
+}
+
+.spinner--xl {
+  width: var(--component-spinner-size-xl);
+  height: var(--component-spinner-size-xl);
+}
+
+/* --------------------------------------------------------------------------
+   Circle (the animated ring)
+   -------------------------------------------------------------------------- */
+
+.spinner__circle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--primitive-radius-full);
+  border-style: solid;
+  border-color: var(--component-spinner-color-track);
+  border-top-color: var(--component-spinner-color-primary);
+  animation: spinner-rotate var(--component-spinner-animation-duration) var(--component-spinner-animation-easing) infinite;
+}
+
+/* Per-size border widths */
+.spinner--xs .spinner__circle {
+  border-width: var(--component-spinner-border-width-xs);
+}
+
+.spinner--sm .spinner__circle {
+  border-width: var(--component-spinner-border-width-sm);
+}
+
+.spinner--md .spinner__circle {
+  border-width: var(--component-spinner-border-width-md);
+}
+
+.spinner--lg .spinner__circle {
+  border-width: var(--component-spinner-border-width-lg);
+}
+
+.spinner--xl .spinner__circle {
+  border-width: var(--component-spinner-border-width-xl);
+}
+
+/* --------------------------------------------------------------------------
+   Color Variants
+   -------------------------------------------------------------------------- */
+
+.spinner--secondary .spinner__circle {
+  border-top-color: var(--component-spinner-color-secondary);
+}
+
+.spinner--white .spinner__circle {
+  border-color: rgba(255, 255, 255, 0.25);
+  border-top-color: var(--component-spinner-color-white);
+}
+
+/* --------------------------------------------------------------------------
+   Keyframes
+   -------------------------------------------------------------------------- */
+
+@keyframes spinner-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Visually Hidden (for screen reader label)
+   -------------------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   Keep spinner animation but slow it down, since it conveys essential
+   loading state information.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner__circle {
+    animation-duration: calc(var(--component-spinner-animation-duration) * 3);
+  }
+}

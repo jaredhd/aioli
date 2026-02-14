@@ -1,0 +1,55 @@
+{
+  "component": {
+    "accordion": {
+      "radius": { "$type": "dimension", "$value": "{primitive.radius.lg}" },
+      "border": {
+        "width": { "$type": "dimension", "$value": "{primitive.spacing.px}" },
+        "color": { "$type": "color", "$value": "{semantic.border.default}" }
+      },
+      "bg": { "$type": "color", "$value": "{semantic.surface.card.default}" },
+      "divider": {
+        "color": { "$type": "color", "$value": "{semantic.border.subtle}" }
+      },
+      "item": {
+        "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.4}" }
+      },
+      "trigger": {
+        "paddingY": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" },
+        "fontWeight": { "$type": "fontWeight", "$value": "{primitive.font.weight.medium}" },
+        "color": {
+          "default": { "$type": "color", "$value": "{semantic.text.default}" },
+          "hover": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+          "disabled": { "$type": "color", "$value": "{semantic.text.disabled}" }
+        },
+        "bg": {
+          "default": { "$type": "color", "$value": "transparent" },
+          "hover": { "$type": "color", "$value": "{semantic.surface.page.subtle}" }
+        },
+        "icon": {
+          "size": { "$type": "dimension", "$value": "{primitive.spacing.5}" },
+          "color": { "$type": "color", "$value": "{semantic.text.secondary}" }
+        }
+      },
+      "content": {
+        "paddingBottom": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" },
+        "color": { "$type": "color", "$value": "{semantic.text.secondary}" },
+        "lineHeight": { "$type": "number", "$value": "{primitive.font.lineHeight.relaxed}" }
+      },
+      "animation": {
+        "duration": { "$type": "duration", "$value": "{primitive.motion.duration.normal}" },
+        "easing": { "$type": "cubicBezier", "$value": "{primitive.motion.easing.default}" }
+      },
+      "variant": {
+        "default": {
+          "itemGap": { "$type": "dimension", "$value": "{primitive.spacing.0}" }
+        },
+        "separated": {
+          "itemGap": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+          "itemRadius": { "$type": "dimension", "$value": "{primitive.radius.lg}" }
+        }
+      }
+    }
+  }
+}

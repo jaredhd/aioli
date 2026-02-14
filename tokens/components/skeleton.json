@@ -1,0 +1,27 @@
+{
+  "component": {
+    "skeleton": {
+      "radius": {
+        "text": { "$type": "dimension", "$value": "{primitive.radius.base}" },
+        "circle": { "$type": "dimension", "$value": "{primitive.radius.full}" },
+        "rect": { "$type": "dimension", "$value": "{primitive.radius.md}" }
+      },
+      "bg": {
+        "base": { "$type": "color", "$value": "{primitive.color.neutral.200}" },
+        "shimmer": { "$type": "color", "$value": "{primitive.color.neutral.100}" }
+      },
+      "height": {
+        "text": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+        "heading": { "$type": "dimension", "$value": "{primitive.spacing.6}" },
+        "avatar": { "$type": "dimension", "$value": "{primitive.spacing.10}" },
+        "thumbnail": { "$type": "dimension", "$value": "{primitive.spacing.20}" },
+        "card": { "$type": "dimension", "$value": "{primitive.spacing.48}" }
+      },
+      "animation": {
+        "duration": { "$type": "duration", "$value": "1500ms" },
+        "easing": { "$type": "cubicBezier", "$value": "{primitive.motion.easing.linear}" }
+      },
+      "gap": { "$type": "dimension", "$value": "{primitive.spacing.2}" }
+    }
+  }
+}

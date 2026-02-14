@@ -1,0 +1,166 @@
+/* ==========================================================================
+   Input / Form Field Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Form Field Wrapper
+   -------------------------------------------------------------------------- */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-form-field-gap);
+}
+
+/* --------------------------------------------------------------------------
+   Label
+   -------------------------------------------------------------------------- */
+
+.form-field__label {
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-form-field-label-font-size);
+  font-weight: var(--component-form-field-label-font-weight);
+  color: var(--component-form-field-label-color-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+.form-field__required {
+  color: var(--component-form-field-label-required-color);
+  margin-inline-start: var(--component-form-field-label-required-gap);
+}
+
+/* --------------------------------------------------------------------------
+   Input Base
+   -------------------------------------------------------------------------- */
+
+.form-field__input {
+  display: block;
+  width: 100%;
+  height: var(--component-input-size-md-height);
+  padding-inline: var(--component-input-size-md-padding-x);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-input-size-md-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  color: var(--component-input-text-default);
+  background-color: var(--component-input-bg-default);
+  border: var(--component-input-border-width) solid var(--component-input-border-color-default);
+  border-radius: var(--component-input-radius);
+  outline: none;
+  transition-property: border-color, box-shadow, background-color;
+  transition-duration: var(--component-input-transition-duration);
+  transition-timing-function: var(--component-input-transition-easing);
+}
+
+.form-field__input::placeholder {
+  color: var(--component-input-text-placeholder);
+  opacity: var(--semantic-opacity-placeholder);
+}
+
+/* --------------------------------------------------------------------------
+   Input States
+   -------------------------------------------------------------------------- */
+
+.form-field__input:hover {
+  border-color: var(--component-input-border-color-hover);
+}
+
+.form-field__input:focus-visible {
+  border-color: var(--component-input-border-color-focus);
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--component-input-focus-ring-color);
+}
+
+.form-field__input:disabled,
+.form-field__input[aria-disabled="true"] {
+  color: var(--component-input-text-disabled);
+  background-color: var(--component-input-bg-disabled);
+  border-color: var(--component-input-border-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* --------------------------------------------------------------------------
+   Input Sizes
+   -------------------------------------------------------------------------- */
+
+.form-field__input--sm {
+  height: var(--component-input-size-sm-height);
+  padding-inline: var(--component-input-size-sm-padding-x);
+  font-size: var(--component-input-size-sm-font-size);
+}
+
+.form-field__input--lg {
+  height: var(--component-input-size-lg-height);
+  padding-inline: var(--component-input-size-lg-padding-x);
+  font-size: var(--component-input-size-lg-font-size);
+}
+
+/* --------------------------------------------------------------------------
+   Error State
+   -------------------------------------------------------------------------- */
+
+.form-field--error .form-field__input {
+  border-color: var(--component-input-border-color-error);
+}
+
+.form-field--error .form-field__input:focus-visible {
+  border-color: var(--component-input-border-color-error);
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--semantic-focus-ring-color-danger);
+}
+
+.form-field--error .form-field__label {
+  color: var(--component-form-field-error-color);
+}
+
+.form-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--component-form-field-error-icon-gap);
+  margin-top: var(--component-form-field-error-margin-top);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-form-field-error-font-size);
+  color: var(--component-form-field-error-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* --------------------------------------------------------------------------
+   Success State
+   -------------------------------------------------------------------------- */
+
+.form-field--success .form-field__input {
+  border-color: var(--component-input-border-color-success);
+}
+
+.form-field--success .form-field__input:focus-visible {
+  border-color: var(--component-input-border-color-success);
+}
+
+/* --------------------------------------------------------------------------
+   Helper Text
+   -------------------------------------------------------------------------- */
+
+.form-field__helper {
+  margin-top: var(--component-form-field-helper-margin-top);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-form-field-helper-font-size);
+  color: var(--component-form-field-helper-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* --------------------------------------------------------------------------
+   Disabled Label
+   -------------------------------------------------------------------------- */
+
+.form-field:has(.form-field__input:disabled) .form-field__label {
+  color: var(--component-form-field-label-color-disabled);
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .form-field__input {
+    transition-duration: 0ms;
+  }
+}

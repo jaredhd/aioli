@@ -1,0 +1,207 @@
+/**
+ * Card Component — Aioli Design System
+ * Organism: Content card container with media, header, body, footer
+ *
+ * BEM classes: .card, .card--{variant}, .card--{size},
+ *              .card__image, .card__media, .card__body,
+ *              .card__header, .card__title, .card__description,
+ *              .card__content, .card__footer, .card__actions
+ * Variants: default, elevated, outlined
+ * Sizes: compact, default, spacious
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--component-card-radius);
+  border: var(--component-card-border-width) solid var(--component-card-border-color);
+  background-color: var(--component-card-bg-default);
+  box-shadow: var(--component-card-shadow-default);
+  overflow: hidden;
+  font-family: var(--primitive-font-family-sans);
+  transition:
+    box-shadow var(--component-card-interactive-transition-duration) var(--component-card-interactive-transition-easing),
+    transform var(--component-card-interactive-transition-duration) var(--component-card-interactive-transition-easing),
+    border-color var(--component-card-interactive-transition-duration) var(--component-card-interactive-transition-easing);
+}
+
+/* ----------------------------------------------------------------
+   Interactive card (hover lift)
+   ---------------------------------------------------------------- */
+.card--interactive {
+  cursor: var(--component-card-interactive-cursor);
+}
+
+.card--interactive:hover {
+  box-shadow: var(--component-card-shadow-hover);
+  transform: translateY(-2px);
+  background-color: var(--component-card-bg-hover);
+}
+
+.card--interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--component-card-shadow-default);
+}
+
+.card--interactive:focus-visible {
+  outline: var(--component-card-focus-ring-width) var(--semantic-focus-ring-style) var(--component-card-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Selected card
+   ---------------------------------------------------------------- */
+.card--selected {
+  border-color: var(--component-card-selected-border-color);
+  background-color: var(--component-card-selected-bg);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Elevated
+   ---------------------------------------------------------------- */
+.card--elevated {
+  border-color: transparent;
+  box-shadow: var(--component-card-shadow-elevated);
+}
+
+.card--elevated:hover {
+  box-shadow: var(--semantic-shadow-xl);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Outlined
+   ---------------------------------------------------------------- */
+.card--outlined {
+  box-shadow: none;
+  border-color: var(--component-card-border-color);
+}
+
+.card--outlined:hover {
+  box-shadow: none;
+  border-color: var(--component-card-active-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Size: Compact
+   ---------------------------------------------------------------- */
+.card--compact .card__header,
+.card--compact .card__body,
+.card--compact .card__footer {
+  padding: var(--component-card-size-compact-padding);
+}
+
+/* ----------------------------------------------------------------
+   Size: Default
+   ---------------------------------------------------------------- */
+.card__header,
+.card__body,
+.card__footer {
+  padding: var(--component-card-size-default-padding);
+}
+
+/* ----------------------------------------------------------------
+   Size: Spacious
+   ---------------------------------------------------------------- */
+.card--spacious .card__header,
+.card--spacious .card__body,
+.card--spacious .card__footer {
+  padding: var(--component-card-size-spacious-padding);
+}
+
+/* ----------------------------------------------------------------
+   Media / Image
+   ---------------------------------------------------------------- */
+.card__image,
+.card__media {
+  width: 100%;
+  aspect-ratio: var(--component-card-media-aspect-ratio);
+  object-fit: cover;
+  display: block;
+}
+
+.card__media {
+  border-radius: var(--component-card-media-radius);
+  overflow: hidden;
+}
+
+/* Media inside padded card */
+.card__body .card__media,
+.card__body .card__image {
+  margin: 0 calc(-1 * var(--component-card-size-default-padding));
+  width: calc(100% + 2 * var(--component-card-size-default-padding));
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+.card__header {
+  border-bottom: var(--component-card-border-width) solid var(--component-card-header-border-color);
+  padding-bottom: var(--component-card-header-padding-bottom);
+}
+
+/* No border when header is followed directly by body content */
+.card__header + .card__body {
+  padding-top: 0;
+}
+
+/* ----------------------------------------------------------------
+   Title
+   ---------------------------------------------------------------- */
+.card__title {
+  margin: 0;
+  font-size: var(--component-card-title-font-size);
+  font-weight: var(--component-card-title-font-weight);
+  color: var(--component-card-title-color);
+  line-height: var(--primitive-font-line-height-snug);
+}
+
+/* ----------------------------------------------------------------
+   Description
+   ---------------------------------------------------------------- */
+.card__description {
+  margin-top: var(--component-card-description-margin-top);
+  font-size: var(--component-card-description-font-size);
+  color: var(--component-card-description-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Body / Content
+   ---------------------------------------------------------------- */
+.card__body {
+  flex: 1;
+}
+
+.card__content {
+  font-size: var(--component-card-body-font-size);
+  line-height: var(--component-card-body-line-height);
+  color: var(--component-card-body-color);
+}
+
+/* ----------------------------------------------------------------
+   Footer / Actions
+   ---------------------------------------------------------------- */
+.card__footer,
+.card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--component-card-footer-gap);
+  border-top: var(--component-card-border-width) solid var(--component-card-footer-border-color);
+  padding-top: var(--component-card-footer-padding-top);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card--interactive,
+  .card--interactive:hover,
+  .card--interactive:active {
+    transition: none;
+    transform: none;
+  }
+}

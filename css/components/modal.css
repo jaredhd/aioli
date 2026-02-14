@@ -1,0 +1,226 @@
+/**
+ * Modal Component — Aioli Design System
+ * Organism: Dialog/modal with overlay backdrop and size variants
+ *
+ * BEM classes: .modal, .modal__backdrop, .modal__container,
+ *              .modal__header, .modal__title, .modal__close,
+ *              .modal__content, .modal__body, .modal__footer
+ * Sizes: sm, md (default), lg, xl, full
+ */
+
+/* ----------------------------------------------------------------
+   Root (covers viewport)
+   ---------------------------------------------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--semantic-z-index-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--component-modal-container-margin);
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Backdrop overlay
+   ---------------------------------------------------------------- */
+.modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--semantic-z-index-modal-backdrop);
+  background-color: var(--component-modal-overlay-bg);
+  backdrop-filter: blur(var(--component-modal-overlay-blur));
+  opacity: 1;
+  transition: opacity var(--component-modal-animation-overlay-duration) var(--component-modal-animation-overlay-easing);
+}
+
+.modal[data-entering] .modal__backdrop,
+.modal[hidden] .modal__backdrop {
+  opacity: 0;
+}
+
+.modal[data-exiting] .modal__backdrop {
+  opacity: 0;
+  transition: opacity var(--component-modal-animation-exit-duration) var(--component-modal-animation-exit-easing);
+}
+
+/* ----------------------------------------------------------------
+   Container (dialog box)
+   ---------------------------------------------------------------- */
+.modal__container {
+  position: relative;
+  z-index: var(--semantic-z-index-modal);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--component-modal-size-md);
+  max-height: var(--component-modal-container-max-height);
+  border: var(--component-modal-container-border-width) solid var(--component-modal-container-border-color);
+  border-radius: var(--component-modal-container-radius);
+  background-color: var(--component-modal-container-bg);
+  box-shadow: var(--component-modal-container-shadow);
+  overflow: hidden;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity var(--component-modal-animation-content-duration) var(--component-modal-animation-content-easing),
+    transform var(--component-modal-animation-content-duration) var(--component-modal-animation-content-easing);
+}
+
+.modal[data-entering] .modal__container,
+.modal[hidden] .modal__container {
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+}
+
+.modal[data-exiting] .modal__container {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  transition:
+    opacity var(--component-modal-animation-exit-duration) var(--component-modal-animation-exit-easing),
+    transform var(--component-modal-animation-exit-duration) var(--component-modal-animation-exit-easing);
+}
+
+/* ----------------------------------------------------------------
+   Size variants
+   ---------------------------------------------------------------- */
+.modal--sm .modal__container {
+  max-width: var(--component-modal-size-sm);
+}
+
+.modal--md .modal__container {
+  max-width: var(--component-modal-size-md);
+}
+
+.modal--lg .modal__container {
+  max-width: var(--component-modal-size-lg);
+}
+
+.modal--xl .modal__container {
+  max-width: var(--component-modal-size-xl);
+}
+
+.modal--full .modal__container {
+  max-width: var(--component-modal-size-full);
+  max-height: calc(100vh - 2 * var(--component-modal-container-margin));
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--primitive-spacing-4);
+  padding: var(--component-modal-header-padding-y) var(--component-modal-header-padding-x);
+  border-bottom: var(--primitive-border-width-thin) solid var(--component-modal-header-border-color);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Title
+   ---------------------------------------------------------------- */
+.modal__title {
+  margin: 0;
+  font-size: var(--component-modal-title-font-size);
+  font-weight: var(--component-modal-title-font-weight);
+  color: var(--component-modal-title-color);
+  line-height: var(--primitive-font-line-height-snug);
+}
+
+/* ----------------------------------------------------------------
+   Description (subtitle)
+   ---------------------------------------------------------------- */
+.modal__description {
+  margin-top: var(--component-modal-description-margin-top);
+  font-size: var(--component-modal-description-font-size);
+  color: var(--component-modal-description-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Close button
+   ---------------------------------------------------------------- */
+.modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--component-modal-close-size);
+  height: var(--component-modal-close-size);
+  padding: var(--component-modal-close-padding);
+  border: none;
+  border-radius: var(--component-modal-close-radius);
+  background: transparent;
+  color: var(--component-modal-close-color);
+  cursor: pointer;
+  transition:
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.modal__close:hover {
+  color: var(--component-modal-close-hover-color);
+  background-color: var(--component-modal-close-hover-bg);
+}
+
+.modal__close:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.modal__close:active {
+  opacity: 0.8;
+}
+
+/* ----------------------------------------------------------------
+   Content / Body (scrollable)
+   ---------------------------------------------------------------- */
+.modal__content,
+.modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--component-modal-body-padding-y) var(--component-modal-body-padding-x);
+  font-size: var(--component-modal-body-font-size);
+  color: var(--component-modal-body-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------- */
+.modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--component-modal-footer-gap);
+  padding: var(--component-modal-footer-padding-y) var(--component-modal-footer-padding-x);
+  border-top: var(--primitive-border-width-thin) solid var(--component-modal-footer-border-color);
+  background-color: var(--component-modal-footer-bg);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Hidden state
+   ---------------------------------------------------------------- */
+.modal[hidden] {
+  display: none;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .modal__backdrop,
+  .modal__container,
+  .modal[data-entering] .modal__backdrop,
+  .modal[data-entering] .modal__container,
+  .modal[data-exiting] .modal__backdrop,
+  .modal[data-exiting] .modal__container,
+  .modal__close {
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Button Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-spacing-2);
+  border: var(--primitive-border-width-default) solid transparent;
+  border-radius: var(--component-button-radius);
+  font-family: var(--primitive-font-family-sans);
+  font-weight: var(--primitive-font-weight-medium);
+  line-height: var(--primitive-font-line-height-none);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition-property: background-color, color, border-color, box-shadow, opacity;
+  transition-duration: var(--primitive-motion-duration-fast);
+  transition-timing-function: var(--primitive-motion-easing-default);
+}
+
+.btn:focus-visible {
+  outline: var(--component-button-focus-ring-width) solid var(--component-button-focus-ring-color);
+  outline-offset: var(--component-button-focus-ring-offset);
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+
+.btn--xs {
+  height: var(--component-button-size-xs-height);
+  padding-inline: var(--component-button-size-xs-padding-x);
+  font-size: var(--component-button-size-xs-font-size);
+}
+
+.btn--sm {
+  height: var(--component-button-size-sm-height);
+  padding-inline: var(--component-button-size-sm-padding-x);
+  font-size: var(--component-button-size-sm-font-size);
+}
+
+.btn--md {
+  height: var(--component-button-size-md-height);
+  padding-inline: var(--component-button-size-md-padding-x);
+  font-size: var(--component-button-size-md-font-size);
+}
+
+.btn--lg {
+  height: var(--component-button-size-lg-height);
+  padding-inline: var(--component-button-size-lg-padding-x);
+  font-size: var(--component-button-size-lg-font-size);
+}
+
+.btn--xl {
+  height: var(--component-button-size-xl-height);
+  padding-inline: var(--component-button-size-xl-padding-x);
+  font-size: var(--component-button-size-xl-font-size);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Primary
+   -------------------------------------------------------------------------- */
+
+.btn--primary {
+  background-color: var(--component-button-primary-bg);
+  color: var(--component-button-primary-text);
+  border-color: var(--component-button-primary-bg);
+}
+
+.btn--primary:hover {
+  background-color: var(--component-button-primary-bg-hover);
+  border-color: var(--component-button-primary-bg-hover);
+}
+
+.btn--primary:active {
+  background-color: var(--component-button-primary-bg-active);
+  border-color: var(--component-button-primary-bg-active);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Secondary
+   -------------------------------------------------------------------------- */
+
+.btn--secondary {
+  background-color: var(--component-button-secondary-bg);
+  color: var(--component-button-secondary-text);
+  border-color: transparent;
+}
+
+.btn--secondary:hover {
+  background-color: var(--component-button-secondary-bg-hover);
+}
+
+.btn--secondary:active {
+  background-color: var(--component-button-secondary-bg-active);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Danger
+   -------------------------------------------------------------------------- */
+
+.btn--danger {
+  background-color: var(--component-button-danger-bg);
+  color: var(--component-button-danger-text);
+  border-color: var(--component-button-danger-bg);
+}
+
+.btn--danger:hover {
+  background-color: var(--component-button-danger-bg-hover);
+  border-color: var(--component-button-danger-bg-hover);
+}
+
+.btn--danger:active {
+  background-color: var(--component-button-danger-bg-active);
+  border-color: var(--component-button-danger-bg-active);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Ghost
+   -------------------------------------------------------------------------- */
+
+.btn--ghost {
+  background-color: var(--component-button-ghost-bg);
+  color: var(--component-button-ghost-text);
+  border-color: transparent;
+}
+
+.btn--ghost:hover {
+  background-color: var(--component-button-ghost-bg-hover);
+}
+
+.btn--ghost:active {
+  background-color: var(--component-button-ghost-bg-hover);
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Outline
+   -------------------------------------------------------------------------- */
+
+.btn--outline {
+  background-color: var(--component-button-outline-bg);
+  color: var(--component-button-outline-text);
+  border-color: var(--component-button-outline-border);
+}
+
+.btn--outline:hover {
+  background-color: var(--component-button-outline-bg-hover);
+}
+
+.btn--outline:active {
+  background-color: var(--component-button-outline-bg-hover);
+  opacity: 0.8;
+}
+
+/* --------------------------------------------------------------------------
+   Disabled State
+   -------------------------------------------------------------------------- */
+
+.btn--disabled,
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: var(--component-button-disabled-opacity);
+  cursor: var(--component-button-disabled-cursor);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Sub-elements
+   -------------------------------------------------------------------------- */
+
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn__text {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition-duration: 0ms;
+  }
+}

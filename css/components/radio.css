@@ -1,0 +1,210 @@
+/**
+ * Aioli Design System — Radio Component
+ * Custom radio button with hidden native input.
+ * Sizes: sm, md, lg
+ *
+ * BEM: .radio-group, .radio-group--error, .radio-group__legend,
+ *      .radio, .radio--disabled,
+ *      .radio__input, .radio__control, .radio__label
+ */
+
+/* ========================================================================
+   RADIO GROUP
+   ======================================================================== */
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-radio-group-gap);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-group__legend {
+  font-size: var(--component-form-field-label-font-size);
+  font-weight: var(--component-form-field-label-font-weight);
+  color: var(--component-form-field-label-color-default);
+  margin-bottom: var(--primitive-spacing-2);
+}
+
+/* ========================================================================
+   RADIO LABEL (wrapper for each option)
+   ======================================================================== */
+
+.radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--component-radio-label-gap);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.radio--disabled {
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   HIDE NATIVE INPUT
+   ======================================================================== */
+
+.radio__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================================================
+   CUSTOM CONTROL
+   ======================================================================== */
+
+.radio__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  /* Default size: md */
+  width: var(--component-radio-size-md);
+  height: var(--component-radio-size-md);
+
+  background-color: var(--component-radio-bg-default);
+  border: var(--component-radio-border-width) solid var(--component-radio-border-color-default);
+  border-radius: var(--component-radio-radius);
+
+  transition:
+    background-color var(--component-radio-transition-duration) var(--component-radio-transition-easing),
+    border-color var(--component-radio-transition-duration) var(--component-radio-transition-easing),
+    box-shadow var(--component-radio-transition-duration) var(--component-radio-transition-easing);
+}
+
+/* Inner dot (hidden by default) */
+.radio__control::after {
+  content: "";
+  display: block;
+  width: var(--component-radio-dot-size);
+  height: var(--component-radio-dot-size);
+  border-radius: var(--primitive-radius-full);
+  background-color: var(--component-radio-dot-color-default);
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    opacity var(--component-radio-transition-duration) var(--component-radio-transition-easing),
+    transform var(--component-radio-transition-duration) var(--component-radio-transition-easing);
+}
+
+/* ========================================================================
+   STATES
+   ======================================================================== */
+
+/* ---- Hover ---- */
+.radio:hover .radio__control {
+  border-color: var(--component-radio-border-color-hover);
+}
+
+/* ---- Focus-visible ---- */
+.radio__input:focus-visible + .radio__control {
+  border-color: var(--component-radio-border-color-hover);
+  box-shadow:
+    0 0 0 var(--component-radio-focus-ring-offset) var(--semantic-surface-page-default),
+    0 0 0 calc(var(--component-radio-focus-ring-offset) + var(--component-radio-focus-ring-width)) var(--component-radio-focus-ring-color);
+}
+
+/* ---- Checked ---- */
+.radio__input:checked + .radio__control {
+  background-color: var(--component-radio-bg-checked);
+  border-color: var(--component-radio-border-color-checked);
+}
+
+.radio__input:checked + .radio__control::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---- Active ---- */
+.radio__input:active + .radio__control {
+  transform: scale(0.95);
+}
+
+/* ---- Disabled ---- */
+.radio__input:disabled + .radio__control {
+  background-color: var(--component-radio-bg-disabled);
+  border-color: var(--component-radio-border-color-disabled);
+  cursor: not-allowed;
+}
+
+.radio__input:disabled:checked + .radio__control::after {
+  background-color: var(--component-radio-dot-color-disabled);
+}
+
+/* ---- Error ---- */
+.radio-group--error .radio__control {
+  border-color: var(--component-radio-border-color-error);
+}
+
+/* ========================================================================
+   LABEL TEXT
+   ======================================================================== */
+
+.radio__label {
+  font-size: var(--component-radio-label-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  color: var(--component-radio-label-color-default);
+  padding-top: var(--primitive-spacing-0-5);
+}
+
+.radio__input:disabled ~ .radio__label {
+  color: var(--component-radio-label-color-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================================================
+   SIZE MODIFIERS
+   ======================================================================== */
+
+/* Small */
+.radio--sm .radio__control {
+  width: var(--component-radio-size-sm);
+  height: var(--component-radio-size-sm);
+}
+
+/* Large */
+.radio--lg .radio__control {
+  width: var(--component-radio-size-lg);
+  height: var(--component-radio-size-lg);
+}
+
+/* ========================================================================
+   ERROR MESSAGE
+   ======================================================================== */
+
+.radio-group--error .form-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--component-form-field-error-icon-gap);
+  margin-top: var(--component-form-field-error-margin-top);
+  font-size: var(--component-form-field-error-font-size);
+  color: var(--component-form-field-error-color);
+}
+
+/* ========================================================================
+   REDUCED MOTION
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .radio__control,
+  .radio__control::after {
+    transition: none;
+  }
+
+  .radio__input:active + .radio__control {
+    transform: none;
+  }
+}

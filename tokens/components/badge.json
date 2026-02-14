@@ -1,0 +1,59 @@
+{
+  "component": {
+    "badge": {
+      "size": {
+        "sm": {
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.1-5}" },
+          "paddingY": { "$type": "dimension", "$value": "{primitive.spacing.0-5}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" }
+        },
+        "md": {
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.2-5}" },
+          "paddingY": { "$type": "dimension", "$value": "{primitive.spacing.0-5}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" }
+        },
+        "lg": {
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+          "paddingY": { "$type": "dimension", "$value": "{primitive.spacing.1}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" }
+        }
+      },
+      "radius": {
+        "default": { "$type": "dimension", "$value": "{primitive.radius.base}" },
+        "pill": { "$type": "dimension", "$value": "{primitive.radius.full}" }
+      },
+      "fontWeight": { "$type": "fontWeight", "$value": "{primitive.font.weight.medium}" },
+      "variant": {
+        "default": {
+          "bg": { "$type": "color", "$value": "{primitive.color.neutral.100}" },
+          "text": { "$type": "color", "$value": "{primitive.color.neutral.700}" }
+        },
+        "primary": {
+          "bg": { "$type": "color", "$value": "{semantic.color.primary.subtle}" },
+          "text": { "$type": "color", "$value": "{primitive.color.blue.700}" }
+        },
+        "success": {
+          "bg": { "$type": "color", "$value": "{semantic.color.success.subtle}" },
+          "text": { "$type": "color", "$value": "{primitive.color.emerald.700}" }
+        },
+        "warning": {
+          "bg": { "$type": "color", "$value": "{semantic.color.warning.subtle}" },
+          "text": { "$type": "color", "$value": "{primitive.color.amber.700}" }
+        },
+        "danger": {
+          "bg": { "$type": "color", "$value": "{semantic.color.danger.subtle}" },
+          "text": { "$type": "color", "$value": "{primitive.color.red.700}" }
+        },
+        "outline": {
+          "bg": { "$type": "color", "$value": "transparent" },
+          "text": { "$type": "color", "$value": "{semantic.text.secondary}" },
+          "border": { "$type": "color", "$value": "{semantic.border.default}" }
+        }
+      },
+      "dot": {
+        "size": { "$type": "dimension", "$value": "{primitive.spacing.1-5}" },
+        "gap": { "$type": "dimension", "$value": "{primitive.spacing.1-5}" }
+      }
+    }
+  }
+}

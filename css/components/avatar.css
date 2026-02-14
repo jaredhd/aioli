@@ -1,0 +1,198 @@
+/* ==========================================================================
+   Avatar Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--component-avatar-radius-default);
+  background-color: var(--component-avatar-bg-default);
+  border: var(--component-avatar-border-width) solid var(--component-avatar-border-color);
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+
+.avatar--xs {
+  width: var(--component-avatar-size-xs);
+  height: var(--component-avatar-size-xs);
+}
+
+.avatar--sm {
+  width: var(--component-avatar-size-sm);
+  height: var(--component-avatar-size-sm);
+}
+
+.avatar--md {
+  width: var(--component-avatar-size-md);
+  height: var(--component-avatar-size-md);
+}
+
+.avatar--lg {
+  width: var(--component-avatar-size-lg);
+  height: var(--component-avatar-size-lg);
+}
+
+.avatar--xl {
+  width: var(--component-avatar-size-xl);
+  height: var(--component-avatar-size-xl);
+}
+
+.avatar--2xl {
+  width: var(--component-avatar-size-2xl);
+  height: var(--component-avatar-size-2xl);
+}
+
+/* --------------------------------------------------------------------------
+   Square Variant
+   -------------------------------------------------------------------------- */
+
+.avatar--square {
+  border-radius: var(--component-avatar-radius-square);
+}
+
+/* --------------------------------------------------------------------------
+   Image
+   -------------------------------------------------------------------------- */
+
+.avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   Fallback (Initials)
+   -------------------------------------------------------------------------- */
+
+.avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--component-avatar-text-color);
+  font-family: var(--primitive-font-family-sans);
+  font-weight: var(--component-avatar-text-font-weight);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.avatar--xs .avatar__fallback {
+  font-size: var(--component-avatar-text-font-size-xs);
+}
+
+.avatar--sm .avatar__fallback {
+  font-size: var(--component-avatar-text-font-size-sm);
+}
+
+.avatar--md .avatar__fallback {
+  font-size: var(--component-avatar-text-font-size-md);
+}
+
+.avatar--lg .avatar__fallback {
+  font-size: var(--component-avatar-text-font-size-lg);
+}
+
+.avatar--xl .avatar__fallback {
+  font-size: var(--component-avatar-text-font-size-xl);
+}
+
+.avatar--2xl .avatar__fallback {
+  font-size: var(--component-avatar-text-font-size-2xl);
+}
+
+/* --------------------------------------------------------------------------
+   Status Indicator
+   -------------------------------------------------------------------------- */
+
+.avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: var(--primitive-radius-full);
+  border: var(--primitive-border-width-medium) solid var(--component-avatar-border-color);
+}
+
+.avatar--xs .avatar__status {
+  width: var(--component-avatar-status-size-xs);
+  height: var(--component-avatar-status-size-xs);
+}
+
+.avatar--sm .avatar__status {
+  width: var(--component-avatar-status-size-sm);
+  height: var(--component-avatar-status-size-sm);
+}
+
+.avatar--md .avatar__status {
+  width: var(--component-avatar-status-size-md);
+  height: var(--component-avatar-status-size-md);
+}
+
+.avatar--lg .avatar__status {
+  width: var(--component-avatar-status-size-lg);
+  height: var(--component-avatar-status-size-lg);
+}
+
+.avatar--xl .avatar__status {
+  width: var(--component-avatar-status-size-xl);
+  height: var(--component-avatar-status-size-xl);
+}
+
+.avatar--2xl .avatar__status {
+  width: var(--component-avatar-status-size-2xl);
+  height: var(--component-avatar-status-size-2xl);
+}
+
+.avatar__status--online {
+  background-color: var(--component-avatar-status-online);
+}
+
+.avatar__status--offline {
+  background-color: var(--component-avatar-status-offline);
+}
+
+.avatar__status--busy {
+  background-color: var(--component-avatar-status-busy);
+}
+
+.avatar__status--away {
+  background-color: var(--component-avatar-status-away);
+}
+
+/* --------------------------------------------------------------------------
+   Avatar Group
+   -------------------------------------------------------------------------- */
+
+.avatar-group {
+  display: inline-flex;
+  flex-direction: row-reverse;
+}
+
+.avatar-group .avatar {
+  border: var(--component-avatar-border-width) solid var(--component-avatar-group-border);
+}
+
+.avatar-group .avatar + .avatar {
+  margin-inline-end: calc(-1 * var(--component-avatar-group-overlap));
+}
+
+/* --------------------------------------------------------------------------
+   Primary Background Variant
+   -------------------------------------------------------------------------- */
+
+.avatar--primary {
+  background-color: var(--component-avatar-bg-primary);
+}

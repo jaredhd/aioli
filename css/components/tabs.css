@@ -1,0 +1,168 @@
+/**
+ * Tabs Component — Aioli Design System
+ * Molecule: Tabbed interface with underline, pills, and boxed variants
+ *
+ * BEM classes: .tabs, .tabs__list, .tabs__tab, .tabs__tab--active,
+ *              .tabs__panel, .tabs__panel--active
+ * Variants: underline (default), pills, boxed
+ */
+
+/* ----------------------------------------------------------------
+   Base container
+   ---------------------------------------------------------------- */
+.tabs {
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Tab list
+   ---------------------------------------------------------------- */
+.tabs__list {
+  display: flex;
+  align-items: stretch;
+  gap: var(--component-tabs-list-gap);
+  border-bottom: var(--component-tabs-list-border-width) solid var(--component-tabs-list-border-color);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ----------------------------------------------------------------
+   Tab trigger (button)
+   ---------------------------------------------------------------- */
+.tabs__tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--component-tabs-trigger-padding-y) var(--component-tabs-trigger-padding-x);
+  border: none;
+  border-radius: var(--component-tabs-variant-underline-trigger-radius);
+  background-color: var(--component-tabs-trigger-bg-default);
+  color: var(--component-tabs-trigger-color-default);
+  font-family: inherit;
+  font-size: var(--component-tabs-trigger-font-size);
+  font-weight: var(--component-tabs-trigger-font-weight-default);
+  line-height: var(--primitive-font-line-height-normal);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--component-tabs-animation-duration) var(--component-tabs-animation-easing),
+    background-color var(--component-tabs-animation-duration) var(--component-tabs-animation-easing),
+    box-shadow var(--component-tabs-animation-duration) var(--component-tabs-animation-easing);
+}
+
+/* Active indicator (underline variant) */
+.tabs__tab::after {
+  content: "";
+  position: absolute;
+  bottom: calc(-1 * var(--component-tabs-list-border-width));
+  left: 0;
+  right: 0;
+  height: var(--component-tabs-trigger-indicator-height);
+  border-radius: var(--component-tabs-trigger-indicator-radius);
+  background-color: transparent;
+  transition: background-color var(--component-tabs-animation-duration) var(--component-tabs-animation-easing);
+}
+
+/* ----------------------------------------------------------------
+   Tab states
+   ---------------------------------------------------------------- */
+.tabs__tab:hover {
+  color: var(--component-tabs-trigger-color-hover);
+  background-color: var(--component-tabs-trigger-bg-hover);
+}
+
+.tabs__tab:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  z-index: 1;
+}
+
+.tabs__tab:active {
+  color: var(--component-tabs-trigger-color-active);
+}
+
+.tabs__tab[disabled],
+.tabs__tab[aria-disabled="true"] {
+  color: var(--component-tabs-trigger-color-disabled);
+  cursor: not-allowed;
+  opacity: var(--semantic-opacity-disabled);
+}
+
+/* Active tab */
+.tabs__tab--active {
+  color: var(--component-tabs-trigger-color-active);
+  font-weight: var(--component-tabs-trigger-font-weight-active);
+}
+
+.tabs__tab--active::after {
+  background-color: var(--component-tabs-trigger-indicator-color);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Pills
+   ---------------------------------------------------------------- */
+.tabs--pills .tabs__list {
+  border-bottom: none;
+  gap: var(--component-tabs-variant-pills-gap);
+}
+
+.tabs--pills .tabs__tab {
+  border-radius: var(--component-tabs-variant-pills-trigger-radius);
+}
+
+.tabs--pills .tabs__tab::after {
+  display: none;
+}
+
+.tabs--pills .tabs__tab--active {
+  background-color: var(--component-tabs-variant-pills-active-bg);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Boxed
+   ---------------------------------------------------------------- */
+.tabs--boxed .tabs__list {
+  border-bottom: none;
+  background-color: var(--component-tabs-variant-boxed-list-bg);
+  border-radius: var(--component-tabs-variant-boxed-list-radius);
+  padding: var(--component-tabs-variant-boxed-list-padding);
+}
+
+.tabs--boxed .tabs__tab {
+  border-radius: var(--component-tabs-variant-boxed-trigger-radius);
+}
+
+.tabs--boxed .tabs__tab::after {
+  display: none;
+}
+
+.tabs--boxed .tabs__tab--active {
+  background-color: var(--component-tabs-variant-boxed-active-bg);
+  box-shadow: var(--component-tabs-variant-boxed-active-shadow);
+}
+
+/* ----------------------------------------------------------------
+   Tab panel
+   ---------------------------------------------------------------- */
+.tabs__panel {
+  padding-top: var(--component-tabs-content-padding-top);
+  font-size: var(--semantic-typography-body-sm-font-size);
+  line-height: var(--semantic-typography-body-sm-line-height);
+  color: var(--semantic-text-default);
+}
+
+.tabs__panel[hidden] {
+  display: none;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .tabs__tab,
+  .tabs__tab::after {
+    transition: none;
+  }
+}

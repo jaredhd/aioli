@@ -1,0 +1,320 @@
+/**
+ * Toast Component — Aioli Design System
+ * Molecule: Toast notification with fixed positioning and auto-dismiss
+ *
+ * BEM classes: .toast-container, .toast, .toast--{variant},
+ *              .toast__icon, .toast__message, .toast__action,
+ *              .toast__dismiss, .toast__progress
+ * Variants: info, success, warning, error
+ */
+
+/* ----------------------------------------------------------------
+   Container (fixed position)
+   ---------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--component-toast-container-z-index);
+  display: flex;
+  flex-direction: column;
+  gap: var(--component-toast-container-gap);
+  padding: var(--component-toast-container-padding);
+  max-width: var(--component-toast-container-max-width);
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Bottom placement variant */
+.toast-container--bottom {
+  top: auto;
+  bottom: 0;
+  flex-direction: column-reverse;
+}
+
+/* Center placement variant */
+.toast-container--center {
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* ----------------------------------------------------------------
+   Toast item
+   ---------------------------------------------------------------- */
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--component-toast-icon-gap);
+  padding: var(--component-toast-item-padding-y) var(--component-toast-item-padding-x);
+  border: var(--component-toast-item-border-width) solid var(--component-toast-item-border-color);
+  border-radius: var(--component-toast-item-radius);
+  background-color: var(--component-toast-item-bg);
+  box-shadow: var(--component-toast-item-shadow);
+  font-family: var(--primitive-font-family-sans);
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+
+  /* Enter animation */
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity var(--component-toast-animation-enter-duration) var(--component-toast-animation-enter-easing),
+    transform var(--component-toast-animation-enter-duration) var(--component-toast-animation-enter-easing);
+}
+
+/* Enter state */
+.toast[data-entering] {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Exit state */
+.toast[data-exiting] {
+  opacity: 0;
+  transform: translateX(100%);
+  transition:
+    opacity var(--component-toast-animation-exit-duration) var(--component-toast-animation-exit-easing),
+    transform var(--component-toast-animation-exit-duration) var(--component-toast-animation-exit-easing);
+}
+
+/* Bottom-placed toast slide direction */
+.toast-container--bottom .toast[data-entering] {
+  transform: translateY(100%);
+}
+
+.toast-container--bottom .toast[data-exiting] {
+  transform: translateY(100%);
+}
+
+/* ----------------------------------------------------------------
+   Accent left border (variant-colored)
+   ---------------------------------------------------------------- */
+.toast::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: var(--component-toast-item-radius) 0 0 var(--component-toast-item-radius);
+}
+
+/* ----------------------------------------------------------------
+   Icon
+   ---------------------------------------------------------------- */
+.toast__icon {
+  flex-shrink: 0;
+  width: var(--component-toast-icon-size);
+  height: var(--component-toast-icon-size);
+  line-height: 1;
+}
+
+/* ----------------------------------------------------------------
+   Content
+   ---------------------------------------------------------------- */
+.toast__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast__title {
+  font-size: var(--component-toast-title-font-size);
+  font-weight: var(--component-toast-title-font-weight);
+  color: var(--component-toast-title-color);
+  line-height: var(--primitive-font-line-height-snug);
+}
+
+.toast__message {
+  font-size: var(--component-toast-description-font-size);
+  color: var(--component-toast-description-color);
+  margin: var(--component-toast-description-margin-top) 0 0;
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Actions
+   ---------------------------------------------------------------- */
+.toast__actions {
+  display: flex;
+  gap: var(--component-toast-action-gap);
+  margin-top: var(--component-toast-action-margin-top);
+}
+
+.toast__action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--component-toast-description-font-size);
+  font-weight: var(--primitive-font-weight-medium);
+  cursor: pointer;
+  transition: color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.toast__action:hover {
+  opacity: 0.8;
+}
+
+.toast__action:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Dismiss button
+   ---------------------------------------------------------------- */
+.toast__dismiss {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-toast-close-size);
+  height: var(--component-toast-close-size);
+  padding: 0;
+  border: none;
+  border-radius: var(--primitive-radius-base);
+  background: transparent;
+  color: var(--component-toast-close-color);
+  cursor: pointer;
+  transition:
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.toast__dismiss:hover {
+  color: var(--component-toast-close-hover-color);
+}
+
+.toast__dismiss:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Progress bar (auto-dismiss timer)
+   ---------------------------------------------------------------- */
+.toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: var(--component-toast-progress-height);
+  border-radius: var(--component-toast-progress-radius);
+  transform-origin: left;
+  animation: toast-progress linear forwards;
+}
+
+@keyframes toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+/* ----------------------------------------------------------------
+   Variant: info
+   ---------------------------------------------------------------- */
+.toast--info::before {
+  background-color: var(--component-toast-variant-info-accent);
+}
+
+.toast--info .toast__icon {
+  color: var(--component-toast-variant-info-icon);
+}
+
+.toast--info .toast__action {
+  color: var(--component-toast-variant-info-accent);
+}
+
+.toast--info .toast__progress {
+  background-color: var(--component-toast-variant-info-accent);
+}
+
+/* ----------------------------------------------------------------
+   Variant: success
+   ---------------------------------------------------------------- */
+.toast--success::before {
+  background-color: var(--component-toast-variant-success-accent);
+}
+
+.toast--success .toast__icon {
+  color: var(--component-toast-variant-success-icon);
+}
+
+.toast--success .toast__action {
+  color: var(--component-toast-variant-success-accent);
+}
+
+.toast--success .toast__progress {
+  background-color: var(--component-toast-variant-success-accent);
+}
+
+/* ----------------------------------------------------------------
+   Variant: warning
+   ---------------------------------------------------------------- */
+.toast--warning::before {
+  background-color: var(--component-toast-variant-warning-accent);
+}
+
+.toast--warning .toast__icon {
+  color: var(--component-toast-variant-warning-icon);
+}
+
+.toast--warning .toast__action {
+  color: var(--component-toast-variant-warning-accent);
+}
+
+.toast--warning .toast__progress {
+  background-color: var(--component-toast-variant-warning-accent);
+}
+
+/* ----------------------------------------------------------------
+   Variant: error / danger
+   ---------------------------------------------------------------- */
+.toast--error::before,
+.toast--danger::before {
+  background-color: var(--component-toast-variant-danger-accent);
+}
+
+.toast--error .toast__icon,
+.toast--danger .toast__icon {
+  color: var(--component-toast-variant-danger-icon);
+}
+
+.toast--error .toast__action,
+.toast--danger .toast__action {
+  color: var(--component-toast-variant-danger-accent);
+}
+
+.toast--error .toast__progress,
+.toast--danger .toast__progress {
+  background-color: var(--component-toast-variant-danger-accent);
+}
+
+/* ----------------------------------------------------------------
+   Variant: default
+   ---------------------------------------------------------------- */
+.toast--default::before {
+  background-color: var(--component-toast-variant-default-accent);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toast[data-entering],
+  .toast[data-exiting],
+  .toast__action,
+  .toast__dismiss {
+    transition: none;
+  }
+
+  .toast__progress {
+    animation: none;
+  }
+}

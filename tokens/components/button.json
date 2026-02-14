@@ -1,0 +1,75 @@
+{
+  "component": {
+    "button": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.md}"
+      },
+      "focus": {
+        "ringColor": { "$type": "color", "$value": "{semantic.color.primary.subtle}" },
+        "ringWidth": { "$type": "dimension", "$value": "2px" },
+        "ringOffset": { "$type": "dimension", "$value": "2px" }
+      },
+      "disabled": {
+        "opacity": { "$type": "number", "$value": "0.5" },
+        "cursor": { "$type": "strokeStyle", "$value": "not-allowed" }
+      },
+      "size": {
+        "xs": {
+          "height": { "$type": "dimension", "$value": "24px" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" }
+        },
+        "sm": {
+          "height": { "$type": "dimension", "$value": "{primitive.spacing.8}" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" }
+        },
+        "md": {
+          "height": { "$type": "dimension", "$value": "{primitive.spacing.10}" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" }
+        },
+        "lg": {
+          "height": { "$type": "dimension", "$value": "{primitive.spacing.12}" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.6}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.base}" }
+        },
+        "xl": {
+          "height": { "$type": "dimension", "$value": "48px" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.8}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.lg}" }
+        }
+      },
+      "primary": {
+        "bg": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+        "bgHover": { "$type": "color", "$value": "{semantic.color.primary.hover}" },
+        "bgActive": { "$type": "color", "$value": "{semantic.color.primary.active}" },
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" }
+      },
+      "secondary": {
+        "bg": { "$type": "color", "$value": "{semantic.color.secondary.subtle}" },
+        "bgHover": { "$type": "color", "$value": "{primitive.color.neutral.200}" },
+        "bgActive": { "$type": "color", "$value": "{semantic.color.secondary.active}" },
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.900}" }
+      },
+      "danger": {
+        "bg": { "$type": "color", "$value": "{semantic.color.danger.default}" },
+        "bgHover": { "$type": "color", "$value": "{semantic.color.danger.hover}" },
+        "bgActive": { "$type": "color", "$value": "{semantic.color.danger.active}" },
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" }
+      },
+      "outline": {
+        "bg": { "$type": "color", "$value": "transparent" },
+        "bgHover": { "$type": "color", "$value": "{semantic.color.primary.muted}" },
+        "text": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+        "border": { "$type": "color", "$value": "{semantic.color.primary.default}" }
+      },
+      "ghost": {
+        "bg": { "$type": "color", "$value": "transparent" },
+        "bgHover": { "$type": "color", "$value": "{primitive.color.neutral.100}" },
+        "text": { "$type": "color", "$value": "{semantic.text.default}" }
+      }
+    }
+  }
+}

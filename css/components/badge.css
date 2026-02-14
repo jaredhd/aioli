@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Badge Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-badge-dot-gap);
+  font-family: var(--primitive-font-family-sans);
+  font-weight: var(--component-badge-font-weight);
+  line-height: var(--primitive-font-line-height-none);
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: var(--component-badge-radius-default);
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+
+.badge--sm {
+  padding: var(--component-badge-size-sm-padding-y) var(--component-badge-size-sm-padding-x);
+  font-size: var(--component-badge-size-sm-font-size);
+}
+
+.badge--md {
+  padding: var(--component-badge-size-md-padding-y) var(--component-badge-size-md-padding-x);
+  font-size: var(--component-badge-size-md-font-size);
+}
+
+.badge--lg {
+  padding: var(--component-badge-size-lg-padding-y) var(--component-badge-size-lg-padding-x);
+  font-size: var(--component-badge-size-lg-font-size);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Default
+   -------------------------------------------------------------------------- */
+
+.badge--default {
+  background-color: var(--component-badge-variant-default-bg);
+  color: var(--component-badge-variant-default-text);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Primary
+   -------------------------------------------------------------------------- */
+
+.badge--primary {
+  background-color: var(--component-badge-variant-primary-bg);
+  color: var(--component-badge-variant-primary-text);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Success
+   -------------------------------------------------------------------------- */
+
+.badge--success {
+  background-color: var(--component-badge-variant-success-bg);
+  color: var(--component-badge-variant-success-text);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Warning
+   -------------------------------------------------------------------------- */
+
+.badge--warning {
+  background-color: var(--component-badge-variant-warning-bg);
+  color: var(--component-badge-variant-warning-text);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Danger
+   -------------------------------------------------------------------------- */
+
+.badge--danger {
+  background-color: var(--component-badge-variant-danger-bg);
+  color: var(--component-badge-variant-danger-text);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Outline
+   -------------------------------------------------------------------------- */
+
+.badge--outline {
+  background-color: var(--component-badge-variant-outline-bg);
+  color: var(--component-badge-variant-outline-text);
+  border: var(--primitive-border-width-default) solid var(--component-badge-variant-outline-border);
+}
+
+/* --------------------------------------------------------------------------
+   Pill Shape
+   -------------------------------------------------------------------------- */
+
+.badge--pill {
+  border-radius: var(--component-badge-radius-pill);
+}
+
+/* --------------------------------------------------------------------------
+   Dot Modifier
+   -------------------------------------------------------------------------- */
+
+.badge--dot {
+  padding: var(--component-badge-size-sm-padding-y) var(--component-badge-size-sm-padding-x);
+}
+
+.badge--dot::before {
+  content: "";
+  display: inline-block;
+  width: var(--component-badge-dot-size);
+  height: var(--component-badge-dot-size);
+  border-radius: var(--primitive-radius-full);
+  background-color: currentColor;
+  flex-shrink: 0;
+}

@@ -1,0 +1,25 @@
+{
+  "component": {
+    "divider": {
+      "thickness": { "$type": "dimension", "$value": "{primitive.spacing.px}" },
+      "color": {
+        "default": { "$type": "color", "$value": "{semantic.border.default}" },
+        "subtle": { "$type": "color", "$value": "{semantic.border.subtle}" },
+        "strong": { "$type": "color", "$value": "{semantic.border.strong}" }
+      },
+      "spacing": {
+        "sm": { "$type": "dimension", "$value": "{primitive.spacing.2}" },
+        "md": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+        "lg": { "$type": "dimension", "$value": "{primitive.spacing.6}" }
+      },
+      "withLabel": {
+        "gap": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+        "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.xs}" },
+        "fontWeight": { "$type": "fontWeight", "$value": "{primitive.font.weight.medium}" },
+        "color": { "$type": "color", "$value": "{semantic.text.muted}" },
+        "textTransform": { "$value": "uppercase" },
+        "letterSpacing": { "$type": "dimension", "$value": "0.05em" }
+      }
+    }
+  }
+}

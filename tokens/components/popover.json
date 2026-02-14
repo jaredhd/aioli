@@ -1,0 +1,33 @@
+{
+  "component": {
+    "popover": {
+      "bg": { "$value": "{semantic.surface.page.default}", "$type": "color" },
+      "border": {
+        "width": { "$value": "1px", "$type": "dimension" },
+        "color": { "$value": "{semantic.border.default}", "$type": "color" }
+      },
+      "radius": { "$value": "{primitive.radius.lg}", "$type": "dimension" },
+      "shadow": { "$value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)", "$type": "shadow" },
+      "padding": { "$value": "{primitive.spacing.4}", "$type": "dimension" },
+      "maxWidth": { "$value": "320px", "$type": "dimension" },
+      "arrow": {
+        "size": { "$value": "8px", "$type": "dimension" },
+        "bg": { "$value": "{semantic.surface.page.default}", "$type": "color" },
+        "border": { "$value": "{semantic.border.default}", "$type": "color" }
+      },
+      "header": {
+        "fontSize": { "$value": "{primitive.font.size.sm}", "$type": "dimension" },
+        "fontWeight": { "$value": "{primitive.font.weight.semibold}", "$type": "fontWeight" },
+        "paddingBottom": { "$value": "{primitive.spacing.2}", "$type": "dimension" },
+        "borderBottom": { "$value": "{semantic.border.subtle}", "$type": "color" }
+      },
+      "body": {
+        "fontSize": { "$value": "{primitive.font.size.sm}", "$type": "dimension" },
+        "color": { "$value": "{semantic.text.secondary}", "$type": "color" }
+      },
+      "animation": {
+        "duration": { "$value": "{primitive.motion.duration.fast}", "$type": "duration" }
+      }
+    }
+  }
+}

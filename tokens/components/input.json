@@ -1,0 +1,56 @@
+{
+  "component": {
+    "input": {
+      "radius": { 
+        "$type": "dimension", 
+        "$value": "{primitive.radius.md}" 
+      },
+      "border": {
+        "width": { "$type": "dimension", "$value": "{primitive.spacing.px}" },
+        "color": {
+          "default": { "$type": "color", "$value": "{semantic.border.default}" },
+          "hover": { "$type": "color", "$value": "{semantic.border.strong}" },
+          "focus": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+          "error": { "$type": "color", "$value": "{semantic.color.danger.default}" },
+          "success": { "$type": "color", "$value": "{semantic.color.success.default}" },
+          "disabled": { "$type": "color", "$value": "{semantic.border.subtle}" }
+        }
+      },
+      "bg": {
+        "default": { "$type": "color", "$value": "{semantic.surface.page.default}" },
+        "disabled": { "$type": "color", "$value": "{semantic.surface.page.muted}" }
+      },
+      "text": {
+        "default": { "$type": "color", "$value": "{semantic.text.default}" },
+        "placeholder": { "$type": "color", "$value": "{semantic.text.muted}" },
+        "disabled": { "$type": "color", "$value": "{semantic.text.disabled}" }
+      },
+      "size": {
+        "sm": {
+          "height": { "$type": "dimension", "$value": "{primitive.spacing.8}" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.2-5}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" }
+        },
+        "md": {
+          "height": { "$type": "dimension", "$value": "{primitive.spacing.10}" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.3}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.sm}" }
+        },
+        "lg": {
+          "height": { "$type": "dimension", "$value": "{primitive.spacing.12}" },
+          "paddingX": { "$type": "dimension", "$value": "{primitive.spacing.4}" },
+          "fontSize": { "$type": "dimension", "$value": "{primitive.font.size.base}" }
+        }
+      },
+      "focus": {
+        "ringWidth": { "$type": "dimension", "$value": "2px" },
+        "ringOffset": { "$type": "dimension", "$value": "1px" },
+        "ringColor": { "$type": "color", "$value": "{semantic.color.primary.subtle}" }
+      },
+      "transition": {
+        "duration": { "$type": "duration", "$value": "{primitive.motion.duration.fast}" },
+        "easing": { "$type": "cubicBezier", "$value": "{primitive.motion.easing.default}" }
+      }
+    }
+  }
+}

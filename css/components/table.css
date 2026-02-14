@@ -1,0 +1,242 @@
+/**
+ * Table Component — Aioli Design System
+ * Organism: Data table with striped rows, hover, sorting, and responsive scroll
+ *
+ * BEM classes: .table-container, .table, .table--{size}, .table--striped,
+ *              .table__caption, .table__head, .table__body,
+ *              .table__header, .table__row, .table__cell,
+ *              .table__sort, .table__pagination, .table__empty
+ * Sizes: compact, default, relaxed
+ */
+
+/* ----------------------------------------------------------------
+   Scroll container (responsive)
+   ---------------------------------------------------------------- */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: var(--component-table-border-width) solid var(--component-table-border-color);
+  border-radius: var(--component-table-radius);
+}
+
+.table-container:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Table base
+   ---------------------------------------------------------------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: var(--primitive-font-family-sans);
+  background-color: var(--component-table-bg);
+}
+
+/* ----------------------------------------------------------------
+   Caption
+   ---------------------------------------------------------------- */
+.table__caption {
+  padding: var(--component-table-cell-padding-y) var(--component-table-cell-padding-x);
+  font-size: var(--component-table-cell-font-size);
+  color: var(--semantic-text-secondary);
+  text-align: left;
+  caption-side: top;
+}
+
+/* ----------------------------------------------------------------
+   Head
+   ---------------------------------------------------------------- */
+.table__head {
+  background-color: var(--component-table-header-bg);
+}
+
+/* ----------------------------------------------------------------
+   Header cell
+   ---------------------------------------------------------------- */
+.table__header {
+  padding: var(--component-table-header-padding-y) var(--component-table-header-padding-x);
+  font-size: var(--component-table-header-font-size);
+  font-weight: var(--component-table-header-font-weight);
+  color: var(--component-table-header-color);
+  text-align: left;
+  text-transform: var(--component-table-header-text-transform);
+  letter-spacing: var(--component-table-header-letter-spacing);
+  white-space: nowrap;
+  border-bottom: var(--component-table-border-width) solid var(--component-table-cell-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Sort button
+   ---------------------------------------------------------------- */
+.table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-table-sort-icon-gap);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--component-table-sort-icon-color-default);
+  font: inherit;
+  cursor: pointer;
+  transition: color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.table__sort:hover {
+  color: var(--component-table-sort-icon-color-active);
+}
+
+.table__sort:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-2xs);
+}
+
+.table__header[aria-sort="ascending"] .table__sort,
+.table__header[aria-sort="descending"] .table__sort {
+  color: var(--component-table-sort-icon-color-active);
+}
+
+/* ----------------------------------------------------------------
+   Body
+   ---------------------------------------------------------------- */
+.table__body {
+  /* Inherits from table */
+}
+
+/* ----------------------------------------------------------------
+   Row
+   ---------------------------------------------------------------- */
+.table__row {
+  background-color: var(--component-table-row-bg-default);
+  transition: background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.table__row:hover {
+  background-color: var(--component-table-row-bg-hover);
+}
+
+/* Selected row */
+.table__row--selected {
+  background-color: var(--component-table-row-bg-selected);
+}
+
+/* ----------------------------------------------------------------
+   Striped rows
+   ---------------------------------------------------------------- */
+.table--striped .table__body .table__row:nth-child(even) {
+  background-color: var(--component-table-row-bg-striped);
+}
+
+.table--striped .table__body .table__row:nth-child(even):hover {
+  background-color: var(--component-table-row-bg-hover);
+}
+
+/* ----------------------------------------------------------------
+   Cell
+   ---------------------------------------------------------------- */
+.table__cell {
+  padding: var(--component-table-cell-padding-y) var(--component-table-cell-padding-x);
+  font-size: var(--component-table-cell-font-size);
+  color: var(--component-table-cell-color);
+  border-bottom: var(--component-table-border-width) solid var(--component-table-cell-border-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* Last row: no bottom border */
+.table__body .table__row:last-child .table__cell {
+  border-bottom: none;
+}
+
+/* ----------------------------------------------------------------
+   Size: Compact
+   ---------------------------------------------------------------- */
+.table--compact .table__cell {
+  padding-top: var(--component-table-size-compact-cell-padding-y);
+  padding-bottom: var(--component-table-size-compact-cell-padding-y);
+}
+
+.table--compact .table__header {
+  padding-top: var(--component-table-size-compact-cell-padding-y);
+  padding-bottom: var(--component-table-size-compact-cell-padding-y);
+}
+
+/* ----------------------------------------------------------------
+   Size: Default (no override needed — base values)
+   ---------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------
+   Size: Relaxed
+   ---------------------------------------------------------------- */
+.table--relaxed .table__cell {
+  padding-top: var(--component-table-size-relaxed-cell-padding-y);
+  padding-bottom: var(--component-table-size-relaxed-cell-padding-y);
+}
+
+.table--relaxed .table__header {
+  padding-top: var(--component-table-size-relaxed-cell-padding-y);
+  padding-bottom: var(--component-table-size-relaxed-cell-padding-y);
+}
+
+/* ----------------------------------------------------------------
+   Pagination footer
+   ---------------------------------------------------------------- */
+.table__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--component-table-pagination-gap);
+  padding: var(--component-table-pagination-padding-y) var(--component-table-pagination-padding-x);
+  background-color: var(--component-table-pagination-bg);
+  border-top: var(--component-table-border-width) solid var(--component-table-pagination-border-color);
+  font-size: var(--component-table-cell-font-size);
+  color: var(--semantic-text-secondary);
+}
+
+/* ----------------------------------------------------------------
+   Empty state
+   ---------------------------------------------------------------- */
+.table__empty {
+  padding: var(--component-table-empty-padding-y) var(--component-table-cell-padding-x);
+  text-align: center;
+}
+
+.table__empty-icon {
+  width: var(--component-table-empty-icon-size);
+  height: var(--component-table-empty-icon-size);
+  margin: 0 auto var(--primitive-spacing-3);
+  color: var(--component-table-empty-icon-color);
+}
+
+.table__empty-text {
+  font-size: var(--component-table-empty-font-size);
+  color: var(--component-table-empty-text-color);
+}
+
+/* ----------------------------------------------------------------
+   Loading overlay
+   ---------------------------------------------------------------- */
+.table-container--loading {
+  position: relative;
+}
+
+.table-container--loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--component-table-loading-overlay);
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .table__row,
+  .table__sort {
+    transition: none;
+  }
+}

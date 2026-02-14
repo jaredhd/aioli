@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Link Component
+   Aioli Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--component-link-external-icon-gap);
+  font-family: var(--primitive-font-family-sans);
+  font-weight: var(--component-link-font-weight);
+  color: var(--component-link-color-default);
+  text-decoration: var(--component-link-decoration-default);
+  cursor: pointer;
+  transition-property: color, opacity;
+  transition-duration: var(--primitive-motion-duration-fast);
+  transition-timing-function: var(--primitive-motion-easing-default);
+}
+
+/* --------------------------------------------------------------------------
+   States
+   -------------------------------------------------------------------------- */
+
+.link:hover {
+  color: var(--component-link-color-hover);
+  text-decoration: var(--component-link-decoration-hover);
+}
+
+.link:active {
+  color: var(--component-link-color-active);
+}
+
+.link:visited {
+  color: var(--component-link-color-visited);
+}
+
+.link:focus-visible {
+  outline: var(--component-link-focus-ring-width) solid var(--component-link-focus-ring-color);
+  outline-offset: var(--component-link-focus-ring-offset);
+  border-radius: var(--primitive-radius-2xs);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Subtle
+   -------------------------------------------------------------------------- */
+
+.link--subtle {
+  color: var(--component-link-variant-subtle-color);
+}
+
+.link--subtle:hover {
+  color: var(--component-link-variant-subtle-hover-color);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Inverse
+   -------------------------------------------------------------------------- */
+
+.link--inverse {
+  color: var(--component-link-variant-inverse-color);
+}
+
+.link--inverse:hover {
+  color: var(--component-link-variant-inverse-hover-color);
+}
+
+/* --------------------------------------------------------------------------
+   Disabled State
+   -------------------------------------------------------------------------- */
+
+.link--disabled,
+.link[aria-disabled="true"] {
+  color: var(--component-link-color-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   External Link Icon
+   -------------------------------------------------------------------------- */
+
+.link__external-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--component-link-external-icon-size);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition-duration: 0ms;
+  }
+}

@@ -1,0 +1,170 @@
+/**
+ * Popover Component — Aioli Design System
+ * Molecule: Rich content popover triggered by a control
+ *
+ * BEM classes: .popover, .popover--{position}, .popover__arrow,
+ *              .popover__container, .popover__header, .popover__title,
+ *              .popover__close, .popover__body
+ * Positions: top, right, bottom, left
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.popover {
+  position: absolute;
+  z-index: var(--semantic-z-index-popover);
+  max-width: var(--component-popover-max-width);
+  font-family: var(--primitive-font-family-sans);
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity var(--component-popover-animation-duration) var(--primitive-motion-easing-enter),
+    transform var(--component-popover-animation-duration) var(--primitive-motion-easing-enter);
+}
+
+.popover[hidden] {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Container
+   ---------------------------------------------------------------- */
+.popover__container {
+  background-color: var(--component-popover-bg);
+  border: var(--component-popover-border-width) solid var(--component-popover-border-color);
+  border-radius: var(--component-popover-radius);
+  box-shadow: var(--component-popover-shadow);
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+.popover__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-spacing-2);
+  padding: var(--component-popover-padding);
+  padding-bottom: var(--component-popover-header-padding-bottom);
+  border-bottom: var(--primitive-border-width-thin) solid var(--component-popover-header-border-bottom);
+}
+
+.popover__title {
+  margin: 0;
+  font-size: var(--component-popover-header-font-size);
+  font-weight: var(--component-popover-header-font-weight);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-snug);
+}
+
+/* ----------------------------------------------------------------
+   Close button
+   ---------------------------------------------------------------- */
+.popover__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--primitive-spacing-5);
+  height: var(--primitive-spacing-5);
+  padding: 0;
+  border: none;
+  border-radius: var(--primitive-radius-base);
+  background: transparent;
+  color: var(--semantic-text-muted);
+  cursor: pointer;
+  transition:
+    color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default),
+    background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.popover__close:hover {
+  color: var(--semantic-text-default);
+  background-color: var(--semantic-surface-page-subtle);
+}
+
+.popover__close:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.popover__close:active {
+  background-color: var(--semantic-surface-page-muted);
+}
+
+/* ----------------------------------------------------------------
+   Body
+   ---------------------------------------------------------------- */
+.popover__body {
+  padding: var(--component-popover-padding);
+  font-size: var(--component-popover-body-font-size);
+  color: var(--component-popover-body-color);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* When there is no header, body gets top padding */
+.popover__container > .popover__body:first-child {
+  padding-top: var(--component-popover-padding);
+}
+
+/* ----------------------------------------------------------------
+   Arrow
+   ---------------------------------------------------------------- */
+.popover__arrow {
+  position: absolute;
+  width: var(--component-popover-arrow-size);
+  height: var(--component-popover-arrow-size);
+  background-color: var(--component-popover-arrow-bg);
+  border: var(--component-popover-border-width) solid var(--component-popover-arrow-border);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* Arrow positions */
+.popover--top .popover__arrow {
+  bottom: calc(-1 * var(--component-popover-arrow-size) / 2);
+  left: 50%;
+  margin-left: calc(-1 * var(--component-popover-arrow-size) / 2);
+  border-top: none;
+  border-left: none;
+}
+
+.popover--bottom .popover__arrow {
+  top: calc(-1 * var(--component-popover-arrow-size) / 2);
+  left: 50%;
+  margin-left: calc(-1 * var(--component-popover-arrow-size) / 2);
+  border-bottom: none;
+  border-right: none;
+}
+
+.popover--left .popover__arrow {
+  right: calc(-1 * var(--component-popover-arrow-size) / 2);
+  top: 50%;
+  margin-top: calc(-1 * var(--component-popover-arrow-size) / 2);
+  border-bottom: none;
+  border-left: none;
+}
+
+.popover--right .popover__arrow {
+  left: calc(-1 * var(--component-popover-arrow-size) / 2);
+  top: 50%;
+  margin-top: calc(-1 * var(--component-popover-arrow-size) / 2);
+  border-top: none;
+  border-right: none;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .popover,
+  .popover__close {
+    transition: none;
+  }
+}
