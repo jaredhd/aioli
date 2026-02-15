@@ -1,0 +1,131 @@
+{
+  "component": {
+    "cardStats": {
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.5}",
+        "$description": "Card padding"
+      },
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.page.default}",
+        "$description": "Background"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Border radius"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{semantic.shadow.sm}",
+        "$description": "Card shadow"
+      },
+      "minWidth": {
+        "$type": "dimension",
+        "$value": "200px",
+        "$description": "Minimum card width"
+      },
+      "icon": {
+        "size": {
+          "$type": "dimension",
+          "$value": "48px",
+          "$description": "Icon container size"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.muted}",
+          "$description": "Icon background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Icon color"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.full}",
+          "$description": "Circle shape"
+        }
+      },
+      "label": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Label font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Label color"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.medium}",
+          "$description": "Label weight"
+        },
+        "letterSpacing": {
+          "$type": "dimension",
+          "$value": "0.05em",
+          "$description": "Uppercase letter spacing"
+        }
+      },
+      "value": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "2rem",
+          "$description": "Value font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.bold}",
+          "$description": "Value weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Value color"
+        }
+      },
+      "change": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Change indicator size"
+        },
+        "upColor": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Positive change color"
+        },
+        "downColor": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Negative change color"
+        }
+      },
+      "border": {
+        "width": {
+          "$type": "dimension",
+          "$value": "4px",
+          "$description": "Accent border width"
+        },
+        "primaryColor": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Primary variant border"
+        },
+        "successColor": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Success variant border"
+        },
+        "dangerColor": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Danger variant border"
+        }
+      }
+    }
+  }
+}

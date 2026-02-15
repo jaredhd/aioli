@@ -33,6 +33,18 @@
   --component-button-outline-shadow: 0 1px 2px 0 rgba(37, 99, 235, 0.08); /** Subtle primary shadow */
   --component-button-outline-shadow-hover: 0 2px 8px -2px rgba(37, 99, 235, 0.2); /** Primary glow on hover */
   --component-button-ghost-bg: rgba(0, 0, 0, 0);
+  --component-card-product-image-aspect-ratio: 1.333; /** 4:3 aspect ratio */
+  --component-card-product-image-overlay-bg: rgba(0, 0, 0, 0.03); /** Subtle image overlay */
+  --component-card-profile-avatar-size: 128px; /** Avatar diameter */
+  --component-card-profile-avatar-border-width: 3px; /** Avatar border width */
+  --component-card-profile-role-letter-spacing: 0.05em; /** Role letter spacing */
+  --component-card-profile-bio-max-width: 280px; /** Max bio width */
+  --component-card-profile-social-size: 40px; /** Social icon button size */
+  --component-card-stats-min-width: 200px; /** Minimum card width */
+  --component-card-stats-icon-size: 48px; /** Icon container size */
+  --component-card-stats-label-letter-spacing: 0.05em; /** Uppercase letter spacing */
+  --component-card-stats-value-font-size: 2rem; /** Value font size */
+  --component-card-stats-border-width: 4px; /** Accent border width */
   --component-card-shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --component-card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --component-card-shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -53,6 +65,18 @@
   --component-divider-with-label-letter-spacing: 0.05em;
   --component-dropdown-menu-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --component-dropdown-item-bg-default: rgba(0, 0, 0, 0);
+  --component-feature-grid-column-min: 280px; /** Minimum column width */
+  --component-feature-grid-icon-size: 64px; /** Icon container size */
+  --component-feature-grid-icon-font-size: 28px; /** Icon font size */
+  --component-form-wizard-max-width: 640px; /** Wizard max width */
+  --component-form-wizard-progress-height: 3px; /** Progress bar height */
+  --component-hero-min-height: 60vh; /** Minimum hero height */
+  --component-hero-max-width: 1200px; /** Content max width */
+  --component-hero-headline-font-size-min: 2rem; /** Headline min size (mobile) */
+  --component-hero-headline-font-size-max: 3.5rem; /** Headline max size (desktop) */
+  --component-hero-headline-line-height: 1.1; /** Tight line height */
+  --component-hero-description-max-width: 600px; /** Max width for readability */
+  --component-hero-overlay-bg: rgba(0, 0, 0, 0.4); /** Image overlay background */
   --component-input-focus-ring-width: 2px;
   --component-input-focus-ring-offset: 1px;
   --component-link-decoration-default: none;
@@ -81,6 +105,7 @@
   --component-popover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --component-popover-max-width: 320px;
   --component-popover-arrow-size: 8px;
+  --component-pricing-card-price-font-size: 3rem; /** Price font size */
   --component-progress-track-height: 8px;
   --component-progress-bar-transition: width 300ms ease;
   --component-progress-size-sm: 4px;
@@ -94,6 +119,8 @@
   --component-rating-size-md: 24px;
   --component-rating-size-lg: 32px;
   --component-rating-focus-ring-width: 2px;
+  --component-search-autocomplete-dropdown-max-height: 320px; /** Max dropdown height */
+  --component-search-autocomplete-icon-size: 20px; /** Icon size */
   --component-select-dropdown-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --component-select-option-bg-default: rgba(0, 0, 0, 0);
   --component-skeleton-animation-duration: 1500ms;
@@ -624,6 +651,39 @@
   --component-button-danger-text: var(--primitive-color-neutral-0);
   --component-button-success-text: var(--primitive-color-neutral-0);
   --component-button-ghost-bg-hover: var(--primitive-color-neutral-100);
+  --component-card-product-radius: var(--primitive-radius-lg); /** Product card border radius */
+  --component-card-product-shadow: var(--semantic-shadow-sm); /** Default shadow */
+  --component-card-product-shadow-hover: var(--semantic-shadow-md); /** Hover shadow */
+  --component-card-product-badge-color: var(--primitive-color-neutral-0); /** Sale badge text */
+  --component-card-product-badge-radius: var(--primitive-radius-full); /** Pill shape */
+  --component-card-product-badge-padding-x: var(--primitive-spacing-3); /** Badge horizontal padding */
+  --component-card-product-badge-padding-y: var(--primitive-spacing-1); /** Badge vertical padding */
+  --component-card-product-badge-font-size: var(--primitive-font-size-xs); /** Badge font size */
+  --component-card-product-title-font-size: var(--primitive-font-size-base); /** Product title size */
+  --component-card-product-title-font-weight: var(--primitive-font-weight-semibold); /** Title weight */
+  --component-card-product-price-font-size: var(--primitive-font-size-lg); /** Price font size */
+  --component-card-product-price-font-weight: var(--primitive-font-weight-bold); /** Price weight */
+  --component-card-product-rating-star-color: var(--primitive-color-amber-400); /** Filled star color */
+  --component-card-product-rating-empty-color: var(--primitive-color-neutral-300); /** Empty star color */
+  --component-card-product-rating-font-size: var(--primitive-font-size-sm); /** Star size */
+  --component-card-product-padding: var(--primitive-spacing-4); /** Body padding */
+  --component-card-profile-radius: var(--primitive-radius-lg); /** Profile card radius */
+  --component-card-profile-shadow: var(--semantic-shadow-sm); /** Default shadow */
+  --component-card-profile-padding: var(--primitive-spacing-6); /** Card padding */
+  --component-card-profile-name-font-size: var(--primitive-font-size-xl); /** Name font size */
+  --component-card-profile-name-font-weight: var(--primitive-font-weight-bold); /** Name weight */
+  --component-card-profile-role-font-size: var(--primitive-font-size-sm); /** Role font size */
+  --component-card-profile-bio-font-size: var(--primitive-font-size-sm); /** Bio font size */
+  --component-card-profile-social-bg: var(--primitive-color-neutral-100); /** Social button background */
+  --component-card-profile-social-color-hover: var(--primitive-color-neutral-0); /** Social icon hover color */
+  --component-card-stats-padding: var(--primitive-spacing-5); /** Card padding */
+  --component-card-stats-radius: var(--primitive-radius-lg); /** Border radius */
+  --component-card-stats-shadow: var(--semantic-shadow-sm); /** Card shadow */
+  --component-card-stats-icon-radius: var(--primitive-radius-full); /** Circle shape */
+  --component-card-stats-label-font-size: var(--primitive-font-size-sm); /** Label font size */
+  --component-card-stats-label-font-weight: var(--primitive-font-weight-medium); /** Label weight */
+  --component-card-stats-value-font-weight: var(--primitive-font-weight-bold); /** Value weight */
+  --component-card-stats-change-font-size: var(--primitive-font-size-sm); /** Change indicator size */
   --component-card-radius: var(--primitive-radius-xl);
   --component-card-border-width: var(--primitive-spacing-px);
   --component-card-padding-sm: var(--primitive-spacing-3);
@@ -664,6 +724,20 @@
   --component-chip-variant-filled-bg-hover: var(--primitive-color-neutral-200);
   --component-chip-variant-outlined-bg-hover: var(--primitive-color-neutral-50);
   --component-chip-close-button-radius: var(--primitive-radius-full);
+  --component-data-table-radius: var(--primitive-radius-lg); /** Table container radius */
+  --component-data-table-toolbar-padding: var(--primitive-spacing-4); /** Toolbar padding */
+  --component-data-table-toolbar-gap: var(--primitive-spacing-3); /** Toolbar gap */
+  --component-data-table-header-font-size: var(--primitive-font-size-sm); /** Header font size */
+  --component-data-table-header-font-weight: var(--primitive-font-weight-semibold); /** Header weight */
+  --component-data-table-header-padding-x: var(--primitive-spacing-4); /** Header cell horizontal padding */
+  --component-data-table-header-padding-y: var(--primitive-spacing-3); /** Header cell vertical padding */
+  --component-data-table-cell-padding-x: var(--primitive-spacing-4); /** Cell horizontal padding */
+  --component-data-table-cell-padding-y: var(--primitive-spacing-3); /** Cell vertical padding */
+  --component-data-table-cell-font-size: var(--primitive-font-size-sm); /** Cell font size */
+  --component-data-table-row-bg-hover: var(--primitive-color-neutral-50); /** Row hover background */
+  --component-data-table-footer-padding: var(--primitive-spacing-3); /** Footer padding */
+  --component-data-table-footer-font-size: var(--primitive-font-size-sm); /** Footer font size */
+  --component-data-table-empty-padding: var(--primitive-spacing-12); /** Empty state padding */
   --component-divider-thickness: var(--primitive-spacing-px);
   --component-divider-spacing-sm: var(--primitive-spacing-2);
   --component-divider-spacing-md: var(--primitive-spacing-4);
@@ -693,6 +767,13 @@
   --component-dropdown-label-font-weight: var(--primitive-font-weight-semibold);
   --component-dropdown-animation-duration: var(--primitive-motion-duration-fast);
   --component-dropdown-animation-easing: var(--primitive-motion-easing-enter);
+  --component-feature-grid-gap: var(--primitive-spacing-8); /** Grid gap */
+  --component-feature-grid-item-padding: var(--primitive-spacing-6); /** Item padding */
+  --component-feature-grid-icon-radius: var(--primitive-radius-full); /** Circle shape */
+  --component-feature-grid-title-font-size: var(--primitive-font-size-lg); /** Feature title size */
+  --component-feature-grid-title-font-weight: var(--primitive-font-weight-semibold); /** Title weight */
+  --component-feature-grid-description-font-size: var(--primitive-font-size-sm); /** Description size */
+  --component-feature-grid-description-line-height: var(--primitive-font-line-height-relaxed); /** Description line height */
   --component-form-field-gap: var(--primitive-spacing-1-5);
   --component-form-field-label-font-size: var(--primitive-font-size-sm);
   --component-form-field-label-font-weight: var(--primitive-font-weight-medium);
@@ -706,6 +787,24 @@
   --component-form-field-success-font-size: var(--primitive-font-size-xs);
   --component-form-field-success-margin-top: var(--primitive-spacing-1);
   --component-form-field-character-count-font-size: var(--primitive-font-size-xs);
+  --component-form-wizard-radius: var(--primitive-radius-lg); /** Wizard border radius */
+  --component-form-wizard-shadow: var(--semantic-shadow-md); /** Wizard shadow */
+  --component-form-wizard-content-padding: var(--primitive-spacing-6); /** Step content padding */
+  --component-form-wizard-fields-gap: var(--primitive-spacing-4); /** Field gap */
+  --component-form-wizard-navigation-padding: var(--primitive-spacing-4); /** Navigation padding */
+  --component-form-wizard-progress-bg: var(--primitive-color-neutral-200); /** Progress track color */
+  --component-hero-padding-y: var(--primitive-spacing-16); /** Vertical padding */
+  --component-hero-padding-x: var(--primitive-spacing-6); /** Horizontal padding */
+  --component-hero-gap: var(--primitive-spacing-12); /** Grid gap */
+  --component-hero-headline-font-weight: var(--primitive-font-weight-extrabold); /** Headline weight */
+  --component-hero-subheadline-font-size: var(--primitive-font-size-xl); /** Subheadline size */
+  --component-hero-description-font-size: var(--primitive-font-size-lg); /** Description size */
+  --component-hero-description-line-height: var(--primitive-font-line-height-relaxed); /** Relaxed line height */
+  --component-hero-actions-gap: var(--primitive-spacing-4); /** Button gap */
+  --component-hero-actions-margin-top: var(--primitive-spacing-8); /** Top margin */
+  --component-hero-image-radius: var(--primitive-radius-xl); /** Image border radius */
+  --component-hero-image-shadow: var(--semantic-shadow-xl); /** Image shadow */
+  --component-hero-gradient: var(--semantic-gradient-surface-hero); /** Hero gradient background */
   --component-input-radius: var(--primitive-radius-md);
   --component-input-border-width: var(--primitive-spacing-px);
   --component-input-size-sm-height: var(--primitive-spacing-8);
@@ -786,6 +885,17 @@
   --component-popover-header-padding-bottom: var(--primitive-spacing-2);
   --component-popover-body-font-size: var(--primitive-font-size-sm);
   --component-popover-animation-duration: var(--primitive-motion-duration-fast);
+  --component-pricing-card-radius: var(--primitive-radius-lg); /** Card radius */
+  --component-pricing-card-shadow: var(--semantic-shadow-sm); /** Card shadow */
+  --component-pricing-card-padding: var(--primitive-spacing-6); /** Section padding */
+  --component-pricing-card-name-font-size: var(--primitive-font-size-lg); /** Plan name size */
+  --component-pricing-card-name-font-weight: var(--primitive-font-weight-semibold); /** Plan name weight */
+  --component-pricing-card-price-font-weight: var(--primitive-font-weight-extrabold); /** Price weight */
+  --component-pricing-card-period-font-size: var(--primitive-font-size-sm); /** Period text size */
+  --component-pricing-card-feature-font-size: var(--primitive-font-size-sm); /** Feature text size */
+  --component-pricing-card-feature-gap: var(--primitive-spacing-3); /** Feature list gap */
+  --component-pricing-card-highlighted-shadow: var(--semantic-shadow-colored-primary-md); /** Highlighted shadow */
+  --component-pricing-card-highlighted-badge-color: var(--primitive-color-neutral-0); /** Popular badge text */
   --component-progress-track-radius: var(--primitive-radius-full);
   --component-progress-track-bg: var(--primitive-color-neutral-200);
   --component-progress-bar-radius: var(--primitive-radius-full);
@@ -806,6 +916,14 @@
   --component-rating-color-disabled: var(--primitive-color-neutral-200);
   --component-rating-label-font-size: var(--primitive-font-size-sm);
   --component-rating-label-gap: var(--primitive-spacing-2);
+  --component-search-autocomplete-dropdown-shadow: var(--semantic-shadow-lg); /** Dropdown shadow */
+  --component-search-autocomplete-dropdown-radius: var(--primitive-radius-lg); /** Dropdown radius */
+  --component-search-autocomplete-item-padding-x: var(--primitive-spacing-4); /** Item horizontal padding */
+  --component-search-autocomplete-item-padding-y: var(--primitive-spacing-2); /** Item vertical padding */
+  --component-search-autocomplete-item-bg-hover: var(--primitive-color-neutral-50); /** Item hover background */
+  --component-search-autocomplete-section-title-font-size: var(--primitive-font-size-xs); /** Section title size */
+  --component-search-autocomplete-section-title-font-weight: var(--primitive-font-weight-medium); /** Section title weight */
+  --component-search-autocomplete-hint-font-size: var(--primitive-font-size-xs); /** Keyboard hint size */
   --component-select-trigger-radius: var(--primitive-radius-md);
   --component-select-trigger-border-width: var(--primitive-spacing-px);
   --component-select-trigger-size-sm-height: var(--primitive-spacing-8);
@@ -1141,6 +1259,29 @@
   --component-button-outline-text: var(--semantic-color-primary-default);
   --component-button-outline-border: var(--semantic-color-primary-default);
   --component-button-ghost-text: var(--semantic-text-default);
+  --component-card-product-bg: var(--semantic-surface-page-default); /** Product card background */
+  --component-card-product-badge-bg: var(--semantic-color-danger-default); /** Sale badge background */
+  --component-card-product-title-color: var(--semantic-text-default); /** Title color */
+  --component-card-product-price-color: var(--semantic-text-default); /** Regular price color */
+  --component-card-product-price-sale-color: var(--semantic-color-danger-default); /** Sale price color */
+  --component-card-product-price-original-color: var(--semantic-text-muted); /** Original price (strikethrough) */
+  --component-card-profile-bg: var(--semantic-surface-page-default); /** Background */
+  --component-card-profile-avatar-border-color: var(--semantic-color-primary-default); /** Avatar border color */
+  --component-card-profile-name-color: var(--semantic-text-default); /** Name color */
+  --component-card-profile-role-color: var(--semantic-text-muted); /** Role text color */
+  --component-card-profile-bio-color: var(--semantic-text-secondary); /** Bio text color */
+  --component-card-profile-social-bg-hover: var(--semantic-color-primary-default); /** Social button hover bg */
+  --component-card-profile-social-color: var(--semantic-text-secondary); /** Social icon color */
+  --component-card-stats-bg: var(--semantic-surface-page-default); /** Background */
+  --component-card-stats-icon-bg: var(--semantic-color-primary-muted); /** Icon background */
+  --component-card-stats-icon-color: var(--semantic-color-primary-default); /** Icon color */
+  --component-card-stats-label-color: var(--semantic-text-muted); /** Label color */
+  --component-card-stats-value-color: var(--semantic-text-default); /** Value color */
+  --component-card-stats-change-up-color: var(--semantic-color-success-default); /** Positive change color */
+  --component-card-stats-change-down-color: var(--semantic-color-danger-default); /** Negative change color */
+  --component-card-stats-border-primary-color: var(--semantic-color-primary-default); /** Primary variant border */
+  --component-card-stats-border-success-color: var(--semantic-color-success-default); /** Success variant border */
+  --component-card-stats-border-danger-color: var(--semantic-color-danger-default); /** Danger variant border */
   --component-card-border-color: var(--semantic-border-subtle);
   --component-card-bg-default: var(--semantic-surface-card-default);
   --component-card-bg-hover: var(--semantic-surface-card-hover);
@@ -1177,6 +1318,18 @@
   --component-chip-variant-danger-color: var(--semantic-color-danger-default);
   --component-chip-close-button-color: var(--semantic-text-muted);
   --component-chip-close-button-hover-color: var(--semantic-text-default);
+  --component-data-table-border-color: var(--semantic-border-default); /** Table border */
+  --component-data-table-toolbar-bg: var(--semantic-surface-page-default); /** Toolbar background */
+  --component-data-table-header-bg: var(--semantic-surface-page-subtle); /** Header background */
+  --component-data-table-header-color: var(--semantic-text-secondary); /** Header text color */
+  --component-data-table-cell-color: var(--semantic-text-default); /** Cell text color */
+  --component-data-table-row-border-color: var(--semantic-border-subtle); /** Row border color */
+  --component-data-table-row-bg-selected: var(--semantic-color-primary-muted); /** Selected row background */
+  --component-data-table-sort-color: var(--semantic-text-muted); /** Sort icon default */
+  --component-data-table-sort-active-color: var(--semantic-color-primary-default); /** Active sort icon */
+  --component-data-table-footer-bg: var(--semantic-surface-page-default); /** Footer background */
+  --component-data-table-footer-color: var(--semantic-text-muted); /** Footer text color */
+  --component-data-table-empty-color: var(--semantic-text-muted); /** Empty state color */
   --component-divider-color-default: var(--semantic-border-default);
   --component-divider-color-subtle: var(--semantic-border-subtle);
   --component-divider-color-strong: var(--semantic-border-strong);
@@ -1194,6 +1347,10 @@
   --component-dropdown-item-check-color: var(--semantic-color-primary-default);
   --component-dropdown-separator-color: var(--semantic-border-subtle);
   --component-dropdown-label-color: var(--semantic-text-muted);
+  --component-feature-grid-icon-bg: var(--semantic-color-primary-muted); /** Icon background */
+  --component-feature-grid-icon-color: var(--semantic-color-primary-default); /** Icon color */
+  --component-feature-grid-title-color: var(--semantic-text-default); /** Title color */
+  --component-feature-grid-description-color: var(--semantic-text-muted); /** Description color */
   --component-form-field-label-color-default: var(--semantic-text-default);
   --component-form-field-label-color-disabled: var(--semantic-text-disabled);
   --component-form-field-label-required-color: var(--semantic-color-danger-default);
@@ -1203,6 +1360,13 @@
   --component-form-field-character-count-color-default: var(--semantic-text-muted);
   --component-form-field-character-count-color-warning: var(--semantic-color-warning-default);
   --component-form-field-character-count-color-error: var(--semantic-color-danger-default);
+  --component-form-wizard-bg: var(--semantic-surface-page-default); /** Wizard background */
+  --component-form-wizard-navigation-bg: var(--semantic-surface-page-subtle); /** Navigation background */
+  --component-form-wizard-navigation-border-color: var(--semantic-border-default); /** Top border */
+  --component-form-wizard-progress-bar-color: var(--semantic-color-primary-default); /** Progress bar color */
+  --component-hero-headline-color: var(--semantic-text-default); /** Headline color */
+  --component-hero-subheadline-color: var(--semantic-text-secondary); /** Subheadline color */
+  --component-hero-description-color: var(--semantic-text-muted); /** Description color */
   --component-input-border-color-default: var(--semantic-border-default);
   --component-input-border-color-hover: var(--semantic-border-strong);
   --component-input-border-color-focus: var(--semantic-color-primary-default);
@@ -1258,6 +1422,16 @@
   --component-popover-arrow-border: var(--semantic-border-default);
   --component-popover-header-border-bottom: var(--semantic-border-subtle);
   --component-popover-body-color: var(--semantic-text-secondary);
+  --component-pricing-card-bg: var(--semantic-surface-page-default); /** Card background */
+  --component-pricing-card-border-color: var(--semantic-border-default); /** Card border */
+  --component-pricing-card-header-border-color: var(--semantic-border-subtle); /** Header border */
+  --component-pricing-card-name-color: var(--semantic-text-default); /** Plan name color */
+  --component-pricing-card-price-color: var(--semantic-text-default); /** Price color */
+  --component-pricing-card-period-color: var(--semantic-text-muted); /** Period color */
+  --component-pricing-card-feature-included-color: var(--semantic-color-success-default); /** Checkmark color */
+  --component-pricing-card-feature-excluded-color: var(--semantic-text-muted); /** X mark color */
+  --component-pricing-card-highlighted-border-color: var(--semantic-color-primary-default); /** Highlighted border */
+  --component-pricing-card-highlighted-badge-bg: var(--semantic-color-primary-default); /** Popular badge bg */
   --component-progress-bar-color-default: var(--semantic-color-primary-default);
   --component-progress-bar-color-success: var(--semantic-color-success-default);
   --component-progress-bar-color-warning: var(--semantic-color-warning-default);
@@ -1278,6 +1452,14 @@
   --component-radio-focus-ring-color: var(--semantic-color-primary-subtle);
   --component-rating-label-color: var(--semantic-text-secondary);
   --component-rating-focus-ring-color: var(--semantic-color-primary-subtle);
+  --component-search-autocomplete-dropdown-bg: var(--semantic-surface-page-default); /** Dropdown background */
+  --component-search-autocomplete-dropdown-border-color: var(--semantic-border-default); /** Dropdown border */
+  --component-search-autocomplete-item-bg-highlighted: var(--semantic-color-primary-muted); /** Keyboard highlighted item */
+  --component-search-autocomplete-item-color: var(--semantic-text-default); /** Item text color */
+  --component-search-autocomplete-section-title-color: var(--semantic-text-muted); /** Section title color */
+  --component-search-autocomplete-hint-color: var(--semantic-text-muted); /** Hint color */
+  --component-search-autocomplete-hint-border-color: var(--semantic-border-subtle); /** Hint border */
+  --component-search-autocomplete-icon-color: var(--semantic-text-muted); /** Search icon color */
   --component-select-trigger-border-color-default: var(--semantic-border-default);
   --component-select-trigger-border-color-hover: var(--semantic-border-strong);
   --component-select-trigger-border-color-focus: var(--semantic-color-primary-default);

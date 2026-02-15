@@ -1,6 +1,6 @@
 /**
  * Aioli Design System — Component CSS Roll-up
- * Imports all 31 component stylesheets.
+ * Imports all 43 component stylesheets.
  *
  * Usage:
  *   @import 'aioli/css/components';
@@ -47,3 +47,23 @@
 @import './modal.css';
 @import './table.css';
 @import './navigation.css';
+
+/* Enhanced Cards */
+@import './card-product.css';
+@import './card-profile.css';
+@import './card-stats.css';
+
+/* Sections */
+@import './hero.css';
+@import './feature-grid.css';
+@import './pricing-table.css';
+
+/* Layouts (Templates) */
+@import './layout-dashboard.css';
+@import './layout-marketing.css';
+@import './layout-blog.css';
+
+/* Compound Components */
+@import './search-autocomplete.css';
+@import './data-table.css';
+@import './form-wizard.css';

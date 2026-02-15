@@ -1,0 +1,187 @@
+/**
+ * Product Card — Aioli Design System
+ * Organism: E-commerce product card with image, price, rating, action
+ *
+ * BEM classes: .card-product, .card-product--interactive, .card-product--on-sale,
+ *              .card-product__image-wrapper, .card-product__image, .card-product__badge,
+ *              .card-product__body, .card-product__title, .card-product__price-group,
+ *              .card-product__price, .card-product__price--original, .card-product__price--sale,
+ *              .card-product__rating, .card-product__actions
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.card-product {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--component-card-radius);
+  overflow: hidden;
+  background-color: var(--component-card-bg-default);
+  box-shadow: var(--semantic-shadow-sm);
+  font-family: var(--primitive-font-family-sans);
+  border: var(--component-card-border-width) solid var(--component-card-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Interactive variant
+   ---------------------------------------------------------------- */
+.card-product--interactive {
+  cursor: pointer;
+  transition:
+    transform var(--component-card-interactive-transition-duration) var(--component-card-interactive-transition-easing),
+    box-shadow var(--component-card-interactive-transition-duration) var(--component-card-interactive-transition-easing);
+}
+
+.card-product--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--semantic-shadow-md);
+}
+
+.card-product--interactive:active {
+  transform: translateY(0);
+}
+
+.card-product--interactive:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Image wrapper (badge overlay container)
+   ---------------------------------------------------------------- */
+.card-product__image-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+/* ----------------------------------------------------------------
+   Image
+   ---------------------------------------------------------------- */
+.card-product__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   Badge (sale / new / etc.)
+   ---------------------------------------------------------------- */
+.card-product__badge {
+  position: absolute;
+  top: var(--primitive-spacing-3);
+  right: var(--primitive-spacing-3);
+  background-color: var(--semantic-color-danger-default);
+  color: var(--primitive-color-white);
+  font-size: var(--primitive-font-size-xs);
+  font-weight: var(--primitive-font-weight-semibold);
+  padding: var(--primitive-spacing-1) var(--primitive-spacing-2);
+  border-radius: var(--primitive-radius-full);
+  line-height: var(--primitive-font-line-height-none);
+  letter-spacing: 0.02em;
+}
+
+/* ----------------------------------------------------------------
+   Body
+   ---------------------------------------------------------------- */
+.card-product__body {
+  padding: var(--component-card-size-default-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-2);
+  flex: 1;
+}
+
+/* ----------------------------------------------------------------
+   Title
+   ---------------------------------------------------------------- */
+.card-product__title {
+  margin: 0;
+  font-size: var(--primitive-font-size-base);
+  font-weight: var(--primitive-font-weight-semibold);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-snug);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ----------------------------------------------------------------
+   Price group
+   ---------------------------------------------------------------- */
+.card-product__price-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+}
+
+/* ----------------------------------------------------------------
+   Price — regular
+   ---------------------------------------------------------------- */
+.card-product__price {
+  font-weight: var(--primitive-font-weight-bold);
+  font-size: var(--primitive-font-size-lg);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-none);
+}
+
+/* ----------------------------------------------------------------
+   Price — original (struck-through on sale)
+   ---------------------------------------------------------------- */
+.card-product__price--original {
+  text-decoration: line-through;
+  color: var(--semantic-text-muted);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-normal);
+}
+
+/* ----------------------------------------------------------------
+   Price — sale
+   ---------------------------------------------------------------- */
+.card-product__price--sale {
+  color: var(--semantic-color-danger-default);
+  font-weight: var(--primitive-font-weight-bold);
+  font-size: var(--primitive-font-size-lg);
+}
+
+/* ----------------------------------------------------------------
+   Rating
+   ---------------------------------------------------------------- */
+.card-product__rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  color: var(--primitive-color-amber-400);
+  font-size: var(--primitive-font-size-sm);
+}
+
+.card-product__rating--empty {
+  color: var(--primitive-color-neutral-300);
+}
+
+/* ----------------------------------------------------------------
+   Actions
+   ---------------------------------------------------------------- */
+.card-product__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  padding: var(--component-card-size-default-padding);
+  border-top: var(--component-card-border-width) solid var(--component-card-footer-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .card-product--interactive,
+  .card-product--interactive:hover,
+  .card-product--interactive:active {
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "component": {
+    "formWizard": {
+      "maxWidth": {
+        "$type": "dimension",
+        "$value": "640px",
+        "$description": "Wizard max width"
+      },
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.page.default}",
+        "$description": "Wizard background"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Wizard border radius"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{semantic.shadow.md}",
+        "$description": "Wizard shadow"
+      },
+      "content": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.6}",
+          "$description": "Step content padding"
+        }
+      },
+      "fields": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Field gap"
+        }
+      },
+      "navigation": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Navigation padding"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.page.subtle}",
+          "$description": "Navigation background"
+        },
+        "borderColor": {
+          "$type": "color",
+          "$value": "{semantic.border.default}",
+          "$description": "Top border"
+        }
+      },
+      "progress": {
+        "height": {
+          "$type": "dimension",
+          "$value": "3px",
+          "$description": "Progress bar height"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.200}",
+          "$description": "Progress track color"
+        },
+        "barColor": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Progress bar color"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+/**
+ * Stats Card — Aioli Design System
+ * Molecule: KPI/metric display card
+ *
+ * BEM classes: .card-stats, .card-stats--primary, .card-stats--success, .card-stats--danger,
+ *              .card-stats__icon, .card-stats__label, .card-stats__value,
+ *              .card-stats__change, .card-stats__change--up, .card-stats__change--down
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.card-stats {
+  display: flex;
+  flex-direction: column;
+  padding: var(--primitive-spacing-5);
+  background-color: var(--component-card-bg-default);
+  border-radius: var(--component-card-radius);
+  box-shadow: var(--semantic-shadow-sm);
+  border: var(--component-card-border-width) solid var(--component-card-border-color);
+  font-family: var(--primitive-font-family-sans);
+  min-width: 200px;
+}
+
+/* ----------------------------------------------------------------
+   Icon
+   ---------------------------------------------------------------- */
+.card-stats__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--primitive-radius-full);
+  background-color: var(--semantic-color-primary-muted);
+  color: var(--semantic-color-primary-default);
+  font-size: var(--primitive-font-size-xl);
+  margin-bottom: var(--primitive-spacing-3);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Label
+   ---------------------------------------------------------------- */
+.card-stats__label {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--primitive-font-weight-medium);
+  line-height: var(--primitive-font-line-height-normal);
+  margin-bottom: var(--primitive-spacing-1);
+}
+
+/* ----------------------------------------------------------------
+   Value
+   ---------------------------------------------------------------- */
+.card-stats__value {
+  font-size: 2rem;
+  font-weight: var(--primitive-font-weight-bold);
+  color: var(--semantic-text-default);
+  line-height: 1;
+  margin-bottom: var(--primitive-spacing-2);
+}
+
+/* ----------------------------------------------------------------
+   Change indicator
+   ---------------------------------------------------------------- */
+.card-stats__change {
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Change — up (positive)
+   ---------------------------------------------------------------- */
+.card-stats__change--up {
+  color: var(--semantic-color-success-default);
+}
+
+/* ----------------------------------------------------------------
+   Change — down (negative)
+   ---------------------------------------------------------------- */
+.card-stats__change--down {
+  color: var(--semantic-color-danger-default);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Primary (left accent border)
+   ---------------------------------------------------------------- */
+.card-stats--primary {
+  border-left: 4px solid var(--semantic-color-primary-default);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Success (left accent border)
+   ---------------------------------------------------------------- */
+.card-stats--success {
+  border-left: 4px solid var(--semantic-color-success-default);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Danger (left accent border)
+   ---------------------------------------------------------------- */
+.card-stats--danger {
+  border-left: 4px solid var(--semantic-color-danger-default);
+}

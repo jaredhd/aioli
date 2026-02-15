@@ -128,10 +128,10 @@ describe('Component CSS files exist', () => {
     expect(existsSync(filePath), `Missing: css/components/${name}.css`).toBe(true);
   });
 
-  it('directory contains exactly 31 component files (plus index.css)', () => {
+  it('directory contains exactly 43 component files (plus index.css)', () => {
     const files = readdirSync(componentsDir).filter((f) => f.endsWith('.css'));
-    // 31 components + index.css = 32 CSS files
-    expect(files.length).toBe(32);
+    // 43 components + index.css = 44 CSS files
+    expect(files.length).toBe(44);
   });
 });
 
@@ -197,9 +197,9 @@ describe('components/index.css imports all 31 components', () => {
     ).toMatch(pattern);
   });
 
-  it('contains exactly 31 @import statements', () => {
+  it('contains exactly 43 @import statements', () => {
     const imports = indexCss.match(/^@import\s/gm) || [];
-    expect(imports.length).toBe(31);
+    expect(imports.length).toBe(43);
   });
 });
 

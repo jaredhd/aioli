@@ -1205,6 +1205,722 @@ export const COMPONENT_TEMPLATES = {
       };
     },
   },
+
+  // ==========================================================================
+  // ENHANCED COMPONENT VARIANTS
+  // ==========================================================================
+
+  'card-product': {
+    category: 'organism',
+    description: 'Product card with image, price, rating, and add-to-cart',
+    variants: ['default', 'elevated', 'outlined'],
+    template: ({ image = '', title = 'Product Name', price = '29.99', rating = 4, reviewCount = 12, badge = null, onSale = false, salePrice = null, variant = 'default', id }) => {
+      const cardId = id || `card-product-${Date.now()}`;
+      return {
+        html: `<article class="card-product card-product--${variant} card-product--interactive" id="${cardId}">
+  <div class="card-product__image-wrapper">
+    <img src="${image}" alt="${title}" class="card-product__image" style="aspect-ratio: 4/3; object-fit: cover;" />
+    ${badge ? `<span class="card-product__badge badge badge--primary">${badge}</span>` : ''}
+    ${onSale ? '<span class="card-product__badge card-product__badge--sale badge badge--danger">Sale</span>' : ''}
+  </div>
+  <div class="card-product__body">
+    <h3 class="card-product__title">${title}</h3>
+    <div class="card-product__price-group">
+      ${onSale && salePrice
+        ? `<span class="card-product__price card-product__price--sale" aria-label="Sale price: $${salePrice}">$${salePrice}</span>
+      <span class="card-product__price card-product__price--original" aria-label="Original price: $${price}"><s>$${price}</s></span>`
+        : `<span class="card-product__price" aria-label="Price: $${price}">$${price}</span>`}
+    </div>
+    <div class="card-product__rating" role="img" aria-label="Rating: ${rating} out of 5, ${reviewCount} reviews">
+      ${Array.from({ length: 5 }, (_, i) => `<span class="card-product__star${i < rating ? ' card-product__star--filled' : ''}" aria-hidden="true">&#x2605;</span>`).join('')}
+      <span class="card-product__review-count" aria-hidden="true">(${reviewCount})</span>
+    </div>
+    <button type="button" class="btn btn--primary card-product__add-to-cart" aria-label="Add ${title} to cart">
+      Add to Cart
+    </button>
+  </div>
+</article>`,
+        tokens: [
+          'component.card.background',
+          'component.card.borderRadius',
+          'component.card.shadow',
+          'component.card.padding',
+          'semantic.color.success.default',
+          'semantic.color.success.text',
+          'component.button.primary.background',
+          'component.button.primary.color',
+        ],
+        a11y: {
+          role: 'article',
+          landmark: true,
+          priceLabels: true,
+          ratingDisplay: true,
+          focusable: true,
+        },
+      };
+    },
+  },
+
+  'card-profile': {
+    category: 'organism',
+    description: 'Profile/team member card',
+    template: ({ name = 'Jane Doe', role = 'Designer', avatar = '', bio = '', socialLinks = [], email = '', variant = 'default', id }) => {
+      const cardId = id || `card-profile-${Date.now()}`;
+      return {
+        html: `<article class="card-profile card-profile--${variant}" id="${cardId}">
+  <div class="card-profile__header">
+    <span class="avatar avatar--xl card-profile__avatar">
+      ${avatar
+        ? `<img src="${avatar}" alt="${name}" class="avatar__image" style="width: 128px; height: 128px; border-radius: 50%;" />`
+        : `<span class="avatar__fallback" aria-label="${name}" style="width: 128px; height: 128px; border-radius: 50%;">${name.charAt(0)}</span>`}
+    </span>
+  </div>
+  <div class="card-profile__body">
+    <h3 class="card-profile__name">${name}</h3>
+    <p class="card-profile__role">${role}</p>
+    ${bio ? `<p class="card-profile__bio">${bio}</p>` : ''}
+  </div>
+  <div class="card-profile__footer">
+    ${socialLinks.length ? `<div class="card-profile__social">
+      ${socialLinks.map(link => `<a href="${link.url}" class="card-profile__social-link" aria-label="${link.platform} profile for ${name}" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">${link.icon || link.platform.charAt(0)}</span>
+      </a>`).join('')}
+    </div>` : ''}
+    ${email ? `<a href="mailto:${email}" class="card-profile__email link" aria-label="Email ${name}">
+      <span aria-hidden="true">&#x2709;</span> ${email}
+    </a>` : ''}
+  </div>
+</article>`,
+        tokens: [
+          'component.card.background',
+          'component.card.borderRadius',
+          'component.card.shadow',
+          'component.card.padding',
+          'component.avatar.background',
+          'component.avatar.borderRadius',
+        ],
+        a11y: {
+          role: 'article',
+          landmark: true,
+          socialLabels: true,
+        },
+      };
+    },
+  },
+
+  'card-stats': {
+    category: 'molecule',
+    description: 'Statistics/KPI card',
+    variants: ['default', 'primary', 'success', 'danger'],
+    template: ({ label = 'Total Users', value = '1,234', change = '+12.5%', changeDirection = 'up', icon = null, variant = 'default', id }) => {
+      const cardId = id || `card-stats-${Date.now()}`;
+      const changeColor = changeDirection === 'up' ? 'success' : 'danger';
+      const changeArrow = changeDirection === 'up' ? '\u25B2' : '\u25BC';
+      return {
+        html: `<div class="card-stats card-stats--${variant}" role="group" aria-label="${label}: ${value}" id="${cardId}">
+  ${icon ? `<div class="card-stats__icon" aria-hidden="true">${icon}</div>` : ''}
+  <div class="card-stats__content">
+    <span class="card-stats__label">${label}</span>
+    <span class="card-stats__value">${value}</span>
+    ${change ? `<span class="card-stats__change card-stats__change--${changeColor}" aria-label="Change: ${change} ${changeDirection}">
+      <span aria-hidden="true">${changeArrow}</span> ${change}
+    </span>` : ''}
+  </div>
+</div>`,
+        tokens: [
+          'component.card.background',
+          'component.card.borderRadius',
+          'component.card.shadow',
+          'component.card.padding',
+          'semantic.color.success.default',
+          'semantic.color.danger.default',
+          'semantic.color.text.muted',
+        ],
+        a11y: {
+          role: 'group',
+          labelledBy: true,
+          changeIndicator: true,
+        },
+      };
+    },
+  },
+
+  hero: {
+    category: 'organism',
+    description: 'Hero section with headline, CTAs, and optional background',
+    template: ({ headline = 'Welcome to Our Platform', subheadline = '', description = '', primaryCta = 'Get Started', secondaryCta = '', image = '', alignment = 'center', gradient = false, id }) => {
+      const heroId = id || `hero-${Date.now()}`;
+      return {
+        html: `<section class="hero hero--${alignment}${gradient ? ' hero--gradient' : ''}" id="${heroId}" style="min-height: 60vh;">
+  ${image ? `<div class="hero__background" aria-hidden="true">
+    <img src="${image}" alt="" class="hero__background-image" aria-hidden="true" />
+    <div class="hero__overlay"></div>
+  </div>` : ''}
+  <div class="hero__container animate-fade-in-up">
+    <h1 class="hero__headline">${headline}</h1>
+    ${subheadline ? `<p class="hero__subheadline">${subheadline}</p>` : ''}
+    ${description ? `<p class="hero__description">${description}</p>` : ''}
+    <div class="hero__cta-group">
+      ${primaryCta ? `<a href="#" class="btn btn--primary btn--lg hero__cta hero__cta--primary">${primaryCta}</a>` : ''}
+      ${secondaryCta ? `<a href="#" class="btn btn--secondary btn--lg hero__cta hero__cta--secondary">${secondaryCta}</a>` : ''}
+    </div>
+  </div>
+</section>`,
+        tokens: [
+          'semantic.gradient.surface.hero',
+          'component.button.primary.background',
+          'component.button.primary.color',
+          'component.button.secondary.background',
+          'component.button.secondary.color',
+          'semantic.color.text.inverse',
+        ],
+        a11y: {
+          role: 'region',
+          headingHierarchy: true,
+          ctaAccessible: true,
+          decorativeImage: true,
+        },
+      };
+    },
+  },
+
+  'feature-grid': {
+    category: 'organism',
+    description: 'Features showcase grid with icons',
+    template: ({ features = [{ icon: '&#x2605;', title: 'Feature One', description: 'Description of feature one.' }, { icon: '&#x2665;', title: 'Feature Two', description: 'Description of feature two.' }, { icon: '&#x2714;', title: 'Feature Three', description: 'Description of feature three.' }], columns = 3, id }) => {
+      const gridId = id || `feature-grid-${Date.now()}`;
+      return {
+        html: `<section class="feature-grid" aria-label="Features" id="${gridId}" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--semantic-spacing-lg, 2rem);">
+  ${features.map((feature, i) => `
+  <div class="feature-grid__item animate-stagger" style="--stagger-index: ${i};">
+    <div class="feature-grid__icon" aria-hidden="true" style="width: 64px; height: 64px;">
+      ${feature.icon}
+    </div>
+    <h3 class="feature-grid__title">${feature.title}</h3>
+    <p class="feature-grid__description">${feature.description}</p>
+  </div>`).join('')}
+</section>`,
+        tokens: [
+          'component.card.background',
+          'component.card.borderRadius',
+          'component.card.padding',
+          'semantic.color.text.primary',
+          'semantic.color.text.secondary',
+        ],
+        a11y: {
+          role: 'region',
+          landmark: true,
+          headingHierarchy: true,
+        },
+      };
+    },
+  },
+
+  'pricing-table': {
+    category: 'organism',
+    description: 'Pricing comparison card',
+    variants: ['default', 'highlighted'],
+    template: ({ name = 'Pro', price = '29', period = '/mo', features = [{ label: 'Feature A', included: true }, { label: 'Feature B', included: true }, { label: 'Feature C', included: false }], cta = 'Choose Plan', highlighted = false, description = '', id }) => {
+      const pricingId = id || `pricing-${Date.now()}`;
+      return {
+        html: `<article class="pricing-card${highlighted ? ' pricing-card--highlighted' : ''}" id="${pricingId}">
+  ${highlighted ? '<span class="pricing-card__badge badge badge--primary">Popular</span>' : ''}
+  <header class="pricing-card__header">
+    <h3 class="pricing-card__name">${name}</h3>
+    ${description ? `<p class="pricing-card__description">${description}</p>` : ''}
+    <div class="pricing-card__price" aria-label="Price: $${price} ${period}">
+      <span class="pricing-card__currency">$</span>
+      <span class="pricing-card__amount">${price}</span>
+      <span class="pricing-card__period">${period}</span>
+    </div>
+  </header>
+  <ul class="pricing-card__features" role="list">
+    ${features.map(feature => `
+    <li class="pricing-card__feature pricing-card__feature--${feature.included ? 'included' : 'excluded'}">
+      <span class="pricing-card__feature-icon" aria-hidden="true">${feature.included ? '&#x2713;' : '&#x2717;'}</span>
+      <span${!feature.included ? ' class="pricing-card__feature--muted"' : ''}>${feature.label}</span>
+    </li>`).join('')}
+  </ul>
+  <footer class="pricing-card__footer">
+    <button type="button" class="btn ${highlighted ? 'btn--primary' : 'btn--secondary'} btn--lg pricing-card__cta">
+      ${cta}
+    </button>
+  </footer>
+</article>`,
+        tokens: [
+          'component.card.background',
+          'component.card.borderRadius',
+          'component.card.shadow',
+          'component.card.padding',
+          'semantic.gradient.surface.primary',
+          'component.button.primary.background',
+          'component.button.secondary.background',
+        ],
+        a11y: {
+          role: 'article',
+          landmark: true,
+          priceLabels: true,
+          listMarkup: true,
+        },
+      };
+    },
+  },
+
+  // ==========================================================================
+  // LAYOUT TEMPLATES (Atomic Design "Template" tier)
+  // ==========================================================================
+
+  'layout-dashboard': {
+    category: 'template',
+    description: 'Dashboard layout with sidebar and header',
+    template: ({ sidebar = '', header = '', content = '', title = 'Dashboard', id }) => {
+      const layoutId = id || `layout-dashboard-${Date.now()}`;
+      return {
+        html: `<div class="layout-dashboard" id="${layoutId}">
+  <a href="#${layoutId}-main" class="skip-link visually-hidden">Skip to main content</a>
+  <aside class="layout-dashboard__sidebar" id="${layoutId}-sidebar" aria-label="Sidebar navigation" style="width: 260px;">
+    <nav class="layout-dashboard__nav" aria-label="Dashboard navigation">
+      ${sidebar || `<ul class="layout-dashboard__nav-list" role="menubar" aria-orientation="vertical">
+        <li role="none"><a href="#" role="menuitem" class="layout-dashboard__nav-item layout-dashboard__nav-item--active" aria-current="page">Dashboard</a></li>
+        <li role="none"><a href="#" role="menuitem" class="layout-dashboard__nav-item">Analytics</a></li>
+        <li role="none"><a href="#" role="menuitem" class="layout-dashboard__nav-item">Settings</a></li>
+      </ul>`}
+    </nav>
+  </aside>
+  <div class="layout-dashboard__main-area">
+    <header class="layout-dashboard__header" role="banner">
+      <button type="button" class="layout-dashboard__sidebar-toggle" aria-expanded="true" aria-controls="${layoutId}-sidebar" aria-label="Toggle sidebar navigation">
+        <span aria-hidden="true">&#x2630;</span>
+      </button>
+      ${header || `<h1 class="layout-dashboard__title">${title}</h1>`}
+    </header>
+    <main class="layout-dashboard__content" id="${layoutId}-main" role="main">
+      ${content || '<p>Dashboard content goes here.</p>'}
+    </main>
+  </div>
+</div>`,
+        tokens: [
+          'semantic.surface.background',
+          'semantic.surface.elevated',
+          'semantic.surface.border',
+          'component.nav.bg',
+          'component.nav.item.color.default',
+          'component.nav.item.color.active',
+          'component.nav.item.bg.hover',
+        ],
+        a11y: {
+          role: 'application',
+          landmarks: ['navigation', 'banner', 'main'],
+          skipLink: true,
+          sidebarToggle: true,
+          focusable: true,
+          keyboardNav: ['Tab'],
+        },
+      };
+    },
+  },
+
+  'layout-marketing': {
+    category: 'template',
+    description: 'Marketing/landing page layout with sticky header',
+    template: ({ brand = 'Brand', navItems = [{ label: 'Features', href: '#features' }, { label: 'Pricing', href: '#pricing' }, { label: 'Contact', href: '#contact' }], heroContent = '', sections = '', footer = '', id }) => {
+      const layoutId = id || `layout-marketing-${Date.now()}`;
+      return {
+        html: `<div class="layout-marketing" id="${layoutId}">
+  <a href="#${layoutId}-main" class="skip-link visually-hidden">Skip to main content</a>
+  <header class="layout-marketing__header" role="banner" style="position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); background: var(--semantic-glass-bg, rgba(255,255,255,0.8));">
+    <div class="layout-marketing__header-container">
+      <a href="/" class="layout-marketing__brand" aria-label="Home">${brand}</a>
+      <nav class="layout-marketing__nav" aria-label="Main navigation">
+        <ul class="layout-marketing__nav-list" role="menubar">
+          ${navItems.map((item, i) => `
+          <li role="none">
+            <a href="${item.href || '#'}" role="menuitem" class="layout-marketing__nav-item">${item.label}</a>
+          </li>`).join('')}
+        </ul>
+      </nav>
+      <button type="button" class="layout-marketing__mobile-trigger" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span aria-hidden="true">&#x2630;</span>
+      </button>
+    </div>
+  </header>
+  <main id="${layoutId}-main" role="main">
+    ${heroContent || `<section class="layout-marketing__hero hero hero--center hero--gradient" style="min-height: 60vh;">
+      <div class="hero__container animate-fade-in-up">
+        <h1 class="hero__headline">Build Something Amazing</h1>
+        <p class="hero__subheadline">A compelling description of your product or service.</p>
+        <div class="hero__cta-group">
+          <a href="#" class="btn btn--primary btn--lg">Get Started</a>
+          <a href="#" class="btn btn--secondary btn--lg">Learn More</a>
+        </div>
+      </div>
+    </section>`}
+    ${sections || ''}
+  </main>
+  <footer class="layout-marketing__footer" role="contentinfo">
+    ${footer || `<p>&copy; ${new Date().getFullYear()} ${brand}. All rights reserved.</p>`}
+  </footer>
+</div>`,
+        tokens: [
+          'semantic.glass.bg',
+          'semantic.glass.border',
+          'semantic.gradient.surface.hero',
+          'component.nav.bg',
+          'component.nav.item.color.default',
+          'component.nav.item.color.active',
+          'component.button.primary.background',
+          'component.button.secondary.background',
+        ],
+        a11y: {
+          role: 'document',
+          landmarks: ['banner', 'navigation', 'main', 'contentinfo'],
+          skipLink: true,
+          headingHierarchy: true,
+          focusable: true,
+        },
+      };
+    },
+  },
+
+  'layout-blog': {
+    category: 'template',
+    description: 'Blog/article layout with sidebar TOC',
+    template: ({ title = 'Article Title', author = 'Author Name', date = '2025-01-01', content = '', tags = [], relatedPosts = [], id }) => {
+      const layoutId = id || `layout-blog-${Date.now()}`;
+      const readingTime = Math.max(1, Math.ceil((content.length || 200) / 1000));
+      return {
+        html: `<div class="layout-blog" id="${layoutId}">
+  <a href="#${layoutId}-article" class="skip-link visually-hidden">Skip to article</a>
+  <div class="layout-blog__container" style="max-width: 1120px; margin: 0 auto;">
+    <aside class="layout-blog__toc-sidebar" aria-label="Table of contents" style="position: sticky; top: 1rem;">
+      <nav class="layout-blog__toc" aria-label="Table of contents">
+        <h2 class="layout-blog__toc-title">Contents</h2>
+        <ul class="layout-blog__toc-list" role="list">
+          <li><a href="#" class="layout-blog__toc-link">Introduction</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <article class="layout-blog__article" id="${layoutId}-article" style="max-width: 720px; margin: 0 auto;">
+      <header class="layout-blog__header">
+        <h1 class="layout-blog__title">${title}</h1>
+        <div class="layout-blog__meta">
+          <span class="layout-blog__author">${author}</span>
+          <time class="layout-blog__date" datetime="${date}">${date}</time>
+          <span class="layout-blog__reading-time" aria-label="Estimated reading time">${readingTime} min read</span>
+        </div>
+      </header>
+      <div class="layout-blog__content">
+        ${content || '<p>Article content goes here.</p>'}
+      </div>
+      ${tags.length ? `<footer class="layout-blog__tags" aria-label="Article tags">
+        ${tags.map(tag => `<span class="chip chip--outlined chip--sm">${tag}</span>`).join('')}
+      </footer>` : ''}
+    </article>
+  </div>
+  ${relatedPosts.length ? `<section class="layout-blog__related" aria-label="Related posts">
+    <h2 class="layout-blog__related-title">Related Posts</h2>
+    <div class="layout-blog__related-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--semantic-spacing-lg, 2rem);">
+      ${relatedPosts.map(post => `
+      <article class="card card--default">
+        <div class="card__body">
+          <h3 class="card__title"><a href="${post.href || '#'}">${post.title}</a></h3>
+          ${post.excerpt ? `<p class="card__content">${post.excerpt}</p>` : ''}
+        </div>
+      </article>`).join('')}
+    </div>
+  </section>` : ''}
+</div>`,
+        tokens: [
+          'semantic.color.text.primary',
+          'semantic.color.text.secondary',
+          'semantic.color.text.muted',
+          'component.card.background',
+          'component.card.borderRadius',
+          'component.card.shadow',
+          'component.chip.variant.outlined.bg',
+          'component.chip.variant.outlined.color',
+        ],
+        a11y: {
+          role: 'article',
+          landmark: true,
+          headingHierarchy: true,
+          timeElement: true,
+          skipLink: true,
+        },
+      };
+    },
+  },
+
+  // ==========================================================================
+  // COMPOUND COMPONENTS
+  // ==========================================================================
+
+  'search-autocomplete': {
+    category: 'molecule',
+    description: 'Search input with autocomplete suggestions',
+    template: ({ placeholder = 'Search...', suggestions = ['Suggestion 1', 'Suggestion 2', 'Suggestion 3'], recentSearches = [], id }) => {
+      const searchId = id || `search-autocomplete-${Date.now()}`;
+      return {
+        html: `<div class="search-autocomplete" id="${searchId}">
+  <div class="search-autocomplete__input-wrapper">
+    <span class="search-autocomplete__icon" aria-hidden="true">&#x1F50D;</span>
+    <input
+      type="search"
+      class="search-autocomplete__input"
+      id="${searchId}-input"
+      placeholder="${placeholder}"
+      role="combobox"
+      aria-expanded="false"
+      aria-controls="${searchId}-listbox"
+      aria-activedescendant=""
+      aria-autocomplete="list"
+      aria-label="Search"
+      autocomplete="off"
+    />
+  </div>
+  <div class="search-autocomplete__dropdown" id="${searchId}-dropdown" hidden>
+    ${recentSearches.length ? `<div class="search-autocomplete__section">
+      <h3 class="search-autocomplete__section-title" id="${searchId}-recent-label">Recent Searches</h3>
+      <ul class="search-autocomplete__list" role="listbox" aria-labelledby="${searchId}-recent-label">
+        ${recentSearches.map((item, i) => `
+        <li class="search-autocomplete__item" role="option" id="${searchId}-recent-${i}" aria-selected="false">
+          <span class="search-autocomplete__item-icon" aria-hidden="true">&#x1F552;</span>
+          ${item}
+        </li>`).join('')}
+      </ul>
+    </div>` : ''}
+    <div class="search-autocomplete__section">
+      <h3 class="search-autocomplete__section-title" id="${searchId}-suggestions-label">Suggestions</h3>
+      <ul class="search-autocomplete__list" role="listbox" id="${searchId}-listbox" aria-labelledby="${searchId}-suggestions-label">
+        ${suggestions.map((item, i) => `
+        <li class="search-autocomplete__item" role="option" id="${searchId}-option-${i}" aria-selected="false">
+          ${item}
+        </li>`).join('')}
+      </ul>
+    </div>
+    <div class="search-autocomplete__footer" aria-hidden="true">
+      <kbd>&#x2191;&#x2193;</kbd> to navigate &middot; <kbd>Enter</kbd> to select &middot; <kbd>Esc</kbd> to close
+    </div>
+  </div>
+</div>`,
+        tokens: [
+          'component.input.background',
+          'component.input.border',
+          'component.input.borderRadius',
+          'component.dropdown.background',
+          'component.dropdown.shadow',
+          'component.dropdown.borderRadius',
+        ],
+        a11y: {
+          role: 'combobox',
+          expandable: true,
+          activedescendant: true,
+          keyboardNav: ['ArrowUp', 'ArrowDown', 'Enter', 'Escape'],
+          focusManagement: 'activedescendant',
+        },
+      };
+    },
+  },
+
+  'data-table': {
+    category: 'organism',
+    description: 'Advanced data table with search, sort, filter, and pagination',
+    template: ({ columns = [{ label: 'Name', key: 'name' }, { label: 'Email', key: 'email' }, { label: 'Role', key: 'role' }], rows = [], searchable = true, filterable = false, paginated = true, selectable = false, pageSize = 10, id }) => {
+      const tableId = id || `data-table-${Date.now()}`;
+      return {
+        html: `<div class="data-table" id="${tableId}">
+  <div class="data-table__toolbar">
+    ${searchable ? `<div class="data-table__search">
+      <label for="${tableId}-search" class="visually-hidden">Search table</label>
+      <input
+        type="search"
+        id="${tableId}-search"
+        class="data-table__search-input form-field__input"
+        placeholder="Search..."
+        aria-controls="${tableId}-table"
+      />
+    </div>` : ''}
+    ${filterable ? `<div class="data-table__filters">
+      <button type="button" class="btn btn--secondary data-table__filter-trigger" aria-haspopup="menu" aria-expanded="false">
+        <span aria-hidden="true">&#x25BD;</span> Filter
+      </button>
+    </div>` : ''}
+    <div class="data-table__actions">
+      <button type="button" class="btn btn--ghost data-table__columns-toggle" aria-haspopup="menu" aria-expanded="false" aria-label="Toggle column visibility">
+        <span aria-hidden="true">&#x2630;</span> Columns
+      </button>
+    </div>
+  </div>
+  <div class="data-table__container" role="region" aria-labelledby="${tableId}-caption" tabindex="0">
+    <table class="data-table__table" id="${tableId}-table">
+      <caption id="${tableId}-caption" class="visually-hidden">Data table</caption>
+      <thead class="data-table__head" style="position: sticky; top: 0;">
+        <tr>
+          ${selectable ? `<th scope="col" class="data-table__header data-table__header--checkbox">
+            <label class="checkbox" for="${tableId}-select-all">
+              <input type="checkbox" id="${tableId}-select-all" class="checkbox__input" aria-label="Select all rows" />
+              <span class="checkbox__control" aria-hidden="true"></span>
+            </label>
+          </th>` : ''}
+          ${columns.map(col => `
+          <th scope="col" class="data-table__header" aria-sort="none">
+            <button type="button" class="data-table__sort-button" aria-label="Sort by ${col.label}">
+              ${col.label}
+              <span class="data-table__sort-icon" aria-hidden="true">&#x21C5;</span>
+            </button>
+          </th>`).join('')}
+        </tr>
+      </thead>
+      <tbody class="data-table__body">
+        ${(rows.length ? rows : []).map((row, rowIdx) => `
+        <tr class="data-table__row">
+          ${selectable ? `<td class="data-table__cell data-table__cell--checkbox">
+            <label class="checkbox" for="${tableId}-select-${rowIdx}">
+              <input type="checkbox" id="${tableId}-select-${rowIdx}" class="checkbox__input" aria-label="Select row ${rowIdx + 1}" />
+              <span class="checkbox__control" aria-hidden="true"></span>
+            </label>
+          </td>` : ''}
+          ${columns.map(col => `
+          <td class="data-table__cell">${row[col.key] || ''}</td>`).join('')}
+        </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>
+  ${paginated ? `<div class="data-table__footer">
+    <span class="data-table__info" aria-live="polite">Showing 1-${Math.min(pageSize, rows.length || pageSize)} of ${rows.length || pageSize} results</span>
+    <nav class="pagination data-table__pagination" aria-label="Table pagination">
+      <ul class="pagination__list">
+        <li>
+          <button type="button" class="pagination__item pagination__prev" aria-label="Go to previous page" disabled aria-disabled="true">
+            <span aria-hidden="true">&laquo;</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="pagination__item pagination__item--active" aria-label="Go to page 1" aria-current="page">1</button>
+        </li>
+        <li>
+          <button type="button" class="pagination__item" aria-label="Go to page 2">2</button>
+        </li>
+        <li>
+          <button type="button" class="pagination__item pagination__next" aria-label="Go to next page">
+            <span aria-hidden="true">&raquo;</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>` : ''}
+</div>`,
+        tokens: [
+          'component.table.bg',
+          'component.table.border.color',
+          'component.table.header.bg',
+          'component.table.header.color',
+          'component.table.cell.color',
+          'component.table.cell.borderColor',
+          'component.table.row.bg.hover',
+          'component.input.background',
+          'component.input.border',
+          'component.pagination.item.bg.default',
+          'component.pagination.item.bg.active',
+        ],
+        a11y: {
+          role: 'table',
+          sortable: true,
+          selectable: selectable,
+          focusable: true,
+          keyboardNav: ['ArrowUp', 'ArrowDown', 'Space', 'Enter'],
+          liveRegion: true,
+          scrollable: true,
+        },
+      };
+    },
+  },
+
+  'form-wizard': {
+    category: 'molecule',
+    description: 'Multi-step form wizard',
+    template: ({ steps = [{ title: 'Account', fields: [{ label: 'Email', type: 'email', name: 'email', required: true }] }, { title: 'Profile', fields: [{ label: 'Name', type: 'text', name: 'name', required: true }] }, { title: 'Review', fields: [] }], currentStep = 0, id }) => {
+      const wizardId = id || `form-wizard-${Date.now()}`;
+      return {
+        html: `<div class="form-wizard" id="${wizardId}">
+  <nav class="form-wizard__stepper stepper stepper--horizontal" aria-label="Form progress">
+    <ol class="stepper__list">
+      ${steps.map((step, i) => {
+        const state = i < currentStep ? 'completed' : i === currentStep ? 'active' : 'default';
+        return `
+      <li class="stepper__item stepper__item--${state}" aria-current="${state === 'active' ? 'step' : 'false'}">
+        <span class="stepper__indicator">
+          ${state === 'completed'
+            ? '<span aria-hidden="true">&#x2713;</span><span class="visually-hidden">Completed: </span>'
+            : `<span>${i + 1}</span>`}
+        </span>
+        <span class="stepper__label">${step.title}</span>
+        ${i < steps.length - 1 ? '<span class="stepper__connector" aria-hidden="true"></span>' : ''}
+      </li>`;
+      }).join('')}
+    </ol>
+  </nav>
+  <div class="form-wizard__progress" role="progressbar" aria-valuenow="${currentStep + 1}" aria-valuemin="1" aria-valuemax="${steps.length}" aria-label="Step ${currentStep + 1} of ${steps.length}">
+    <div class="form-wizard__progress-bar" style="width: ${((currentStep + 1) / steps.length) * 100}%"></div>
+  </div>
+  <div class="form-wizard__step-announcement" aria-live="polite" aria-atomic="true" class="visually-hidden">
+    Step ${currentStep + 1} of ${steps.length}: ${steps[currentStep]?.title || 'Step'}
+  </div>
+  <form class="form-wizard__form" id="${wizardId}-form">
+    ${steps.map((step, stepIdx) => `
+    <fieldset class="form-wizard__step${stepIdx === currentStep ? ' form-wizard__step--active' : ''}" ${stepIdx !== currentStep ? 'hidden' : ''} aria-labelledby="${wizardId}-step-title-${stepIdx}">
+      <legend id="${wizardId}-step-title-${stepIdx}" class="form-wizard__step-title">${step.title}</legend>
+      ${(step.fields || []).map((field, fieldIdx) => {
+        const fieldId = `${wizardId}-step-${stepIdx}-field-${fieldIdx}`;
+        return `
+      <div class="form-group__field">
+        <label for="${fieldId}" class="form-group__label">
+          ${field.label}${field.required ? '<span class="form-group__required" aria-hidden="true">*</span>' : ''}
+        </label>
+        <input
+          type="${field.type || 'text'}"
+          id="${fieldId}"
+          name="${field.name || field.label.toLowerCase()}"
+          class="form-group__input"
+          ${field.placeholder ? `placeholder="${field.placeholder}"` : ''}
+          ${field.required ? 'required aria-required="true"' : ''}
+        />
+      </div>`;
+      }).join('')}
+    </fieldset>`).join('')}
+    <div class="form-wizard__actions">
+      <button type="button" class="btn btn--secondary form-wizard__prev"${currentStep === 0 ? ' disabled aria-disabled="true"' : ''} aria-label="Go to previous step">
+        Back
+      </button>
+      ${currentStep < steps.length - 1
+        ? '<button type="button" class="btn btn--primary form-wizard__next" aria-label="Go to next step">Next</button>'
+        : '<button type="submit" class="btn btn--primary form-wizard__submit">Submit</button>'}
+    </div>
+  </form>
+</div>`,
+        tokens: [
+          'component.stepper.step.bg.default',
+          'component.stepper.step.bg.active',
+          'component.stepper.step.bg.completed',
+          'component.stepper.connector.color.default',
+          'component.stepper.connector.color.completed',
+          'component.input.background',
+          'component.input.border',
+          'component.button.primary.background',
+          'component.button.secondary.background',
+        ],
+        a11y: {
+          role: 'form',
+          currentStep: true,
+          liveRegion: true,
+          hasLabels: true,
+          focusable: true,
+          keyboardNav: ['Tab', 'Enter'],
+          formValidation: true,
+        },
+      };
+    },
+  },
 };
 
 // Helper for alert icons
@@ -1419,6 +2135,18 @@ export class ComponentGeneratorAgent {
       chip: /\b(chip|pill|tag\s*item)\b/,
       rating: /\b(rating|star\s*rating|stars|review\s*score)\b/,
       'form-group': /\b(form\s*group|form\s*layout|field\s*group|form\s*section)\b/,
+      'card-product': /\b(product\s*card|shop\s*card|product\s*tile)\b/,
+      'card-profile': /\b(profile\s*card|team\s*card|member\s*card|user\s*card)\b/,
+      'card-stats': /\b(stat\s*card|stats\s*card|kpi\s*card|metric\s*card|analytics\s*card)\b/,
+      'hero': /\b(hero|hero\s*section|landing\s*hero|banner\s*section)\b/,
+      'feature-grid': /\b(feature\s*grid|features|feature\s*list|feature\s*section)\b/,
+      'pricing-table': /\b(pricing|pricing\s*table|pricing\s*card|price\s*card|plan\s*card)\b/,
+      'layout-dashboard': /\b(dashboard\s*layout|admin\s*layout|app\s*layout|dashboard\s*template)\b/,
+      'layout-marketing': /\b(marketing\s*layout|landing\s*page\s*layout|marketing\s*template)\b/,
+      'layout-blog': /\b(blog\s*layout|article\s*layout|blog\s*template|post\s*layout)\b/,
+      'search-autocomplete': /\b(search\s*autocomplete|search\s*with\s*suggestions|autocomplete\s*search|search\s*combo)\b/,
+      'data-table': /\b(data\s*table|advanced\s*table|sortable\s*table|filterable\s*table)\b/,
+      'form-wizard': /\b(form\s*wizard|multi\s*step\s*form|step\s*form|wizard\s*form)\b/,
     };
 
     // Find matching component — prefer earliest match position in input
@@ -1549,7 +2277,7 @@ export class ComponentGeneratorAgent {
    * Check if component needs animation
    */
   needsAnimation(componentType) {
-    const animatedComponents = ['modal', 'dropdown', 'accordion', 'toast', 'tooltip', 'alert', 'popover', 'progress'];
+    const animatedComponents = ['modal', 'dropdown', 'accordion', 'toast', 'tooltip', 'alert', 'popover', 'progress', 'hero', 'feature-grid', 'pricing-table', 'search-autocomplete'];
     return animatedComponents.includes(componentType);
   }
 
@@ -1568,6 +2296,10 @@ export class ComponentGeneratorAgent {
       alert: { type: 'fade-in', direction: 'enter' },
       popover: { type: 'popover-show', direction: 'enter' },
       progress: { type: 'progress-fill', direction: 'enter' },
+      hero: { type: 'fade-in-up', direction: 'enter' },
+      'feature-grid': { type: 'fade-in-up', direction: 'enter' },
+      'pricing-table': { type: 'scale-in', direction: 'enter' },
+      'search-autocomplete': { type: 'dropdown-open', direction: 'enter' },
     };
 
     const config = motionMap[componentType];

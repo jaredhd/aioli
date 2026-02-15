@@ -1,0 +1,242 @@
+/**
+ * Form Wizard — Aioli Design System
+ * Molecule: Multi-step form with stepper, fields, navigation
+ *
+ * BEM classes: .form-wizard, .form-wizard__stepper, .form-wizard__step-content,
+ *              .form-wizard__fields, .form-wizard__navigation,
+ *              .form-wizard__btn-back, .form-wizard__btn-next, .form-wizard__btn-submit,
+ *              .form-wizard__progress, .form-wizard__live-region
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.form-wizard {
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: var(--component-card-bg-default);
+  border-radius: var(--component-card-radius);
+  box-shadow: var(--component-card-shadow-default);
+  overflow: hidden;
+  font-family: var(--primitive-font-family-sans);
+  border: var(--component-card-border-width) solid var(--component-card-border-color);
+  position: relative;
+}
+
+/* ----------------------------------------------------------------
+   Progress bar
+   ---------------------------------------------------------------- */
+.form-wizard__progress {
+  height: 3px;
+  background-color: var(--primitive-color-neutral-200);
+  position: relative;
+  width: 100%;
+}
+
+.form-wizard__progress-bar {
+  height: 100%;
+  background-color: var(--semantic-color-primary-default);
+  transition: width 300ms var(--primitive-motion-easing-default);
+}
+
+/* ----------------------------------------------------------------
+   Stepper
+   ---------------------------------------------------------------- */
+.form-wizard__stepper {
+  padding: var(--primitive-spacing-4) var(--primitive-spacing-6);
+  border-bottom: var(--component-card-border-width) solid var(--component-card-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Step content
+   ---------------------------------------------------------------- */
+.form-wizard__step-content {
+  padding: var(--primitive-spacing-6);
+}
+
+/* ----------------------------------------------------------------
+   Fields
+   ---------------------------------------------------------------- */
+.form-wizard__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-4);
+}
+
+/* ----------------------------------------------------------------
+   Navigation
+   ---------------------------------------------------------------- */
+.form-wizard__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--primitive-spacing-4) var(--primitive-spacing-6);
+  border-top: var(--component-card-border-width) solid var(--component-card-border-color);
+  background-color: var(--semantic-surface-secondary);
+}
+
+/* ----------------------------------------------------------------
+   Button — Back (ghost style)
+   ---------------------------------------------------------------- */
+.form-wizard__btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-spacing-2);
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
+  border: none;
+  border-radius: var(--component-button-radius);
+  background-color: transparent;
+  color: var(--semantic-text-secondary);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.form-wizard__btn-back:hover {
+  background-color: var(--primitive-color-neutral-100);
+  color: var(--semantic-text-default);
+}
+
+.form-wizard__btn-back:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.form-wizard__btn-back:disabled {
+  opacity: var(--semantic-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Button — Next (primary style)
+   ---------------------------------------------------------------- */
+.form-wizard__btn-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-spacing-2);
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
+  border: none;
+  border-radius: var(--component-button-radius);
+  background-color: var(--component-button-primary-bg);
+  color: var(--component-button-primary-text);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.form-wizard__btn-next:hover {
+  background-color: var(--component-button-primary-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--component-button-primary-shadow-hover);
+}
+
+.form-wizard__btn-next:active {
+  transform: translateY(0);
+}
+
+.form-wizard__btn-next:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.form-wizard__btn-next:disabled {
+  opacity: var(--semantic-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Button — Submit (success style with gradient)
+   ---------------------------------------------------------------- */
+.form-wizard__btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--primitive-spacing-2);
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
+  border: none;
+  border-radius: var(--component-button-radius);
+  background-color: var(--component-button-success-bg);
+  background-image: var(--component-button-success-gradient);
+  color: var(--component-button-success-text);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-medium);
+  cursor: pointer;
+  box-shadow: var(--component-button-success-shadow);
+  transition:
+    background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.form-wizard__btn-submit:hover {
+  background-color: var(--component-button-success-bg-hover);
+  box-shadow: var(--component-button-success-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.form-wizard__btn-submit:active {
+  background-image: none;
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--semantic-shadow-inner);
+}
+
+.form-wizard__btn-submit:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+.form-wizard__btn-submit:disabled {
+  opacity: var(--semantic-opacity-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ----------------------------------------------------------------
+   Live region (screen reader announcements)
+   ---------------------------------------------------------------- */
+.form-wizard__live-region {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .form-wizard__progress-bar {
+    transition: none;
+  }
+
+  .form-wizard__btn-back,
+  .form-wizard__btn-back:hover,
+  .form-wizard__btn-next,
+  .form-wizard__btn-next:hover,
+  .form-wizard__btn-next:active,
+  .form-wizard__btn-submit,
+  .form-wizard__btn-submit:hover,
+  .form-wizard__btn-submit:active {
+    transition: none;
+    transform: none;
+  }
+}

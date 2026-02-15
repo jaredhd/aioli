@@ -1,0 +1,145 @@
+/**
+ * Profile Card — Aioli Design System
+ * Organism: Team member / profile card
+ *
+ * BEM classes: .card-profile, .card-profile__avatar, .card-profile__name,
+ *              .card-profile__role, .card-profile__bio, .card-profile__socials,
+ *              .card-profile__social-link, .card-profile__email
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.card-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--primitive-spacing-6);
+  background-color: var(--component-card-bg-default);
+  border-radius: var(--component-card-radius);
+  box-shadow: var(--component-card-shadow-default);
+  border: var(--component-card-border-width) solid var(--component-card-border-color);
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Avatar
+   ---------------------------------------------------------------- */
+.card-profile__avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: var(--primitive-radius-full);
+  object-fit: cover;
+  border: 3px solid var(--semantic-color-primary-default);
+  margin-bottom: var(--primitive-spacing-4);
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   Name
+   ---------------------------------------------------------------- */
+.card-profile__name {
+  margin: 0;
+  font-size: var(--primitive-font-size-lg);
+  font-weight: var(--primitive-font-weight-bold);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-snug);
+}
+
+/* ----------------------------------------------------------------
+   Role
+   ---------------------------------------------------------------- */
+.card-profile__role {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: var(--primitive-spacing-1);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Bio
+   ---------------------------------------------------------------- */
+.card-profile__bio {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-secondary);
+  max-width: 280px;
+  line-height: var(--primitive-font-line-height-relaxed);
+  margin-top: var(--primitive-spacing-3);
+}
+
+/* ----------------------------------------------------------------
+   Socials
+   ---------------------------------------------------------------- */
+.card-profile__socials {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--primitive-spacing-3);
+  margin-top: var(--primitive-spacing-4);
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------------------------------
+   Social link
+   ---------------------------------------------------------------- */
+.card-profile__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--primitive-radius-full);
+  background-color: var(--primitive-color-neutral-100);
+  color: var(--semantic-text-secondary);
+  text-decoration: none;
+  transition:
+    background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.card-profile__social-link:hover {
+  background-color: var(--semantic-color-primary-default);
+  color: var(--primitive-color-white);
+}
+
+.card-profile__social-link:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Email
+   ---------------------------------------------------------------- */
+.card-profile__email {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-color-primary-default);
+  text-decoration: none;
+  margin-top: var(--primitive-spacing-3);
+  transition: color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.card-profile__email:hover {
+  text-decoration: underline;
+}
+
+.card-profile__email:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .card-profile__social-link,
+  .card-profile__social-link:hover,
+  .card-profile__email,
+  .card-profile__email:hover {
+    transition: none;
+  }
+}

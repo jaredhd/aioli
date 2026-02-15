@@ -1,0 +1,188 @@
+/**
+ * Pricing Card — Aioli Design System
+ * Organism: Pricing plan comparison card
+ *
+ * BEM classes: .pricing-card, .pricing-card--highlighted, .pricing-card__badge,
+ *              .pricing-card__header, .pricing-card__name, .pricing-card__price,
+ *              .pricing-card__price-amount, .pricing-card__price-period,
+ *              .pricing-card__description, .pricing-card__features, .pricing-card__feature,
+ *              .pricing-card__feature--included, .pricing-card__feature--excluded,
+ *              .pricing-card__feature-icon, .pricing-card__cta
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--component-card-bg-default);
+  border-radius: var(--component-card-radius);
+  box-shadow: var(--semantic-shadow-sm);
+  overflow: hidden;
+  border: 1px solid var(--component-card-border-color);
+  font-family: var(--primitive-font-family-sans);
+  position: relative;
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+.pricing-card__header {
+  padding: var(--primitive-spacing-6);
+  text-align: center;
+  border-bottom: var(--component-card-border-width) solid var(--component-card-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Name
+   ---------------------------------------------------------------- */
+.pricing-card__name {
+  margin: 0;
+  font-size: var(--primitive-font-size-lg);
+  font-weight: var(--primitive-font-weight-semibold);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-snug);
+}
+
+/* ----------------------------------------------------------------
+   Price
+   ---------------------------------------------------------------- */
+.pricing-card__price {
+  margin: var(--primitive-spacing-4) 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--primitive-spacing-1);
+}
+
+/* ----------------------------------------------------------------
+   Price amount
+   ---------------------------------------------------------------- */
+.pricing-card__price-amount {
+  font-size: 3rem;
+  font-weight: var(--primitive-font-weight-extrabold);
+  color: var(--semantic-text-default);
+  line-height: 1;
+}
+
+/* ----------------------------------------------------------------
+   Price period
+   ---------------------------------------------------------------- */
+.pricing-card__price-period {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+}
+
+/* ----------------------------------------------------------------
+   Description
+   ---------------------------------------------------------------- */
+.pricing-card__description {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-secondary);
+  line-height: var(--primitive-font-line-height-normal);
+  margin-top: var(--primitive-spacing-2);
+}
+
+/* ----------------------------------------------------------------
+   Features list
+   ---------------------------------------------------------------- */
+.pricing-card__features {
+  list-style: none;
+  padding: var(--primitive-spacing-6);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-3);
+  flex: 1;
+}
+
+/* ----------------------------------------------------------------
+   Feature item
+   ---------------------------------------------------------------- */
+.pricing-card__feature {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Feature — included
+   ---------------------------------------------------------------- */
+.pricing-card__feature--included .pricing-card__feature-icon {
+  color: var(--semantic-color-success-default);
+}
+
+/* ----------------------------------------------------------------
+   Feature — excluded
+   ---------------------------------------------------------------- */
+.pricing-card__feature--excluded {
+  color: var(--semantic-text-muted);
+  text-decoration: line-through;
+}
+
+.pricing-card__feature--excluded .pricing-card__feature-icon {
+  color: var(--semantic-text-muted);
+}
+
+/* ----------------------------------------------------------------
+   Feature icon
+   ---------------------------------------------------------------- */
+.pricing-card__feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------------------------------
+   CTA (call-to-action area)
+   ---------------------------------------------------------------- */
+.pricing-card__cta {
+  padding: var(--primitive-spacing-6);
+  text-align: center;
+  border-top: var(--component-card-border-width) solid var(--component-card-border-color);
+}
+
+/* ----------------------------------------------------------------
+   Highlighted variant
+   ---------------------------------------------------------------- */
+.pricing-card--highlighted {
+  border-color: var(--semantic-color-primary-default);
+  box-shadow: var(--semantic-shadow-colored-primary-md);
+  transform: scale(1.02);
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   Highlighted badge
+   ---------------------------------------------------------------- */
+.pricing-card__badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--semantic-color-primary-default);
+  color: var(--primitive-color-white);
+  font-size: var(--primitive-font-size-xs);
+  font-weight: var(--primitive-font-weight-semibold);
+  padding: var(--primitive-spacing-1) var(--primitive-spacing-3);
+  border-radius: 0 0 var(--primitive-radius-base) var(--primitive-radius-base);
+  line-height: var(--primitive-font-line-height-normal);
+  letter-spacing: 0.02em;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card--highlighted {
+    transform: none;
+  }
+}

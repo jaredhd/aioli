@@ -1,0 +1,84 @@
+{
+  "component": {
+    "featureGrid": {
+      "gap": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.8}",
+        "$description": "Grid gap"
+      },
+      "columnMin": {
+        "$type": "dimension",
+        "$value": "280px",
+        "$description": "Minimum column width"
+      },
+      "item": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.6}",
+          "$description": "Item padding"
+        }
+      },
+      "icon": {
+        "size": {
+          "$type": "dimension",
+          "$value": "64px",
+          "$description": "Icon container size"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.muted}",
+          "$description": "Icon background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Icon color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "28px",
+          "$description": "Icon font size"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.full}",
+          "$description": "Circle shape"
+        }
+      },
+      "title": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.lg}",
+          "$description": "Feature title size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.semibold}",
+          "$description": "Title weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Title color"
+        }
+      },
+      "description": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Description size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Description color"
+        },
+        "lineHeight": {
+          "$type": "number",
+          "$value": "{primitive.font.lineHeight.relaxed}",
+          "$description": "Description line height"
+        }
+      }
+    }
+  }
+}

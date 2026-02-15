@@ -1,0 +1,212 @@
+/**
+ * Marketing Layout — Aioli Design System
+ * Template: Landing page with glass navbar, hero, sections, footer
+ *
+ * BEM classes: .layout-marketing, .layout-marketing__header, .layout-marketing__nav,
+ *              .layout-marketing__brand, .layout-marketing__nav-items,
+ *              .layout-marketing__hero, .layout-marketing__section,
+ *              .layout-marketing__footer, .layout-marketing__skip
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.layout-marketing {
+  font-family: var(--primitive-font-family-sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------------------------------------------------
+   Header (glass navbar)
+   ---------------------------------------------------------------- */
+.layout-marketing__header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(var(--semantic-backdrop-blur-md));
+  -webkit-backdrop-filter: blur(var(--semantic-backdrop-blur-md));
+  background: var(--semantic-glass-surface-light);
+  border-bottom: 1px solid var(--semantic-glass-border-light);
+}
+
+/* Dark mode header */
+[data-theme="dark"] .layout-marketing__header {
+  background: var(--semantic-glass-surface-dark);
+  border-bottom-color: var(--semantic-glass-border-dark);
+}
+
+/* ----------------------------------------------------------------
+   Nav (inner container)
+   ---------------------------------------------------------------- */
+.layout-marketing__nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 var(--primitive-spacing-6);
+}
+
+/* ----------------------------------------------------------------
+   Brand
+   ---------------------------------------------------------------- */
+.layout-marketing__brand {
+  font-weight: var(--primitive-font-weight-bold);
+  font-size: var(--primitive-font-size-lg);
+  color: var(--semantic-text-default);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.layout-marketing__brand:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-base);
+}
+
+/* ----------------------------------------------------------------
+   Nav items
+   ---------------------------------------------------------------- */
+.layout-marketing__nav-items {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-marketing__nav-items a {
+  color: var(--semantic-text-secondary);
+  text-decoration: none;
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-medium);
+  transition: color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.layout-marketing__nav-items a:hover {
+  color: var(--semantic-text-default);
+}
+
+.layout-marketing__nav-items a:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-base);
+}
+
+/* ----------------------------------------------------------------
+   Hero area
+   ---------------------------------------------------------------- */
+.layout-marketing__hero {
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Section
+   ---------------------------------------------------------------- */
+.layout-marketing__section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--primitive-spacing-16) var(--primitive-spacing-6);
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------- */
+.layout-marketing__footer {
+  background-color: var(--semantic-surface-secondary);
+  border-top: 1px solid var(--semantic-border-default);
+  padding: var(--primitive-spacing-8) var(--primitive-spacing-6);
+  text-align: center;
+  color: var(--semantic-text-muted);
+  font-size: var(--primitive-font-size-sm);
+  margin-top: auto;
+}
+
+/* ----------------------------------------------------------------
+   Skip link (accessibility)
+   ---------------------------------------------------------------- */
+.layout-marketing__skip {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  background-color: var(--semantic-color-primary-default);
+  color: var(--primitive-color-white);
+  font-size: var(--primitive-font-size-sm);
+  text-decoration: none;
+  z-index: 100;
+}
+
+.layout-marketing__skip:focus {
+  position: fixed;
+  top: var(--primitive-spacing-2);
+  left: var(--primitive-spacing-2);
+  width: auto;
+  height: auto;
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
+  margin: 0;
+  clip: auto;
+  border-radius: var(--primitive-radius-base);
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Responsive (mobile)
+   ---------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .layout-marketing__nav {
+    padding: 0 var(--primitive-spacing-4);
+  }
+
+  .layout-marketing__nav-items {
+    display: none;
+  }
+
+  .layout-marketing__nav-items--open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--semantic-glass-surface-light);
+    backdrop-filter: blur(var(--semantic-backdrop-blur-md));
+    -webkit-backdrop-filter: blur(var(--semantic-backdrop-blur-md));
+    border-bottom: 1px solid var(--semantic-glass-border-light);
+    padding: var(--primitive-spacing-4);
+    gap: var(--primitive-spacing-2);
+    z-index: 49;
+  }
+
+  [data-theme="dark"] .layout-marketing__nav-items--open {
+    background: var(--semantic-glass-surface-dark);
+    border-bottom-color: var(--semantic-glass-border-dark);
+  }
+
+  .layout-marketing__section {
+    padding: var(--primitive-spacing-10) var(--primitive-spacing-4);
+  }
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .layout-marketing__nav-items a,
+  .layout-marketing__nav-items a:hover {
+    transition: none;
+  }
+}

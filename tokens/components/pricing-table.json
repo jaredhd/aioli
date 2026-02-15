@@ -1,0 +1,128 @@
+{
+  "component": {
+    "pricingCard": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Card radius"
+      },
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.page.default}",
+        "$description": "Card background"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Card border"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{semantic.shadow.sm}",
+        "$description": "Card shadow"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.6}",
+        "$description": "Section padding"
+      },
+      "header": {
+        "borderColor": {
+          "$type": "color",
+          "$value": "{semantic.border.subtle}",
+          "$description": "Header border"
+        }
+      },
+      "name": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.lg}",
+          "$description": "Plan name size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.semibold}",
+          "$description": "Plan name weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Plan name color"
+        }
+      },
+      "price": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "3rem",
+          "$description": "Price font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.extrabold}",
+          "$description": "Price weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Price color"
+        }
+      },
+      "period": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Period text size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Period color"
+        }
+      },
+      "feature": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Feature text size"
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Feature list gap"
+        },
+        "includedColor": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Checkmark color"
+        },
+        "excludedColor": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "X mark color"
+        }
+      },
+      "highlighted": {
+        "borderColor": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Highlighted border"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "{semantic.shadow.colored.primary.md}",
+          "$description": "Highlighted shadow"
+        },
+        "badgeBg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Popular badge bg"
+        },
+        "badgeColor": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.0}",
+          "$description": "Popular badge text"
+        }
+      }
+    }
+  }
+}

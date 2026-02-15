@@ -1,0 +1,136 @@
+{
+  "component": {
+    "cardProduct": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Product card border radius"
+      },
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.page.default}",
+        "$description": "Product card background"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": "{semantic.shadow.sm}",
+        "$description": "Default shadow"
+      },
+      "shadowHover": {
+        "$type": "shadow",
+        "$value": "{semantic.shadow.md}",
+        "$description": "Hover shadow"
+      },
+      "image": {
+        "aspectRatio": {
+          "$type": "number",
+          "$value": "1.333",
+          "$description": "4:3 aspect ratio"
+        },
+        "overlayBg": {
+          "$type": "color",
+          "$value": "rgba(0, 0, 0, 0.03)",
+          "$description": "Subtle image overlay"
+        }
+      },
+      "badge": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Sale badge background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.0}",
+          "$description": "Sale badge text"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.full}",
+          "$description": "Pill shape"
+        },
+        "paddingX": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Badge horizontal padding"
+        },
+        "paddingY": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.1}",
+          "$description": "Badge vertical padding"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Badge font size"
+        }
+      },
+      "title": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.base}",
+          "$description": "Product title size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.semibold}",
+          "$description": "Title weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Title color"
+        }
+      },
+      "price": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.lg}",
+          "$description": "Price font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.bold}",
+          "$description": "Price weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Regular price color"
+        },
+        "saleColor": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Sale price color"
+        },
+        "originalColor": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Original price (strikethrough)"
+        }
+      },
+      "rating": {
+        "starColor": {
+          "$type": "color",
+          "$value": "{primitive.color.amber.400}",
+          "$description": "Filled star color"
+        },
+        "emptyColor": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.300}",
+          "$description": "Empty star color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Star size"
+        }
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.4}",
+        "$description": "Body padding"
+      }
+    }
+  }
+}

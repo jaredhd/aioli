@@ -1,0 +1,86 @@
+/**
+ * Feature Grid — Aioli Design System
+ * Organism: Features showcase grid section
+ *
+ * BEM classes: .feature-grid, .feature-grid__item, .feature-grid__icon,
+ *              .feature-grid__title, .feature-grid__description
+ */
+
+/* ----------------------------------------------------------------
+   Grid container
+   ---------------------------------------------------------------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--primitive-spacing-8);
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Item
+   ---------------------------------------------------------------- */
+.feature-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--primitive-spacing-6);
+  transition:
+    transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+    box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.feature-grid__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--semantic-shadow-colored-primary-sm);
+}
+
+/* ----------------------------------------------------------------
+   Icon
+   ---------------------------------------------------------------- */
+.feature-grid__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--primitive-radius-full);
+  background-color: var(--semantic-color-primary-muted);
+  color: var(--semantic-color-primary-default);
+  font-size: 28px;
+  margin-bottom: var(--primitive-spacing-4);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Title
+   ---------------------------------------------------------------- */
+.feature-grid__title {
+  margin: 0;
+  font-size: var(--primitive-font-size-lg);
+  font-weight: var(--primitive-font-weight-semibold);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-snug);
+  margin-bottom: var(--primitive-spacing-2);
+}
+
+/* ----------------------------------------------------------------
+   Description
+   ---------------------------------------------------------------- */
+.feature-grid__description {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+  line-height: var(--primitive-font-line-height-relaxed);
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .feature-grid__item,
+  .feature-grid__item:hover {
+    transition: none;
+    transform: none;
+  }
+}

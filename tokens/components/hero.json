@@ -1,0 +1,128 @@
+{
+  "component": {
+    "hero": {
+      "minHeight": {
+        "$type": "dimension",
+        "$value": "60vh",
+        "$description": "Minimum hero height"
+      },
+      "paddingY": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.16}",
+        "$description": "Vertical padding"
+      },
+      "paddingX": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.6}",
+        "$description": "Horizontal padding"
+      },
+      "maxWidth": {
+        "$type": "dimension",
+        "$value": "1200px",
+        "$description": "Content max width"
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.12}",
+        "$description": "Grid gap"
+      },
+      "headline": {
+        "fontSizeMin": {
+          "$type": "dimension",
+          "$value": "2rem",
+          "$description": "Headline min size (mobile)"
+        },
+        "fontSizeMax": {
+          "$type": "dimension",
+          "$value": "3.5rem",
+          "$description": "Headline max size (desktop)"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.extrabold}",
+          "$description": "Headline weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Headline color"
+        },
+        "lineHeight": {
+          "$type": "number",
+          "$value": "1.1",
+          "$description": "Tight line height"
+        }
+      },
+      "subheadline": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xl}",
+          "$description": "Subheadline size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.secondary}",
+          "$description": "Subheadline color"
+        }
+      },
+      "description": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.lg}",
+          "$description": "Description size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Description color"
+        },
+        "maxWidth": {
+          "$type": "dimension",
+          "$value": "600px",
+          "$description": "Max width for readability"
+        },
+        "lineHeight": {
+          "$type": "number",
+          "$value": "{primitive.font.lineHeight.relaxed}",
+          "$description": "Relaxed line height"
+        }
+      },
+      "actions": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Button gap"
+        },
+        "marginTop": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.8}",
+          "$description": "Top margin"
+        }
+      },
+      "image": {
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.xl}",
+          "$description": "Image border radius"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "{semantic.shadow.xl}",
+          "$description": "Image shadow"
+        }
+      },
+      "overlay": {
+        "bg": {
+          "$type": "color",
+          "$value": "rgba(0, 0, 0, 0.4)",
+          "$description": "Image overlay background"
+        }
+      },
+      "gradient": {
+        "$type": "gradient",
+        "$value": "{semantic.gradient.surface.hero}",
+        "$description": "Hero gradient background"
+      }
+    }
+  }
+}

@@ -1,0 +1,193 @@
+/**
+ * Hero Section — Aioli Design System
+ * Organism: Landing page hero with headline, CTA, optional image
+ *
+ * BEM classes: .hero, .hero--center, .hero--left, .hero--with-image, .hero--gradient,
+ *              .hero__container, .hero__content, .hero__headline, .hero__subheadline,
+ *              .hero__description, .hero__actions, .hero__image, .hero__overlay
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: var(--primitive-spacing-16) var(--primitive-spacing-6);
+  overflow: hidden;
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Container
+   ---------------------------------------------------------------- */
+.hero__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--primitive-spacing-12);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   With-image variant (two-column)
+   ---------------------------------------------------------------- */
+.hero--with-image .hero__container {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+/* ----------------------------------------------------------------
+   Center alignment
+   ---------------------------------------------------------------- */
+.hero--center {
+  text-align: center;
+}
+
+.hero--center .hero__container {
+  justify-items: center;
+}
+
+.hero--center .hero__content {
+  max-width: 800px;
+  align-items: center;
+}
+
+.hero--center .hero__description {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero--center .hero__actions {
+  justify-content: center;
+}
+
+/* ----------------------------------------------------------------
+   Left alignment
+   ---------------------------------------------------------------- */
+.hero--left {
+  text-align: left;
+}
+
+/* ----------------------------------------------------------------
+   Content
+   ---------------------------------------------------------------- */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------------------------------------------------
+   Headline
+   ---------------------------------------------------------------- */
+.hero__headline {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--primitive-font-weight-extrabold);
+  color: var(--semantic-text-default);
+  line-height: 1.1;
+}
+
+/* ----------------------------------------------------------------
+   Subheadline
+   ---------------------------------------------------------------- */
+.hero__subheadline {
+  margin: 0;
+  margin-top: var(--primitive-spacing-4);
+  font-size: var(--primitive-font-size-xl);
+  color: var(--semantic-text-secondary);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Description
+   ---------------------------------------------------------------- */
+.hero__description {
+  font-size: var(--primitive-font-size-lg);
+  color: var(--semantic-text-muted);
+  max-width: 600px;
+  line-height: var(--primitive-font-line-height-relaxed);
+  margin-top: var(--primitive-spacing-4);
+}
+
+/* ----------------------------------------------------------------
+   Actions
+   ---------------------------------------------------------------- */
+.hero__actions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--primitive-spacing-4);
+  margin-top: var(--primitive-spacing-8);
+  flex-wrap: wrap;
+}
+
+/* ----------------------------------------------------------------
+   Image
+   ---------------------------------------------------------------- */
+.hero__image {
+  border-radius: var(--primitive-radius-xl);
+  box-shadow: var(--semantic-shadow-xl);
+  max-width: 100%;
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   Gradient variant
+   ---------------------------------------------------------------- */
+.hero--gradient {
+  background: var(--semantic-gradient-surface-hero);
+}
+
+/* ----------------------------------------------------------------
+   Overlay
+   ---------------------------------------------------------------- */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.hero__overlay ~ .hero__container {
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   Responsive (mobile-first breakpoint)
+   ---------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 50vh;
+    padding: var(--primitive-spacing-10) var(--primitive-spacing-4);
+  }
+
+  .hero--with-image .hero__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero--with-image .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__headline {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .hero__subheadline {
+    font-size: var(--primitive-font-size-lg);
+  }
+
+  .hero__description {
+    font-size: var(--primitive-font-size-base);
+  }
+
+  .hero__image {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "component": {
+    "dataTable": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Table container radius"
+      },
+      "borderColor": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Table border"
+      },
+      "toolbar": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Toolbar padding"
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Toolbar gap"
+        },
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.page.default}",
+          "$description": "Toolbar background"
+        }
+      },
+      "header": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.page.subtle}",
+          "$description": "Header background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.secondary}",
+          "$description": "Header text color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Header font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.semibold}",
+          "$description": "Header weight"
+        },
+        "paddingX": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Header cell horizontal padding"
+        },
+        "paddingY": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Header cell vertical padding"
+        }
+      },
+      "cell": {
+        "paddingX": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Cell horizontal padding"
+        },
+        "paddingY": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Cell vertical padding"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Cell font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Cell text color"
+        }
+      },
+      "row": {
+        "borderColor": {
+          "$type": "color",
+          "$value": "{semantic.border.subtle}",
+          "$description": "Row border color"
+        },
+        "bgHover": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.50}",
+          "$description": "Row hover background"
+        },
+        "bgSelected": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.muted}",
+          "$description": "Selected row background"
+        }
+      },
+      "sort": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Sort icon default"
+        },
+        "activeColor": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Active sort icon"
+        }
+      },
+      "footer": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.page.default}",
+          "$description": "Footer background"
+        },
+        "padding": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Footer padding"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Footer text color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Footer font size"
+        }
+      },
+      "empty": {
+        "padding": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.12}",
+          "$description": "Empty state padding"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Empty state color"
+        }
+      }
+    }
+  }
+}

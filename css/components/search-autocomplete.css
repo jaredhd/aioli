@@ -1,0 +1,230 @@
+/**
+ * Search Autocomplete — Aioli Design System
+ * Molecule: Search input with dropdown suggestions
+ *
+ * BEM classes: .search-autocomplete, .search-autocomplete__input-wrapper,
+ *              .search-autocomplete__icon, .search-autocomplete__input,
+ *              .search-autocomplete__clear, .search-autocomplete__dropdown,
+ *              .search-autocomplete__section, .search-autocomplete__section-title,
+ *              .search-autocomplete__item, .search-autocomplete__item--highlighted,
+ *              .search-autocomplete__hint
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.search-autocomplete {
+  position: relative;
+  width: 100%;
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Input wrapper
+   ---------------------------------------------------------------- */
+.search-autocomplete__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ----------------------------------------------------------------
+   Search icon
+   ---------------------------------------------------------------- */
+.search-autocomplete__icon {
+  position: absolute;
+  left: var(--primitive-spacing-3);
+  color: var(--semantic-text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------------------------------
+   Input
+   ---------------------------------------------------------------- */
+.search-autocomplete__input {
+  width: 100%;
+  height: var(--component-input-size-md-height);
+  padding-left: calc(var(--primitive-spacing-3) + 20px + var(--primitive-spacing-2));
+  padding-right: calc(var(--primitive-spacing-3) + 20px + var(--primitive-spacing-2));
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--component-input-size-md-font-size);
+  line-height: var(--primitive-font-line-height-normal);
+  color: var(--component-input-text-default);
+  background-color: var(--component-input-bg-default);
+  border: var(--component-input-border-width) solid var(--component-input-border-color-default);
+  border-radius: var(--component-input-radius);
+  outline: none;
+  transition:
+    border-color var(--component-input-transition-duration) var(--component-input-transition-easing),
+    box-shadow var(--component-input-transition-duration) var(--component-input-transition-easing);
+}
+
+.search-autocomplete__input::placeholder {
+  color: var(--component-input-text-placeholder);
+  opacity: var(--semantic-opacity-placeholder);
+}
+
+.search-autocomplete__input:hover {
+  border-color: var(--component-input-border-color-hover);
+}
+
+.search-autocomplete__input:focus-visible {
+  border-color: var(--component-input-border-color-focus);
+  box-shadow: 0 0 0 var(--component-input-focus-ring-width) var(--component-input-focus-ring-color);
+}
+
+/* ----------------------------------------------------------------
+   Clear button
+   ---------------------------------------------------------------- */
+.search-autocomplete__clear {
+  position: absolute;
+  right: var(--primitive-spacing-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--semantic-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.search-autocomplete__clear--visible {
+  opacity: 1;
+}
+
+.search-autocomplete__clear:hover {
+  color: var(--semantic-text-default);
+}
+
+.search-autocomplete__clear:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+  border-radius: var(--primitive-radius-sm);
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------------
+   Dropdown
+   ---------------------------------------------------------------- */
+.search-autocomplete__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: var(--primitive-spacing-1);
+  background-color: var(--semantic-surface-default);
+  box-shadow: var(--semantic-shadow-lg);
+  border-radius: var(--component-input-radius);
+  max-height: 320px;
+  overflow-y: auto;
+  z-index: 50;
+  border: 1px solid var(--semantic-border-default);
+}
+
+.search-autocomplete__dropdown[hidden] {
+  display: none;
+}
+
+/* ----------------------------------------------------------------
+   Section
+   ---------------------------------------------------------------- */
+.search-autocomplete__section {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ----------------------------------------------------------------
+   Section title
+   ---------------------------------------------------------------- */
+.search-autocomplete__section-title {
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-3);
+  font-size: var(--primitive-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--semantic-text-muted);
+  font-weight: var(--primitive-font-weight-medium);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Item
+   ---------------------------------------------------------------- */
+.search-autocomplete__item {
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-3);
+  cursor: pointer;
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-normal);
+  transition: background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.search-autocomplete__item:hover {
+  background-color: var(--primitive-color-neutral-50);
+}
+
+/* ----------------------------------------------------------------
+   Item — highlighted (keyboard nav)
+   ---------------------------------------------------------------- */
+.search-autocomplete__item--highlighted {
+  background-color: var(--semantic-color-primary-muted);
+}
+
+/* ----------------------------------------------------------------
+   Hint (footer)
+   ---------------------------------------------------------------- */
+.search-autocomplete__hint {
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-3);
+  font-size: var(--primitive-font-size-xs);
+  color: var(--semantic-text-muted);
+  border-top: 1px solid var(--semantic-border-default);
+  display: flex;
+  gap: var(--primitive-spacing-2);
+  align-items: center;
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Dropdown animation
+   ---------------------------------------------------------------- */
+.search-autocomplete__dropdown.animate-dropdown-open {
+  animation: search-dropdown-enter var(--primitive-motion-duration-fast) var(--primitive-motion-easing-enter);
+}
+
+@keyframes search-dropdown-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .search-autocomplete__input,
+  .search-autocomplete__input:hover,
+  .search-autocomplete__clear,
+  .search-autocomplete__item,
+  .search-autocomplete__item:hover {
+    transition: none;
+  }
+
+  .search-autocomplete__dropdown.animate-dropdown-open {
+    animation: none;
+  }
+}

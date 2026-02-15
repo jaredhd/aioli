@@ -1,0 +1,251 @@
+/**
+ * Data Table — Aioli Design System
+ * Organism: Advanced table with search, filters, selection, pagination
+ *
+ * BEM classes: .data-table, .data-table__toolbar, .data-table__search,
+ *              .data-table__filters, .data-table__filter-chip, .data-table__actions,
+ *              .data-table__container, .data-table__table, .data-table__header,
+ *              .data-table__header-cell, .data-table__sort-icon, .data-table__body,
+ *              .data-table__row, .data-table__row--selected, .data-table__row--hover,
+ *              .data-table__cell, .data-table__checkbox, .data-table__footer,
+ *              .data-table__page-info, .data-table__empty
+ */
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+.data-table {
+  font-family: var(--primitive-font-family-sans);
+}
+
+/* ----------------------------------------------------------------
+   Toolbar
+   ---------------------------------------------------------------- */
+.data-table__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--primitive-spacing-4);
+  gap: var(--primitive-spacing-4);
+  flex-wrap: wrap;
+}
+
+/* ----------------------------------------------------------------
+   Search
+   ---------------------------------------------------------------- */
+.data-table__search {
+  max-width: 280px;
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------
+   Filters
+   ---------------------------------------------------------------- */
+.data-table__filters {
+  display: flex;
+  flex-direction: row;
+  gap: var(--primitive-spacing-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ----------------------------------------------------------------
+   Filter chip
+   ---------------------------------------------------------------- */
+.data-table__filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-spacing-1);
+  padding: var(--primitive-spacing-1) var(--primitive-spacing-2);
+  font-size: var(--primitive-font-size-xs);
+  border-radius: var(--primitive-radius-full);
+  background-color: var(--semantic-color-primary-muted);
+  color: var(--semantic-color-primary-default);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Actions
+   ---------------------------------------------------------------- */
+.data-table__actions {
+  display: flex;
+  gap: var(--primitive-spacing-2);
+  align-items: center;
+  margin-left: auto;
+}
+
+/* ----------------------------------------------------------------
+   Container (scrollable wrapper)
+   ---------------------------------------------------------------- */
+.data-table__container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--semantic-border-default);
+  border-radius: var(--component-card-radius);
+}
+
+.data-table__container:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-focus-ring-color);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* ----------------------------------------------------------------
+   Table
+   ---------------------------------------------------------------- */
+.data-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ----------------------------------------------------------------
+   Header
+   ---------------------------------------------------------------- */
+.data-table__header {
+  background-color: var(--semantic-surface-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   Header cell
+   ---------------------------------------------------------------- */
+.data-table__header-cell {
+  padding: var(--primitive-spacing-3) var(--primitive-spacing-4);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-semibold);
+  text-align: left;
+  color: var(--semantic-text-secondary);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--semantic-border-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Sort icon
+   ---------------------------------------------------------------- */
+.data-table__sort-icon {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.5;
+  margin-left: var(--primitive-spacing-1);
+  transition: opacity var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.data-table__sort-icon:hover {
+  opacity: 1;
+}
+
+/* Active sort */
+.data-table__header-cell[aria-sort] .data-table__sort-icon {
+  opacity: 1;
+  color: var(--semantic-color-primary-default);
+}
+
+/* ----------------------------------------------------------------
+   Body
+   ---------------------------------------------------------------- */
+.data-table__body {
+  /* Inherits from table */
+}
+
+/* ----------------------------------------------------------------
+   Row
+   ---------------------------------------------------------------- */
+.data-table__row {
+  border-bottom: 1px solid var(--semantic-border-default);
+  transition: background-color var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+}
+
+.data-table__row:last-child {
+  border-bottom: none;
+}
+
+/* ----------------------------------------------------------------
+   Row — hover
+   ---------------------------------------------------------------- */
+.data-table__row:hover,
+.data-table__row--hover {
+  background-color: var(--primitive-color-neutral-50);
+}
+
+/* ----------------------------------------------------------------
+   Row — selected
+   ---------------------------------------------------------------- */
+.data-table__row--selected {
+  background-color: var(--semantic-color-primary-muted);
+}
+
+.data-table__row--selected:hover {
+  background-color: var(--semantic-color-primary-muted);
+}
+
+/* ----------------------------------------------------------------
+   Cell
+   ---------------------------------------------------------------- */
+.data-table__cell {
+  padding: var(--primitive-spacing-3) var(--primitive-spacing-4);
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-default);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Checkbox cell
+   ---------------------------------------------------------------- */
+.data-table__checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+}
+
+/* ----------------------------------------------------------------
+   Footer (pagination area)
+   ---------------------------------------------------------------- */
+.data-table__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--primitive-spacing-3) var(--primitive-spacing-4);
+  border-top: 1px solid var(--semantic-border-default);
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+  line-height: var(--primitive-font-line-height-normal);
+}
+
+/* ----------------------------------------------------------------
+   Page info
+   ---------------------------------------------------------------- */
+.data-table__page-info {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+}
+
+/* ----------------------------------------------------------------
+   Empty state
+   ---------------------------------------------------------------- */
+.data-table__empty {
+  padding: var(--primitive-spacing-10) var(--primitive-spacing-4);
+  text-align: center;
+  color: var(--semantic-text-muted);
+  font-size: var(--primitive-font-size-sm);
+  line-height: var(--primitive-font-line-height-relaxed);
+}
+
+/* ----------------------------------------------------------------
+   Reduced motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .data-table__row,
+  .data-table__row:hover,
+  .data-table__sort-icon,
+  .data-table__sort-icon:hover {
+    transition: none;
+  }
+}

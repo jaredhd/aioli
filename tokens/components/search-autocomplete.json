@@ -1,0 +1,106 @@
+{
+  "component": {
+    "searchAutocomplete": {
+      "dropdown": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.page.default}",
+          "$description": "Dropdown background"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "{semantic.shadow.lg}",
+          "$description": "Dropdown shadow"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.lg}",
+          "$description": "Dropdown radius"
+        },
+        "maxHeight": {
+          "$type": "dimension",
+          "$value": "320px",
+          "$description": "Max dropdown height"
+        },
+        "borderColor": {
+          "$type": "color",
+          "$value": "{semantic.border.default}",
+          "$description": "Dropdown border"
+        }
+      },
+      "item": {
+        "paddingX": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.4}",
+          "$description": "Item horizontal padding"
+        },
+        "paddingY": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.2}",
+          "$description": "Item vertical padding"
+        },
+        "bgHover": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.50}",
+          "$description": "Item hover background"
+        },
+        "bgHighlighted": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.muted}",
+          "$description": "Keyboard highlighted item"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Item text color"
+        }
+      },
+      "sectionTitle": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Section title size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Section title color"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.medium}",
+          "$description": "Section title weight"
+        }
+      },
+      "hint": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Keyboard hint size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Hint color"
+        },
+        "borderColor": {
+          "$type": "color",
+          "$value": "{semantic.border.subtle}",
+          "$description": "Hint border"
+        }
+      },
+      "icon": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Search icon color"
+        },
+        "size": {
+          "$type": "dimension",
+          "$value": "20px",
+          "$description": "Icon size"
+        }
+      }
+    }
+  }
+}

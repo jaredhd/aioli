@@ -30,11 +30,11 @@ beforeAll(() => {
 // 1. Every template generates valid output
 // ===========================================================================
 
-describe('All 31 component templates generate successfully', () => {
+describe('All 43 component templates generate successfully', () => {
   const templateKeys = Object.keys(COMPONENT_TEMPLATES);
 
-  it('should have exactly 31 templates', () => {
-    expect(templateKeys.length).toBe(31);
+  it('should have exactly 43 templates', () => {
+    expect(templateKeys.length).toBe(43);
   });
 
   describe.each(templateKeys)('template: %s', (key) => {
@@ -237,11 +237,11 @@ describe('Error handling', () => {
 // ===========================================================================
 
 describe('listComponents action', () => {
-  it('returns exactly 31 components', () => {
+  it('returns exactly 43 components', () => {
     const response = agents.component.handleRequest({ action: 'listComponents' });
     expect(response.success).toBe(true);
     expect(Array.isArray(response.data)).toBe(true);
-    expect(response.data.length).toBe(31);
+    expect(response.data.length).toBe(43);
   });
 
   it('each listed component has name, category, and description', () => {
