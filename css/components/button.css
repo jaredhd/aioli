@@ -1,6 +1,6 @@
 /* ==========================================================================
    Button Component
-   Aioli Design System
+   Aioli Design System — with depth, colored shadows, gradients, transforms
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -21,7 +21,7 @@
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
-  transition-property: background-color, color, border-color, box-shadow, opacity;
+  transition-property: background-color, background-image, color, border-color, box-shadow, opacity, transform;
   transition-duration: var(--primitive-motion-duration-fast);
   transition-timing-function: var(--primitive-motion-easing-default);
 }
@@ -66,65 +66,113 @@
 }
 
 /* --------------------------------------------------------------------------
-   Variant: Primary
+   Variant: Primary — with colored shadow, gradient, and depth
    -------------------------------------------------------------------------- */
 
 .btn--primary {
   background-color: var(--component-button-primary-bg);
+  background-image: var(--component-button-primary-gradient);
   color: var(--component-button-primary-text);
   border-color: var(--component-button-primary-bg);
+  box-shadow: var(--component-button-primary-shadow);
 }
 
 .btn--primary:hover {
   background-color: var(--component-button-primary-bg-hover);
+  background-image: var(--component-button-primary-gradient-hover);
   border-color: var(--component-button-primary-bg-hover);
+  box-shadow: var(--component-button-primary-shadow-hover);
+  transform: translateY(-1px);
 }
 
 .btn--primary:active {
   background-color: var(--component-button-primary-bg-active);
+  background-image: none;
   border-color: var(--component-button-primary-bg-active);
+  box-shadow: var(--component-button-primary-shadow-active);
+  transform: translateY(0) scale(0.98);
 }
 
 /* --------------------------------------------------------------------------
-   Variant: Secondary
+   Variant: Secondary — with subtle depth
    -------------------------------------------------------------------------- */
 
 .btn--secondary {
   background-color: var(--component-button-secondary-bg);
   color: var(--component-button-secondary-text);
   border-color: transparent;
+  box-shadow: var(--component-button-secondary-shadow);
 }
 
 .btn--secondary:hover {
   background-color: var(--component-button-secondary-bg-hover);
+  box-shadow: var(--component-button-secondary-shadow-hover);
+  transform: translateY(-1px);
 }
 
 .btn--secondary:active {
   background-color: var(--component-button-secondary-bg-active);
+  box-shadow: var(--component-button-secondary-shadow-active);
+  transform: translateY(0) scale(0.98);
 }
 
 /* --------------------------------------------------------------------------
-   Variant: Danger
+   Variant: Danger — with red colored shadow, gradient, and depth
    -------------------------------------------------------------------------- */
 
 .btn--danger {
   background-color: var(--component-button-danger-bg);
+  background-image: var(--component-button-danger-gradient);
   color: var(--component-button-danger-text);
   border-color: var(--component-button-danger-bg);
+  box-shadow: var(--component-button-danger-shadow);
 }
 
 .btn--danger:hover {
   background-color: var(--component-button-danger-bg-hover);
+  background-image: var(--component-button-danger-gradient-hover);
   border-color: var(--component-button-danger-bg-hover);
+  box-shadow: var(--component-button-danger-shadow-hover);
+  transform: translateY(-1px);
 }
 
 .btn--danger:active {
   background-color: var(--component-button-danger-bg-active);
+  background-image: none;
   border-color: var(--component-button-danger-bg-active);
+  box-shadow: var(--component-button-danger-shadow-active);
+  transform: translateY(0) scale(0.98);
 }
 
 /* --------------------------------------------------------------------------
-   Variant: Ghost
+   Variant: Success — with green colored shadow, gradient
+   -------------------------------------------------------------------------- */
+
+.btn--success {
+  background-color: var(--component-button-success-bg);
+  background-image: var(--component-button-success-gradient);
+  color: var(--component-button-success-text);
+  border-color: var(--component-button-success-bg);
+  box-shadow: var(--component-button-success-shadow);
+}
+
+.btn--success:hover {
+  background-color: var(--component-button-success-bg-hover);
+  border-color: var(--component-button-success-bg-hover);
+  box-shadow: var(--component-button-success-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.btn--success:active {
+  background-color: var(--component-button-success-bg-active);
+  background-image: none;
+  border-color: var(--component-button-success-bg-active);
+  box-shadow: var(--semantic-shadow-inner);
+  transform: translateY(0) scale(0.98);
+}
+
+/* --------------------------------------------------------------------------
+   Variant: Ghost — flat, no shadow
    -------------------------------------------------------------------------- */
 
 .btn--ghost {
@@ -140,25 +188,30 @@
 .btn--ghost:active {
   background-color: var(--component-button-ghost-bg-hover);
   opacity: 0.8;
+  transform: scale(0.98);
 }
 
 /* --------------------------------------------------------------------------
-   Variant: Outline
+   Variant: Outline — with subtle colored shadow
    -------------------------------------------------------------------------- */
 
 .btn--outline {
   background-color: var(--component-button-outline-bg);
   color: var(--component-button-outline-text);
   border-color: var(--component-button-outline-border);
+  box-shadow: var(--component-button-outline-shadow);
 }
 
 .btn--outline:hover {
   background-color: var(--component-button-outline-bg-hover);
+  box-shadow: var(--component-button-outline-shadow-hover);
+  transform: translateY(-1px);
 }
 
 .btn--outline:active {
   background-color: var(--component-button-outline-bg-hover);
-  opacity: 0.8;
+  box-shadow: var(--semantic-shadow-inner);
+  transform: translateY(0) scale(0.98);
 }
 
 /* --------------------------------------------------------------------------
@@ -171,6 +224,8 @@
   opacity: var(--component-button-disabled-opacity);
   cursor: var(--component-button-disabled-cursor);
   pointer-events: none;
+  box-shadow: none;
+  transform: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -182,6 +237,12 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+/* Icon slide on hover (for trailing icons) */
+.btn:hover .btn__icon--trailing {
+  transform: translateX(2px);
 }
 
 .btn__text {
@@ -196,5 +257,21 @@
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition-duration: 0ms;
+  }
+
+  .btn:hover,
+  .btn:active,
+  .btn--primary:hover,
+  .btn--primary:active,
+  .btn--danger:hover,
+  .btn--danger:active,
+  .btn--secondary:hover,
+  .btn--secondary:active,
+  .btn--success:hover,
+  .btn--success:active,
+  .btn--outline:hover,
+  .btn--outline:active,
+  .btn--ghost:active {
+    transform: none;
   }
 }

@@ -13,7 +13,25 @@
   --component-button-disabled-cursor: not-allowed;
   --component-button-size-xs-height: 24px;
   --component-button-size-xl-height: 48px;
+  --component-button-primary-shadow: 0 1px 3px 0 rgba(37, 99, 235, 0.4), 0 1px 2px -1px rgba(37, 99, 235, 0.3); /** Blue-tinted elevated shadow */
+  --component-button-primary-shadow-hover: 0 4px 12px -2px rgba(37, 99, 235, 0.4); /** Blue glow on hover */
+  --component-button-primary-shadow-active: inset 0 2px 4px 0 rgba(0, 0, 0, 0.15); /** Pressed inset shadow */
+  --component-button-primary-gradient: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%); /** Button gradient: blue.500 → blue.600 */
+  --component-button-primary-gradient-hover: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%); /** Hover gradient: blue.600 → blue.700 */
+  --component-button-secondary-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06); /** Subtle neutral shadow */
+  --component-button-secondary-shadow-hover: 0 2px 6px -1px rgba(0, 0, 0, 0.1); /** Lifted neutral shadow */
+  --component-button-secondary-shadow-active: inset 0 1px 3px 0 rgba(0, 0, 0, 0.1); /** Inset on press */
+  --component-button-danger-shadow: 0 1px 3px 0 rgba(185, 28, 28, 0.4), 0 1px 2px -1px rgba(185, 28, 28, 0.3); /** Red-tinted shadow */
+  --component-button-danger-shadow-hover: 0 4px 12px -2px rgba(185, 28, 28, 0.4); /** Red glow on hover */
+  --component-button-danger-shadow-active: inset 0 2px 4px 0 rgba(0, 0, 0, 0.15); /** Pressed inset shadow */
+  --component-button-danger-gradient: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%); /** Danger gradient: red.600 → red.700 */
+  --component-button-danger-gradient-hover: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%); /** Danger hover gradient */
+  --component-button-success-shadow: 0 1px 3px 0 rgba(4, 120, 87, 0.4), 0 1px 2px -1px rgba(4, 120, 87, 0.3); /** Green-tinted shadow */
+  --component-button-success-shadow-hover: 0 4px 12px -2px rgba(4, 120, 87, 0.4); /** Green glow on hover */
+  --component-button-success-gradient: linear-gradient(180deg, #059669 0%, #047857 100%); /** Success gradient */
   --component-button-outline-bg: rgba(0, 0, 0, 0);
+  --component-button-outline-shadow: 0 1px 2px 0 rgba(37, 99, 235, 0.08); /** Subtle primary shadow */
+  --component-button-outline-shadow-hover: 0 2px 8px -2px rgba(37, 99, 235, 0.2); /** Primary glow on hover */
   --component-button-ghost-bg: rgba(0, 0, 0, 0);
   --component-card-shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --component-card-shadow-hover: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -272,6 +290,20 @@
   --primitive-color-lime-800: #3f6212;
   --primitive-color-lime-900: #365314;
   --primitive-color-lime-950: #1a2e05;
+  --primitive-blur-none: 0px;
+  --primitive-blur-sm: 4px; /** Subtle blur for frosted nav bars */
+  --primitive-blur-md: 8px; /** Medium blur for glass cards */
+  --primitive-blur-lg: 12px; /** Heavy blur for overlays */
+  --primitive-blur-xl: 16px; /** Maximum blur for hero glass */
+  --primitive-blur-2xl: 24px; /** Extreme blur for background panels */
+  --primitive-gradient-angle-to-top: 0deg;
+  --primitive-gradient-angle-to-top-right: 45deg;
+  --primitive-gradient-angle-to-right: 90deg;
+  --primitive-gradient-angle-to-bottom-right: 135deg;
+  --primitive-gradient-angle-to-bottom: 180deg;
+  --primitive-gradient-angle-to-bottom-left: 225deg;
+  --primitive-gradient-angle-to-left: 270deg;
+  --primitive-gradient-angle-to-top-left: 315deg;
   --primitive-motion-duration-instant: 0ms;
   --primitive-motion-duration-micro: 100ms;
   --primitive-motion-duration-fast: 150ms;
@@ -362,6 +394,17 @@
   --semantic-color-dark-danger-subtle: rgba(248, 113, 113, 0.2);
   --semantic-color-dark-info-subtle: rgba(96, 165, 250, 0.2);
   --semantic-surface-dark-overlay: rgba(0, 0, 0, 0.7);
+  --semantic-shadow-colored-primary-sm: 0 2px 8px -2px rgba(37, 99, 235, 0.25); /** Small primary-tinted shadow */
+  --semantic-shadow-colored-primary-md: 0 4px 12px -2px rgba(37, 99, 235, 0.3); /** Medium primary-tinted shadow */
+  --semantic-shadow-colored-primary-lg: 0 8px 24px -4px rgba(37, 99, 235, 0.3); /** Large primary glow shadow */
+  --semantic-shadow-colored-primary-glow: 0 0 20px rgba(37, 99, 235, 0.4); /** Primary glow effect */
+  --semantic-shadow-colored-success-sm: 0 2px 8px -2px rgba(4, 120, 87, 0.25); /** Small success-tinted shadow */
+  --semantic-shadow-colored-success-md: 0 4px 12px -2px rgba(4, 120, 87, 0.3); /** Medium success-tinted shadow */
+  --semantic-shadow-colored-warning-sm: 0 2px 8px -2px rgba(180, 83, 9, 0.25); /** Small warning-tinted shadow */
+  --semantic-shadow-colored-warning-md: 0 4px 12px -2px rgba(180, 83, 9, 0.3); /** Medium warning-tinted shadow */
+  --semantic-shadow-colored-danger-sm: 0 2px 8px -2px rgba(185, 28, 28, 0.25); /** Small danger-tinted shadow */
+  --semantic-shadow-colored-danger-md: 0 4px 12px -2px rgba(185, 28, 28, 0.3); /** Medium danger-tinted shadow */
+  --semantic-shadow-colored-danger-lg: 0 8px 24px -4px rgba(185, 28, 28, 0.3); /** Large danger glow shadow */
   --semantic-shadow-none: none; /** No shadow */
   --semantic-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /** Extra small shadow */
   --semantic-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); /** Small shadow for cards */
@@ -370,11 +413,43 @@
   --semantic-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); /** Extra large shadow */
   --semantic-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /** Maximum elevation */
   --semantic-shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); /** Inset shadow for pressed states */
+  --semantic-shadow-inner-md: inset 0 2px 6px 0 rgba(0, 0, 0, 0.1); /** Deeper inset for active buttons */
+  --semantic-shadow-ring: 0 0 0 3px rgba(37, 99, 235, 0.15); /** Focus ring shadow */
+  --semantic-shadow-up-sm: 0 -1px 3px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px -1px rgba(0, 0, 0, 0.1); /** Upward small shadow */
+  --semantic-shadow-up-md: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -2px rgba(0, 0, 0, 0.1); /** Upward medium shadow */
+  --semantic-glass-surface-light: rgba(255, 255, 255, 0.7); /** Light frosted glass background */
+  --semantic-glass-surface-lighter: rgba(255, 255, 255, 0.85); /** Lighter frosted glass */
+  --semantic-glass-surface-dark: rgba(15, 23, 42, 0.7); /** Dark frosted glass background */
+  --semantic-glass-surface-darker: rgba(15, 23, 42, 0.85); /** Darker frosted glass */
+  --semantic-glass-surface-primary: rgba(37, 99, 235, 0.1); /** Primary-tinted glass */
+  --semantic-glass-surface-subtle: rgba(255, 255, 255, 0.5); /** Subtle glass for overlays */
+  --semantic-glass-border-light: rgba(255, 255, 255, 0.2); /** Glass border — light mode */
+  --semantic-glass-border-dark: rgba(255, 255, 255, 0.1); /** Glass border — dark mode */
   --semantic-focus-ring-width: 2px; /** Focus ring width */
   --semantic-focus-ring-offset: 2px; /** Gap between element and focus ring */
   --semantic-focus-ring-style: solid; /** Focus ring border style */
   --semantic-focus-outline-width: 2px;
   --semantic-focus-outline-offset: 2px;
+  --semantic-gradient-primary-default: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); /** Primary gradient: blue.600 → blue.700 */
+  --semantic-gradient-primary-vibrant: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%); /** Vibrant primary: blue.500 → blue.600 → blue.700 */
+  --semantic-gradient-primary-subtle: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); /** Subtle primary: blue.50 → blue.100 */
+  --semantic-gradient-success-default: linear-gradient(135deg, #047857 0%, #065f46 100%); /** Success gradient: emerald.700 → emerald.800 */
+  --semantic-gradient-success-subtle: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); /** Subtle success */
+  --semantic-gradient-warning-default: linear-gradient(135deg, #b45309 0%, #92400e 100%); /** Warning gradient: amber.700 → amber.800 */
+  --semantic-gradient-warning-subtle: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); /** Subtle warning */
+  --semantic-gradient-danger-default: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%); /** Danger gradient: red.700 → red.800 */
+  --semantic-gradient-danger-subtle: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); /** Subtle danger */
+  --semantic-gradient-info-default: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); /** Info gradient: blue.600 → blue.800 */
+  --semantic-gradient-surface-default: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); /** Subtle page surface gradient */
+  --semantic-gradient-surface-card: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); /** Card surface gradient */
+  --semantic-gradient-surface-hero: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); /** Dark hero section gradient */
+  --semantic-gradient-accent-purple: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); /** Purple accent gradient */
+  --semantic-gradient-accent-indigo: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); /** Indigo accent gradient */
+  --semantic-gradient-accent-teal: linear-gradient(135deg, #0d9488 0%, #0f766e 100%); /** Teal accent gradient */
+  --semantic-gradient-accent-rose: linear-gradient(135deg, #e11d48 0%, #be123c 100%); /** Rose accent gradient */
+  --semantic-gradient-accent-amber: linear-gradient(135deg, #d97706 0%, #b45309 100%); /** Amber accent gradient */
+  --semantic-gradient-mesh-light: radial-gradient(at 40% 20%, #dbeafe 0px, transparent 50%), radial-gradient(at 80% 0%, #ede9fe 0px, transparent 50%), radial-gradient(at 0% 50%, #d1fae5 0px, transparent 50%); /** Subtle multi-color mesh for backgrounds */
+  --semantic-gradient-mesh-dark: radial-gradient(at 40% 20%, #1e3a8a 0px, transparent 50%), radial-gradient(at 80% 0%, #4c1d95 0px, transparent 50%), radial-gradient(at 0% 50%, #064e3b 0px, transparent 50%); /** Dark mesh gradient */
   --semantic-opacity-0: 0; /** Fully transparent */
   --semantic-opacity-5: 0.05;
   --semantic-opacity-10: 0.1;
@@ -527,6 +602,7 @@
   --component-button-secondary-bg-hover: var(--primitive-color-neutral-200);
   --component-button-secondary-text: var(--primitive-color-neutral-900);
   --component-button-danger-text: var(--primitive-color-neutral-0);
+  --component-button-success-text: var(--primitive-color-neutral-0);
   --component-button-ghost-bg-hover: var(--primitive-color-neutral-100);
   --component-card-radius: var(--primitive-radius-xl);
   --component-card-border-width: var(--primitive-spacing-px);
@@ -935,6 +1011,10 @@
   --semantic-text-disabled: var(--primitive-color-neutral-400);
   --semantic-text-inverse: var(--primitive-color-neutral-0);
   --semantic-text-link: var(--primitive-color-blue-600);
+  --semantic-backdrop-blur-sm: var(--primitive-blur-sm); /** Backdrop blur — subtle */
+  --semantic-backdrop-blur-md: var(--primitive-blur-md); /** Backdrop blur — standard */
+  --semantic-backdrop-blur-lg: var(--primitive-blur-lg); /** Backdrop blur — heavy */
+  --semantic-backdrop-blur-xl: var(--primitive-blur-xl); /** Backdrop blur — maximum */
   --semantic-focus-ring-color: var(--primitive-color-blue-500); /** Default focus ring color */
   --semantic-focus-ring-color-danger: var(--primitive-color-red-500); /** Focus ring for error states */
   --semantic-focus-outline-color: var(--primitive-color-blue-500);
@@ -1034,6 +1114,9 @@
   --component-button-danger-bg: var(--semantic-color-danger-default);
   --component-button-danger-bg-hover: var(--semantic-color-danger-hover);
   --component-button-danger-bg-active: var(--semantic-color-danger-active);
+  --component-button-success-bg: var(--semantic-color-success-default);
+  --component-button-success-bg-hover: var(--semantic-color-success-hover);
+  --component-button-success-bg-active: var(--semantic-color-success-active);
   --component-button-outline-bg-hover: var(--semantic-color-primary-muted);
   --component-button-outline-text: var(--semantic-color-primary-default);
   --component-button-outline-border: var(--semantic-color-primary-default);

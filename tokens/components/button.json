@@ -45,25 +45,49 @@
         "bg": { "$type": "color", "$value": "{semantic.color.primary.default}" },
         "bgHover": { "$type": "color", "$value": "{semantic.color.primary.hover}" },
         "bgActive": { "$type": "color", "$value": "{semantic.color.primary.active}" },
-        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" }
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" },
+        "shadow": { "$type": "shadow", "$value": "0 1px 3px 0 rgba(37, 99, 235, 0.4), 0 1px 2px -1px rgba(37, 99, 235, 0.3)", "$description": "Blue-tinted elevated shadow" },
+        "shadowHover": { "$type": "shadow", "$value": "0 4px 12px -2px rgba(37, 99, 235, 0.4)", "$description": "Blue glow on hover" },
+        "shadowActive": { "$type": "shadow", "$value": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.15)", "$description": "Pressed inset shadow" },
+        "gradient": { "$type": "gradient", "$value": "linear-gradient(180deg, #3b82f6 0%, #2563eb 100%)", "$description": "Button gradient: blue.500 → blue.600" },
+        "gradientHover": { "$type": "gradient", "$value": "linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%)", "$description": "Hover gradient: blue.600 → blue.700" }
       },
       "secondary": {
         "bg": { "$type": "color", "$value": "{semantic.color.secondary.subtle}" },
         "bgHover": { "$type": "color", "$value": "{primitive.color.neutral.200}" },
         "bgActive": { "$type": "color", "$value": "{semantic.color.secondary.active}" },
-        "text": { "$type": "color", "$value": "{primitive.color.neutral.900}" }
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.900}" },
+        "shadow": { "$type": "shadow", "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.06)", "$description": "Subtle neutral shadow" },
+        "shadowHover": { "$type": "shadow", "$value": "0 2px 6px -1px rgba(0, 0, 0, 0.1)", "$description": "Lifted neutral shadow" },
+        "shadowActive": { "$type": "shadow", "$value": "inset 0 1px 3px 0 rgba(0, 0, 0, 0.1)", "$description": "Inset on press" }
       },
       "danger": {
         "bg": { "$type": "color", "$value": "{semantic.color.danger.default}" },
         "bgHover": { "$type": "color", "$value": "{semantic.color.danger.hover}" },
         "bgActive": { "$type": "color", "$value": "{semantic.color.danger.active}" },
-        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" }
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" },
+        "shadow": { "$type": "shadow", "$value": "0 1px 3px 0 rgba(185, 28, 28, 0.4), 0 1px 2px -1px rgba(185, 28, 28, 0.3)", "$description": "Red-tinted shadow" },
+        "shadowHover": { "$type": "shadow", "$value": "0 4px 12px -2px rgba(185, 28, 28, 0.4)", "$description": "Red glow on hover" },
+        "shadowActive": { "$type": "shadow", "$value": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.15)", "$description": "Pressed inset shadow" },
+        "gradient": { "$type": "gradient", "$value": "linear-gradient(180deg, #dc2626 0%, #b91c1c 100%)", "$description": "Danger gradient: red.600 → red.700" },
+        "gradientHover": { "$type": "gradient", "$value": "linear-gradient(180deg, #b91c1c 0%, #991b1b 100%)", "$description": "Danger hover gradient" }
+      },
+      "success": {
+        "bg": { "$type": "color", "$value": "{semantic.color.success.default}" },
+        "bgHover": { "$type": "color", "$value": "{semantic.color.success.hover}" },
+        "bgActive": { "$type": "color", "$value": "{semantic.color.success.active}" },
+        "text": { "$type": "color", "$value": "{primitive.color.neutral.0}" },
+        "shadow": { "$type": "shadow", "$value": "0 1px 3px 0 rgba(4, 120, 87, 0.4), 0 1px 2px -1px rgba(4, 120, 87, 0.3)", "$description": "Green-tinted shadow" },
+        "shadowHover": { "$type": "shadow", "$value": "0 4px 12px -2px rgba(4, 120, 87, 0.4)", "$description": "Green glow on hover" },
+        "gradient": { "$type": "gradient", "$value": "linear-gradient(180deg, #059669 0%, #047857 100%)", "$description": "Success gradient" }
       },
       "outline": {
         "bg": { "$type": "color", "$value": "transparent" },
         "bgHover": { "$type": "color", "$value": "{semantic.color.primary.muted}" },
         "text": { "$type": "color", "$value": "{semantic.color.primary.default}" },
-        "border": { "$type": "color", "$value": "{semantic.color.primary.default}" }
+        "border": { "$type": "color", "$value": "{semantic.color.primary.default}" },
+        "shadow": { "$type": "shadow", "$value": "0 1px 2px 0 rgba(37, 99, 235, 0.08)", "$description": "Subtle primary shadow" },
+        "shadowHover": { "$type": "shadow", "$value": "0 2px 8px -2px rgba(37, 99, 235, 0.2)", "$description": "Primary glow on hover" }
       },
       "ghost": {
         "bg": { "$type": "color", "$value": "transparent" },

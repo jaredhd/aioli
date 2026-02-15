@@ -1,0 +1,55 @@
+{
+  "$description": "Semantic effect tokens — colored shadows, glass surfaces, backdrop blur",
+  "semantic": {
+    "shadow": {
+      "colored": {
+        "$type": "shadow",
+        "primary": {
+          "sm": { "$value": "0 2px 8px -2px rgba(37, 99, 235, 0.25)", "$description": "Small primary-tinted shadow" },
+          "md": { "$value": "0 4px 12px -2px rgba(37, 99, 235, 0.3)", "$description": "Medium primary-tinted shadow" },
+          "lg": { "$value": "0 8px 24px -4px rgba(37, 99, 235, 0.3)", "$description": "Large primary glow shadow" },
+          "glow": { "$value": "0 0 20px rgba(37, 99, 235, 0.4)", "$description": "Primary glow effect" }
+        },
+        "success": {
+          "sm": { "$value": "0 2px 8px -2px rgba(4, 120, 87, 0.25)", "$description": "Small success-tinted shadow" },
+          "md": { "$value": "0 4px 12px -2px rgba(4, 120, 87, 0.3)", "$description": "Medium success-tinted shadow" }
+        },
+        "warning": {
+          "sm": { "$value": "0 2px 8px -2px rgba(180, 83, 9, 0.25)", "$description": "Small warning-tinted shadow" },
+          "md": { "$value": "0 4px 12px -2px rgba(180, 83, 9, 0.3)", "$description": "Medium warning-tinted shadow" }
+        },
+        "danger": {
+          "sm": { "$value": "0 2px 8px -2px rgba(185, 28, 28, 0.25)", "$description": "Small danger-tinted shadow" },
+          "md": { "$value": "0 4px 12px -2px rgba(185, 28, 28, 0.3)", "$description": "Medium danger-tinted shadow" },
+          "lg": { "$value": "0 8px 24px -4px rgba(185, 28, 28, 0.3)", "$description": "Large danger glow shadow" }
+        }
+      }
+    },
+    "glass": {
+      "$description": "Frosted glass surface tokens — backdrop blur + semi-transparent backgrounds",
+      "surface": {
+        "$type": "color",
+        "light": { "$value": "rgba(255, 255, 255, 0.7)", "$description": "Light frosted glass background" },
+        "lighter": { "$value": "rgba(255, 255, 255, 0.85)", "$description": "Lighter frosted glass" },
+        "dark": { "$value": "rgba(15, 23, 42, 0.7)", "$description": "Dark frosted glass background" },
+        "darker": { "$value": "rgba(15, 23, 42, 0.85)", "$description": "Darker frosted glass" },
+        "primary": { "$value": "rgba(37, 99, 235, 0.1)", "$description": "Primary-tinted glass" },
+        "subtle": { "$value": "rgba(255, 255, 255, 0.5)", "$description": "Subtle glass for overlays" }
+      },
+      "border": {
+        "$type": "color",
+        "light": { "$value": "rgba(255, 255, 255, 0.2)", "$description": "Glass border — light mode" },
+        "dark": { "$value": "rgba(255, 255, 255, 0.1)", "$description": "Glass border — dark mode" }
+      }
+    },
+    "backdrop": {
+      "$type": "dimension",
+      "blur": {
+        "sm": { "$value": "{primitive.blur.sm}", "$description": "Backdrop blur — subtle" },
+        "md": { "$value": "{primitive.blur.md}", "$description": "Backdrop blur — standard" },
+        "lg": { "$value": "{primitive.blur.lg}", "$description": "Backdrop blur — heavy" },
+        "xl": { "$value": "{primitive.blur.xl}", "$description": "Backdrop blur — maximum" }
+      }
+    }
+  }
+}

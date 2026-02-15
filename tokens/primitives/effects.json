@@ -1,0 +1,27 @@
+{
+  "$description": "Primitive effect tokens — backdrop blur, opacity levels, and gradient angles",
+  "primitive": {
+    "blur": {
+      "$type": "dimension",
+      "none": { "$value": "0px" },
+      "sm": { "$value": "4px", "$description": "Subtle blur for frosted nav bars" },
+      "md": { "$value": "8px", "$description": "Medium blur for glass cards" },
+      "lg": { "$value": "12px", "$description": "Heavy blur for overlays" },
+      "xl": { "$value": "16px", "$description": "Maximum blur for hero glass" },
+      "2xl": { "$value": "24px", "$description": "Extreme blur for background panels" }
+    },
+    "gradient": {
+      "angle": {
+        "$type": "dimension",
+        "to-top": { "$value": "0deg" },
+        "to-top-right": { "$value": "45deg" },
+        "to-right": { "$value": "90deg" },
+        "to-bottom-right": { "$value": "135deg" },
+        "to-bottom": { "$value": "180deg" },
+        "to-bottom-left": { "$value": "225deg" },
+        "to-left": { "$value": "270deg" },
+        "to-top-left": { "$value": "315deg" }
+      }
+    }
+  }
+}

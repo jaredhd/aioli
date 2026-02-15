@@ -85,6 +85,56 @@
 }
 
 /* ----------------------------------------------------------------
+   Variant: Glass — frosted glass card with backdrop blur
+   ---------------------------------------------------------------- */
+.card--glass {
+  background: var(--semantic-glass-surface-light);
+  border-color: var(--semantic-glass-border-light);
+  backdrop-filter: blur(var(--semantic-backdrop-blur-md));
+  -webkit-backdrop-filter: blur(var(--semantic-backdrop-blur-md));
+  box-shadow: var(--semantic-shadow-sm);
+}
+
+.card--glass:hover {
+  background: var(--semantic-glass-surface-lighter);
+  box-shadow: var(--semantic-shadow-md);
+}
+
+[data-theme="dark"] .card--glass {
+  background: var(--semantic-glass-surface-dark);
+  border-color: var(--semantic-glass-border-dark);
+}
+
+[data-theme="dark"] .card--glass:hover {
+  background: var(--semantic-glass-surface-darker);
+}
+
+/* ----------------------------------------------------------------
+   Variant: Gradient — gradient header stripe
+   ---------------------------------------------------------------- */
+.card--gradient .card__header {
+  background: var(--semantic-gradient-primary-default);
+  color: white;
+  border-bottom: none;
+}
+
+.card--gradient .card__header .card__title {
+  color: white;
+}
+
+/* ----------------------------------------------------------------
+   Variant: Colored shadow (primary-tinted)
+   ---------------------------------------------------------------- */
+.card--primary-shadow {
+  box-shadow: var(--semantic-shadow-colored-primary-sm);
+}
+
+.card--primary-shadow:hover,
+.card--primary-shadow.card--interactive:hover {
+  box-shadow: var(--semantic-shadow-colored-primary-md);
+}
+
+/* ----------------------------------------------------------------
    Size: Compact
    ---------------------------------------------------------------- */
 .card--compact .card__header,
