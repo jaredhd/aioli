@@ -304,6 +304,26 @@
   --primitive-gradient-angle-to-bottom-left: 225deg;
   --primitive-gradient-angle-to-left: 270deg;
   --primitive-gradient-angle-to-top-left: 315deg;
+  --primitive-animation-fade-in-distance: 0px;
+  --primitive-animation-fade-in-opacity: 0;
+  --primitive-animation-fade-in-up-distance: 10px;
+  --primitive-animation-fade-in-up-opacity: 0;
+  --primitive-animation-fade-in-down-distance: -10px;
+  --primitive-animation-fade-in-down-opacity: 0;
+  --primitive-animation-fade-in-left-distance: 20px;
+  --primitive-animation-fade-in-left-opacity: 0;
+  --primitive-animation-fade-in-right-distance: -20px;
+  --primitive-animation-fade-in-right-opacity: 0;
+  --primitive-animation-scale-in-from: 0.95;
+  --primitive-animation-scale-in-opacity: 0;
+  --primitive-animation-slide-in-up-distance: 100%;
+  --primitive-animation-slide-in-down-distance: -100%;
+  --primitive-animation-shimmer-angle: 90deg;
+  --primitive-animation-pulse-scale: 1.05;
+  --primitive-animation-spin-from: 0deg;
+  --primitive-animation-spin-to: 360deg;
+  --primitive-animation-stagger-delay: 75ms; /** Default stagger delay between list items */
+  --primitive-animation-stagger-max-delay: 500ms; /** Maximum cumulative stagger delay */
   --primitive-motion-duration-instant: 0ms;
   --primitive-motion-duration-micro: 100ms;
   --primitive-motion-duration-fast: 150ms;

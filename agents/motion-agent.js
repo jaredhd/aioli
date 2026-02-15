@@ -72,7 +72,9 @@ export const ANIMATION_TYPES = {
   'focus-ring': 'micro',
   'tooltip-show': 'micro',
   'tooltip-hide': 'micro',
-  
+  'hover-scale': 'micro',
+  'hover-brighten': 'micro',
+
   // State transitions (150-300ms)
   'accordion-expand': 'normal',
   'accordion-collapse': 'normal',
@@ -81,15 +83,31 @@ export const ANIMATION_TYPES = {
   'dropdown-close': 'normal',
   'menu-toggle': 'normal',
   'card-flip': 'normal',
-  
+  'badge-pulse': 'normal',
+
+  // Entrance/Exit (200-300ms)
+  'fade-in': 'normal',
+  'fade-in-up': 'normal',
+  'fade-in-down': 'normal',
+  'fade-in-left': 'normal',
+  'fade-in-right': 'normal',
+  'fade-out': 'fast',
+  'scale-in': 'normal',
+  'scale-out': 'fast',
+
   // Page transitions (300-500ms)
   'modal-open': 'slow',
   'modal-close': 'slow',
   'page-transition': 'slow',
   'slide-in-panel': 'slow',
+  'slide-in-up': 'slow',
+  'slide-in-down': 'slow',
+  'slide-in-left': 'slow',
+  'slide-in-right': 'slow',
   'overlay-show': 'slow',
   'overlay-hide': 'slow',
-  
+  'scroll-reveal': 'slow',
+
   // Feedback (200-400ms)
   'loading-spinner': 'normal',
   'success-checkmark': 'normal',
@@ -97,7 +115,9 @@ export const ANIMATION_TYPES = {
   'toast-enter': 'normal',
   'toast-exit': 'normal',
   'skeleton-pulse': 'slow',
-  
+  'shimmer': 'slow',
+  'progress-indeterminate': 'slow',
+
   // Scroll-triggered (200-400ms)
   'fade-in-scroll': 'normal',
   'sticky-header': 'normal',
@@ -513,6 +533,78 @@ export class MotionAgent {
           0%, 100% { transform: translateX(0); }
           20%, 60% { transform: translateX(-5px); }
           40%, 80% { transform: translateX(5px); }
+        `,
+      },
+      'fade-in-up': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateY(10px)', opacity: 0 },
+        to: { transform: 'translateY(0)', opacity: 1 },
+        duration: 'normal',
+      },
+      'fade-in-down': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateY(-10px)', opacity: 0 },
+        to: { transform: 'translateY(0)', opacity: 1 },
+        duration: 'normal',
+      },
+      'fade-in-left': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateX(-20px)', opacity: 0 },
+        to: { transform: 'translateX(0)', opacity: 1 },
+        duration: 'normal',
+      },
+      'fade-in-right': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateX(20px)', opacity: 0 },
+        to: { transform: 'translateX(0)', opacity: 1 },
+        duration: 'normal',
+      },
+      'toast-enter': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateY(-8px) scale(0.96)', opacity: 0 },
+        to: { transform: 'translateY(0) scale(1)', opacity: 1 },
+        duration: 'normal',
+      },
+      'toast-exit': {
+        type: 'exit',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateY(0) scale(1)', opacity: 1 },
+        to: { transform: 'translateY(-8px) scale(0.96)', opacity: 0 },
+        duration: 'fast',
+      },
+      'dropdown-open': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'scale(0.95) translateY(-4px)', opacity: 0 },
+        to: { transform: 'scale(1) translateY(0)', opacity: 1 },
+        duration: 'fast',
+      },
+      'tooltip-enter': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'scale(0.96)', opacity: 0 },
+        to: { transform: 'scale(1)', opacity: 1 },
+        duration: 'micro',
+      },
+      'scroll-reveal': {
+        type: 'enter',
+        properties: ['transform', 'opacity'],
+        from: { transform: 'translateY(10px)', opacity: 0 },
+        to: { transform: 'translateY(0)', opacity: 1 },
+        duration: 'slow',
+      },
+      'shimmer': {
+        type: 'move',
+        keyframes: true,
+        duration: 'complex',
+        animation: `
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
         `,
       },
     };

@@ -4,6 +4,7 @@
  * Single-import entry point that loads everything:
  *   - Design tokens (CSS custom properties)
  *   - Base styles (reset, dark mode, utilities)
+ *   - Animations & micro-interactions
  *   - All 31 component stylesheets
  *
  * Usage:
@@ -15,4 +16,5 @@
 
 @import '../dist/css/tokens.css';
 @import './base.css';
+@import './animations.css';
 @import './components/index.css';

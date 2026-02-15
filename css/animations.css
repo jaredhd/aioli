@@ -1,0 +1,470 @@
+/**
+ * Aioli Design System — Animations & Micro-Interactions
+ *
+ * @keyframes definitions, utility classes, and entrance/exit presets.
+ * All animations respect prefers-reduced-motion by default.
+ * Uses GPU-accelerated properties only (transform, opacity).
+ */
+
+/* ========================================================================
+   KEYFRAMES
+   ======================================================================== */
+
+/* --- Entrance: Fade --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* --- Entrance: Fade + Translate --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Entrance: Scale --- */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+/* --- Entrance: Slide (full distance) --- */
+@keyframes slideInUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* --- Feedback --- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* --- Loading --- */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/*
+ * shimmer: Animates background-position (paint-only, not layout-triggering).
+ * Accepted exception to GPU-only rule — no transform-based alternative for
+ * gradient sweep effects. Performance impact is minimal on modern browsers.
+ */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes progressIndeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/* --- Modal / Overlay --- */
+@keyframes modalEnter {
+  from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes modalExit {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to { opacity: 0; transform: scale(0.95) translateY(-10px); }
+}
+
+@keyframes backdropEnter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Toast --- */
+@keyframes toastEnter {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastExit {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-8px) scale(0.96); }
+}
+
+/* --- Accordion / Expand --- */
+@keyframes expandDown {
+  from { opacity: 0; transform: scaleY(0.95); transform-origin: top; }
+  to { opacity: 1; transform: scaleY(1); transform-origin: top; }
+}
+
+@keyframes collapseUp {
+  from { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  to { opacity: 0; transform: scaleY(0.95); transform-origin: top; }
+}
+
+/* --- Dropdown --- */
+@keyframes dropdownOpen {
+  from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* --- Tooltip --- */
+@keyframes tooltipEnter {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* ========================================================================
+   ANIMATION UTILITY CLASSES
+   Opt-in approach: animations only apply when reduced motion is OK
+   ======================================================================== */
+
+/* --- Entrance animations --- */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-fade-in {
+    animation: fadeIn var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-fade-in-right {
+    animation: fadeInRight var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp var(--primitive-motion-duration-slow) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft var(--primitive-motion-duration-slow) var(--primitive-motion-easing-enter) both;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight var(--primitive-motion-duration-slow) var(--primitive-motion-easing-enter) both;
+  }
+
+  /* --- Feedback --- */
+  .animate-shake {
+    animation: shake var(--primitive-motion-duration-normal) var(--primitive-motion-easing-default);
+  }
+
+  .animate-pulse {
+    animation: pulse 2s var(--primitive-motion-easing-default) infinite;
+  }
+
+  .animate-ping {
+    animation: ping 1s var(--primitive-motion-easing-default) infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 1s var(--primitive-motion-easing-default) infinite;
+  }
+
+  /* --- Loading --- */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--primitive-color-neutral-100) 25%,
+      var(--primitive-color-neutral-200) 50%,
+      var(--primitive-color-neutral-100) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  /* --- Stagger delays (apply to children with --stagger-index) --- */
+  .animate-stagger > * {
+    --stagger-index: 0;
+    animation-delay: calc(var(--stagger-index) * 75ms);
+  }
+
+  .animate-stagger > *:nth-child(1) { --stagger-index: 0; }
+  .animate-stagger > *:nth-child(2) { --stagger-index: 1; }
+  .animate-stagger > *:nth-child(3) { --stagger-index: 2; }
+  .animate-stagger > *:nth-child(4) { --stagger-index: 3; }
+  .animate-stagger > *:nth-child(5) { --stagger-index: 4; }
+  .animate-stagger > *:nth-child(6) { --stagger-index: 5; }
+  .animate-stagger > *:nth-child(7) { --stagger-index: 6; }
+  .animate-stagger > *:nth-child(8) { --stagger-index: 7; }
+  .animate-stagger > *:nth-child(9) { --stagger-index: 8; }
+  .animate-stagger > *:nth-child(10) { --stagger-index: 9; }
+  .animate-stagger > *:nth-child(n+11) { --stagger-index: 10; }
+
+  /* --- Duration modifiers --- */
+  .animate-duration-micro { animation-duration: var(--primitive-motion-duration-micro); }
+  .animate-duration-fast { animation-duration: var(--primitive-motion-duration-fast); }
+  .animate-duration-normal { animation-duration: var(--primitive-motion-duration-normal); }
+  .animate-duration-slow { animation-duration: var(--primitive-motion-duration-slow); }
+  .animate-duration-slower { animation-duration: var(--primitive-motion-duration-slower); }
+
+  /* --- Delay modifiers --- */
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+}
+
+/* ========================================================================
+   HOVER MICRO-INTERACTIONS
+   ======================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* --- Link underline grow (GPU-accelerated via scaleX) --- */
+  .hover-underline-grow {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .hover-underline-grow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+  }
+
+  .hover-underline-grow:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* --- Hover lift (cards, elements) --- */
+  .hover-lift {
+    transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+                box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--semantic-shadow-md);
+  }
+
+  /* --- Hover glow (primary color glow) --- */
+  .hover-glow {
+    transition: box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--semantic-shadow-colored-primary-lg);
+  }
+
+  /* --- Hover scale (icons, avatars) --- */
+  .hover-scale {
+    transition: transform var(--primitive-motion-duration-micro) var(--primitive-motion-easing-default);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-scale:active {
+    transform: scale(0.95);
+  }
+
+  /* --- Hover brightness (images) --- */
+  .hover-brighten {
+    transition: filter var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+  }
+
+  .hover-brighten:hover {
+    filter: brightness(1.1);
+  }
+}
+
+/* ========================================================================
+   COMPONENT-SPECIFIC MOTION ENHANCEMENTS
+   ======================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* --- Badge notification pulse --- */
+  .badge--pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    animation: ping 1.5s var(--primitive-motion-easing-default) infinite;
+    background-color: inherit;
+    opacity: 0.75;
+  }
+
+  .badge--pulse {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* --- Toggle switch (standard easing — no bounce/overshoot per motion standards) --- */
+  .toggle__thumb {
+    transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+  }
+
+  /* --- Accordion smooth expand --- */
+  .accordion__panel[data-state="open"] {
+    animation: expandDown var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .accordion__panel[data-state="closed"] {
+    animation: collapseUp var(--primitive-motion-duration-fast) var(--primitive-motion-easing-exit) both;
+  }
+
+  /* --- Dropdown open --- */
+  .dropdown__menu[data-state="open"] {
+    animation: dropdownOpen var(--primitive-motion-duration-fast) var(--primitive-motion-easing-enter) both;
+  }
+
+  /* --- Tooltip enter --- */
+  .tooltip[data-state="open"] {
+    animation: tooltipEnter var(--primitive-motion-duration-micro) var(--primitive-motion-easing-enter) both;
+  }
+
+  /* --- Modal enter/exit --- */
+  .modal[data-state="open"] .modal__container {
+    animation: modalEnter var(--primitive-motion-duration-slow) var(--primitive-motion-easing-enter) both;
+  }
+
+  .modal[data-state="open"] .modal__backdrop {
+    animation: backdropEnter var(--primitive-motion-duration-normal) var(--primitive-motion-easing-default) both;
+  }
+
+  /* --- Toast enter/exit --- */
+  .toast[data-state="entering"] {
+    animation: toastEnter var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter) both;
+  }
+
+  .toast[data-state="exiting"] {
+    animation: toastExit var(--primitive-motion-duration-fast) var(--primitive-motion-easing-exit) both;
+  }
+
+  /* --- Skeleton shimmer (override default) --- */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--primitive-color-neutral-100) 25%,
+      var(--primitive-color-neutral-200) 50%,
+      var(--primitive-color-neutral-100) 75%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  /* --- Progress bar indeterminate --- */
+  .progress--indeterminate .progress__bar {
+    width: 25%;
+    animation: progressIndeterminate 1.5s var(--primitive-motion-easing-default) infinite;
+  }
+
+  /* --- Navigation active indicator slide (GPU-accelerated via transform) --- */
+  .nav__indicator {
+    transition: transform var(--primitive-motion-duration-normal) var(--primitive-motion-easing-default);
+  }
+
+  /* --- Scroll-triggered fade-in (requires JS IntersectionObserver) --- */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--primitive-motion-duration-slow) var(--primitive-motion-easing-enter),
+                transform var(--primitive-motion-duration-slow) var(--primitive-motion-easing-enter);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger support for scroll reveal */
+  .scroll-reveal-stagger > .scroll-reveal:nth-child(1) { transition-delay: 0ms; }
+  .scroll-reveal-stagger > .scroll-reveal:nth-child(2) { transition-delay: 75ms; }
+  .scroll-reveal-stagger > .scroll-reveal:nth-child(3) { transition-delay: 150ms; }
+  .scroll-reveal-stagger > .scroll-reveal:nth-child(4) { transition-delay: 225ms; }
+  .scroll-reveal-stagger > .scroll-reveal:nth-child(5) { transition-delay: 300ms; }
+  .scroll-reveal-stagger > .scroll-reveal:nth-child(6) { transition-delay: 375ms; }
+}
+
+/* ========================================================================
+   ESSENTIAL ANIMATIONS (always active — loading, focus)
+   ======================================================================== */
+
+/* Spin is essential for loading indicators */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Focus ring animation is essential for accessibility */
+@keyframes focusRingPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+  50% { box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.1); }
+}

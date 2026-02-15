@@ -1,0 +1,52 @@
+{
+  "$description": "Primitive keyframe animation tokens — durations and distances for standard entrance/exit/feedback animations",
+  "primitive": {
+    "animation": {
+      "$description": "Named animation presets with distance and opacity parameters",
+      "fadeIn": {
+        "distance": { "$value": "0px", "$type": "dimension" },
+        "opacity": { "$value": "0", "$type": "number" }
+      },
+      "fadeInUp": {
+        "distance": { "$value": "10px", "$type": "dimension" },
+        "opacity": { "$value": "0", "$type": "number" }
+      },
+      "fadeInDown": {
+        "distance": { "$value": "-10px", "$type": "dimension" },
+        "opacity": { "$value": "0", "$type": "number" }
+      },
+      "fadeInLeft": {
+        "distance": { "$value": "20px", "$type": "dimension" },
+        "opacity": { "$value": "0", "$type": "number" }
+      },
+      "fadeInRight": {
+        "distance": { "$value": "-20px", "$type": "dimension" },
+        "opacity": { "$value": "0", "$type": "number" }
+      },
+      "scaleIn": {
+        "from": { "$value": "0.95", "$type": "number" },
+        "opacity": { "$value": "0", "$type": "number" }
+      },
+      "slideInUp": {
+        "distance": { "$value": "100%", "$type": "dimension" }
+      },
+      "slideInDown": {
+        "distance": { "$value": "-100%", "$type": "dimension" }
+      },
+      "shimmer": {
+        "angle": { "$value": "90deg", "$type": "dimension" }
+      },
+      "pulse": {
+        "scale": { "$value": "1.05", "$type": "number" }
+      },
+      "spin": {
+        "from": { "$value": "0deg", "$type": "dimension" },
+        "to": { "$value": "360deg", "$type": "dimension" }
+      },
+      "stagger": {
+        "delay": { "$value": "75ms", "$type": "duration", "$description": "Default stagger delay between list items" },
+        "maxDelay": { "$value": "500ms", "$type": "duration", "$description": "Maximum cumulative stagger delay" }
+      }
+    }
+  }
+}
