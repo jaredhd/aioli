@@ -2,14 +2,19 @@
  * Aioli Design System -- Theme Builder
  *
  * Interactive page for customising Aioli's design tokens in real-time.
- * Users pick colors, radius, and typography overrides, see a live component
- * preview, then export the resulting CSS or JSON.
+ * Features:
+ * - 6 named theme presets (Default, Glass, Neumorphic, Brutalist, Gradient, Dark Luxury)
+ * - Smart palette auto-derivation from a single primary color
+ * - Manual color, radius, and typography controls
+ * - Live component preview
+ * - CSS/JSON export
  *
- * Uses the theming API from lib/theme.js (createTheme, applyTheme).
+ * Uses the theming API from lib/theme.js and lib/theme-presets.js.
  */
 
 import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { createTheme, applyTheme } from '../../lib/theme.js';
+import { THEME_PRESETS, derivePalette, listPresets } from '../../lib/theme-presets.js';
 import { COMPONENT_TEMPLATES } from '../../agents/component-generator-agent.js';
 
 // ---------------------------------------------------------------------------
@@ -55,6 +60,16 @@ const COMPONENT_DEFAULTS = {
   tabs:    {},
 };
 
+/** Preset metadata with emoji icons. */
+const PRESET_INFO = [
+  { name: 'default', emoji: '\u2728', label: 'Clean' },
+  { name: 'glass', emoji: '\uD83E\uDE9F', label: 'Glass' },
+  { name: 'neumorphic', emoji: '\uD83D\uDCA0', label: 'Neumorphic' },
+  { name: 'brutalist', emoji: '\u26A1', label: 'Brutalist' },
+  { name: 'gradient', emoji: '\uD83C\uDF08', label: 'Gradient' },
+  { name: 'darkLuxury', emoji: '\uD83D\uDC51', label: 'Dark Luxury' },
+];
+
 // ---------------------------------------------------------------------------
 // Main ThemeBuilder component
 // ---------------------------------------------------------------------------
@@ -63,6 +78,8 @@ export default function ThemeBuilder() {
   // -- State ----------------------------------------------------------------
 
   const [darkMode, setDarkMode] = useState(false);
+  const [activePreset, setActivePreset] = useState('default');
+  const [smartDerive, setSmartDerive] = useState(false);
   const [colors, setColors] = useState(() =>
     Object.fromEntries(COLOR_CONTROLS.map((c) => [c.token, c.defaultValue]))
   );
@@ -85,10 +102,48 @@ export default function ThemeBuilder() {
     });
   }, []);
 
+  // -- Preset selection -----------------------------------------------------
+
+  const handlePresetChange = useCallback((presetName) => {
+    setActivePreset(presetName);
+
+    // If the preset has custom surface colors, apply them (like darkLuxury)
+    const preset = THEME_PRESETS[presetName];
+    if (!preset) return;
+
+    // Reset colors to defaults when switching presets
+    setColors(Object.fromEntries(COLOR_CONTROLS.map((c) => [c.token, c.defaultValue])));
+
+    // Apply preset-specific radius if defined
+    const presetRadius = preset.overrides['primitive.radius.md'];
+    if (presetRadius) {
+      setRadius(presetRadius);
+    }
+
+    // DarkLuxury sets dark mode automatically
+    if (presetName === 'darkLuxury') {
+      if (!darkMode) {
+        setDarkMode(true);
+        document.documentElement.dataset.theme = 'dark';
+      }
+    }
+  }, [darkMode]);
+
   // -- Build overrides from current state -----------------------------------
 
   const overrides = useMemo(() => {
-    const o = { ...colors };
+    // Start with preset overrides
+    const preset = THEME_PRESETS[activePreset];
+    const o = { ...(preset ? preset.overrides : {}) };
+
+    // Apply smart derivation if enabled
+    if (smartDerive && colors['semantic.color.primary.default']) {
+      const derived = derivePalette(colors['semantic.color.primary.default']);
+      Object.assign(o, derived);
+    }
+
+    // Apply manual color overrides (on top of preset)
+    Object.assign(o, colors);
 
     // Radius overrides
     o['primitive.radius.sm'] = radius === '0px' ? '0px' : `calc(${radius} * 0.5)`;
@@ -100,12 +155,11 @@ export default function ThemeBuilder() {
     o['primitive.font.family.sans'] = font;
 
     return o;
-  }, [colors, radius, font]);
+  }, [colors, radius, font, activePreset, smartDerive]);
 
   // -- Apply theme live on every change ------------------------------------
 
   useEffect(() => {
-    // Cleanup previous theme
     if (cleanupRef.current) {
       cleanupRef.current();
     }
@@ -142,10 +196,16 @@ export default function ThemeBuilder() {
   // -- Reset to defaults ---------------------------------------------------
 
   const handleReset = useCallback(() => {
+    setActivePreset('default');
+    setSmartDerive(false);
     setColors(Object.fromEntries(COLOR_CONTROLS.map((c) => [c.token, c.defaultValue])));
     setRadius('8px');
     setFont(FONT_PRESETS[0].value);
-  }, []);
+    if (darkMode) {
+      setDarkMode(false);
+      delete document.documentElement.dataset.theme;
+    }
+  }, [darkMode]);
 
   // -- Copy to clipboard ---------------------------------------------------
 
@@ -215,6 +275,55 @@ export default function ThemeBuilder() {
       <div className="tb-layout">
         {/* -- Controls panel -------------------------------------------- */}
         <aside className="tb-controls">
+          {/* -- Preset selection --------------------------------------- */}
+          <div className="tb-controls__section">
+            <h2 className="tb-controls__heading">Design Preset</h2>
+            <div className="tb-controls__preset-grid">
+              {PRESET_INFO.map((p) => (
+                <button
+                  key={p.name}
+                  type="button"
+                  className={`tb-controls__preset${activePreset === p.name ? ' tb-controls__preset--active' : ''}`}
+                  onClick={() => handlePresetChange(p.name)}
+                  aria-pressed={activePreset === p.name}
+                >
+                  <span className="tb-controls__preset-emoji" aria-hidden="true">{p.emoji}</span>
+                  <span className="tb-controls__preset-label">{p.label}</span>
+                </button>
+              ))}
+            </div>
+            {activePreset !== 'default' && (
+              <p className="tb-controls__preset-desc">
+                {THEME_PRESETS[activePreset]?.description}
+              </p>
+            )}
+          </div>
+
+          {/* -- Smart derivation toggle ------------------------------- */}
+          <div className="tb-controls__section">
+            <div className="tb-controls__smart-row">
+              <label className="tb-controls__heading" htmlFor="smart-derive">
+                Smart Palette
+              </label>
+              <button
+                type="button"
+                id="smart-derive"
+                role="switch"
+                aria-checked={smartDerive}
+                className={`tb-controls__toggle${smartDerive ? ' tb-controls__toggle--on' : ''}`}
+                onClick={() => setSmartDerive((prev) => !prev)}
+              >
+                <span className="tb-controls__toggle-thumb" />
+              </button>
+            </div>
+            <p className="tb-controls__hint">
+              {smartDerive
+                ? 'Auto-deriving hover, active, subtle, muted, gradients, and shadows from your primary color.'
+                : 'Enable to auto-generate a full palette from your primary color.'}
+            </p>
+          </div>
+
+          {/* -- Color controls ---------------------------------------- */}
           <div className="tb-controls__section">
             <h2 className="tb-controls__heading">Colors</h2>
             {COLOR_CONTROLS.map((ctrl) => (
