@@ -14,12 +14,12 @@ Three-layer system:
 ## Key Principles
 
 ### Atomic Design
-Components follow Atomic Design methodology:
-- **Atoms** → Button, Input, Label, Icon, Badge
-- **Molecules** → SearchField, FormGroup, NavLink
-- **Organisms** → Header, Footer, ProductCard
-- **Templates** → BlogLayout, Dashboard
-- **Pages** → Specific instances with real content
+Components follow Atomic Design methodology (43 components):
+- **Atoms** → Button, Input, Badge, Avatar, Spinner, Link, Chip, Divider, Skeleton, Progress, Checkbox, Radio, Rating, Toggle
+- **Molecules** → Tooltip, Select, Textarea, Alert, Tabs, Accordion, Dropdown, Toast, Breadcrumb, Pagination, Stepper, Popover, Form-Group, Search-Autocomplete
+- **Organisms** → Card, Modal, Table, Navigation, Card-Product, Card-Profile, Card-Stats, Hero, Feature-Grid, Pricing-Table, Data-Table, Form-Wizard
+- **Templates** → Layout-Dashboard, Layout-Marketing, Layout-Blog
+- **Pages** → Generated via PAGE_COMPOSITIONS (marketing, dashboard, blog, pricing)
 
 ### Token Hierarchy (3-Tier)
 1. **Primitives** (`tokens/primitives/`) - Raw values, never used directly
@@ -30,18 +30,51 @@ Components follow Atomic Design methodology:
 
 ```
 tokens/
-├── primitives/          # Raw values
-│   ├── colors.json      # Color palette scales
+├── primitives/          # Raw values (6 files)
+│   ├── colors.json      # Color palette scales (14 families)
 │   ├── spacing.json     # Spacing scale (0-96)
 │   ├── typography.json  # Font families, sizes, weights
 │   ├── radius.json      # Border radius scale
+│   ├── shadows.json     # Shadow primitives
 │   └── motion.json      # Durations, easing curves
-├── semantic/            # Intent-based tokens
+├── semantic/            # Intent-based tokens (8 files)
 │   ├── colors.json      # primary, success, danger, etc.
 │   ├── surfaces.json    # Backgrounds, borders, shadows
-│   └── text.json        # Typography hierarchy
-└── components/          # Component-scoped tokens
-    └── button.json      # Button sizes, variants, states
+│   ├── text.json        # Typography hierarchy
+│   ├── gradients.json   # Gradient presets (Tier 1)
+│   ├── glass.json       # Glassmorphism surfaces (Tier 1)
+│   ├── colored-shadows.json  # Colored shadow tokens (Tier 1)
+│   ├── motion.json      # Motion presets, keyframes (Tier 2)
+│   └── focus.json       # Focus ring styles
+└── components/          # Component-scoped tokens (40 files)
+    ├── button.json      # Button sizes, variants, states
+    ├── card.json        # Card variants, sizing
+    ├── ...              # 31 original + 9 enhanced (Tier 4)
+    └── form-wizard.json # Multi-step form wizard
+
+agents/
+├── index.js                      # Agent barrel export
+├── component-generator-agent.js  # 43 templates, 8 style modifiers, 4 page compositions
+├── design-token-agent.js         # Token CRUD, resolution, validation
+├── accessibility-validator-agent.js  # WCAG AA/AAA checks
+├── motion-agent.js               # Animation validation & presets
+├── code-review-agent.js          # Code quality review
+├── orchestrator-agent.js         # Multi-agent coordination
+└── agent-protocol.js             # Shared agent protocol
+
+css/
+├── aioli.css                     # Entry point (imports tokens, base, components)
+├── base.css                      # Reset, dark mode, typography
+├── tokens.css                    # Generated from Style Dictionary
+└── components/
+    ├── index.css                 # 43 component @imports
+    └── *.css                     # Individual component stylesheets (BEM)
+
+src/
+├── playground/                   # AI playground (NL → component)
+├── demo/                         # Component gallery
+├── docs/                         # Interactive documentation
+└── theme-builder/                # Theme customization UI
 ```
 
 ## Token Format
@@ -62,9 +95,12 @@ All tokens follow the W3C DTCG (Design Tokens Community Group) specification:
 
 ```bash
 npm install          # Install dependencies
-npm run build        # Build tokens → CSS, JS, JSON
+npm run build        # Build tokens → CSS, JS, JSON (1,543 tokens)
 npm run build:watch  # Watch mode
+npm run validate     # Validate all token references (0 errors)
+npm run test         # Run vitest suite (225 tests)
 npm run clean        # Clear dist folder
+npm run dev          # Vite dev server (playground, demo, docs)
 ```
 
 ## Standards to Enforce
@@ -103,3 +139,45 @@ npm run clean        # Clear dist folder
 3. Include all interactive states (hover, focus, active, disabled)
 4. Support `prefers-reduced-motion`
 5. Ensure WCAG AA contrast ratios
+
+## Visual Enhancements (Tiers 1-5)
+
+### Tier 1: Visual Foundation
+- Colored shadows (`semantic-shadow-colored-*`), gradients (`semantic-gradient-*`)
+- Glassmorphism surfaces (`semantic-glass-*`), backdrop blur tokens
+- Button depth/3D styles, neumorphic effects
+
+### Tier 2: Motion System
+- Entrance animations (fade-in, slide-up, scale-in, blur-in)
+- Hover micro-interactions (lift, glow, scale, wiggle)
+- Page transitions (fade, slide, zoom)
+- `prefers-reduced-motion` always respected
+
+### Tier 3: Theme Presets
+- 6 built-in themes: minimal, vibrant, corporate, warm, cool, high-contrast
+- Smart palette auto-derivation from a single base color
+- HSL manipulation for generating full color scales
+
+### Tier 4: Component Sophistication
+- 12 enhanced templates: card-product, card-profile, card-stats, hero, feature-grid, pricing-table, layout-dashboard, layout-marketing, layout-blog, search-autocomplete, data-table, form-wizard
+- 43 total component templates (up from 31)
+- 40 component token files, 1,543 total tokens
+
+### Tier 5: Smarter NL Parsing
+- 8 style modifiers: glass, gradient, neumorphic, brutalist, elevated, dark-luxury, colored-shadow, animated
+- 4 page compositions: marketing-page, dashboard-page, blog-page, pricing-page
+- Modifiers applied via NL (e.g., "glassmorphic card with title")
+- Full page generation from single prompt (e.g., "marketing landing page")
+- New handleRequest actions: `generatePageComposition`, `listPageCompositions`, `listStyleModifiers`
+
+## Exported Constants
+
+```js
+import {
+  COMPONENT_TEMPLATES,  // 43 component template definitions
+  STYLE_MODIFIERS,      // 8 visual style modifiers
+  PAGE_COMPOSITIONS,    // 4 page composition templates
+  createComponentGenerator,
+  createAgentSystem,
+} from './agents/index.js';
+```

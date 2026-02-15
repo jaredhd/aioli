@@ -27,6 +27,8 @@ import {
   ComponentGeneratorAgent,
   createComponentGenerator as _createComponentGenerator,
   COMPONENT_TEMPLATES,
+  STYLE_MODIFIERS,
+  PAGE_COMPOSITIONS,
 } from './component-generator-agent.js';
 import {
   CodeReviewAgent,
@@ -45,7 +47,7 @@ export { OrchestratorAgent };
 export const createOrchestrator = _createOrchestrator;
 export { MotionAgent, DURATION, EASING, ANIMATION_TYPES, ALLOWED_PROPERTIES, PROHIBITED_PROPERTIES };
 export const createMotionAgent = _createMotionAgent;
-export { ComponentGeneratorAgent, COMPONENT_TEMPLATES };
+export { ComponentGeneratorAgent, COMPONENT_TEMPLATES, STYLE_MODIFIERS, PAGE_COMPOSITIONS };
 export const createComponentGenerator = _createComponentGenerator;
 export { CodeReviewAgent, REVIEW_CATEGORIES, SEVERITY };
 export const createCodeReviewAgent = _createCodeReviewAgent;
@@ -57,7 +59,7 @@ export const AGENT_STATUS = {
   'accessibility-validator': { version: '1.1.0', status: 'active', features: ['suggestFixes'] },
   'orchestrator': { version: '1.0.0', status: 'active' },
   'motion-animation': { version: '1.0.0', status: 'active', features: ['presets', 'validation', 'applyFix'] },
-  'component-generator': { version: '1.0.0', status: 'active', features: ['generate', 'nlParsing', 'applyFix'] },
+  'component-generator': { version: '2.0.0', status: 'active', features: ['generate', 'nlParsing', 'applyFix', 'styleModifiers', 'pageCompositions'] },
   'code-review': { version: '1.0.0', status: 'active', features: ['review', 'quickCheck', 'suggestFixes'] },
 };
 
