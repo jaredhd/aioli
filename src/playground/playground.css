@@ -691,3 +691,92 @@
     transition: none;
   }
 }
+
+
+/* ===================================================================== */
+/*  10. TIER 5 — METADATA BAR, MODIFIERS, PAGE COMPOSITIONS               */
+/* ===================================================================== */
+
+/* -- Metadata bar ----------------------------------------------------- */
+.pg-result__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-4);
+  border-bottom: 1px solid var(--semantic-border-default);
+  font-size: var(--primitive-font-size-sm);
+  background-color: var(--semantic-surface-page-subtle);
+}
+
+.pg-result__meta-type {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  color: var(--semantic-text-secondary);
+  font-weight: var(--primitive-font-weight-medium);
+}
+
+.pg-result__meta-name {
+  font-family: var(--primitive-font-family-mono);
+  font-size: var(--primitive-font-size-xs);
+  background-color: var(--primitive-color-neutral-100);
+  padding: 2px 6px;
+  border-radius: var(--primitive-radius-sm);
+  color: var(--semantic-color-primary-default);
+}
+
+.pg-result__meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--primitive-radius-full);
+  font-size: var(--primitive-font-size-xs);
+  font-weight: var(--primitive-font-weight-medium);
+  background-color: var(--primitive-color-neutral-100);
+  color: var(--semantic-text-secondary);
+}
+
+.pg-result__meta-badge--page {
+  background-color: var(--semantic-color-primary-muted);
+  color: var(--semantic-color-primary-default);
+}
+
+.pg-result__meta-badge--modifier {
+  background-color: rgba(217, 119, 6, 0.1);
+  color: #b45309;
+}
+
+[data-theme="dark"] .pg-result__meta-badge--modifier {
+  background-color: rgba(217, 119, 6, 0.2);
+  color: #fbbf24;
+}
+
+/* -- Modifier reference badge ----------------------------------------- */
+.pg-reference__badge--modifier {
+  background-color: rgba(217, 119, 6, 0.1);
+  color: #b45309;
+}
+
+[data-theme="dark"] .pg-reference__badge--modifier {
+  background-color: rgba(217, 119, 6, 0.2);
+  color: #fbbf24;
+}
+
+/* -- Page composition preview ----------------------------------------- */
+.pg-panel--preview .page-composition {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-8);
+}
+
+.pg-panel--preview .page-composition > * {
+  max-width: 100%;
+}
+
+/* Style modifier wrapper */
+.style-modifier-wrapper {
+  border-radius: var(--primitive-radius-lg);
+  padding: var(--primitive-spacing-4);
+}

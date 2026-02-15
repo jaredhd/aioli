@@ -1923,6 +1923,129 @@ export const COMPONENT_TEMPLATES = {
   },
 };
 
+// ============================================================================
+// STYLE MODIFIERS — visual style overrides applied on top of base components
+// ============================================================================
+
+/**
+ * Style modifiers that can be applied to any component via NL descriptions.
+ * Each modifier adds CSS classes, wrapper styles, or token overrides.
+ */
+export const STYLE_MODIFIERS = {
+  glass: {
+    keywords: ['glass', 'glassmorphic', 'frosted', 'translucent', 'blur'],
+    description: 'Frosted glass effect with backdrop blur',
+    cssClasses: ['card--glass'],
+    wrapperStyle: 'backdrop-filter: blur(var(--semantic-backdrop-blur-md)); -webkit-backdrop-filter: blur(var(--semantic-backdrop-blur-md)); background: var(--semantic-glass-surface-light); border: 1px solid var(--semantic-glass-border-light);',
+    tokenOverrides: {
+      background: 'var(--semantic-glass-surface-light)',
+      borderColor: 'var(--semantic-glass-border-light)',
+    },
+  },
+  gradient: {
+    keywords: ['gradient', 'colorful', 'vibrant', 'rainbow'],
+    description: 'Gradient background or accent',
+    cssClasses: ['card--gradient'],
+    wrapperStyle: 'background: var(--semantic-gradient-primary-default);',
+    tokenOverrides: {
+      background: 'var(--semantic-gradient-primary-default)',
+    },
+  },
+  neumorphic: {
+    keywords: ['neumorphic', 'neumorphism', 'soft', 'embossed'],
+    description: 'Soft shadow neumorphism effect',
+    cssClasses: [],
+    wrapperStyle: 'background: var(--primitive-color-neutral-100); box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.7); border-radius: var(--primitive-radius-xl); border: none;',
+    tokenOverrides: {},
+  },
+  brutalist: {
+    keywords: ['brutalist', 'brutal', 'harsh', 'raw', 'bold border'],
+    description: 'Thick borders, hard shadows, stark contrast',
+    cssClasses: [],
+    wrapperStyle: 'border: 3px solid var(--semantic-text-default); box-shadow: 4px 4px 0 var(--semantic-text-default); border-radius: 0;',
+    tokenOverrides: {},
+  },
+  elevated: {
+    keywords: ['elevated', 'floating', 'raised', 'lifted'],
+    description: 'Strong elevation with large shadow',
+    cssClasses: ['card--elevated'],
+    wrapperStyle: 'box-shadow: var(--semantic-shadow-xl);',
+    tokenOverrides: {},
+  },
+  'dark-luxury': {
+    keywords: ['luxury', 'premium', 'elegant', 'gold', 'dark luxury'],
+    description: 'Dark background with gold accents',
+    cssClasses: [],
+    wrapperStyle: 'background: var(--primitive-color-neutral-900); color: var(--primitive-color-neutral-100); border: 1px solid rgba(217, 119, 6, 0.3); box-shadow: 0 4px 12px -2px rgba(217, 119, 6, 0.2);',
+    tokenOverrides: {},
+  },
+  'colored-shadow': {
+    keywords: ['glow', 'colored shadow', 'tinted shadow', 'neon'],
+    description: 'Color-tinted shadow matching the component variant',
+    cssClasses: ['card--primary-shadow'],
+    wrapperStyle: 'box-shadow: var(--semantic-shadow-colored-primary-md);',
+    tokenOverrides: {},
+  },
+  animated: {
+    keywords: ['animated', 'animate', 'entrance', 'fade in', 'slide in'],
+    description: 'Entrance animation applied',
+    cssClasses: ['animate-fade-in-up'],
+    wrapperStyle: '',
+    tokenOverrides: {},
+  },
+};
+
+// ============================================================================
+// PAGE COMPOSITIONS — full page layouts generated from descriptions
+// ============================================================================
+
+/**
+ * Page compositions combine multiple component templates into full pages.
+ * Triggered when the NL description mentions a page type or multiple sections.
+ */
+export const PAGE_COMPOSITIONS = {
+  'marketing-page': {
+    keywords: ['marketing page', 'landing page', 'homepage', 'product page'],
+    description: 'Full marketing landing page',
+    sections: ['layout-marketing'],
+    components: [
+      { type: 'hero', props: { headline: 'Build Something Amazing', subheadline: 'The modern way to create beautiful products', description: 'A comprehensive platform that helps you design, build, and ship faster.', primaryCta: 'Get Started', secondaryCta: 'Learn More', alignment: 'center' } },
+      { type: 'feature-grid', props: { features: [{ icon: '🎨', title: 'Beautiful Design', description: 'Pixel-perfect components built with design tokens.' }, { icon: '⚡', title: 'Lightning Fast', description: 'Optimized for performance with GPU-accelerated animations.' }, { icon: '♿', title: 'Accessible', description: 'WCAG AA compliant with full keyboard navigation.' }, { icon: '🌙', title: 'Dark Mode', description: 'Automatic dark mode support via design tokens.' }, { icon: '📱', title: 'Responsive', description: 'Mobile-first design that works on any screen size.' }, { icon: '🧩', title: 'Composable', description: 'Mix and match components to build any layout.' }] } },
+      { type: 'pricing-table', props: { name: 'Pro', price: '$29', period: '/month', features: [{ label: 'Unlimited projects', included: true }, { label: 'Priority support', included: true }, { label: 'Custom themes', included: true }, { label: 'API access', included: true }], cta: 'Start Free Trial', highlighted: true } },
+    ],
+  },
+  'dashboard-page': {
+    keywords: ['dashboard page', 'admin page', 'admin dashboard', 'app page'],
+    description: 'Admin dashboard with sidebar, stats, and data table',
+    sections: ['layout-dashboard'],
+    components: [
+      { type: 'card-stats', props: { label: 'Total Revenue', value: '$45,231', change: '+12.5%', changeDirection: 'up', icon: '💰' } },
+      { type: 'card-stats', props: { label: 'Active Users', value: '2,345', change: '+8.2%', changeDirection: 'up', icon: '👥' } },
+      { type: 'card-stats', props: { label: 'Conversion Rate', value: '3.24%', change: '-0.4%', changeDirection: 'down', icon: '📊' } },
+      { type: 'data-table', props: { columns: [{ label: 'Name', key: 'name' }, { label: 'Status', key: 'status' }, { label: 'Revenue', key: 'revenue' }], rows: [{ name: 'Project Alpha', status: 'Active', revenue: '$12,400' }, { name: 'Project Beta', status: 'Review', revenue: '$8,200' }, { name: 'Project Gamma', status: 'Active', revenue: '$24,600' }], searchable: true, sortable: true } },
+    ],
+  },
+  'blog-page': {
+    keywords: ['blog page', 'article page', 'post page', 'blog'],
+    description: 'Blog article with sidebar TOC',
+    sections: ['layout-blog'],
+    components: [
+      { type: 'card', props: { title: 'Getting Started with Design Tokens', content: 'Design tokens are the visual design atoms of the design system — specifically, they are named entities that store visual design attributes.' } },
+    ],
+  },
+  'pricing-page': {
+    keywords: ['pricing page', 'plans page', 'subscription page'],
+    description: 'Pricing comparison page with multiple plan cards',
+    sections: [],
+    components: [
+      { type: 'hero', props: { headline: 'Simple, Transparent Pricing', subheadline: 'Choose the plan that works for you', alignment: 'center' } },
+      { type: 'pricing-table', props: { name: 'Starter', price: '$0', period: '/month', description: 'Perfect for side projects', features: [{ label: '3 projects', included: true }, { label: 'Basic support', included: true }, { label: 'Custom themes', included: false }, { label: 'API access', included: false }], cta: 'Get Started' } },
+      { type: 'pricing-table', props: { name: 'Pro', price: '$29', period: '/month', description: 'For growing teams', features: [{ label: 'Unlimited projects', included: true }, { label: 'Priority support', included: true }, { label: 'Custom themes', included: true }, { label: 'API access', included: false }], cta: 'Start Free Trial', highlighted: true } },
+      { type: 'pricing-table', props: { name: 'Enterprise', price: '$99', period: '/month', description: 'For large organizations', features: [{ label: 'Unlimited projects', included: true }, { label: '24/7 support', included: true }, { label: 'Custom themes', included: true }, { label: 'API access', included: true }], cta: 'Contact Sales' } },
+    ],
+  },
+};
+
 // Helper for alert icons
 function getAlertIcon(variant) {
   const icons = {
@@ -2057,6 +2180,36 @@ export class ComponentGeneratorAgent {
 
       const result = template.template(props);
 
+      // Apply style modifiers if present
+      if (props._styleModifiers && props._styleModifiers.length > 0) {
+        const modifierClasses = [];
+        const modifierStyles = [];
+        for (const modName of props._styleModifiers) {
+          const mod = STYLE_MODIFIERS[modName];
+          if (mod) {
+            modifierClasses.push(...(mod.cssClasses || []));
+            if (mod.wrapperStyle) modifierStyles.push(mod.wrapperStyle);
+          }
+        }
+
+        // Add modifier classes to the root element
+        if (modifierClasses.length > 0) {
+          const classStr = modifierClasses.join(' ');
+          // Try to add to the first element's class attribute
+          result.html = result.html.replace(
+            /class="([^"]*?)"/,
+            (match, existing) => `class="${existing} ${classStr}"`
+          );
+        }
+
+        // Wrap with modifier styles if needed
+        if (modifierStyles.length > 0) {
+          result.html = `<div class="style-modifier-wrapper" style="${modifierStyles.join(' ')}">\n${result.html}\n</div>`;
+        }
+
+        result.styleModifiers = props._styleModifiers;
+      }
+
       // Resolve tokens if token agent is available
       if (this.tokenAgent && result.tokens) {
         result.resolvedTokens = this.resolveTokens(result.tokens);
@@ -2087,13 +2240,86 @@ export class ComponentGeneratorAgent {
    * @returns {Object} Generated component(s)
    */
   generateFromDescription(description) {
+    // Check for page composition first
+    const descLower = description.toLowerCase();
+    const pageKeywords = ['page', 'layout', 'full page', 'website', 'site', 'landing'];
+    const isPageRequest = pageKeywords.some(kw => descLower.includes(kw));
+
+    if (isPageRequest) {
+      const pageResult = this.generatePageComposition(description);
+      if (!pageResult.error) {
+        return pageResult;
+      }
+      // Fall through to single component if page composition didn't match
+    }
+
     const parsed = this.parseDescription(description);
-    
+
     if (parsed.error) {
       return parsed;
     }
 
     return this.generate(parsed.componentType, parsed.props);
+  }
+
+  /**
+   * Generate a full page composition from a description
+   * @param {string} description - Natural language page description
+   * @returns {Object} Composed page with multiple components
+   */
+  generatePageComposition(description) {
+    const desc = description.toLowerCase();
+
+    // Check for page composition matches
+    let matchedPage = null;
+    for (const [pageType, composition] of Object.entries(PAGE_COMPOSITIONS)) {
+      for (const keyword of composition.keywords) {
+        if (desc.includes(keyword)) {
+          matchedPage = { type: pageType, ...composition };
+          break;
+        }
+      }
+      if (matchedPage) break;
+    }
+
+    if (!matchedPage) {
+      return {
+        error: true,
+        message: 'Could not determine page type from description',
+        suggestion: 'Try: "marketing page", "dashboard page", "pricing page", "blog page"',
+        availablePages: Object.keys(PAGE_COMPOSITIONS),
+      };
+    }
+
+    // Generate each component in the composition
+    const sections = [];
+    for (const compDef of matchedPage.components) {
+      const generated = this.generate(compDef.type, compDef.props || {});
+      if (!generated.error) {
+        sections.push(generated);
+      }
+    }
+
+    // Compose the full page HTML
+    const pageHtml = sections.map(s => s.html).join('\n\n<!-- Section divider -->\n\n');
+
+    // Combine all tokens
+    const allTokens = [...new Set(sections.flatMap(s => s.tokens || []))];
+
+    return {
+      type: 'page-composition',
+      pageType: matchedPage.type,
+      description: matchedPage.description,
+      html: `<div class="page-composition page-composition--${matchedPage.type}">\n${pageHtml}\n</div>`,
+      sections,
+      tokens: allTokens,
+      sectionCount: sections.length,
+      a11y: {
+        role: 'document',
+        landmarks: true,
+        headingHierarchy: true,
+      },
+    };
   }
 
   /**
@@ -2234,6 +2460,20 @@ export class ComponentGeneratorAgent {
     if (labelMatch) {
       props.children = labelMatch[1];
       props.label = labelMatch[1];
+    }
+
+    // Style modifiers
+    const detectedModifiers = [];
+    for (const [modName, mod] of Object.entries(STYLE_MODIFIERS)) {
+      for (const keyword of mod.keywords) {
+        if (desc.includes(keyword)) {
+          detectedModifiers.push(modName);
+          break;
+        }
+      }
+    }
+    if (detectedModifiers.length > 0) {
+      props._styleModifiers = detectedModifiers;
     }
 
     return props;
@@ -2593,6 +2833,32 @@ export class ComponentGeneratorAgent {
 
         case 'applyFix':
           return this.applyFix(request.fix);
+
+        case 'generatePageComposition':
+          return {
+            success: true,
+            data: this.generatePageComposition(request.description),
+          };
+
+        case 'listPageCompositions':
+          return {
+            success: true,
+            data: Object.entries(PAGE_COMPOSITIONS).map(([name, comp]) => ({
+              name,
+              description: comp.description,
+              componentCount: comp.components.length,
+            })),
+          };
+
+        case 'listStyleModifiers':
+          return {
+            success: true,
+            data: Object.entries(STYLE_MODIFIERS).map(([name, mod]) => ({
+              name,
+              description: mod.description,
+              keywords: mod.keywords,
+            })),
+          };
 
         default:
           return { success: false, error: `Unknown action: ${action}` };

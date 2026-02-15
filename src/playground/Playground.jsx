@@ -12,6 +12,8 @@
 import React, { useState, useCallback, useRef, useMemo } from 'react';
 import {
   COMPONENT_TEMPLATES,
+  STYLE_MODIFIERS,
+  PAGE_COMPOSITIONS,
   createComponentGenerator,
 } from '../../agents/component-generator-agent.js';
 
@@ -22,15 +24,15 @@ import {
 /** Suggested prompts for the placeholder carousel / quick-pick chips. */
 const SUGGESTIONS = [
   'large primary button with icon',
-  'danger alert with dismiss',
-  'elevated card with title',
-  'success badge',
-  'outlined input with error',
-  'tabs with three panels',
-  'warning toast notification',
-  'striped table with 3 rows',
-  'stepper with 4 steps',
-  'modal dialog with confirm',
+  'glassmorphic card with title',
+  'gradient danger button',
+  'neumorphic input field',
+  'marketing landing page',
+  'dashboard page with stats',
+  'elevated product card on sale',
+  'dark luxury pricing table',
+  'animated feature grid',
+  'brutalist alert notification',
 ];
 
 /** Instantiate a generator once (no token/motion agents needed for preview). */
@@ -253,6 +255,31 @@ export default function Playground() {
               ))}
             </nav>
 
+            {/* -- Metadata bar ------------------------------------------ */}
+            <div className="pg-result__meta">
+              <span className="pg-result__meta-type">
+                {result.type === 'page-composition' ? '📄 Page' : `🧩 ${result.category || 'Component'}`}
+                {result.type !== 'page-composition' && result.type && (
+                  <code className="pg-result__meta-name">{result.type}</code>
+                )}
+              </span>
+              {result.pageType && (
+                <span className="pg-result__meta-badge pg-result__meta-badge--page">
+                  {result.pageType}
+                </span>
+              )}
+              {result.styleModifiers && result.styleModifiers.map((mod) => (
+                <span key={mod} className="pg-result__meta-badge pg-result__meta-badge--modifier">
+                  ✨ {mod}
+                </span>
+              ))}
+              {result.sectionCount && (
+                <span className="pg-result__meta-badge">
+                  {result.sectionCount} sections
+                </span>
+              )}
+            </div>
+
             {/* -- Preview panel ----------------------------------------- */}
             {activeTab === 'preview' && (
               <div className="pg-panel pg-panel--preview">
@@ -344,6 +371,54 @@ export default function Playground() {
               <span className="pg-reference__name">{c.name}</span>
               <span className={`pg-reference__badge pg-reference__badge--${c.category}`}>
                 {c.category}
+              </span>
+            </button>
+          ))}
+        </div>
+      </details>
+
+      {/* ================================================================= */}
+      {/* STYLE MODIFIERS REFERENCE                                          */}
+      {/* ================================================================= */}
+      <details className="pg-reference">
+        <summary className="pg-reference__summary">
+          Style Modifiers ({Object.keys(STYLE_MODIFIERS).length})
+        </summary>
+        <div className="pg-reference__grid">
+          {Object.entries(STYLE_MODIFIERS).map(([name, mod]) => (
+            <button
+              key={name}
+              type="button"
+              className="pg-reference__item"
+              onClick={() => handleSuggestion(`${name} card with title`)}
+            >
+              <span className="pg-reference__name">{name}</span>
+              <span className="pg-reference__badge pg-reference__badge--modifier">
+                modifier
+              </span>
+            </button>
+          ))}
+        </div>
+      </details>
+
+      {/* ================================================================= */}
+      {/* PAGE COMPOSITIONS REFERENCE                                        */}
+      {/* ================================================================= */}
+      <details className="pg-reference">
+        <summary className="pg-reference__summary">
+          Page Compositions ({Object.keys(PAGE_COMPOSITIONS).length})
+        </summary>
+        <div className="pg-reference__grid">
+          {Object.entries(PAGE_COMPOSITIONS).map(([name, comp]) => (
+            <button
+              key={name}
+              type="button"
+              className="pg-reference__item"
+              onClick={() => handleSuggestion(comp.keywords[0])}
+            >
+              <span className="pg-reference__name">{name}</span>
+              <span className="pg-reference__badge pg-reference__badge--template">
+                {comp.components.length} sections
               </span>
             </button>
           ))}
