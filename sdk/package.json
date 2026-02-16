@@ -1,0 +1,38 @@
+{
+  "name": "@aioli/sdk",
+  "version": "0.1.0",
+  "description": "JavaScript SDK for the Aioli Design System — generate accessible UI components, validate code, and manage design tokens",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./http": "./http-client.js",
+    "./direct": "./direct-client.js"
+  },
+  "keywords": [
+    "design-system",
+    "accessibility",
+    "wcag",
+    "ai",
+    "components",
+    "design-tokens",
+    "aioli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaredhd/aioli",
+    "directory": "sdk"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "peerDependencies": {
+    "aioli-design": ">=0.2.0"
+  },
+  "peerDependenciesMeta": {
+    "aioli-design": {
+      "optional": true
+    }
+  }
+}
