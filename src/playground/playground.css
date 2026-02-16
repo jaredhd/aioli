@@ -776,3 +776,26 @@
 }
 
 /* Style modifiers applied inline — no wrapper needed */
+
+/* ===================================================================== */
+/* FOOTER                                                                */
+/* ===================================================================== */
+
+.pg-footer {
+  margin-top: var(--primitive-spacing-12);
+  padding: var(--primitive-spacing-8) var(--primitive-spacing-6);
+  text-align: center;
+  border-top: 1px solid var(--semantic-border-default, #e2e8f0);
+}
+
+.pg-footer__text {
+  margin: 0 0 var(--primitive-spacing-2) 0;
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-secondary, #64748b);
+}
+
+.pg-footer__license {
+  margin: 0;
+  font-size: var(--primitive-font-size-xs);
+  color: var(--semantic-text-muted, #94a3b8);
+}

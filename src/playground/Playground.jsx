@@ -169,7 +169,7 @@ export default function Playground() {
       {/* ================================================================= */}
       <section className="pg-prompt">
         <label htmlFor="pg-input" className="pg-prompt__label">
-          Describe a component in plain English
+          Describe any component or full page &mdash; Aioli generates accessible, themed HTML for free
         </label>
 
         <div className="pg-prompt__bar">
@@ -424,6 +424,19 @@ export default function Playground() {
           ))}
         </div>
       </details>
+
+      {/* ================================================================= */}
+      {/* FOOTER                                                            */}
+      {/* ================================================================= */}
+      <footer className="pg-footer">
+        <p className="pg-footer__text">
+          Aioli is free and open source. The same AI-powered design tools that
+          premium platforms charge for &mdash; accessible to everyone.
+        </p>
+        <p className="pg-footer__license">
+          MIT License &mdash; Free forever. That&apos;s the point.
+        </p>
+      </footer>
     </div>
   );
 }

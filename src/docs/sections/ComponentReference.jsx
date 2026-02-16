@@ -11,7 +11,7 @@ export default function ComponentReference() {
       {/* Introduction                                                       */}
       {/* ------------------------------------------------------------------ */}
       <p className="docs-section__text">
-        Aioli ships 31 component templates following Atomic Design methodology.
+        Aioli ships 43 component templates following Atomic Design methodology.
         Every component uses semantic design tokens, includes proper ARIA
         attributes, supports keyboard navigation, and respects{' '}
         <code>prefers-reduced-motion</code>.

@@ -27,7 +27,7 @@ const FEATURES = [
   {
     icon: '\uD83C\uDFA8',
     title: 'Design Tokens',
-    desc: '1,258 tokens in W3C DTCG format across three tiers: primitives, semantic, and component-scoped. Build to CSS, JSON, or SCSS.',
+    desc: '1,543 tokens in W3C DTCG format across three tiers: primitives, semantic, and component-scoped. Build to CSS, JSON, or SCSS.',
   },
   {
     icon: '\uD83E\uDD16',
@@ -36,32 +36,32 @@ const FEATURES = [
   },
   {
     icon: '\u267F',
-    title: 'Accessibility',
-    desc: 'WCAG 2.1 AA enforced by default. Automated contrast auditing, semantic HTML validation, ARIA checks, and fix suggestions.',
+    title: 'Accessibility First',
+    desc: 'WCAG 2.1 AA enforced from the start. 120/120 contrast pairs pass across all 6 themes. Semantic HTML, ARIA, keyboard nav \u2014 not an afterthought.',
   },
   {
     icon: '\uD83E\uDDE9',
-    title: 'Components',
-    desc: '31 production-ready components following Atomic Design. 15 atoms, 10 molecules, 4 organisms \u2014 all keyboard accessible.',
+    title: '43 Components',
+    desc: 'Atoms, molecules, organisms, templates, and full pages \u2014 all from natural language. 8 style modifiers and 4 page compositions built in.',
   },
   {
-    icon: '\u2328\uFE0F',
-    title: 'CLI',
-    desc: '6 commands: init, build, validate, generate, audit, export. Generate components from natural language descriptions.',
+    icon: '\uD83D\uDD17',
+    title: 'MCP Server',
+    desc: '12 tools via Model Context Protocol. Plug Aioli into Claude, Cursor, Copilot, or any AI coding tool. No API keys required.',
   },
   {
     icon: '\uD83C\uDFAD',
-    title: 'Theming',
-    desc: 'Runtime theme overrides via CSS custom properties. Built-in dark mode with createDarkTheme(). Token-to-CSS variable mapping.',
+    title: '6 Theme Presets',
+    desc: 'Default, Glass, Neumorphic, Brutalist, Gradient, Dark Luxury \u2014 all WCAG AA verified. Derive a full palette from one brand color.',
   },
 ];
 
 /** Stats shown in the hero ribbon. */
 const HERO_STATS = [
-  { value: '1,258', label: 'Design Tokens' },
-  { value: '31', label: 'Components' },
+  { value: '1,543', label: 'Design Tokens' },
+  { value: '43', label: 'Components' },
   { value: '6', label: 'AI Agents' },
-  { value: 'AA', label: 'WCAG Compliant' },
+  { value: '120/120', label: 'WCAG AA Pairs' },
 ];
 
 /** Architecture layers for the diagram. */
@@ -307,12 +307,16 @@ export default function Landing() {
       {/* HERO                                                                */}
       {/* =================================================================== */}
       <section className="landing-hero">
-        <h1 className="landing-hero__title">AI-Native Design System</h1>
+        <p className="landing-hero__eyebrow">Free &amp; Open Source</p>
+        <h1 className="landing-hero__title">
+          AI-Powered Design for Everyone
+        </h1>
 
         <p className="landing-hero__subtitle">
-          Build accessible, token-driven websites with 6 AI agents that enforce
-          WCAG standards, manage design tokens, and generate production-ready
-          components from natural language.
+          The same design intelligence premium tools charge $20-50/month
+          for &mdash; accessible, themed, production-quality UI from natural
+          language &mdash; completely free. No API keys. No subscription. No
+          vendor lock-in.
         </p>
 
         {/* -- Install command block ---------------------------------------- */}
@@ -330,11 +334,11 @@ export default function Landing() {
 
         {/* -- CTA buttons ------------------------------------------------- */}
         <div className="landing-hero__actions">
-          <a href="docs.html" className="landing-hero__cta landing-hero__cta--primary">
-            Read the Docs &rarr;
+          <a href="playground.html" className="landing-hero__cta landing-hero__cta--primary">
+            Try the Playground &rarr;
           </a>
-          <a href="demo.html" className="landing-hero__cta landing-hero__cta--outline">
-            Component Gallery &rarr;
+          <a href="docs.html" className="landing-hero__cta landing-hero__cta--outline">
+            Read the Docs &rarr;
           </a>
         </div>
 
@@ -353,7 +357,7 @@ export default function Landing() {
       {/* FEATURES GRID                                                       */}
       {/* =================================================================== */}
       <section className="landing-features">
-        <h2 className="landing-features__heading">Everything You Need</h2>
+        <h2 className="landing-features__heading">Everything Premium Tools Give You &mdash; For Free</h2>
 
         <div className="landing-features__grid">
           {FEATURES.map((feature) => (
@@ -446,7 +450,7 @@ export default function Landing() {
         </div>
 
         <p className="landing-footer__copy">
-          MIT License &mdash; Built with Aioli&apos;s own design tokens
+          MIT License &mdash; Free forever. That&apos;s the point.
         </p>
       </footer>
     </div>

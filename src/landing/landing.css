@@ -235,6 +235,21 @@
   margin: 0 auto;
 }
 
+/* -- Eyebrow ---------------------------------------------------------- */
+
+.landing-hero__eyebrow {
+  display: inline-block;
+  margin: 0 0 var(--primitive-spacing-3) 0;
+  padding: var(--primitive-spacing-1) var(--primitive-spacing-4);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-semibold);
+  letter-spacing: var(--primitive-font-letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--semantic-color-primary-default);
+  background: var(--semantic-color-primary-subtle, rgba(37, 99, 235, 0.1));
+  border-radius: var(--primitive-radius-full);
+}
+
 /* -- Title ------------------------------------------------------------ */
 
 .landing-hero__title {
