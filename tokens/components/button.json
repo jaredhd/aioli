@@ -49,8 +49,8 @@
         "shadow": { "$type": "shadow", "$value": "0 1px 3px 0 rgba(37, 99, 235, 0.4), 0 1px 2px -1px rgba(37, 99, 235, 0.3)", "$description": "Blue-tinted elevated shadow" },
         "shadowHover": { "$type": "shadow", "$value": "0 4px 12px -2px rgba(37, 99, 235, 0.4)", "$description": "Blue glow on hover" },
         "shadowActive": { "$type": "shadow", "$value": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.15)", "$description": "Pressed inset shadow" },
-        "gradient": { "$type": "gradient", "$value": "linear-gradient(180deg, #3b82f6 0%, #2563eb 100%)", "$description": "Button gradient: blue.500 → blue.600" },
-        "gradientHover": { "$type": "gradient", "$value": "linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%)", "$description": "Hover gradient: blue.600 → blue.700" }
+        "gradient": { "$type": "gradient", "$value": "linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%)", "$description": "Button gradient: blue.600 → blue.700 (AA: 5.17:1 → 6.70:1 with white)" },
+        "gradientHover": { "$type": "gradient", "$value": "linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%)", "$description": "Hover gradient: blue.700 → blue.800 (AA: 6.70:1 → 8.72:1)" }
       },
       "secondary": {
         "bg": { "$type": "color", "$value": "{semantic.color.secondary.subtle}" },

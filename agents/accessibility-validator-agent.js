@@ -405,6 +405,177 @@ export class AccessibilityValidatorAgent {
   }
 
   // ==========================================================================
+  // THEME CONTRAST VALIDATION
+  // ==========================================================================
+
+  /**
+   * Composite an rgba() color onto a solid hex background.
+   * @param {string} rgbaStr - 'rgba(r, g, b, a)' string
+   * @param {string} bgHex - Solid hex background '#rrggbb'
+   * @returns {string|null} Composited hex color
+   */
+  _compositeRgba(rgbaStr, bgHex) {
+    const match = rgbaStr.match(/rgba?\(\s*(\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+    if (!match) return null;
+    const [fr, fg, fb, alpha] = [parseInt(match[1]), parseInt(match[2]), parseInt(match[3]), parseFloat(match[4])];
+    const bg = parseColor(bgHex);
+    if (!bg) return null;
+    const r = Math.round(fr * alpha + bg.r * (1 - alpha));
+    const g = Math.round(fg * alpha + bg.g * (1 - alpha));
+    const b = Math.round(fb * alpha + bg.b * (1 - alpha));
+    return '#' + [r, g, b].map(v => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')).join('');
+  }
+
+  /**
+   * Extract hex color stops from a CSS linear-gradient string.
+   * @param {string} gradientStr
+   * @returns {string[]} Array of hex colors
+   */
+  _extractGradientStops(gradientStr) {
+    return (gradientStr.match(/#[0-9a-fA-F]{6}/g)) || [];
+  }
+
+  /**
+   * Validate contrast ratios for a theme preset's overrides against base tokens.
+   * @param {Record<string, string>} overrides - Token path → value overrides
+   * @param {Object} [options]
+   * @param {string} [options.level='AA'] - 'AA' or 'AAA'
+   * @returns {{ valid: boolean, results: Array, failures: Array, summary: { total: number, pass: number, fail: number } }}
+   */
+  validateThemeContrast(overrides = {}, options = {}) {
+    const level = options.level || 'AA';
+    const results = [];
+    const failures = [];
+
+    if (!this.tokenAgent) {
+      this.addIssue('system', 'error', 'Token agent not connected');
+      return { valid: false, results, failures, summary: { total: 0, pass: 0, fail: 0 } };
+    }
+
+    // Resolve a color from overrides first, then token agent
+    const resolve = (path) => {
+      if (overrides[path] !== undefined) return overrides[path];
+      const r = this.tokenAgent.handleRequest({ action: 'get', path });
+      if (!r.success || !r.data) return null;
+      return r.data.resolvedValue || r.data.rawValue || r.data.$value || null;
+    };
+
+    // Get page background (needed for rgba compositing)
+    const pageBg = resolve('semantic.surface.page.default') || '#ffffff';
+
+    // Resolve a color, handling rgba compositing
+    const resolveColor = (path) => {
+      const val = resolve(path);
+      if (!val) return null;
+      if (val.startsWith('rgba')) return this._compositeRgba(val, pageBg);
+      return val;
+    };
+
+    // Contrast pairs to check
+    const textPairs = [
+      { fg: 'semantic.text.default', bg: 'semantic.surface.page.default', label: 'Body text on page' },
+      { fg: 'semantic.text.secondary', bg: 'semantic.surface.page.default', label: 'Secondary on page' },
+      { fg: 'semantic.text.muted', bg: 'semantic.surface.page.default', label: 'Muted on page' },
+      { fg: 'semantic.text.link', bg: 'semantic.surface.page.default', label: 'Link on page' },
+      { fg: 'semantic.text.default', bg: 'semantic.surface.card.default', label: 'Body text on card' },
+      { fg: 'semantic.text.muted', bg: 'semantic.surface.card.default', label: 'Muted on card' },
+      { fg: 'semantic.color.primary.default', bg: 'semantic.surface.page.default', label: 'Primary on page' },
+      { fg: 'semantic.color.success.default', bg: 'semantic.surface.page.default', label: 'Success on page' },
+      { fg: 'semantic.color.danger.default', bg: 'semantic.surface.page.default', label: 'Danger on page' },
+      { fg: 'component.button.primary.text', bg: 'component.button.primary.bg', label: 'Btn primary text/bg' },
+      { fg: 'component.button.primary.text', bg: 'component.button.primary.bgHover', label: 'Btn primary text/hover' },
+      { fg: 'component.button.danger.text', bg: 'component.button.danger.bg', label: 'Btn danger text/bg' },
+    ];
+
+    // Check text contrast pairs (4.5:1 for AA text, 7.0:1 for AAA text)
+    const threshold = level === 'AAA' ? 7.0 : 4.5;
+
+    for (const pair of textPairs) {
+      const fg = resolveColor(pair.fg);
+      const bg = resolveColor(pair.bg);
+      if (!fg || !bg) continue;
+
+      const ratio = getContrastRatio(fg, bg);
+      if (ratio === null) continue;
+
+      const passes = ratio >= threshold;
+      const result = { ...pair, fg, bg, ratio: Math.round(ratio * 100) / 100, passes, required: threshold };
+      results.push(result);
+      if (!passes) {
+        failures.push(result);
+        this.addIssue('contrast', 'error',
+          `Theme contrast fail: ${pair.label} — ${ratio.toFixed(2)}:1 (need ${threshold}:1)`,
+          { wcagCriteria: '1.4.3 Contrast (Minimum)', element: pair.label }
+        );
+      }
+    }
+
+    // Check gradient pairs (text color against all gradient stops + midpoint)
+    const gradientPairs = [
+      { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient', label: 'Btn primary gradient' },
+      { text: 'component.button.primary.text', gradient: 'component.button.primary.gradientHover', label: 'Btn primary grad hover' },
+      { text: 'component.button.danger.text', gradient: 'component.button.danger.gradient', label: 'Btn danger gradient' },
+    ];
+
+    for (const gp of gradientPairs) {
+      const textColor = resolveColor(gp.text);
+      const gradient = resolve(gp.gradient);
+      if (!textColor || !gradient || gradient === 'none' || !gradient.includes('linear-gradient')) continue;
+
+      const stops = this._extractGradientStops(gradient);
+      if (stops.length < 2) continue;
+
+      // Check each stop and the midpoint
+      let worstRatio = Infinity;
+      for (let i = 0; i < stops.length; i++) {
+        const r = getContrastRatio(textColor, stops[i]);
+        if (r !== null && r < worstRatio) worstRatio = r;
+      }
+      // Midpoint (linear interpolation in RGB)
+      const mid = this._interpolateHex(stops[0], stops[stops.length - 1], 0.5);
+      if (mid) {
+        const r = getContrastRatio(textColor, mid);
+        if (r !== null && r < worstRatio) worstRatio = r;
+      }
+
+      const passes = worstRatio >= threshold;
+      const result = { ...gp, textColor, gradient, worstRatio: Math.round(worstRatio * 100) / 100, passes, required: threshold };
+      results.push(result);
+      if (!passes) {
+        failures.push(result);
+        this.addIssue('contrast', 'error',
+          `Theme gradient contrast fail: ${gp.label} — worst ${worstRatio.toFixed(2)}:1 (need ${threshold}:1)`,
+          { wcagCriteria: '1.4.3 Contrast (Minimum)', element: gp.label }
+        );
+      }
+    }
+
+    return {
+      valid: failures.length === 0,
+      results,
+      failures,
+      summary: { total: results.length, pass: results.length - failures.length, fail: failures.length }
+    };
+  }
+
+  /**
+   * Linearly interpolate between two hex colors.
+   * @param {string} hex1
+   * @param {string} hex2
+   * @param {number} t - 0 to 1
+   * @returns {string|null}
+   */
+  _interpolateHex(hex1, hex2, t) {
+    const c1 = parseColor(hex1);
+    const c2 = parseColor(hex2);
+    if (!c1 || !c2) return null;
+    const r = Math.round(c1.r + (c2.r - c1.r) * t);
+    const g = Math.round(c1.g + (c2.g - c1.g) * t);
+    const b = Math.round(c1.b + (c2.b - c1.b) * t);
+    return '#' + [r, g, b].map(v => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')).join('');
+  }
+
+  // ==========================================================================
   // HTML/JSX VALIDATION
   // ==========================================================================
 
@@ -1087,6 +1258,13 @@ export class AccessibilityValidatorAgent {
           return {
             success: true,
             data: this.validateTokenContrast()
+          };
+
+        case 'validateThemeContrast':
+          this.reset();
+          return {
+            success: true,
+            data: this.validateThemeContrast(request.overrides, { level: request.level })
           };
 
         case 'getReport':

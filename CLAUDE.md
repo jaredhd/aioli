@@ -98,7 +98,8 @@ npm install          # Install dependencies
 npm run build        # Build tokens → CSS, JS, JSON (1,543 tokens)
 npm run build:watch  # Watch mode
 npm run validate     # Validate all token references (0 errors)
-npm run test         # Run vitest suite (225 tests)
+npm run test         # Run vitest suite (272 tests)
+npm run audit:themes # WCAG contrast audit for all 6 theme presets
 npm run clean        # Clear dist folder
 npm run dev          # Vite dev server (playground, demo, docs)
 ```
@@ -154,8 +155,9 @@ npm run dev          # Vite dev server (playground, demo, docs)
 - `prefers-reduced-motion` always respected
 
 ### Tier 3: Theme Presets
-- 6 built-in themes: minimal, vibrant, corporate, warm, cool, high-contrast
-- Smart palette auto-derivation from a single base color
+- 6 built-in themes: default, glass, neumorphic, brutalist, gradient, darkLuxury
+- All 6 presets WCAG AA verified (120/120 contrast pairs pass)
+- Smart palette auto-derivation from a single base color with WCAG contrast validation
 - HSL manipulation for generating full color scales
 
 ### Tier 4: Component Sophistication

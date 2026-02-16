@@ -60,6 +60,7 @@
     "agent:motion:test": "node agents/test-motion-agent.js",
     "agent:orchestrator:test": "node agents/test-orchestrator.js",
     "agent:test:all": "node agents/test-token-agent.js && node agents/test-a11y-agent.js && node agents/test-motion-agent.js && node agents/test-orchestrator.js",
+    "audit:themes": "node scripts/theme-contrast-audit.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build && npm run validate && npm run test",
