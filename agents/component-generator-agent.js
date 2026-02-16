@@ -52,7 +52,7 @@ export const COMPONENT_TEMPLATES = {
     category: 'atom',
     description: 'Text input field',
     variants: ['text', 'email', 'password', 'search', 'number'],
-    template: ({ type = 'text', label, placeholder = '', required = false, error = null, id }) => {
+    template: ({ type = 'text', label = 'Label', placeholder = 'Enter value...', required = false, error = null, id }) => {
       const inputId = id || `input-${Date.now()}`;
       return {
         html: `<div class="form-field${error ? ' form-field--error' : ''}">
@@ -89,12 +89,12 @@ export const COMPONENT_TEMPLATES = {
     category: 'organism',
     description: 'Content card container',
     variants: ['default', 'elevated', 'outlined'],
-    template: ({ variant = 'default', title, content, image = null, actions = null }) => ({
+    template: ({ variant = 'default', title = 'Card Title', content = 'Simple card content with default styling.', image = null, actions = null }) => ({
       html: `<article class="card card--${variant}">
   ${image ? `<img src="${image}" alt="" class="card__image" />` : ''}
   <div class="card__body">
-    ${title ? `<h3 class="card__title">${title}</h3>` : ''}
-    <div class="card__content">${content || ''}</div>
+    <h3 class="card__title">${title}</h3>
+    <div class="card__content">${content}</div>
   </div>
   ${actions ? `<div class="card__actions">${actions}</div>` : ''}
 </article>`,
@@ -1214,12 +1214,14 @@ export const COMPONENT_TEMPLATES = {
     category: 'organism',
     description: 'Product card with image, price, rating, and add-to-cart',
     variants: ['default', 'elevated', 'outlined'],
-    template: ({ image = '', title = 'Product Name', price = '29.99', rating = 4, reviewCount = 12, badge = null, onSale = false, salePrice = null, variant = 'default', id }) => {
+    template: ({ image = null, title = 'Product Name', price = '29.99', rating = 4, reviewCount = 12, badge = null, onSale = false, salePrice = null, variant = 'default', id }) => {
       const cardId = id || `card-product-${Date.now()}`;
       return {
         html: `<article class="card-product card-product--${variant} card-product--interactive" id="${cardId}">
   <div class="card-product__image-wrapper">
-    <img src="${image}" alt="${title}" class="card-product__image" style="aspect-ratio: 4/3; object-fit: cover;" />
+    ${image
+      ? `<img src="${image}" alt="${title}" class="card-product__image" style="aspect-ratio: 4/3; object-fit: cover;" />`
+      : `<div class="card-product__image" style="aspect-ratio: 4/3; background: var(--primitive-color-neutral-200); display: flex; align-items: center; justify-content: center; color: var(--primitive-color-neutral-500); font-size: 0.875rem;" role="img" aria-label="${title} image placeholder">📷 Product Image</div>`}
     ${badge ? `<span class="card-product__badge badge badge--primary">${badge}</span>` : ''}
     ${onSale ? '<span class="card-product__badge card-product__badge--sale badge badge--danger">Sale</span>' : ''}
   </div>
@@ -2192,19 +2194,33 @@ export class ComponentGeneratorAgent {
           }
         }
 
-        // Add modifier classes to the root element
-        if (modifierClasses.length > 0) {
-          const classStr = modifierClasses.join(' ');
-          // Try to add to the first element's class attribute
-          result.html = result.html.replace(
-            /class="([^"]*?)"/,
-            (match, existing) => `class="${existing} ${classStr}"`
-          );
-        }
+        // Combine classes and styles onto the root element directly
+        const allClasses = modifierClasses.join(' ');
+        const allStyles = modifierStyles.join(' ');
 
-        // Wrap with modifier styles if needed
-        if (modifierStyles.length > 0) {
-          result.html = `<div class="style-modifier-wrapper" style="${modifierStyles.join(' ')}">\n${result.html}\n</div>`;
+        if (allClasses || allStyles) {
+          // Inject classes into the first element's class attribute
+          if (allClasses) {
+            result.html = result.html.replace(
+              /class="([^"]*?)"/,
+              (match, existing) => `class="${existing} ${allClasses}"`
+            );
+          }
+          // Inject styles into the first element (add or merge style attr)
+          if (allStyles) {
+            const hasStyle = /^(\s*<[^>]*?)(\sstyle="([^"]*)")/.test(result.html);
+            if (hasStyle) {
+              result.html = result.html.replace(
+                /style="([^"]*)"/,
+                (match, existing) => `style="${existing} ${allStyles}"`
+              );
+            } else {
+              result.html = result.html.replace(
+                /^(\s*<\w[^>]*?)(>)/,
+                `$1 style="${allStyles}"$2`
+              );
+            }
+          }
         }
 
         result.styleModifiers = props._styleModifiers;
@@ -2455,8 +2471,33 @@ export class ComponentGeneratorAgent {
       props.dismissible = true;
     }
 
-    // Extract text content
-    const labelMatch = desc.match(/(?:labeled?|text|says?)\s*["']([^"']+)["']/i);
+    // Icon detection
+    if (/\b(with\s*icon|icon|has\s*icon)\b/.test(desc)) {
+      props.icon = '★';
+    }
+
+    // Title / heading detection
+    const titleMatch = desc.match(/(?:titled?|heading|with\s*title)\s*["']([^"']+)["']/i);
+    if (titleMatch) {
+      props.title = titleMatch[1];
+    } else if (/\bwith\s*title\b/.test(desc)) {
+      props.title = props.title || 'Card Title';
+    }
+
+    // Content / body detection
+    const contentMatch = desc.match(/(?:content|body|text)\s*["']([^"']+)["']/i);
+    if (contentMatch) {
+      props.content = contentMatch[1];
+    }
+
+    // Sale detection (for product cards)
+    if (/\b(on\s*sale|sale|discounted|discount)\b/.test(desc)) {
+      props.onSale = true;
+      props.salePrice = props.salePrice || '19.99';
+    }
+
+    // Extract text content (label)
+    const labelMatch = desc.match(/(?:labeled?|says?)\s*["']([^"']+)["']/i);
     if (labelMatch) {
       props.children = labelMatch[1];
       props.label = labelMatch[1];

@@ -775,8 +775,4 @@
   max-width: 100%;
 }
 
-/* Style modifier wrapper */
-.style-modifier-wrapper {
-  border-radius: var(--primitive-radius-lg);
-  padding: var(--primitive-spacing-4);
-}
+/* Style modifiers applied inline — no wrapper needed */
