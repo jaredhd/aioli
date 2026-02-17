@@ -56,10 +56,32 @@
   align-items: center;
   gap: var(--primitive-spacing-2);
   font-size: var(--primitive-font-size-xl);
-  font-weight: var(--primitive-font-weight-bold);
   color: var(--semantic-text-default);
   white-space: nowrap;
   text-decoration: none;
+}
+
+.landing-header__logo-mark {
+  color: #5ae6a2;
+  flex-shrink: 0;
+}
+
+.landing-header__wordmark {
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.landing-header__wordmark-ai {
+  font-weight: 600;
+  color: #5ae6a2;
+}
+
+[data-theme="dark"] .landing-header__logo-mark {
+  color: #5ae6a2;
+}
+
+[data-theme="dark"] .landing-header__wordmark-ai {
+  color: #5ae6a2;
 }
 
 /* -- Navigation links ------------------------------------------------- */

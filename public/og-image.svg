@@ -1,22 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f172a"/>
-      <stop offset="100%" style="stop-color:#1e293b"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#080c10"/>
+      <stop offset="50%" stop-color="#0c1610"/>
+      <stop offset="100%" stop-color="#080c10"/>
     </linearGradient>
+    <radialGradient id="glow" cx="350" cy="315" r="250" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5ae6a2" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#5ae6a2" stop-opacity="0"/>
+    </radialGradient>
   </defs>
+
+  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="600" y="220" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="700" fill="#f8fafc">
-    <tspan>&#x1F9C4; Aioli</tspan>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Garlic Vortex Mark -->
+  <g transform="translate(240, 140) scale(2.4)">
+    <path d="M60 4 Q28 16, 16 44 Q6 70, 24 96 Q38 114, 60 116 Q82 114, 96 96 Q114 70, 104 44 Q92 16, 60 4"
+          stroke="#5ae6a2" stroke-width="0.6" fill="none" opacity="0.06"/>
+    <path d="M60 2 Q32 12, 20 38 Q12 60, 24 78 Q36 92, 50 82 Q58 76, 58 66 Q58 60, 60 58"
+          stroke="#5ae6a2" stroke-width="2.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M60 2 Q88 12, 100 38 Q108 60, 96 78 Q84 92, 70 82 Q62 76, 62 66 Q62 60, 60 58"
+          stroke="#5ae6a2" stroke-width="2.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M36 106 Q28 88, 32 70 Q36 54, 46 48 Q54 44, 58 52 Q60 56, 60 58"
+          stroke="#5ae6a2" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.45"/>
+    <path d="M84 106 Q92 88, 88 70 Q84 54, 74 48 Q66 44, 62 52 Q60 56, 60 58"
+          stroke="#5ae6a2" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.45"/>
+    <path d="M60 -4 Q60 10, 58 24 Q56 36, 58 46 Q59 52, 60 56"
+          stroke="#5ae6a2" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+    <circle cx="60" cy="58" r="6" fill="#5ae6a2"/>
+    <circle cx="60" cy="58" r="10" fill="none" stroke="#5ae6a2" stroke-width="0.8" opacity="0.15"/>
+    <circle cx="60" cy="0" r="3" fill="#5ae6a2" opacity="0.5"/>
+    <circle cx="35" cy="108" r="2.5" fill="#5ae6a2" opacity="0.4"/>
+    <circle cx="85" cy="108" r="2.5" fill="#5ae6a2" opacity="0.4"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="600" y="260" font-family="'Outfit', 'Segoe UI', sans-serif" font-size="80" font-weight="300" fill="#e8e6e1" letter-spacing="-2">
+    <tspan fill="#5ae6a2" font-weight="500">Ai</tspan>oli
   </text>
-  <text x="600" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="#94a3b8">Free, Open-Source AI Design System</text>
-  <text x="600" y="390" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#64748b">
-    <tspan>1,543 Tokens</tspan>
-    <tspan dx="40">43 Components</tspan>
-    <tspan dx="40">6 AI Agents</tspan>
-    <tspan dx="40">WCAG AA</tspan>
+
+  <!-- Tagline -->
+  <text x="606" y="308" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="14" fill="#5ae6a2" letter-spacing="4" opacity="0.45">FREE &amp; OPEN SOURCE</text>
+
+  <!-- Description -->
+  <text x="606" y="348" font-family="'Outfit', 'Segoe UI', sans-serif" font-size="22" fill="#888" font-weight="300">AI-native design system engine</text>
+
+  <!-- Stats -->
+  <text x="606" y="410" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="16" fill="#5ae6a2" opacity="0.6">
+    <tspan>1,543 tokens</tspan>
+    <tspan dx="24" fill="#444">|</tspan>
+    <tspan dx="24">43 components</tspan>
+    <tspan dx="24" fill="#444">|</tspan>
+    <tspan dx="24">4 frameworks</tspan>
+    <tspan dx="24" fill="#444">|</tspan>
+    <tspan dx="24">WCAG AA</tspan>
   </text>
-  <text x="600" y="430" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#475569">React · Vue · Svelte · MCP · REST API · SDK</text>
-  <rect x="350" y="480" width="500" height="48" rx="24" fill="#2563eb"/>
-  <text x="600" y="512" text-anchor="middle" font-family="monospace" font-size="18" fill="#ffffff">npm install aioli-design</text>
+
+  <!-- Install command -->
+  <rect x="560" y="450" width="360" height="42" rx="6" fill="#1a1a1f" stroke="#5ae6a2" stroke-width="1" opacity="0.8"/>
+  <text x="740" y="478" text-anchor="middle" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="15" fill="#5ae6a2" opacity="0.7">npm install aioli-design</text>
+
+  <!-- Bottom line: frameworks -->
+  <text x="606" y="540" font-family="'Outfit', 'Segoe UI', sans-serif" font-size="16" fill="#555" font-weight="300">React  ·  Vue  ·  Svelte  ·  MCP Server  ·  REST API  ·  SDK</text>
+
+  <!-- Subtle border -->
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#5ae6a2" stroke-width="1" opacity="0.04"/>
 </svg>

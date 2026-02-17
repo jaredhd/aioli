@@ -1,0 +1,43 @@
+<svg width="460" height="130" viewBox="0 0 460 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Aioli Logo - Garlic Vortex - Dark Background Version -->
+  <g transform="translate(10, 5)">
+    <!-- Outer hint of garlic bulb form -->
+    <path d="M60 4 Q28 16, 16 44 Q6 70, 24 96 Q38 114, 60 116 Q82 114, 96 96 Q114 70, 104 44 Q92 16, 60 4" 
+          stroke="#5ae6a2" stroke-width="0.6" fill="none" opacity="0.06"/>
+
+    <!-- Stream 1: Left side of bulb, spiraling in -->
+    <path d="M60 2 Q32 12, 20 38 Q12 60, 24 78 Q36 92, 50 82 Q58 76, 58 66 Q58 60, 60 58" 
+          stroke="#5ae6a2" stroke-width="2.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+    
+    <!-- Stream 2: Right side of bulb, spiraling in -->
+    <path d="M60 2 Q88 12, 100 38 Q108 60, 96 78 Q84 92, 70 82 Q62 76, 62 66 Q62 60, 60 58" 
+          stroke="#5ae6a2" stroke-width="2.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- Stream 3: Inner left clove line -->
+    <path d="M36 106 Q28 88, 32 70 Q36 54, 46 48 Q54 44, 58 52 Q60 56, 60 58" 
+          stroke="#5ae6a2" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.45"/>
+
+    <!-- Stream 4: Inner right clove line -->
+    <path d="M84 106 Q92 88, 88 70 Q84 54, 74 48 Q66 44, 62 52 Q60 56, 60 58" 
+          stroke="#5ae6a2" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.45"/>
+
+    <!-- Stream 5: Center stem -->
+    <path d="M60 -4 Q60 10, 58 24 Q56 36, 58 46 Q59 52, 60 56" 
+          stroke="#5ae6a2" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+
+    <!-- Center convergence -->
+    <circle cx="60" cy="58" r="6" fill="#5ae6a2"/>
+    <circle cx="60" cy="58" r="10" fill="none" stroke="#5ae6a2" stroke-width="0.8" opacity="0.15"/>
+
+    <!-- Origin nodes -->
+    <circle cx="60" cy="0" r="3" fill="#5ae6a2" opacity="0.5"/>
+    <circle cx="35" cy="108" r="2.5" fill="#5ae6a2" opacity="0.4"/>
+    <circle cx="85" cy="108" r="2.5" fill="#5ae6a2" opacity="0.4"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="146" y="76" font-family="'Outfit', sans-serif" font-size="56" font-weight="300" fill="#e8e6e1" letter-spacing="-1">
+    <tspan fill="#5ae6a2" font-weight="500">Ai</tspan>oli
+  </text>
+  <text x="150" y="100" font-family="'JetBrains Mono', monospace" font-size="10" fill="#5ae6a2" letter-spacing="3" opacity="0.4">OPEN SOURCE</text>
+</svg>

@@ -286,7 +286,14 @@ export default function Landing() {
           </button>
 
           <a href="./" className="landing-header__logo">
-            <span role="img" aria-label="garlic">&#x1F9C4;</span> Aioli
+            <svg className="landing-header__logo-mark" width="28" height="28" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+              <path d="M60 2 Q32 12, 20 38 Q12 60, 24 78 Q36 92, 50 82 Q58 76, 58 66 Q58 60, 60 58" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.7"/>
+              <path d="M60 2 Q88 12, 100 38 Q108 60, 96 78 Q84 92, 70 82 Q62 76, 62 66 Q62 60, 60 58" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.7"/>
+              <path d="M36 106 Q28 88, 32 70 Q36 54, 46 48 Q54 44, 58 52 Q60 56, 60 58" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.45"/>
+              <path d="M84 106 Q92 88, 88 70 Q84 54, 74 48 Q66 44, 62 52 Q60 56, 60 58" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.45"/>
+              <circle cx="60" cy="58" r="8" fill="currentColor"/>
+            </svg>
+            <span className="landing-header__wordmark"><span className="landing-header__wordmark-ai">Ai</span>oli</span>
           </a>
         </div>
 

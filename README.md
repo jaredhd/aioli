@@ -1,10 +1,17 @@
-# Aioli
+<p align="center">
+  <img src="docs/brand/assets/svg/aioli-github-banner.svg" alt="Aioli" width="100%" />
+</p>
 
-[![CI](https://github.com/jaredhd/aioli/actions/workflows/ci.yml/badge.svg)](https://github.com/jaredhd/aioli/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/aioli-design.svg)](https://www.npmjs.com/package/aioli-design)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <a href="https://github.com/jaredhd/aioli/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/jaredhd/aioli/ci.yml?style=flat-square&labelColor=0e0e12&color=5ae6a2&label=CI" alt="CI" /></a>
+  <a href="https://www.npmjs.com/package/aioli-design"><img src="https://img.shields.io/npm/v/aioli-design?style=flat-square&labelColor=0e0e12&color=5ae6a2" alt="npm" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-5ae6a2?style=flat-square&labelColor=0e0e12" alt="MIT License" /></a>
+  <img src="https://img.shields.io/badge/built_with-Claude_Code-5ae6a2?style=flat-square&labelColor=0e0e12" alt="Built with Claude Code" />
+</p>
 
-**The free, open-source design system engine that gives every developer the same AI-powered design tools that premium platforms charge $20-50/month for.**
+<p align="center">
+  <strong>The free, open-source design system engine that gives every developer the same AI-powered design tools that premium platforms charge $20-50/month for.</strong>
+</p>
 
 ---
 
