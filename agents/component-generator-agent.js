@@ -11,6 +11,7 @@
  */
 
 import { AGENTS, createFixResult } from './agent-protocol.js';
+import { adaptComponent, adaptPage, SUPPORTED_FORMATS } from '../adapters/index.js';
 
 // ============================================================================
 // COMPONENT TEMPLATES
@@ -2125,6 +2126,43 @@ export class ComponentGeneratorAgent {
     this.tokenAgent = options.tokenAgent || null;
     this.motionAgent = options.motionAgent || null;
     this.issues = [];
+    // Instance-level template map: built-in + community components
+    this.templates = { ...COMPONENT_TEMPLATES };
+    // NL parsing patterns for community components
+    this.communityPatterns = {};
+  }
+
+  // ==========================================================================
+  // COMMUNITY COMPONENT REGISTRATION
+  // ==========================================================================
+
+  /**
+   * Register a community component template.
+   * @param {string} name - Component name (kebab-case)
+   * @param {Object} templateDef - Template definition (same shape as COMPONENT_TEMPLATES entries)
+   * @param {string[]} nlPatterns - Natural language patterns for NL matching
+   */
+  registerCommunityComponent(name, templateDef, nlPatterns = []) {
+    if (COMPONENT_TEMPLATES[name]) {
+      throw new Error(`Cannot override built-in component: "${name}"`);
+    }
+    this.templates[name] = templateDef;
+    if (nlPatterns.length > 0) {
+      const patternStr = nlPatterns.map(p => p.replace(/\s+/g, '\\s*')).join('|');
+      this.communityPatterns[name] = new RegExp(`\\b(${patternStr})\\b`);
+    }
+  }
+
+  /**
+   * Unregister a community component.
+   * @param {string} name - Component name to remove
+   */
+  unregisterCommunityComponent(name) {
+    if (COMPONENT_TEMPLATES[name]) {
+      throw new Error(`Cannot remove built-in component: "${name}"`);
+    }
+    delete this.templates[name];
+    delete this.communityPatterns[name];
   }
 
   /**
@@ -2158,13 +2196,13 @@ export class ComponentGeneratorAgent {
    * @returns {Object} Generated component
    */
   generate(componentType, props = {}) {
-    const template = COMPONENT_TEMPLATES[componentType];
-    
+    const template = this.templates[componentType];
+
     if (!template) {
       return {
         error: true,
         message: `Unknown component type: ${componentType}`,
-        availableTypes: Object.keys(COMPONENT_TEMPLATES),
+        availableTypes: Object.keys(this.templates),
       };
     }
 
@@ -2239,6 +2277,7 @@ export class ComponentGeneratorAgent {
       return {
         type: componentType,
         category: template.category,
+        source: COMPONENT_TEMPLATES[componentType] ? 'built-in' : 'community',
         props,
         ...result,
       };
@@ -2390,6 +2429,11 @@ export class ComponentGeneratorAgent {
       'data-table': /\b(data\s*table|advanced\s*table|sortable\s*table|filterable\s*table)\b/,
       'form-wizard': /\b(form\s*wizard|multi\s*step\s*form|step\s*form|wizard\s*form)\b/,
     };
+
+    // Merge community component NL patterns
+    for (const [type, pattern] of Object.entries(this.communityPatterns)) {
+      patterns[type] = pattern;
+    }
 
     // Find matching component — prefer earliest match position in input
     let componentType = null;
@@ -2800,12 +2844,13 @@ export class ComponentGeneratorAgent {
    * List all available components
    */
   listComponents() {
-    return Object.entries(COMPONENT_TEMPLATES).map(([name, template]) => ({
+    return Object.entries(this.templates).map(([name, template]) => ({
       name,
       category: template.category,
       description: template.description,
       variants: template.variants || [],
       sizes: template.sizes || [],
+      source: COMPONENT_TEMPLATES[name] ? 'built-in' : 'community',
     }));
   }
 
@@ -2813,7 +2858,7 @@ export class ComponentGeneratorAgent {
    * Get component info
    */
   getComponentInfo(componentType) {
-    const template = COMPONENT_TEMPLATES[componentType];
+    const template = this.templates[componentType];
     if (!template) return null;
 
     return {
@@ -2822,6 +2867,7 @@ export class ComponentGeneratorAgent {
       description: template.description,
       variants: template.variants || [],
       sizes: template.sizes || [],
+      source: COMPONENT_TEMPLATES[componentType] ? 'built-in' : 'community',
       a11yFeatures: template.template({}).a11y,
     };
   }
@@ -2842,17 +2888,35 @@ export class ComponentGeneratorAgent {
 
     try {
       switch (action) {
-        case 'generate':
+        case 'generate': {
+          const genData = this.generate(request.componentType, request.props);
+          const genFmt = request.format;
+          if (genFmt && genFmt !== 'html') {
+            return {
+              success: true,
+              data: adaptComponent(genData, genFmt),
+            };
+          }
           return {
             success: true,
-            data: this.generate(request.componentType, request.props),
+            data: genData,
           };
+        }
 
-        case 'generateFromDescription':
+        case 'generateFromDescription': {
+          const genResult = this.generateFromDescription(request.description);
+          const format = request.format;
+          if (format && format !== 'html') {
+            return {
+              success: true,
+              data: adaptComponent(genResult, format),
+            };
+          }
           return {
             success: true,
-            data: this.generateFromDescription(request.description),
+            data: genResult,
           };
+        }
 
         case 'parseDescription':
           return {
@@ -2875,11 +2939,20 @@ export class ComponentGeneratorAgent {
         case 'applyFix':
           return this.applyFix(request.fix);
 
-        case 'generatePageComposition':
+        case 'generatePageComposition': {
+          const pageResult = this.generatePageComposition(request.description);
+          const pageFmt = request.format;
+          if (pageFmt && pageFmt !== 'html') {
+            return {
+              success: true,
+              data: adaptPage(pageResult, pageFmt),
+            };
+          }
           return {
             success: true,
-            data: this.generatePageComposition(request.description),
+            data: pageResult,
           };
+        }
 
         case 'listPageCompositions':
           return {
@@ -2899,6 +2972,33 @@ export class ComponentGeneratorAgent {
               description: mod.description,
               keywords: mod.keywords,
             })),
+          };
+
+        case 'listFormats':
+          return {
+            success: true,
+            data: SUPPORTED_FORMATS,
+          };
+
+        case 'registerCommunity':
+          this.registerCommunityComponent(request.name, request.template, request.nlPatterns || []);
+          return { success: true, data: { name: request.name, registered: true } };
+
+        case 'unregisterCommunity':
+          this.unregisterCommunityComponent(request.name);
+          return { success: true, data: { name: request.name, removed: true } };
+
+        case 'listCommunityComponents':
+          return {
+            success: true,
+            data: Object.keys(this.templates)
+              .filter(name => !COMPONENT_TEMPLATES[name])
+              .map(name => ({
+                name,
+                category: this.templates[name].category,
+                description: this.templates[name].description,
+                source: 'community',
+              })),
           };
 
         default:

@@ -473,7 +473,8 @@
 .landing-features__heading,
 .landing-preview__heading,
 .landing-architecture__heading,
-.landing-quickstart__heading {
+.landing-quickstart__heading,
+.landing-frameworks__heading {
   margin: 0 0 var(--primitive-spacing-3) 0;
   font-size: var(--primitive-font-size-3xl);
   font-weight: var(--primitive-font-weight-bold);
@@ -494,7 +495,8 @@
 
 .landing-features__heading,
 .landing-architecture__heading,
-.landing-quickstart__heading {
+.landing-quickstart__heading,
+.landing-frameworks__heading {
   margin-bottom: var(--primitive-spacing-10);
 }
 
@@ -545,7 +547,94 @@
 
 
 /* ===================================================================== */
-/*  6. COMPONENT PREVIEW                                                   */
+/*  6b. FRAMEWORK SHOWCASE                                                 */
+/* ===================================================================== */
+
+.landing-frameworks {
+  padding: var(--primitive-spacing-16) var(--primitive-spacing-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.landing-frameworks__heading {
+  margin: 0 0 var(--primitive-spacing-3) 0;
+  font-size: var(--primitive-font-size-3xl);
+  font-weight: var(--primitive-font-weight-bold);
+  text-align: center;
+  line-height: var(--primitive-font-line-height-tight);
+  letter-spacing: var(--primitive-font-letter-spacing-tight);
+  color: var(--semantic-text-default);
+  margin-bottom: var(--primitive-spacing-3);
+}
+
+.landing-frameworks__subtitle {
+  margin: 0 auto var(--primitive-spacing-8);
+  max-width: 640px;
+  font-size: var(--primitive-font-size-base);
+  line-height: var(--primitive-font-line-height-relaxed);
+  text-align: center;
+  color: var(--semantic-text-secondary);
+}
+
+/* -- Tab bar ---------------------------------------------------------- */
+
+.landing-frameworks__tabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--primitive-spacing-2);
+  margin-bottom: var(--primitive-spacing-6);
+}
+
+.landing-frameworks__tab {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--primitive-spacing-2) var(--primitive-spacing-5);
+  border: 1px solid var(--semantic-border-default);
+  border-radius: var(--primitive-radius-full);
+  background: transparent;
+  color: var(--semantic-text-secondary);
+  font-family: var(--primitive-font-family-sans);
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-medium);
+  cursor: pointer;
+  transition: background var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              border-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.landing-frameworks__tab:hover {
+  background: var(--semantic-surface-card-hover);
+  color: var(--semantic-text-default);
+  border-color: var(--semantic-border-strong);
+}
+
+.landing-frameworks__tab--active {
+  background: var(--semantic-color-primary-default);
+  color: var(--primitive-color-neutral-0);
+  border-color: var(--semantic-color-primary-default);
+}
+
+.landing-frameworks__tab--active:hover {
+  background: var(--semantic-color-primary-hover);
+  color: var(--primitive-color-neutral-0);
+  border-color: var(--semantic-color-primary-hover);
+}
+
+.landing-frameworks__tab:focus-visible {
+  outline: var(--semantic-focus-ring-width) var(--semantic-focus-ring-style) var(--semantic-color-primary-default);
+  outline-offset: var(--semantic-focus-ring-offset);
+}
+
+/* -- Code output panel ------------------------------------------------ */
+
+.landing-frameworks__code {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+
+/* ===================================================================== */
+/*  6c. COMPONENT PREVIEW                                                  */
 /* ===================================================================== */
 
 .landing-preview__grid {
@@ -954,7 +1043,8 @@
   .landing-features,
   .landing-preview,
   .landing-architecture,
-  .landing-quickstart {
+  .landing-quickstart,
+  .landing-frameworks {
     padding: var(--primitive-spacing-10) var(--primitive-spacing-4);
   }
 
@@ -962,7 +1052,8 @@
   .landing-features__heading,
   .landing-preview__heading,
   .landing-architecture__heading,
-  .landing-quickstart__heading {
+  .landing-quickstart__heading,
+  .landing-frameworks__heading {
     font-size: var(--primitive-font-size-2xl);
   }
 
@@ -974,6 +1065,11 @@
   /* Preview grid: 1 column */
   .landing-preview__grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Framework tabs: wrap on mobile */
+  .landing-frameworks__tabs {
+    flex-wrap: wrap;
   }
 
   /* Quick start: 1 column */
@@ -1047,7 +1143,8 @@
   .landing-features,
   .landing-preview,
   .landing-architecture,
-  .landing-quickstart {
+  .landing-quickstart,
+  .landing-frameworks {
     padding: var(--primitive-spacing-8) var(--primitive-spacing-3);
   }
 
@@ -1055,12 +1152,14 @@
   .landing-features__heading,
   .landing-preview__heading,
   .landing-architecture__heading,
-  .landing-quickstart__heading {
+  .landing-quickstart__heading,
+  .landing-frameworks__heading {
     font-size: var(--primitive-font-size-xl);
   }
 
   .landing-section__subtitle,
-  .landing-preview__subtitle {
+  .landing-preview__subtitle,
+  .landing-frameworks__subtitle {
     font-size: var(--primitive-font-size-sm);
   }
 
@@ -1096,6 +1195,7 @@
   .landing-hero__cta--primary,
   .landing-hero__cta--outline,
   .landing-hero__install-copy,
+  .landing-frameworks__tab,
   .landing-footer__links a {
     transition: none;
   }

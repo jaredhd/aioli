@@ -5,6 +5,49 @@ All notable changes to the Aioli Design System will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-02-16
+
+### Added
+
+#### MCP Server (Phase 1)
+- MCP server with 12 tools via `@modelcontextprotocol/sdk` and stdio transport
+- Component and page generation, token queries, contrast checking, a11y validation, code review
+- Works with Claude Desktop, Cursor, Copilot, and any MCP-compatible AI assistant
+- `npm run mcp` starts the server, no API keys required
+
+#### REST API + JS SDK (Phase 2)
+- REST API server with 13 HTTP endpoints via Express 5 on port 3456
+- JavaScript SDK with `createAioli()` factory supporting HTTP and direct (no-server) modes
+- 12 SDK methods: generateComponent, generatePage, listComponents, listModifiers, listThemes, getThemeCSS, derivePalette, getTokens, resolveToken, checkContrast, validateAccessibility, reviewCode
+
+#### Framework Adapters (Phase 3)
+- React (JSX), Vue 3 (SFC), and Svelte component output from any generation endpoint
+- HTML-first pipeline: single source of truth in 43 HTML templates, adapted to any framework
+- `format` parameter threaded through REST API, SDK, MCP, and CLI
+- Stateful components (modal, tabs, accordion, dropdown, toast) get framework-idiomatic state management
+
+#### Community Registry (Phase 4)
+- Local filesystem-based component package management at `.aioli/` directory
+- Package validation: manifest, template, CSS, tokens (DTCG format)
+- 7 CLI subcommands: publish, install, remove, list, search, info, init
+- Community components auto-loaded by all entry points (API, SDK, MCP, CLI)
+- Full framework adapter support for community components
+
+#### Visual Enhancements (Tiers 1-5)
+- Colored shadows, gradients, glassmorphism surfaces, backdrop blur tokens
+- Entrance animations, hover micro-interactions, page transitions
+- 6 theme presets: default, glass, neumorphic, brutalist, gradient, darkLuxury
+- 120/120 WCAG AA contrast pairs verified across all themes
+- 8 style modifiers and 4 page compositions with NL parsing
+- 12 enhanced component templates (card-product, hero, pricing-table, form-wizard, etc.)
+
+### Changed
+- Component templates expanded from 31 to 43 (12 new organism/template patterns)
+- Token count expanded from 1,258 to 1,543 across 40 component token files
+- Test suite expanded from 213 to 435 tests across 8 test files
+- CLI expanded from 6 to 7 commands (added `registry`)
+- Agent system version bumped to 4.0.0 with community registry support
+
 ## [0.2.0] - 2025-02-14
 
 ### Added

@@ -4,7 +4,7 @@
  */
 
 export default {
-  source: ['tokens/**/*.json'],
+  source: ['tokens/**/*.json', '.aioli/packages/*/tokens.json'],
   
   // Enable DTCG format support ($value, $type, $description)
   usesDtcg: true,

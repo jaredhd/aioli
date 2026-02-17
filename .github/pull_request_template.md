@@ -14,7 +14,7 @@ Brief description of what this PR does and why.
 ## Checklist
 
 - [ ] `npm run validate` passes (token structure valid)
-- [ ] `npm test` passes (213+ tests)
+- [ ] `npm test` passes (435+ tests)
 - [ ] `npm run build` succeeds
 - [ ] WCAG AA contrast ratios maintained for any color changes
 - [ ] New tokens follow W3C DTCG format (`$value`, `$type`, `$description`)

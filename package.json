@@ -1,7 +1,7 @@
 {
   "name": "aioli-design",
-  "version": "0.2.0",
-  "description": "Aioli Design System - AI-native design system engine with token management, accessibility validation, and component generation",
+  "version": "0.5.0",
+  "description": "Free, open-source AI design system engine. Natural language to React, Vue, Svelte, or HTML components with WCAG AA accessibility, 1,543 design tokens, and MCP server integration.",
   "type": "module",
   "main": "./lib/index.js",
   "style": "./css/aioli.css",
@@ -22,7 +22,12 @@
     "./config": "./config.js",
     "./sdk": "./sdk/index.js",
     "./sdk/http": "./sdk/http-client.js",
-    "./sdk/direct": "./sdk/direct-client.js"
+    "./sdk/direct": "./sdk/direct-client.js",
+    "./adapters": "./adapters/index.js",
+    "./adapters/react": "./adapters/react.js",
+    "./adapters/vue": "./adapters/vue.js",
+    "./adapters/svelte": "./adapters/svelte.js",
+    "./registry": "./registry/index.js"
   },
   "bin": {
     "aioli": "./bin/aioli.js"
@@ -35,6 +40,8 @@
     "tokens/",
     "css/",
     "types/",
+    "adapters/",
+    "registry/",
     "api-server/",
     "sdk/",
     "config.js",
@@ -94,7 +101,14 @@
     "wcag",
     "ai",
     "agents",
-    "component-generation"
+    "component-generation",
+    "mcp",
+    "model-context-protocol",
+    "react",
+    "vue",
+    "svelte",
+    "open-source",
+    "free"
   ],
   "author": "Jared",
   "license": "MIT",

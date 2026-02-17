@@ -23,6 +23,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
+import { existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -41,6 +42,16 @@ const tokensPath = resolve(__dirname, '..', 'tokens');
 // Create agent system once at startup — reused across all tool calls
 const agents = createAgentSystem(tokensPath);
 console.error('Aioli MCP Server: Agent system initialized (1,543 tokens loaded)');
+
+// Load community components if registry exists
+const projectRoot = resolve(__dirname, '..');
+if (existsSync(resolve(projectRoot, '.aioli', 'registry.json'))) {
+  agents.loadCommunityComponents(projectRoot).then(count => {
+    if (count > 0) console.error(`Aioli MCP Server: Loaded ${count} community component(s)`);
+  }).catch(() => {
+    // Silently continue — community loading is optional
+  });
+}
 
 // Create MCP server
 const server = new McpServer({
@@ -77,27 +88,39 @@ server.tool(
   'Generate an accessible UI component from a natural language description. ' +
   'Supports 43 component types, 8 style modifiers (glass, gradient, neumorphic, brutalist, ' +
   'elevated, dark-luxury, colored-shadow, animated), and auto-detects page compositions. ' +
-  'All output is WCAG AA accessible with semantic HTML.',
+  'All output is WCAG AA accessible with semantic HTML. ' +
+  'Use output_format to get React, Vue, or Svelte component code instead of raw HTML.',
   {
     description: z.string().describe(
       'Natural language description of the component, e.g. "glassmorphic card with title and image", ' +
       '"large primary button with icon", "neumorphic input field"'
     ),
+    output_format: z.enum(['html', 'react', 'vue', 'svelte']).optional().default('html').describe(
+      'Output format: html (default), react (JSX component), vue (SFC), or svelte'
+    ),
   },
-  async ({ description }) => {
+  async ({ description, output_format }) => {
     try {
+      const format = output_format || 'html';
       const result = agents.component.handleRequest({
         action: 'generateFromDescription',
         description,
+        format,
       });
       if (!result.success) return errorResult(result.error || 'Generation failed');
-      return safeResult({
+      const data = {
         type: result.data.type,
         category: result.data.category,
         html: result.data.html,
         tokens: result.data.tokens,
         a11y: result.data.a11y,
-      });
+      };
+      if (format !== 'html') {
+        data.code = result.data.code;
+        data.framework = result.data.framework;
+        data.componentName = result.data.componentName;
+      }
+      return safeResult(data);
     } catch (e) {
       return errorResult(e);
     }
@@ -112,21 +135,27 @@ server.tool(
   'generate_page',
   'Generate a full multi-section page layout from a description. ' +
   'Supports 4 page types: marketing, dashboard, blog, pricing. ' +
-  'Returns complete HTML with hero, features, stats, CTA sections as appropriate.',
+  'Returns complete HTML with hero, features, stats, CTA sections as appropriate. ' +
+  'Use output_format to get React, Vue, or Svelte component code instead of raw HTML.',
   {
     description: z.string().describe(
       'Page description, e.g. "marketing landing page", "dashboard page with stats", ' +
       '"blog page with sidebar", "pricing page with 3 tiers"'
     ),
+    output_format: z.enum(['html', 'react', 'vue', 'svelte']).optional().default('html').describe(
+      'Output format: html (default), react (JSX component), vue (SFC), or svelte'
+    ),
   },
-  async ({ description }) => {
+  async ({ description, output_format }) => {
     try {
+      const format = output_format || 'html';
       const result = agents.component.handleRequest({
         action: 'generatePageComposition',
         description,
+        format,
       });
       if (!result.success) return errorResult(result.error || 'Page generation failed');
-      return safeResult({
+      const data = {
         type: result.data.type,
         pageType: result.data.pageType,
         html: result.data.html,
@@ -134,7 +163,13 @@ server.tool(
         sections: result.data.sections?.map(s => s.type),
         tokens: result.data.tokens,
         a11y: result.data.a11y,
-      });
+      };
+      if (format !== 'html') {
+        data.code = result.data.code;
+        data.framework = result.data.framework;
+        data.componentName = result.data.componentName;
+      }
+      return safeResult(data);
     } catch (e) {
       return errorResult(e);
     }

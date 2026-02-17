@@ -9,13 +9,14 @@
   <text x="600" y="220" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="700" fill="#f8fafc">
     <tspan>&#x1F9C4; Aioli</tspan>
   </text>
-  <text x="600" y="310" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="#94a3b8">AI-Native Design System</text>
-  <text x="600" y="420" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#64748b">
-    <tspan>1,258 Tokens</tspan>
-    <tspan dx="40">31 Components</tspan>
+  <text x="600" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="#94a3b8">Free, Open-Source AI Design System</text>
+  <text x="600" y="390" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#64748b">
+    <tspan>1,543 Tokens</tspan>
+    <tspan dx="40">43 Components</tspan>
     <tspan dx="40">6 AI Agents</tspan>
     <tspan dx="40">WCAG AA</tspan>
   </text>
+  <text x="600" y="430" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#475569">React · Vue · Svelte · MCP · REST API · SDK</text>
   <rect x="350" y="480" width="500" height="48" rx="24" fill="#2563eb"/>
   <text x="600" y="512" text-anchor="middle" font-family="monospace" font-size="18" fill="#ffffff">npm install aioli-design</text>
 </svg>

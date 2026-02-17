@@ -5,6 +5,9 @@
  * Same agent calls as api-server/index.js, minus HTTP.
  */
 
+import { existsSync } from 'fs';
+import { resolve } from 'path';
+
 export async function createDirectClient(options = {}) {
   // Import Aioli — try peer dependency first, then monorepo fallback
   let createAgentSystem, listPresets, getPresetOverrides, derivePalette, createTheme;
@@ -43,41 +46,73 @@ export async function createDirectClient(options = {}) {
 
   const agents = createAgentSystem(tokensPath);
 
+  // Load community components if registry exists
+  const registryRoot = options.registryRoot || resolve(tokensPath, '..');
+  if (existsSync(resolve(registryRoot, '.aioli', 'registry.json'))) {
+    try {
+      await agents.loadCommunityComponents(registryRoot);
+    } catch {
+      // Silently continue — community loading is optional
+    }
+  }
+
   const VALID_THEMES = ['default', 'glass', 'neumorphic', 'brutalist', 'gradient', 'darkLuxury'];
 
   return {
-    async generateComponent(description) {
+    async generateComponent(description, opts = {}) {
       if (!description) throw new Error('description is required');
+      const format = opts.format || 'html';
       const result = agents.component.handleRequest({
         action: 'generateFromDescription',
         description,
+        format,
       });
       if (!result.success) throw new Error(result.error || 'Generation failed');
-      return {
+      const response = {
         type: result.data.type,
         category: result.data.category,
         html: result.data.html,
         tokens: result.data.tokens,
         a11y: result.data.a11y,
       };
+      if (format !== 'html') {
+        response.code = result.data.code;
+        response.framework = result.data.framework;
+        response.language = result.data.language;
+        response.componentName = result.data.componentName;
+        response.cssImport = result.data.cssImport;
+      }
+      return response;
     },
 
-    async generatePage(description) {
+    async generatePage(description, opts = {}) {
       if (!description) throw new Error('description is required');
+      const format = opts.format || 'html';
       const result = agents.component.handleRequest({
         action: 'generatePageComposition',
         description,
+        format,
       });
       if (!result.success) throw new Error(result.error || 'Page generation failed');
-      return {
+      const response = {
         type: result.data.type,
         pageType: result.data.pageType,
         html: result.data.html,
         sectionCount: result.data.sectionCount,
-        sections: result.data.sections?.map(s => s.type),
+        sections: (format !== 'html')
+          ? result.data.sections?.map(s => ({ type: s.type, code: s.code }))
+          : result.data.sections?.map(s => s.type),
         tokens: result.data.tokens,
         a11y: result.data.a11y,
       };
+      if (format !== 'html') {
+        response.code = result.data.code;
+        response.framework = result.data.framework;
+        response.language = result.data.language;
+        response.componentName = result.data.componentName;
+        response.cssImport = result.data.cssImport;
+      }
+      return response;
     },
 
     async listComponents() {

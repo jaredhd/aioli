@@ -10,6 +10,7 @@
  *   generate   Generate a component from natural language
  *   audit      Run accessibility audit
  *   export     Export tokens in different formats
+ *   registry   Manage community component packages
  */
 
 import { createRequire } from 'module';
@@ -33,6 +34,7 @@ import { registerValidateCommand } from '../cli/commands/validate.js';
 import { registerGenerateCommand } from '../cli/commands/generate.js';
 import { registerAuditCommand } from '../cli/commands/audit.js';
 import { registerExportCommand } from '../cli/commands/export.js';
+import { registerRegistryCommand } from '../cli/commands/registry.js';
 
 registerInitCommand(program);
 registerBuildCommand(program);
@@ -40,5 +42,6 @@ registerValidateCommand(program);
 registerGenerateCommand(program);
 registerAuditCommand(program);
 registerExportCommand(program);
+registerRegistryCommand(program);
 
 program.parse();

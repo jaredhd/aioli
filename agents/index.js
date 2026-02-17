@@ -49,6 +49,10 @@ export { MotionAgent, DURATION, EASING, ANIMATION_TYPES, ALLOWED_PROPERTIES, PRO
 export const createMotionAgent = _createMotionAgent;
 export { ComponentGeneratorAgent, COMPONENT_TEMPLATES, STYLE_MODIFIERS, PAGE_COMPOSITIONS };
 export const createComponentGenerator = _createComponentGenerator;
+
+// Framework adapters
+export { SUPPORTED_FORMATS, adaptComponent, adaptPage, toReact, toVue, toSvelte } from '../adapters/index.js';
+
 export { CodeReviewAgent, REVIEW_CATEGORIES, SEVERITY };
 export const createCodeReviewAgent = _createCodeReviewAgent;
 export { AGENTS, createFixResult, groupFixesByAgent, getAutoFixable, getNeedsReview };
@@ -59,7 +63,7 @@ export const AGENT_STATUS = {
   'accessibility-validator': { version: '1.1.0', status: 'active', features: ['suggestFixes'] },
   'orchestrator': { version: '1.0.0', status: 'active' },
   'motion-animation': { version: '1.0.0', status: 'active', features: ['presets', 'validation', 'applyFix'] },
-  'component-generator': { version: '2.0.0', status: 'active', features: ['generate', 'nlParsing', 'applyFix', 'styleModifiers', 'pageCompositions'] },
+  'component-generator': { version: '4.0.0', status: 'active', features: ['generate', 'nlParsing', 'applyFix', 'styleModifiers', 'pageCompositions', 'frameworkAdapters', 'communityRegistry'] },
   'code-review': { version: '1.0.0', status: 'active', features: ['review', 'quickCheck', 'suggestFixes'] },
 };
 
@@ -95,5 +99,20 @@ export function createAgentSystem(tokensDir) {
     component: componentAgent,
     codeReview: codeReviewAgent,
     orchestrator,
+
+    /**
+     * Load community components from the registry.
+     * Call this after createAgentSystem() to register community templates.
+     * @param {string} registryRoot - Project root containing .aioli/ directory
+     * @returns {Promise<number>} Number of community components loaded
+     */
+    async loadCommunityComponents(registryRoot) {
+      const { loadCommunityTemplates } = await import('../registry/index.js');
+      const communityTemplates = await loadCommunityTemplates(registryRoot);
+      for (const [name, { templateDef, manifest }] of communityTemplates) {
+        componentAgent.registerCommunityComponent(name, templateDef, manifest.nlPatterns || []);
+      }
+      return communityTemplates.size;
+    },
   };
 }

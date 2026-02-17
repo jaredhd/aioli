@@ -28,6 +28,10 @@ Which part of Aioli does this relate to?
 - [ ] CLI
 - [ ] Accessibility
 - [ ] Theming
+- [ ] Framework Adapters (React/Vue/Svelte)
+- [ ] REST API / SDK
+- [ ] MCP Server
+- [ ] Community Registry
 - [ ] Documentation
 - [ ] Other
 

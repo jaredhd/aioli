@@ -11,6 +11,7 @@
 
 import express from 'express';
 import cors from 'cors';
+import { existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -23,6 +24,14 @@ const tokensPath = resolve(__dirname, '..', 'tokens');
 
 // Create agent system once at startup — reused across all requests
 const agents = createAgentSystem(tokensPath);
+
+// Load community components if registry exists
+const projectRoot = resolve(__dirname, '..');
+if (existsSync(resolve(projectRoot, '.aioli', 'registry.json'))) {
+  agents.loadCommunityComponents(projectRoot).catch(() => {
+    // Silently continue — community loading is optional
+  });
+}
 
 const app = express();
 app.use(cors());
@@ -62,26 +71,38 @@ app.get('/api/v1/health', (_req, res) => {
 /**
  * POST /api/v1/generate/component
  * Generate an accessible UI component from a natural language description.
- * Body: { description: string }
+ * Body: { description: string, format?: 'html'|'react'|'vue'|'svelte' }
  */
 app.post('/api/v1/generate/component', (req, res) => {
   try {
-    const { description } = req.body;
+    const { description, format } = req.body;
     if (!description) return sendError(res, 'description is required');
 
     const result = agents.component.handleRequest({
       action: 'generateFromDescription',
       description,
+      format: format || 'html',
     });
     if (!result.success) return sendError(res, result.error || 'Generation failed');
 
-    sendSuccess(res, {
+    const responseData = {
       type: result.data.type,
       category: result.data.category,
       html: result.data.html,
       tokens: result.data.tokens,
       a11y: result.data.a11y,
-    });
+    };
+
+    // Include framework adapter fields when format is not html
+    if (format && format !== 'html') {
+      responseData.code = result.data.code;
+      responseData.framework = result.data.framework;
+      responseData.language = result.data.language;
+      responseData.componentName = result.data.componentName;
+      responseData.cssImport = result.data.cssImport;
+    }
+
+    sendSuccess(res, responseData);
   } catch (e) {
     sendError(res, e.message, 500);
   }
@@ -90,28 +111,40 @@ app.post('/api/v1/generate/component', (req, res) => {
 /**
  * POST /api/v1/generate/page
  * Generate a full multi-section page layout from a description.
- * Body: { description: string }
+ * Body: { description: string, format?: 'html'|'react'|'vue'|'svelte' }
  */
 app.post('/api/v1/generate/page', (req, res) => {
   try {
-    const { description } = req.body;
+    const { description, format } = req.body;
     if (!description) return sendError(res, 'description is required');
 
     const result = agents.component.handleRequest({
       action: 'generatePageComposition',
       description,
+      format: format || 'html',
     });
     if (!result.success) return sendError(res, result.error || 'Page generation failed');
 
-    sendSuccess(res, {
+    const responseData = {
       type: result.data.type,
       pageType: result.data.pageType,
       html: result.data.html,
       sectionCount: result.data.sectionCount,
-      sections: result.data.sections?.map(s => s.type),
+      sections: result.data.sections?.map(s => (format && format !== 'html') ? ({ type: s.type, code: s.code }) : s.type),
       tokens: result.data.tokens,
       a11y: result.data.a11y,
-    });
+    };
+
+    // Include framework adapter fields when format is not html
+    if (format && format !== 'html') {
+      responseData.code = result.data.code;
+      responseData.framework = result.data.framework;
+      responseData.language = result.data.language;
+      responseData.componentName = result.data.componentName;
+      responseData.cssImport = result.data.cssImport;
+    }
+
+    sendSuccess(res, responseData);
   } catch (e) {
     sendError(res, e.message, 500);
   }

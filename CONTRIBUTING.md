@@ -29,7 +29,12 @@ aioli/
 ├── css/               # Component CSS (BEM, tokens only)
 │   ├── base.css       # CSS reset + dark mode
 │   ├── aioli.css      # Single-import entry point
-│   └── components/    # 31 individual component stylesheets
+│   └── components/    # 43 individual component stylesheets
+├── adapters/          # Framework adapters (React, Vue, Svelte)
+├── api-server/        # REST API server (Express 5, 13 endpoints)
+├── sdk/               # JavaScript SDK (HTTP + direct modes)
+├── registry/          # Community component registry
+├── mcp-server/        # MCP server (12 tools for AI assistants)
 ├── dist/              # Built token output (CSS, JSON, SCSS)
 ├── docs/              # Documentation markdown
 ├── lib/               # Public API (index.js, kit.js, theme.js)
@@ -107,6 +112,7 @@ Use clear, descriptive commit messages:
 4. Add to `css/components/index.css` imports
 5. Add tests in `test/`
 6. Run `npm run build && npm test`
+7. Framework adapters automatically support the new component (HTML-first pipeline)
 
 ## Adding New Tokens
 

@@ -32,12 +32,16 @@ export function createHttpClient(options = {}) {
   }
 
   return {
-    generateComponent(description) {
-      return request('POST', '/generate/component', { description });
+    generateComponent(description, opts = {}) {
+      const body = { description };
+      if (opts.format) body.format = opts.format;
+      return request('POST', '/generate/component', body);
     },
 
-    generatePage(description) {
-      return request('POST', '/generate/page', { description });
+    generatePage(description, opts = {}) {
+      const body = { description };
+      if (opts.format) body.format = opts.format;
+      return request('POST', '/generate/page', body);
     },
 
     listComponents() {
