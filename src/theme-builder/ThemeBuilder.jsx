@@ -12,8 +12,8 @@
  * Uses the theming API from lib/theme.js and lib/theme-presets.js.
  */
 
-import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
-import { createTheme, applyTheme } from '../../lib/theme.js';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import { createTheme, createDarkTheme } from '../../lib/theme.js';
 import { THEME_PRESETS, derivePalette, listPresets } from '../../lib/theme-presets.js';
 import { COMPONENT_TEMPLATES } from '../../agents/component-generator-agent.js';
 
@@ -86,7 +86,6 @@ export default function ThemeBuilder() {
   const [radius, setRadius] = useState('8px');
   const [font, setFont] = useState(FONT_PRESETS[0].value);
   const [activeExportTab, setActiveExportTab] = useState('css');
-  const cleanupRef = useRef(null);
 
   // -- Dark mode toggle -----------------------------------------------------
 
@@ -158,22 +157,40 @@ export default function ThemeBuilder() {
   }, [colors, radius, font, activePreset, smartDerive]);
 
   // -- Apply theme live on every change ------------------------------------
+  // Uses <style> tag injection instead of inline styles so that
+  // [data-theme="dark"] CSS rules can still override correctly.
 
   useEffect(() => {
-    if (cleanupRef.current) {
-      cleanupRef.current();
+    const styleEl = document.createElement('style');
+    styleEl.setAttribute('data-aioli-theme', 'builder');
+
+    const lightTheme = createTheme(overrides);
+    let css = lightTheme.toCSS();
+
+    // When dark mode is active, also inject dark-mode overrides so preset
+    // surface/border/text values get properly remapped to dark variants.
+    // We must filter OUT any light-mode surface/border/text overrides from
+    // the preset, otherwise they overwrite DARK_MODE_DEFAULTS and the
+    // surfaces stay light (e.g. Glass's white rgba cards in dark mode).
+    if (darkMode) {
+      const darkSafe = Object.fromEntries(
+        Object.entries(overrides).filter(([key]) =>
+          !key.startsWith('semantic.surface.') &&
+          !key.startsWith('semantic.border.') &&
+          !key.startsWith('semantic.text.')
+        )
+      );
+      const darkTheme = createDarkTheme(darkSafe);
+      css += '\n' + darkTheme.toCSS();
     }
 
-    const theme = createTheme(overrides);
-    cleanupRef.current = applyTheme(theme);
+    styleEl.textContent = css;
+    document.head.appendChild(styleEl);
 
     return () => {
-      if (cleanupRef.current) {
-        cleanupRef.current();
-        cleanupRef.current = null;
-      }
+      styleEl.remove();
     };
-  }, [overrides]);
+  }, [overrides, darkMode]);
 
   // -- Export strings -------------------------------------------------------
 
@@ -249,15 +266,27 @@ export default function ThemeBuilder() {
       {/* ================================================================= */}
       <header className="tb-header">
         <div className="tb-header__left">
-          <a href="./" className="tb-header__home" aria-label="Back to Home">
-            <span role="img" aria-label="garlic">&#x1F9C4;</span>
+          <a href="./" className="tb-header__logo" aria-label="Aioli Home">
+            <svg className="tb-header__logo-mark" width="28" height="28" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+              <path d="M60 2 Q32 12, 20 38 Q12 60, 24 78 Q36 92, 50 82 Q58 76, 58 66 Q58 60, 60 58" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.7"/>
+              <path d="M60 2 Q88 12, 100 38 Q108 60, 96 78 Q84 92, 70 82 Q62 76, 62 66 Q62 60, 60 58" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.7"/>
+              <path d="M36 106 Q28 88, 32 70 Q36 54, 46 48 Q54 44, 58 52 Q60 56, 60 58" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.45"/>
+              <path d="M84 106 Q92 88, 88 70 Q84 54, 74 48 Q66 44, 62 52 Q60 56, 60 58" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.45"/>
+              <circle cx="60" cy="58" r="8" fill="currentColor"/>
+            </svg>
+            <span className="tb-header__wordmark"><span className="tb-header__wordmark-ai">Ai</span>oli</span>
           </a>
-          <h1 className="tb-header__title">Theme Builder</h1>
+          <span className="tb-header__separator" aria-hidden="true">/</span>
+          <h1 className="tb-header__title">Themes</h1>
         </div>
 
         <div className="tb-header__actions">
-          <a href="docs.html" className="tb-header__link">Docs</a>
-          <a href="playground.html" className="tb-header__link">Playground</a>
+          <nav className="tb-header__nav" aria-label="Main navigation">
+            <a href="docs.html" className="tb-header__nav-link">Docs</a>
+            <a href="demo.html" className="tb-header__nav-link">Gallery</a>
+            <a href="playground.html" className="tb-header__nav-link">Playground</a>
+            <a href="theme.html" className="tb-header__nav-link tb-header__nav-link--active" aria-current="page">Themes</a>
+          </nav>
           <button
             type="button"
             className="tb-header__toggle"

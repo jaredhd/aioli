@@ -124,16 +124,27 @@ export default function Docs() {
             <span className="docs-header__hamburger-line" />
           </button>
 
-          <a href="./" className="docs-header__home" aria-label="Back to Home">
-            <span role="img" aria-label="garlic">&#x1F9C4;</span>
+          <a href="./" className="docs-header__logo" aria-label="Aioli Home">
+            <svg className="docs-header__logo-mark" width="28" height="28" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+              <path d="M60 2 Q32 12, 20 38 Q12 60, 24 78 Q36 92, 50 82 Q58 76, 58 66 Q58 60, 60 58" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.7"/>
+              <path d="M60 2 Q88 12, 100 38 Q108 60, 96 78 Q84 92, 70 82 Q62 76, 62 66 Q62 60, 60 58" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" opacity="0.7"/>
+              <path d="M36 106 Q28 88, 32 70 Q36 54, 46 48 Q54 44, 58 52 Q60 56, 60 58" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.45"/>
+              <path d="M84 106 Q92 88, 88 70 Q84 54, 74 48 Q66 44, 62 52 Q60 56, 60 58" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" opacity="0.45"/>
+              <circle cx="60" cy="58" r="8" fill="currentColor"/>
+            </svg>
+            <span className="docs-header__wordmark"><span className="docs-header__wordmark-ai">Ai</span>oli</span>
           </a>
-
-          <h1 className="docs-header__title">
-            Aioli Documentation
-          </h1>
+          <span className="docs-header__separator" aria-hidden="true">/</span>
+          <h1 className="docs-header__title">Docs</h1>
         </div>
 
         <div className="docs-header__actions">
+          <nav className="docs-header__nav" aria-label="Main navigation">
+            <a href="docs.html" className="docs-header__nav-link docs-header__nav-link--active" aria-current="page">Docs</a>
+            <a href="demo.html" className="docs-header__nav-link">Gallery</a>
+            <a href="playground.html" className="docs-header__nav-link">Playground</a>
+            <a href="theme.html" className="docs-header__nav-link">Themes</a>
+          </nav>
           <button
             type="button"
             className="docs-header__toggle"
@@ -142,10 +153,6 @@ export default function Docs() {
           >
             {darkMode ? '\u2600\uFE0F' : '\uD83C\uDF19'}
           </button>
-
-          <a href="demo.html" className="docs-header__link">
-            Component Gallery &rarr;
-          </a>
         </div>
       </header>
 

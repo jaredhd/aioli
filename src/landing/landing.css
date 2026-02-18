@@ -96,14 +96,14 @@
 .landing-header__link {
   font-size: var(--primitive-font-size-sm);
   font-weight: var(--primitive-font-weight-medium);
-  color: var(--semantic-text-secondary);
+  color: var(--semantic-text-default);
   text-decoration: none;
   transition: color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
 }
 
 .landing-header__nav-link:hover,
 .landing-header__link:hover {
-  color: var(--semantic-text-default);
+  color: var(--semantic-color-primary-default);
   text-decoration: underline;
 }
 

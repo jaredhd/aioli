@@ -42,49 +42,72 @@
   gap: 0.75rem;
 }
 
-.demo-header__home {
-  display: inline-flex;
+.demo-header__logo {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+  gap: 0.5rem;
   text-decoration: none;
-  line-height: 1;
-  transition: opacity 150ms ease;
+  color: var(--semantic-text-default);
+  white-space: nowrap;
 }
 
-.demo-header__home:hover {
-  opacity: 0.75;
+.demo-header__logo-mark {
+  color: #5ae6a2;
+  flex-shrink: 0;
 }
 
-.demo-header__home:focus-visible {
-  outline: 2px solid var(--semantic-color-primary-default);
-  outline-offset: 2px;
-  border-radius: 4px;
+.demo-header__wordmark {
+  font-size: 1.25rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+.demo-header__wordmark-ai {
+  font-weight: 600;
+  color: #5ae6a2;
+}
+
+.demo-header__separator {
+  color: var(--semantic-border-default);
+  font-size: 1.25rem;
+  font-weight: 200;
 }
 
 .demo-header__title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: var(--semantic-text-default);
   margin: 0;
 }
 
-.demo-header__link {
+.demo-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.demo-header__nav-link {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--semantic-text-secondary);
+  color: var(--semantic-text-default);
   text-decoration: none;
   transition: color 150ms ease;
 }
 
-.demo-header__link:hover {
-  color: var(--semantic-text-default);
+.demo-header__nav-link:hover {
+  color: var(--semantic-color-primary-default);
   text-decoration: underline;
 }
 
-.demo-header__link:focus-visible {
+.demo-header__nav-link--active {
+  color: var(--semantic-text-default);
+  font-weight: 600;
+}
+
+.demo-header__nav-link:focus-visible {
   outline: 2px solid var(--semantic-color-primary-default);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .demo-header__controls {
@@ -351,6 +374,14 @@
     flex-direction: column;
     gap: 0.75rem;
     padding: 1rem;
+  }
+
+  .demo-header__nav {
+    display: none;
+  }
+
+  .demo-header__wordmark {
+    display: none;
   }
 
   .demo-filters {
