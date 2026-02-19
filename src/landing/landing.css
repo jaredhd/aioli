@@ -84,6 +84,11 @@
   color: #5ae6a2;
 }
 
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .landing-header__logo-mark { color: #5ae6a2; }
+  html:not([data-theme]) .landing-header__wordmark-ai { color: #5ae6a2; }
+}
+
 /* -- Navigation links ------------------------------------------------- */
 
 .landing-header__nav {
@@ -976,6 +981,39 @@
 [data-theme="dark"] .landing-footer {
   background: var(--semantic-surface-page-default);
   border-color: var(--semantic-border-default);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .landing-header {
+    background: var(--semantic-surface-card-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .landing-hero__install {
+    background: var(--primitive-color-neutral-950);
+    border-color: var(--primitive-color-neutral-800);
+  }
+  html:not([data-theme]) .landing-hero__install-copy {
+    border-color: var(--primitive-color-neutral-700);
+    color: var(--primitive-color-neutral-400);
+  }
+  html:not([data-theme]) .landing-hero__install-copy:hover {
+    background: var(--primitive-color-neutral-800);
+    color: var(--primitive-color-neutral-100);
+  }
+  html:not([data-theme]) .landing-quickstart__step-code {
+    background: var(--primitive-color-neutral-950);
+  }
+  html:not([data-theme]) .landing-section--alt {
+    background: var(--semantic-surface-page-default);
+  }
+  html:not([data-theme]) .landing-preview__label {
+    background: var(--semantic-surface-page-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .landing-footer {
+    background: var(--semantic-surface-page-default);
+    border-color: var(--semantic-border-default);
+  }
 }
 
 

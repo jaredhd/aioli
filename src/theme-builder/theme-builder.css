@@ -606,6 +606,20 @@
   background: var(--primitive-color-neutral-950);
 }
 
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .tb-header {
+    background: var(--semantic-surface-card-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .tb-controls {
+    background: var(--semantic-surface-card-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .tb-export__panel {
+    background: var(--primitive-color-neutral-950);
+  }
+}
+
 
 /* ===================================================================== */
 /*  8. RESPONSIVE                                                          */

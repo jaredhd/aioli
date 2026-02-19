@@ -14,6 +14,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { COMPONENT_TEMPLATES } from '../../agents/component-generator-agent.js';
 import CodeBlock from '../docs/components/CodeBlock';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -217,24 +218,10 @@ function renderComponent(name) {
 export default function Landing() {
   // -- State ----------------------------------------------------------------
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [installCopied, setInstallCopied] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activeFramework, setActiveFramework] = useState('HTML');
-
-  // -- Dark mode toggle (same pattern as Demo.jsx / Docs.jsx) ---------------
-
-  const toggleDarkMode = useCallback(() => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.dataset.theme = 'dark';
-      } else {
-        delete document.documentElement.dataset.theme;
-      }
-      return next;
-    });
-  }, []);
 
   // -- Mobile nav toggle ----------------------------------------------------
 

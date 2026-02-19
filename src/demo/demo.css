@@ -365,6 +365,12 @@
   background: var(--primitive-color-neutral-950);
 }
 
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .demo-section__code {
+    background: var(--primitive-color-neutral-950);
+  }
+}
+
 /* ------------------------------------------------------------------ */
 /*  Responsive                                                         */
 /* ------------------------------------------------------------------ */

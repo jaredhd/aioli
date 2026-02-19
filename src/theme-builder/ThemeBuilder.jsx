@@ -16,6 +16,7 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { createTheme, createDarkTheme } from '../../lib/theme.js';
 import { THEME_PRESETS, derivePalette, listPresets } from '../../lib/theme-presets.js';
 import { COMPONENT_TEMPLATES } from '../../agents/component-generator-agent.js';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -77,7 +78,7 @@ const PRESET_INFO = [
 export default function ThemeBuilder() {
   // -- State ----------------------------------------------------------------
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleDarkMode, setDarkMode } = useDarkMode();
   const [activePreset, setActivePreset] = useState('default');
   const [smartDerive, setSmartDerive] = useState(false);
   const [colors, setColors] = useState(() =>
@@ -86,20 +87,6 @@ export default function ThemeBuilder() {
   const [radius, setRadius] = useState('8px');
   const [font, setFont] = useState(FONT_PRESETS[0].value);
   const [activeExportTab, setActiveExportTab] = useState('css');
-
-  // -- Dark mode toggle -----------------------------------------------------
-
-  const toggleDarkMode = useCallback(() => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.dataset.theme = 'dark';
-      } else {
-        delete document.documentElement.dataset.theme;
-      }
-      return next;
-    });
-  }, []);
 
   // -- Preset selection -----------------------------------------------------
 
@@ -123,7 +110,6 @@ export default function ThemeBuilder() {
     if (presetName === 'darkLuxury') {
       if (!darkMode) {
         setDarkMode(true);
-        document.documentElement.dataset.theme = 'dark';
       }
     }
   }, [darkMode]);
@@ -220,7 +206,6 @@ export default function ThemeBuilder() {
     setFont(FONT_PRESETS[0].value);
     if (darkMode) {
       setDarkMode(false);
-      delete document.documentElement.dataset.theme;
     }
   }, [darkMode]);
 

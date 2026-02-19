@@ -1401,6 +1401,51 @@ html {
   background: rgba(239, 68, 68, 0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .docs-header {
+    background: var(--semantic-surface-card-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .docs-sidebar {
+    background: var(--semantic-surface-page-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .docs-code-block__header {
+    background: var(--primitive-color-neutral-950);
+    border-color: var(--primitive-color-neutral-800);
+  }
+  html:not([data-theme]) .docs-code-block__pre {
+    background: var(--primitive-color-neutral-950);
+  }
+  html:not([data-theme]) .docs-section__text code,
+  html:not([data-theme]) .docs-section__list code {
+    background: var(--primitive-color-neutral-800);
+    color: var(--primitive-color-blue-300);
+  }
+  html:not([data-theme]) .docs-table td code {
+    background: var(--primitive-color-neutral-800);
+    color: var(--primitive-color-blue-300);
+  }
+  html:not([data-theme]) .docs-motion-demo {
+    background: var(--semantic-surface-page-default);
+  }
+  html:not([data-theme]) .docs-motion-demo__track {
+    background: var(--primitive-color-neutral-800);
+  }
+  html:not([data-theme]) .docs-callout {
+    background: rgba(59, 130, 246, 0.1);
+  }
+  html:not([data-theme]) .docs-callout--warning {
+    background: rgba(245, 158, 11, 0.1);
+  }
+  html:not([data-theme]) .docs-callout--success {
+    background: rgba(16, 185, 129, 0.1);
+  }
+  html:not([data-theme]) .docs-callout--danger {
+    background: rgba(239, 68, 68, 0.1);
+  }
+}
+
 
 /* ===================================================================== */
 /*  17. RESPONSIVE BREAKPOINTS                                             */

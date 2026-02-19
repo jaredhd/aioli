@@ -162,3 +162,59 @@ table {
 
   color-scheme: dark;
 }
+
+/* ========================================================================
+   DARK MODE — System preference fallback (before JS hydration)
+   Only applies when JS hasn't set data-theme yet (html:not([data-theme])).
+   Once JS sets data-theme="dark" or data-theme="light", this is inert.
+   ======================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    /* Colors — intent */
+    --semantic-color-primary-default: var(--semantic-color-dark-primary-default);
+    --semantic-color-primary-hover: var(--semantic-color-dark-primary-hover);
+    --semantic-color-primary-active: var(--semantic-color-dark-primary-active);
+    --semantic-color-primary-subtle: var(--semantic-color-dark-primary-subtle);
+
+    --semantic-color-success-default: var(--semantic-color-dark-success-default);
+    --semantic-color-success-hover: var(--semantic-color-dark-success-hover);
+    --semantic-color-success-subtle: var(--semantic-color-dark-success-subtle);
+
+    --semantic-color-warning-default: var(--semantic-color-dark-warning-default);
+    --semantic-color-warning-hover: var(--semantic-color-dark-warning-hover);
+    --semantic-color-warning-subtle: var(--semantic-color-dark-warning-subtle);
+
+    --semantic-color-danger-default: var(--semantic-color-dark-danger-default);
+    --semantic-color-danger-hover: var(--semantic-color-dark-danger-hover);
+    --semantic-color-danger-subtle: var(--semantic-color-dark-danger-subtle);
+
+    --semantic-color-info-default: var(--semantic-color-dark-info-default);
+    --semantic-color-info-hover: var(--semantic-color-dark-info-hover);
+    --semantic-color-info-subtle: var(--semantic-color-dark-info-subtle);
+
+    /* Surfaces */
+    --semantic-surface-page-default: var(--semantic-surface-dark-page-default);
+    --semantic-surface-page-subtle: var(--semantic-surface-dark-page-subtle);
+    --semantic-surface-card-default: var(--semantic-surface-dark-card-default);
+    --semantic-surface-card-hover: var(--semantic-surface-dark-card-hover);
+
+    /* Borders */
+    --semantic-border-default: var(--semantic-border-dark-default);
+    --semantic-border-subtle: var(--semantic-border-dark-subtle);
+    --semantic-border-strong: var(--semantic-border-dark-strong);
+    --semantic-border-focus: var(--semantic-border-dark-focus);
+
+    /* Text */
+    --semantic-text-default: var(--semantic-text-dark-default);
+    --semantic-text-muted: var(--semantic-text-dark-muted);
+    --semantic-text-disabled: var(--semantic-text-dark-disabled);
+    --semantic-text-inverse: var(--semantic-text-dark-inverse);
+    --semantic-text-link: var(--semantic-text-dark-link);
+
+    /* Focus */
+    --semantic-focus-ring-color: var(--semantic-border-dark-focus);
+
+    color-scheme: dark;
+  }
+}

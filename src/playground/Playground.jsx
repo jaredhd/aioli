@@ -10,6 +10,7 @@
  */
 
 import React, { useState, useCallback, useRef, useMemo } from 'react';
+import { useDarkMode } from '../hooks/useDarkMode';
 import {
   COMPONENT_TEMPLATES,
   STYLE_MODIFIERS,
@@ -45,26 +46,12 @@ const generator = createComponentGenerator();
 export default function Playground() {
   // -- State ----------------------------------------------------------------
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [prompt, setPrompt] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('preview');
   const inputRef = useRef(null);
-
-  // -- Dark mode toggle -----------------------------------------------------
-
-  const toggleDarkMode = useCallback(() => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.dataset.theme = 'dark';
-      } else {
-        delete document.documentElement.dataset.theme;
-      }
-      return next;
-    });
-  }, []);
 
   // -- Generate from prompt -------------------------------------------------
 

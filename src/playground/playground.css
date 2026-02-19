@@ -650,6 +650,20 @@
   border-color: var(--primitive-color-neutral-800);
 }
 
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .pg-header {
+    background: var(--semantic-surface-card-default);
+    border-color: var(--semantic-border-default);
+  }
+  html:not([data-theme]) .pg-panel--code {
+    background: var(--primitive-color-neutral-950);
+  }
+  html:not([data-theme]) .pg-panel__code-header {
+    background: var(--primitive-color-neutral-900);
+    border-color: var(--primitive-color-neutral-800);
+  }
+}
+
 
 /* ===================================================================== */
 /*  8. RESPONSIVE — TABLET (< 768px)                                       */
@@ -792,6 +806,17 @@
 [data-theme="dark"] .pg-reference__badge--modifier {
   background-color: rgba(217, 119, 6, 0.2);
   color: #fbbf24;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .pg-result__meta-badge--modifier {
+    background-color: rgba(217, 119, 6, 0.2);
+    color: #fbbf24;
+  }
+  html:not([data-theme]) .pg-reference__badge--modifier {
+    background-color: rgba(217, 119, 6, 0.2);
+    color: #fbbf24;
+  }
 }
 
 /* -- Page composition preview ----------------------------------------- */

@@ -12,6 +12,7 @@
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 // ---------------------------------------------------------------------------
 // Section components (one per documentation chapter)
@@ -48,23 +49,9 @@ const NAV_SECTIONS = [
 export default function Docs() {
   // -- State ----------------------------------------------------------------
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [activeSection, setActiveSection] = useState('getting-started');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // -- Dark mode toggle -----------------------------------------------------
-
-  const toggleDarkMode = useCallback(() => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.dataset.theme = 'dark';
-      } else {
-        delete document.documentElement.dataset.theme;
-      }
-      return next;
-    });
-  }, []);
 
   // -- Mobile sidebar toggle ------------------------------------------------
 

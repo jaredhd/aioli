@@ -12,6 +12,7 @@
 
 import React, { useState, useMemo, useCallback } from 'react';
 import { COMPONENT_TEMPLATES } from '../../agents/component-generator-agent.js';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -647,23 +648,9 @@ const COMPONENT_DEMOS = [
 export default function Demo() {
   // -- State ----------------------------------------------------------------
 
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const [filter, setFilter] = useState('all');
   const [openCode, setOpenCode] = useState({}); // { [componentName]: bool }
-
-  // -- Dark mode toggle -----------------------------------------------------
-
-  const toggleDarkMode = useCallback(() => {
-    setDarkMode((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.dataset.theme = 'dark';
-      } else {
-        delete document.documentElement.dataset.theme;
-      }
-      return next;
-    });
-  }, []);
 
   // -- Code panel toggle ----------------------------------------------------
 
