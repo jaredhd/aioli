@@ -440,7 +440,10 @@
   --semantic-color-dark-warning-subtle: rgba(251, 191, 36, 0.2);
   --semantic-color-dark-danger-subtle: rgba(248, 113, 113, 0.2);
   --semantic-color-dark-info-subtle: rgba(96, 165, 250, 0.2);
+  --semantic-color-dark-secondary-subtle: rgba(148, 163, 184, 0.2);
+  --semantic-color-dark-error-subtle: rgba(248, 113, 113, 0.2);
   --semantic-surface-dark-overlay: rgba(0, 0, 0, 0.7);
+  --semantic-surface-overlay: rgba(0, 0, 0, 0.5); /** Modal/dialog overlay background */
   --semantic-shadow-colored-primary-sm: 0 2px 8px -2px rgba(37, 99, 235, 0.25); /** Small primary-tinted shadow */
   --semantic-shadow-colored-primary-md: 0 4px 12px -2px rgba(37, 99, 235, 0.3); /** Medium primary-tinted shadow */
   --semantic-shadow-colored-primary-lg: 0 8px 24px -4px rgba(37, 99, 235, 0.3); /** Large primary glow shadow */
@@ -647,7 +650,6 @@
   --component-button-size-xl-font-size: var(--primitive-font-size-lg);
   --component-button-primary-text: var(--primitive-color-neutral-0);
   --component-button-secondary-bg-hover: var(--primitive-color-neutral-200);
-  --component-button-secondary-text: var(--primitive-color-neutral-900);
   --component-button-danger-text: var(--primitive-color-neutral-0);
   --component-button-success-text: var(--primitive-color-neutral-0);
   --component-button-ghost-bg-hover: var(--primitive-color-neutral-100);
@@ -1103,6 +1105,11 @@
   --semantic-color-info-active: var(--primitive-color-blue-800);
   --semantic-color-info-subtle: var(--primitive-color-blue-100);
   --semantic-color-info-muted: var(--primitive-color-blue-50);
+  --semantic-color-error-default: var(--primitive-color-red-700); /** Error state for form validation — mirrors danger (6.3:1) */
+  --semantic-color-error-hover: var(--primitive-color-red-800);
+  --semantic-color-error-active: var(--primitive-color-red-900);
+  --semantic-color-error-subtle: var(--primitive-color-red-100);
+  --semantic-color-error-muted: var(--primitive-color-red-50);
   --semantic-color-dark-primary-default: var(--primitive-color-blue-400);
   --semantic-color-dark-primary-hover: var(--primitive-color-blue-300);
   --semantic-color-dark-primary-active: var(--primitive-color-blue-500);
@@ -1114,17 +1121,24 @@
   --semantic-color-dark-danger-hover: var(--primitive-color-red-300);
   --semantic-color-dark-info-default: var(--primitive-color-blue-400);
   --semantic-color-dark-info-hover: var(--primitive-color-blue-300);
+  --semantic-color-dark-secondary-default: var(--primitive-color-neutral-400);
+  --semantic-color-dark-error-default: var(--primitive-color-red-400);
+  --semantic-color-dark-error-hover: var(--primitive-color-red-300);
   --semantic-surface-dark-page-default: var(--primitive-color-neutral-900);
   --semantic-surface-dark-page-subtle: var(--primitive-color-neutral-800);
+  --semantic-surface-dark-page-muted: var(--primitive-color-neutral-700);
   --semantic-surface-dark-card-default: var(--primitive-color-neutral-800);
   --semantic-surface-dark-card-hover: var(--primitive-color-neutral-700);
   --semantic-surface-dark-input-default: var(--primitive-color-neutral-800);
   --semantic-surface-dark-input-hover: var(--primitive-color-neutral-700);
+  --semantic-surface-dark-inverse-default: var(--primitive-color-neutral-100);
   --semantic-surface-page-default: var(--primitive-color-neutral-0);
   --semantic-surface-page-subtle: var(--primitive-color-neutral-50);
   --semantic-surface-page-muted: var(--primitive-color-neutral-100);
   --semantic-surface-card-default: var(--primitive-color-neutral-0);
   --semantic-surface-card-hover: var(--primitive-color-neutral-50);
+  --semantic-surface-input-default: var(--primitive-color-neutral-0); /** Input field background */
+  --semantic-surface-input-hover: var(--primitive-color-neutral-50); /** Input field hover background */
   --semantic-surface-inverse-default: var(--primitive-color-neutral-900);
   --semantic-surface-inverse-subtle: var(--primitive-color-neutral-800);
   --semantic-border-dark-default: var(--primitive-color-neutral-500);
@@ -1146,9 +1160,12 @@
   --semantic-text-default: var(--primitive-color-neutral-900);
   --semantic-text-secondary: var(--primitive-color-neutral-600);
   --semantic-text-muted: var(--primitive-color-neutral-500);
+  --semantic-text-subtle: var(--primitive-color-neutral-400); /** Subtle/tertiary text */
   --semantic-text-disabled: var(--primitive-color-neutral-400);
   --semantic-text-inverse: var(--primitive-color-neutral-0);
+  --semantic-text-placeholder: var(--primitive-color-neutral-400); /** Input placeholder text */
   --semantic-text-link: var(--primitive-color-blue-600);
+  --semantic-text-link-hover: var(--primitive-color-blue-700); /** Link hover state */
   --semantic-backdrop-blur-sm: var(--primitive-blur-sm); /** Backdrop blur — subtle */
   --semantic-backdrop-blur-md: var(--primitive-blur-md); /** Backdrop blur — standard */
   --semantic-backdrop-blur-lg: var(--primitive-blur-lg); /** Backdrop blur — heavy */
@@ -1249,6 +1266,7 @@
   --component-button-primary-bg-active: var(--semantic-color-primary-active);
   --component-button-secondary-bg: var(--semantic-color-secondary-subtle);
   --component-button-secondary-bg-active: var(--semantic-color-secondary-active);
+  --component-button-secondary-text: var(--semantic-text-default); /** Uses semantic text so it adapts to theme modes */
   --component-button-danger-bg: var(--semantic-color-danger-default);
   --component-button-danger-bg-hover: var(--semantic-color-danger-hover);
   --component-button-danger-bg-active: var(--semantic-color-danger-active);

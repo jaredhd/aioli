@@ -28,6 +28,15 @@
           "default": { "$value": "{primitive.color.blue.400}" },
           "hover": { "$value": "{primitive.color.blue.300}" },
           "subtle": { "$value": "rgba(96, 165, 250, 0.2)" }
+        },
+        "secondary": {
+          "default": { "$value": "{primitive.color.neutral.400}" },
+          "subtle": { "$value": "rgba(148, 163, 184, 0.2)" }
+        },
+        "error": {
+          "default": { "$value": "{primitive.color.red.400}" },
+          "hover": { "$value": "{primitive.color.red.300}" },
+          "subtle": { "$value": "rgba(248, 113, 113, 0.2)" }
         }
       }
     },
@@ -36,7 +45,8 @@
         "$description": "Dark mode surface colors",
         "page": {
           "default": { "$value": "{primitive.color.neutral.900}" },
-          "subtle": { "$value": "{primitive.color.neutral.800}" }
+          "subtle": { "$value": "{primitive.color.neutral.800}" },
+          "muted": { "$value": "{primitive.color.neutral.700}" }
         },
         "card": {
           "default": { "$value": "{primitive.color.neutral.800}" },
@@ -46,7 +56,10 @@
           "default": { "$value": "{primitive.color.neutral.800}" },
           "hover": { "$value": "{primitive.color.neutral.700}" }
         },
-        "overlay": { "$value": "rgba(0, 0, 0, 0.7)" }
+        "overlay": { "$value": "rgba(0, 0, 0, 0.7)" },
+        "inverse": {
+          "default": { "$value": "{primitive.color.neutral.100}" }
+        }
       }
     },
     "border": {

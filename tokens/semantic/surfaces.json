@@ -11,6 +11,11 @@
         "default": { "$value": "{primitive.color.neutral.0}" },
         "hover": { "$value": "{primitive.color.neutral.50}" }
       },
+      "input": {
+        "default": { "$value": "{primitive.color.neutral.0}", "$description": "Input field background" },
+        "hover": { "$value": "{primitive.color.neutral.50}", "$description": "Input field hover background" }
+      },
+      "overlay": { "$value": "rgba(0, 0, 0, 0.5)", "$description": "Modal/dialog overlay background" },
       "inverse": {
         "default": { "$value": "{primitive.color.neutral.900}" },
         "subtle": { "$value": "{primitive.color.neutral.800}" }
@@ -28,9 +33,12 @@
       "default": { "$value": "{primitive.color.neutral.900}" },
       "secondary": { "$value": "{primitive.color.neutral.600}" },
       "muted": { "$value": "{primitive.color.neutral.500}" },
+      "subtle": { "$value": "{primitive.color.neutral.400}", "$description": "Subtle/tertiary text" },
       "disabled": { "$value": "{primitive.color.neutral.400}" },
       "inverse": { "$value": "{primitive.color.neutral.0}" },
-      "link": { "$value": "{primitive.color.blue.600}" }
+      "placeholder": { "$value": "{primitive.color.neutral.400}", "$description": "Input placeholder text" },
+      "link": { "$value": "{primitive.color.blue.600}" },
+      "link-hover": { "$value": "{primitive.color.blue.700}", "$description": "Link hover state" }
     }
   }
 }

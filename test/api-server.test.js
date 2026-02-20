@@ -18,7 +18,7 @@ describe('GET /api/v1/health', () => {
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
     expect(res.body.data.status).toBe('ok');
-    expect(res.body.data.tokenCount).toBe(1543);
+    expect(res.body.data.tokenCount).toBe(1561);
     expect(res.body.data.componentCount).toBe(43);
     expect(res.body.data.themeCount).toBe(6);
     expect(res.body.data.endpoints).toBe(13);
@@ -209,7 +209,7 @@ describe('GET /api/v1/tokens', () => {
   it('returns summary when no params given', async () => {
     const res = await request(app).get('/api/v1/tokens');
     expect(res.status).toBe(200);
-    expect(res.body.data.totalTokens).toBe(1543);
+    expect(res.body.data.totalTokens).toBe(1561);
     expect(res.body.data.topLevelCategories).toBeInstanceOf(Array);
     expect(res.body.data.hint).toBeTruthy();
   });

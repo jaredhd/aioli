@@ -56,7 +56,7 @@
         "bg": { "$type": "color", "$value": "{semantic.color.secondary.subtle}" },
         "bgHover": { "$type": "color", "$value": "{primitive.color.neutral.200}" },
         "bgActive": { "$type": "color", "$value": "{semantic.color.secondary.active}" },
-        "text": { "$type": "color", "$value": "{primitive.color.neutral.900}" },
+        "text": { "$type": "color", "$value": "{semantic.text.default}", "$description": "Uses semantic text so it adapts to theme modes" },
         "shadow": { "$type": "shadow", "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.06)", "$description": "Subtle neutral shadow" },
         "shadowHover": { "$type": "shadow", "$value": "0 2px 6px -1px rgba(0, 0, 0, 0.1)", "$description": "Lifted neutral shadow" },
         "shadowActive": { "$type": "shadow", "$value": "inset 0 1px 3px 0 rgba(0, 0, 0, 0.1)", "$description": "Inset on press" }

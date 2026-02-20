@@ -117,7 +117,7 @@ describe('SDK: derivePalette', () => {
 describe('SDK: getTokens', () => {
   it('returns summary by default', async () => {
     const result = await client.getTokens();
-    expect(result.totalTokens).toBe(1543);
+    expect(result.totalTokens).toBe(1561);
     expect(result.topLevelCategories).toBeInstanceOf(Array);
   });
 

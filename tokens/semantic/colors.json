@@ -113,6 +113,24 @@
         "muted": {
           "$value": "{primitive.color.blue.50}"
         }
+      },
+      "error": {
+        "default": {
+          "$value": "{primitive.color.red.700}",
+          "$description": "Error state for form validation — mirrors danger (6.3:1)"
+        },
+        "hover": {
+          "$value": "{primitive.color.red.800}"
+        },
+        "active": {
+          "$value": "{primitive.color.red.900}"
+        },
+        "subtle": {
+          "$value": "{primitive.color.red.100}"
+        },
+        "muted": {
+          "$value": "{primitive.color.red.50}"
+        }
       }
     }
   }
