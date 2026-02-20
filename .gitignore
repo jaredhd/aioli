@@ -32,3 +32,9 @@ dist-site/
 
 # Note: dist/ is NOT ignored — it contains built design tokens
 # (tokens.css, tokens.json) referenced by package.json exports
+
+# Figma template scaffold (not the real plugin — real plugin is in figma/)
+Aioli Design System/
+
+# Archives
+files.zip

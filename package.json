@@ -1,7 +1,7 @@
 {
   "name": "aioli-design",
-  "version": "0.5.0",
-  "description": "Free, open-source AI design system engine. Natural language to React, Vue, Svelte, or HTML components with WCAG AA accessibility, 1,543 design tokens, and MCP server integration.",
+  "version": "0.6.0",
+  "description": "Free, open-source AI design system engine. Natural language to React, Vue, Svelte, or HTML components with WCAG AA accessibility, 1,561 design tokens, and MCP server integration.",
   "type": "module",
   "main": "./lib/index.js",
   "style": "./css/aioli.css",
@@ -47,6 +47,7 @@
     "config.js",
     "dist/",
     "docs/",
+    "figma/",
     "README.md",
     "LICENSE"
   ],
@@ -81,7 +82,9 @@
     "studio:api": "node src/studio/api-server.js",
     "studio:dev": "concurrently \"npm run studio:api\" \"npm run dev\"",
     "studio": "npm run studio:dev",
-    "mcp": "node mcp-server/index.js"
+    "mcp": "node mcp-server/index.js",
+    "figma:tokens": "node figma/transform-tokens.js",
+    "figma:build": "node figma/build-plugin.js"
   },
   "repository": {
     "type": "git",
@@ -107,6 +110,7 @@
     "react",
     "vue",
     "svelte",
+    "figma",
     "open-source",
     "free"
   ],

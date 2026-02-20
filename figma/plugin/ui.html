@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Inter, system-ui, sans-serif; font-size: 13px; color: #e8e6e1; padding: 16px; background: #0e0e12; }
+
+    /* Header */
+    .header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .header svg { flex-shrink: 0; }
+    .header h2 { font-size: 18px; font-weight: 500; letter-spacing: -0.5px; }
+    .header h2 .ai { color: #5ae6a2; font-weight: 600; }
+    .header h2 .oli { color: #e8e6e1; font-weight: 300; }
+    .subtitle { font-size: 11px; color: #555; margin-bottom: 16px; margin-left: 42px; letter-spacing: 0.02em; }
+
+    .section { margin-bottom: 16px; }
+    .section-title { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #5ae6a2; margin-bottom: 8px; opacity: 0.7; }
+
+    textarea { width: 100%; height: 100px; border: 1px solid rgba(90,230,162,0.15); border-radius: 6px; padding: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; resize: vertical; background: #1a1a1f; color: #e8e6e1; }
+    textarea:focus { outline: none; border-color: #5ae6a2; box-shadow: 0 0 0 2px rgba(90,230,162,0.15); }
+    textarea::placeholder { color: #444; }
+
+    .checkbox-group { display: flex; flex-direction: column; gap: 6px; }
+    .checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; color: #e8e6e1; }
+    .checkbox-group label span { color: #555; }
+    .checkbox-group input[type="checkbox"] { width: 14px; height: 14px; accent-color: #5ae6a2; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.15s; }
+    .btn-primary { background: #5ae6a2; color: #0e0e12; }
+    .btn-primary:hover { background: #4dd492; box-shadow: 0 0 20px rgba(90,230,162,0.25); }
+    .btn-primary:disabled { background: #1a3a2a; color: #555; cursor: not-allowed; box-shadow: none; }
+    .btn-secondary { background: #1a1a1f; color: #e8e6e1; border: 1px solid rgba(90,230,162,0.15); font-size: 12px; font-weight: 500; padding: 6px 12px; }
+    .btn-secondary:hover { background: #252530; border-color: rgba(90,230,162,0.3); }
+
+    .preview-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .preview-stat { text-align: center; padding: 10px 4px; background: rgba(90,230,162,0.06); border: 1px solid rgba(90,230,162,0.1); border-radius: 8px; }
+    .preview-stat .num { font-size: 22px; font-weight: 700; color: #5ae6a2; line-height: 1.2; }
+    .preview-stat .label { font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+    .progress-bar { width: 100%; height: 4px; background: #1a1a1f; border-radius: 2px; overflow: hidden; margin-bottom: 8px; display: none; }
+    .progress-bar .fill { height: 100%; background: linear-gradient(90deg, #0e8a56, #5ae6a2); border-radius: 2px; transition: width 0.15s ease; width: 0%; }
+
+    .status { font-size: 12px; color: #555; min-height: 18px; }
+    .status.success { color: #5ae6a2; font-weight: 500; }
+    .status.error { color: #e85454; }
+
+    .log { max-height: 140px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; background: #1a1a1f; border: 1px solid rgba(90,230,162,0.1); border-radius: 6px; padding: 8px; line-height: 1.6; display: none; margin-top: 8px; }
+    .log .entry { color: #555; }
+    .log .entry.done { color: #5ae6a2; }
+    .log .entry.warn { color: #f0c050; }
+    .log .entry.err { color: #e85454; }
+
+    .result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; display: none; }
+    .result-stat { text-align: center; padding: 8px; background: rgba(90,230,162,0.08); border: 1px solid rgba(90,230,162,0.15); border-radius: 6px; }
+    .result-stat .num { font-size: 20px; font-weight: 700; color: #5ae6a2; }
+    .result-stat .label { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .divider { border-top: 1px solid rgba(90,230,162,0.1); margin: 12px 0; }
+
+    .advanced-toggle { display: flex; align-items: center; gap: 4px; background: none; border: none; color: #555; font-size: 11px; cursor: pointer; padding: 4px 0; }
+    .advanced-toggle:hover { color: #e8e6e1; }
+    .advanced-toggle .arrow { transition: transform 0.15s; font-size: 9px; }
+    .advanced-toggle .arrow.open { transform: rotate(90deg); }
+    .advanced-content { display: none; margin-top: 8px; }
+    .advanced-content.open { display: block; }
+
+    .badge { display: inline-block; font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-bundled { background: rgba(90,230,162,0.1); color: #5ae6a2; }
+    .badge-custom { background: rgba(240,192,80,0.15); color: #f0c050; }
+
+    /* Scrollbar */
+    .log::-webkit-scrollbar { width: 4px; }
+    .log::-webkit-scrollbar-track { background: transparent; }
+    .log::-webkit-scrollbar-thumb { background: rgba(90,230,162,0.2); border-radius: 2px; }
+
+    /* Footer */
+    .footer { margin-top: 16px; text-align: center; font-size: 10px; color: #444; }
+    .footer a { color: #5ae6a2; text-decoration: none; opacity: 0.6; }
+    .footer a:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+  <!-- Header with logo -->
+  <div class="header">
+    <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 2 Q32 12, 20 38 Q12 60, 24 78 Q36 92, 50 82 Q58 76, 58 66 Q58 60, 60 58" stroke="#5ae6a2" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M60 2 Q88 12, 100 38 Q108 60, 96 78 Q84 92, 70 82 Q62 76, 62 66 Q62 60, 60 58" stroke="#5ae6a2" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M36 106 Q28 88, 32 70 Q36 54, 46 48 Q54 44, 58 52 Q60 56, 60 58" stroke="#5ae6a2" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.45"/>
+      <path d="M84 106 Q92 88, 88 70 Q84 54, 74 48 Q66 44, 62 52 Q60 56, 60 58" stroke="#5ae6a2" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.45"/>
+      <path d="M60 -4 Q60 10, 58 24 Q56 36, 58 46 Q59 52, 60 56" stroke="#5ae6a2" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.3"/>
+      <circle cx="60" cy="58" r="8" fill="#5ae6a2"/>
+      <circle cx="60" cy="0" r="3.5" fill="#5ae6a2" opacity="0.5"/>
+      <circle cx="35" cy="108" r="3" fill="#5ae6a2" opacity="0.4"/>
+      <circle cx="85" cy="108" r="3" fill="#5ae6a2" opacity="0.4"/>
+    </svg>
+    <h2><span class="ai">Ai</span><span class="oli">oli</span></h2>
+  </div>
+  <div class="subtitle">Design System Generator</div>
+
+  <!-- Preview stats (shown when bundled tokens available) -->
+  <div class="preview-stats" id="preview-stats" style="display: none;">
+    <div class="preview-stat"><div class="num" id="preview-vars">1,309</div><div class="label">Variables</div></div>
+    <div class="preview-stat"><div class="num" id="preview-styles">21</div><div class="label">Styles</div></div>
+    <div class="preview-stat"><div class="num" id="preview-components">43</div><div class="label">Components</div></div>
+  </div>
+
+  <!-- Options -->
+  <div class="section">
+    <div class="section-title">What to create</div>
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="opt-variables" checked> Variables <span>(3 collections, 6 themes)</span></label>
+      <label><input type="checkbox" id="opt-text-styles" checked> Text Styles <span>(13)</span></label>
+      <label><input type="checkbox" id="opt-effect-styles" checked> Effect Styles <span>(8)</span></label>
+      <label><input type="checkbox" id="opt-components" checked> Components <span>(43)</span></label>
+    </div>
+  </div>
+
+  <!-- Advanced: Custom tokens -->
+  <div class="section" id="advanced-section">
+    <button class="advanced-toggle" id="advanced-toggle">
+      <span class="arrow" id="advanced-arrow">&#9654;</span>
+      Use custom tokens <span class="badge badge-custom" style="margin-left: 4px;">Advanced</span>
+    </button>
+    <div class="advanced-content" id="advanced-content">
+      <textarea id="token-input" placeholder="Paste figma-tokens.json contents here to override the bundled Aioli tokens..."></textarea>
+      <div style="margin-top: 6px; display: flex; gap: 6px;">
+        <button class="btn btn-secondary" id="load-clip-btn" style="width: auto; flex: 1;">Paste from clipboard</button>
+        <button class="btn btn-secondary" id="clear-custom-btn" style="width: auto;">Clear</button>
+      </div>
+      <div class="status" id="custom-status" style="margin-top: 4px;"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Source indicator -->
+  <div style="font-size: 11px; color: #555; margin-bottom: 8px; display: flex; align-items: center; gap: 4px;" id="source-indicator">
+    <span class="badge badge-bundled" id="source-badge">Bundled</span>
+    <span id="source-text">Using built-in Aioli tokens</span>
+  </div>
+
+  <!-- Generate button -->
+  <button class="btn btn-primary" id="generate-btn">Generate Library</button>
+
+  <!-- Progress -->
+  <div style="margin-top: 12px;">
+    <div class="progress-bar" id="progress-bar"><div class="fill" id="progress-fill"></div></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="log" id="log"></div>
+
+  <div class="result-stats" id="result-stats">
+    <div class="result-stat"><div class="num" id="stat-vars">0</div><div class="label">Variables</div></div>
+    <div class="result-stat"><div class="num" id="stat-styles">0</div><div class="label">Styles</div></div>
+    <div class="result-stat"><div class="num" id="stat-components">0</div><div class="label">Components</div></div>
+  </div>
+
+  <div class="footer">
+    Free &amp; open source &middot; <a href="https://github.com/jaredhd/aioli" target="_blank">github.com/jaredhd/aioli</a>
+  </div>
+
+  <script>
+    var tokenInput = document.getElementById('token-input');
+    var generateBtn = document.getElementById('generate-btn');
+    var loadClipBtn = document.getElementById('load-clip-btn');
+    var clearCustomBtn = document.getElementById('clear-custom-btn');
+    var progressBar = document.getElementById('progress-bar');
+    var progressFill = document.getElementById('progress-fill');
+    var statusEl = document.getElementById('status');
+    var logEl = document.getElementById('log');
+    var resultStatsEl = document.getElementById('result-stats');
+    var previewStats = document.getElementById('preview-stats');
+    var customStatusEl = document.getElementById('custom-status');
+    var sourceBadge = document.getElementById('source-badge');
+    var sourceText = document.getElementById('source-text');
+    var advancedToggle = document.getElementById('advanced-toggle');
+    var advancedArrow = document.getElementById('advanced-arrow');
+    var advancedContent = document.getElementById('advanced-content');
+
+    var hasBundledTokens = false;
+    var customTokenData = null;
+
+    // Advanced toggle
+    advancedToggle.addEventListener('click', function() {
+      var isOpen = advancedContent.classList.toggle('open');
+      advancedArrow.classList.toggle('open', isOpen);
+    });
+
+    // Validate custom JSON input
+    function validateCustomInput() {
+      if (!tokenInput.value.trim()) {
+        customTokenData = null;
+        customStatusEl.textContent = '';
+        customStatusEl.className = 'status';
+        updateSource();
+        return;
+      }
+      try {
+        var data = JSON.parse(tokenInput.value);
+        if (data.meta && data.variables && data.components) {
+          customTokenData = data;
+          customStatusEl.textContent = 'Custom tokens loaded: ' + data.meta.stats.totalVars + ' variables';
+          customStatusEl.className = 'status success';
+          updateSource();
+          return;
+        }
+        throw new Error('Invalid structure');
+      } catch (e) {
+        customTokenData = null;
+        customStatusEl.textContent = 'Invalid JSON format';
+        customStatusEl.className = 'status error';
+        updateSource();
+      }
+    }
+
+    function updateSource() {
+      if (customTokenData) {
+        sourceBadge.textContent = 'Custom';
+        sourceBadge.className = 'badge badge-custom';
+        sourceText.textContent = 'Using custom token data';
+        generateBtn.disabled = false;
+      } else if (hasBundledTokens) {
+        sourceBadge.textContent = 'Bundled';
+        sourceBadge.className = 'badge badge-bundled';
+        sourceText.textContent = 'Using built-in Aioli tokens';
+        generateBtn.disabled = false;
+      } else {
+        sourceBadge.textContent = 'None';
+        sourceBadge.className = 'badge';
+        sourceText.textContent = 'Paste custom tokens or run figma:build';
+        generateBtn.disabled = true;
+      }
+    }
+
+    tokenInput.addEventListener('input', validateCustomInput);
+
+    loadClipBtn.addEventListener('click', function() {
+      navigator.clipboard.readText().then(function(text) {
+        tokenInput.value = text;
+        validateCustomInput();
+      }).catch(function() {
+        customStatusEl.textContent = 'Clipboard access denied \u2014 paste manually';
+        customStatusEl.className = 'status error';
+      });
+    });
+
+    clearCustomBtn.addEventListener('click', function() {
+      tokenInput.value = '';
+      customTokenData = null;
+      customStatusEl.textContent = '';
+      updateSource();
+    });
+
+    // Generate
+    generateBtn.addEventListener('click', function() {
+      var options = {
+        variables: document.getElementById('opt-variables').checked,
+        textStyles: document.getElementById('opt-text-styles').checked,
+        effectStyles: document.getElementById('opt-effect-styles').checked,
+        components: document.getElementById('opt-components').checked,
+      };
+
+      generateBtn.disabled = true;
+      progressBar.style.display = 'block';
+      logEl.style.display = 'block';
+      logEl.innerHTML = '';
+      resultStatsEl.style.display = 'none';
+
+      // Send custom data if available, otherwise plugin code uses BUNDLED_TOKENS
+      var message = { type: 'generate', options: options };
+      if (customTokenData) {
+        message.data = customTokenData;
+      }
+      parent.postMessage({ pluginMessage: message }, '*');
+    });
+
+    // Handle messages from plugin code
+    window.onmessage = function(event) {
+      var msg = event.data.pluginMessage;
+      if (!msg) return;
+
+      switch (msg.type) {
+        case 'init':
+          hasBundledTokens = msg.hasBundledTokens;
+          if (msg.stats) {
+            document.getElementById('preview-vars').textContent = msg.stats.totalVars.toLocaleString();
+            document.getElementById('preview-styles').textContent = (msg.stats.textStyles + msg.stats.effectStyles).toLocaleString();
+            document.getElementById('preview-components').textContent = msg.stats.components.toLocaleString();
+          }
+          if (hasBundledTokens) {
+            previewStats.style.display = 'grid';
+          }
+          updateSource();
+          break;
+
+        case 'progress':
+          progressFill.style.width = msg.percent + '%';
+          statusEl.textContent = msg.message;
+          statusEl.className = 'status';
+          break;
+
+        case 'log':
+          var entry = document.createElement('div');
+          entry.className = 'entry ' + (msg.level || '');
+          entry.textContent = msg.message;
+          logEl.appendChild(entry);
+          logEl.scrollTop = logEl.scrollHeight;
+          break;
+
+        case 'done':
+          progressFill.style.width = '100%';
+          statusEl.textContent = 'Library created successfully!';
+          statusEl.className = 'status success';
+          generateBtn.disabled = false;
+
+          resultStatsEl.style.display = 'grid';
+          document.getElementById('stat-vars').textContent = (msg.stats.variables || 0).toLocaleString();
+          document.getElementById('stat-styles').textContent = (msg.stats.styles || 0).toLocaleString();
+          document.getElementById('stat-components').textContent = (msg.stats.components || 0).toLocaleString();
+          break;
+
+        case 'error':
+          statusEl.textContent = 'Error: ' + msg.message;
+          statusEl.className = 'status error';
+          generateBtn.disabled = false;
+          break;
+      }
+    };
+  </script>
+</body>
+</html>

@@ -37,3 +37,6 @@ dist-site/
 
 # Scripts (development only)
 scripts/
+
+# Brand assets (not needed in npm package)
+brand/
