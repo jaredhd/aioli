@@ -56,10 +56,10 @@ describe('SDK: generatePage', () => {
 // ============================================================================
 
 describe('SDK: listComponents', () => {
-  it('returns 43 components', async () => {
+  it('returns 55 components', async () => {
     const result = await client.listComponents();
     expect(result).toBeInstanceOf(Array);
-    expect(result.length).toBe(43);
+    expect(result.length).toBe(55);
   });
 });
 
@@ -117,7 +117,7 @@ describe('SDK: derivePalette', () => {
 describe('SDK: getTokens', () => {
   it('returns summary by default', async () => {
     const result = await client.getTokens();
-    expect(result.totalTokens).toBe(1561);
+    expect(result.totalTokens).toBe(1754);
     expect(result.topLevelCategories).toBeInstanceOf(Array);
   });
 

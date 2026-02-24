@@ -1,0 +1,60 @@
+{
+  "component": {
+    "typingIndicator": {
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.card.default}",
+        "$description": "Typing indicator background"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Typing indicator border"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.full}",
+        "$description": "Pill-shaped border radius"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.3}",
+        "$description": "Internal padding"
+      },
+      "dot": {
+        "size": {
+          "$type": "dimension",
+          "$value": "8px",
+          "$description": "Dot diameter"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Dot color"
+        },
+        "gap": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.1}",
+          "$description": "Gap between dots"
+        },
+        "animationDuration": {
+          "$type": "duration",
+          "$value": "{primitive.motion.duration.slower}",
+          "$description": "Full bounce cycle duration"
+        }
+      },
+      "timer": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Elapsed timer font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Elapsed timer text color"
+        }
+      }
+    }
+  }
+}

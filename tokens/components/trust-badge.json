@@ -1,0 +1,94 @@
+{
+  "component": {
+    "trustBadge": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.full}",
+        "$description": "Pill-shaped border radius"
+      },
+      "paddingX": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.3}",
+        "$description": "Horizontal padding"
+      },
+      "paddingY": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.1}",
+        "$description": "Vertical padding"
+      },
+      "fontSize": {
+        "$type": "dimension",
+        "$value": "{primitive.font.size.xs}",
+        "$description": "Badge font size"
+      },
+      "fontWeight": {
+        "$type": "number",
+        "$value": "{primitive.font.weight.semibold}",
+        "$description": "Badge font weight"
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.1}",
+        "$description": "Gap between icon and label"
+      },
+      "ai": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.subtle}",
+          "$description": "AI-generated badge background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "AI-generated badge text"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "AI-generated badge border"
+        }
+      },
+      "human": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.success.subtle}",
+          "$description": "Human-authored badge background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Human-authored badge text"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Human-authored badge border"
+        }
+      },
+      "verified": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.success.subtle}",
+          "$description": "Verified badge background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Verified badge text"
+        }
+      },
+      "unverified": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.subtle}",
+          "$description": "Unverified badge background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.default}",
+          "$description": "Unverified badge text"
+        }
+      }
+    }
+  }
+}

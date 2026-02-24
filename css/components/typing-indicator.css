@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Typing Indicator — Animated dots showing AI is thinking
+   ========================================================================== */
+
+.typing-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  padding: var(--component-typing-indicator-padding);
+  background-color: var(--component-typing-indicator-bg);
+  border: 1px solid var(--component-typing-indicator-border);
+  border-radius: var(--component-typing-indicator-radius);
+}
+
+/* Dots container */
+.typing-indicator__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--component-typing-indicator-dot-gap);
+}
+
+/* Individual dot */
+.typing-indicator__dot {
+  width: var(--component-typing-indicator-dot-size);
+  height: var(--component-typing-indicator-dot-size);
+  border-radius: var(--primitive-radius-full);
+  background-color: var(--component-typing-indicator-dot-color);
+  animation: typing-bounce var(--component-typing-indicator-dot-animation-duration) ease-in-out infinite;
+}
+
+.typing-indicator__dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-indicator__dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* Elapsed timer */
+.typing-indicator__timer {
+  font-size: var(--component-typing-indicator-timer-font-size);
+  color: var(--component-typing-indicator-timer-color);
+  font-variant-numeric: tabular-nums;
+  min-width: 2.5em;
+}
+
+/* Label (e.g. "AI is thinking") */
+.typing-indicator__label {
+  font-size: var(--primitive-font-size-sm);
+  color: var(--semantic-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-indicator__dot {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .typing-indicator__dot:nth-child(1) { opacity: 0.4; }
+  .typing-indicator__dot:nth-child(2) { opacity: 0.6; }
+  .typing-indicator__dot:nth-child(3) { opacity: 0.8; }
+}

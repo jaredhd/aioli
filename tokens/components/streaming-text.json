@@ -1,0 +1,45 @@
+{
+  "component": {
+    "streamingText": {
+      "text": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Streaming text color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.base}",
+          "$description": "Streaming text font size"
+        },
+        "lineHeight": {
+          "$type": "number",
+          "$value": "1.6",
+          "$description": "Line height for readability"
+        }
+      },
+      "cursor": {
+        "width": {
+          "$type": "dimension",
+          "$value": "2px",
+          "$description": "Cursor width"
+        },
+        "height": {
+          "$type": "dimension",
+          "$value": "1.2em",
+          "$description": "Cursor height relative to text"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Cursor color"
+        },
+        "blinkDuration": {
+          "$type": "duration",
+          "$value": "1000ms",
+          "$description": "Cursor blink animation duration"
+        }
+      }
+    }
+  }
+}

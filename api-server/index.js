@@ -58,7 +58,7 @@ app.get('/api/v1/health', (_req, res) => {
     status: 'ok',
     version: '1.0.0',
     tokenCount: agents.token.countTokens(),
-    componentCount: 43,
+    componentCount: agents.component.handleRequest({ action: 'listComponents' }).data.length,
     themeCount: 6,
     endpoints: 13,
   });

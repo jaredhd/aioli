@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Model Selector — AI model picker with capability tags
+   ========================================================================== */
+
+.model-selector {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+/* Trigger button */
+.model-selector__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--primitive-spacing-2);
+  padding: var(--component-model-selector-padding);
+  background-color: var(--component-model-selector-bg);
+  border: 1px solid var(--component-model-selector-border);
+  border-radius: var(--component-model-selector-radius);
+  cursor: pointer;
+  font-size: var(--component-model-selector-trigger-font-size);
+  color: var(--component-model-selector-trigger-color);
+  font-family: var(--primitive-font-family-sans);
+  min-width: 220px;
+  transition: border-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.model-selector__trigger:hover {
+  border-color: var(--component-model-selector-border-focus);
+}
+
+.model-selector__trigger:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: 2px;
+  border-color: var(--component-model-selector-border-focus);
+}
+
+/* Chevron icon */
+.model-selector__chevron {
+  display: inline-flex;
+  font-size: var(--primitive-font-size-xs);
+  transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.model-selector--open .model-selector__chevron {
+  transform: rotate(180deg);
+}
+
+/* Selected model display */
+.model-selector__selected {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+  overflow: hidden;
+}
+
+.model-selector__selected-name {
+  font-weight: var(--component-model-selector-model-name-font-weight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Dropdown panel */
+.model-selector__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: var(--primitive-spacing-1);
+  background-color: var(--component-model-selector-dropdown-bg);
+  border: 1px solid var(--component-model-selector-dropdown-border);
+  border-radius: var(--component-model-selector-dropdown-radius);
+  box-shadow: var(--component-model-selector-dropdown-shadow);
+  z-index: 50;
+  overflow: hidden;
+  display: none;
+}
+
+.model-selector--open .model-selector__dropdown {
+  display: block;
+}
+
+/* Option list */
+.model-selector__options {
+  list-style: none;
+  margin: 0;
+  padding: var(--primitive-spacing-1) 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Individual option */
+.model-selector__option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-1);
+  padding: var(--component-model-selector-option-padding-y) var(--component-model-selector-option-padding-x);
+  cursor: pointer;
+  transition: background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.model-selector__option:hover {
+  background-color: var(--component-model-selector-option-hover-bg);
+}
+
+.model-selector__option--selected {
+  background-color: var(--component-model-selector-option-selected-bg);
+}
+
+.model-selector__option:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Model info within option */
+.model-selector__model-name {
+  font-size: var(--component-model-selector-model-name-font-size);
+  font-weight: var(--component-model-selector-model-name-font-weight);
+  color: var(--component-model-selector-model-name-color);
+}
+
+.model-selector__model-description {
+  font-size: var(--component-model-selector-model-description-font-size);
+  color: var(--component-model-selector-model-description-color);
+}
+
+/* Capability tags */
+.model-selector__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--primitive-spacing-1);
+}
+
+.model-selector__tag {
+  display: inline-flex;
+  padding: 1px var(--primitive-spacing-1);
+  background-color: var(--component-model-selector-tag-bg);
+  color: var(--component-model-selector-tag-color);
+  font-size: var(--component-model-selector-tag-font-size);
+  border-radius: var(--component-model-selector-tag-radius);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .model-selector__trigger,
+  .model-selector__chevron,
+  .model-selector__option {
+    transition: none;
+  }
+}

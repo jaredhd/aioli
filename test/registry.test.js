@@ -814,8 +814,8 @@ describe('Agent Integration', () => {
       expect(button).toBeDefined();
       expect(button.source).toBe('built-in');
 
-      // Should have 43 built-in + 1 community = 44
-      expect(result.data.length).toBe(44);
+      // Should have 55 built-in + 1 community = 56
+      expect(result.data.length).toBe(56);
     });
 
     it('prevents overriding built-in components', () => {
@@ -839,12 +839,12 @@ describe('Agent Integration', () => {
 
       // Should be registered
       let list = agents.component.handleRequest({ action: 'listComponents' });
-      expect(list.data.length).toBe(44);
+      expect(list.data.length).toBe(56);
 
       // Unregister
       agents.component.unregisterCommunityComponent('temp-comp');
       list = agents.component.handleRequest({ action: 'listComponents' });
-      expect(list.data.length).toBe(43);
+      expect(list.data.length).toBe(55);
     });
 
     it('listCommunityComponents action works', () => {
@@ -986,11 +986,11 @@ describe('Backward Compatibility', () => {
     createAgentSystem = mod.createAgentSystem;
   });
 
-  it('43 built-in components still work without community loading', () => {
+  it('55 built-in components still work without community loading', () => {
     const agents = createAgentSystem(tokensPath);
     const result = agents.component.handleRequest({ action: 'listComponents' });
     expect(result.success).toBe(true);
-    expect(result.data.length).toBe(43);
+    expect(result.data.length).toBe(55);
     expect(result.data.every(c => c.source === 'built-in')).toBe(true);
   });
 
@@ -1027,7 +1027,7 @@ describe('Backward Compatibility', () => {
 
   it('COMPONENT_TEMPLATES static export is unchanged', async () => {
     const { COMPONENT_TEMPLATES } = await import('../agents/component-generator-agent.js');
-    expect(Object.keys(COMPONENT_TEMPLATES).length).toBe(43);
+    expect(Object.keys(COMPONENT_TEMPLATES).length).toBe(55);
     expect(COMPONENT_TEMPLATES.button).toBeDefined();
     expect(COMPONENT_TEMPLATES.card).toBeDefined();
   });

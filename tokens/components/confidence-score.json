@@ -1,0 +1,81 @@
+{
+  "component": {
+    "confidenceScore": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.2}",
+        "$description": "Bar height"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.full}",
+        "$description": "Bar border radius"
+      },
+      "trackBg": {
+        "$type": "color",
+        "$value": "{semantic.surface.card.default}",
+        "$description": "Track background color"
+      },
+      "high": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "High confidence color (>= 0.7)"
+        },
+        "label": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "High confidence label color"
+        }
+      },
+      "medium": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.default}",
+          "$description": "Medium confidence color (0.4 - 0.69)"
+        },
+        "label": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.default}",
+          "$description": "Medium confidence label color"
+        }
+      },
+      "low": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Low confidence color (< 0.4)"
+        },
+        "label": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Low confidence label color"
+        }
+      },
+      "label": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Label font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.semibold}",
+          "$description": "Label font weight"
+        }
+      },
+      "value": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.lg}",
+          "$description": "Percentage value font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.bold}",
+          "$description": "Percentage value font weight"
+        }
+      }
+    }
+  }
+}

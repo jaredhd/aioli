@@ -1,0 +1,138 @@
+{
+  "component": {
+    "modelSelector": {
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.page.default}",
+        "$description": "Selector background"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Selector border"
+      },
+      "borderFocus": {
+        "$type": "color",
+        "$value": "{semantic.color.primary.default}",
+        "$description": "Selector focus border"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.md}",
+        "$description": "Selector border radius"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.3}",
+        "$description": "Selector padding"
+      },
+      "trigger": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Trigger text font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Trigger text color"
+        }
+      },
+      "dropdown": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.page.default}",
+          "$description": "Dropdown background"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.border.default}",
+          "$description": "Dropdown border"
+        },
+        "shadow": {
+          "$type": "shadow",
+          "$value": "{semantic.shadow.lg}",
+          "$description": "Dropdown shadow"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.lg}",
+          "$description": "Dropdown border radius"
+        }
+      },
+      "option": {
+        "paddingX": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Option horizontal padding"
+        },
+        "paddingY": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.2}",
+          "$description": "Option vertical padding"
+        },
+        "hoverBg": {
+          "$type": "color",
+          "$value": "{semantic.surface.card.hover}",
+          "$description": "Option hover background"
+        },
+        "selectedBg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.subtle}",
+          "$description": "Selected option background"
+        }
+      },
+      "tag": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.card.default}",
+          "$description": "Capability tag background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Capability tag text color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Capability tag font size"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.sm}",
+          "$description": "Capability tag border radius"
+        }
+      },
+      "modelName": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Model name font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.semibold}",
+          "$description": "Model name font weight"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Model name color"
+        }
+      },
+      "modelDescription": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Model description font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Model description color"
+        }
+      }
+    }
+  }
+}

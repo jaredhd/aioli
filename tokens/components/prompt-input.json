@@ -1,0 +1,102 @@
+{
+  "component": {
+    "promptInput": {
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.page.default}",
+        "$description": "Prompt input background"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Prompt input border"
+      },
+      "borderFocus": {
+        "$type": "color",
+        "$value": "{semantic.color.primary.default}",
+        "$description": "Prompt input focus border"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Border radius"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.4}",
+        "$description": "Internal padding"
+      },
+      "minHeight": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.12}",
+        "$description": "Minimum height"
+      },
+      "maxHeight": {
+        "$type": "dimension",
+        "$value": "200px",
+        "$description": "Maximum expandable height"
+      },
+      "text": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Input text color"
+        },
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.base}",
+          "$description": "Input font size"
+        },
+        "placeholder": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Placeholder text color"
+        }
+      },
+      "sendButton": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Send button background"
+        },
+        "bgHover": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.hover}",
+          "$description": "Send button hover background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.0}",
+          "$description": "Send button icon color"
+        },
+        "size": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.8}",
+          "$description": "Send button size"
+        },
+        "radius": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.full}",
+          "$description": "Send button border radius"
+        }
+      },
+      "tokenCount": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Token count font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Token count text color"
+        },
+        "warningColor": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.default}",
+          "$description": "Token count warning color when near limit"
+        }
+      }
+    }
+  }
+}

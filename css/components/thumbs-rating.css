@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Thumbs Rating — Up/down feedback with optional textarea
+   ========================================================================== */
+
+.thumbs-rating {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-2);
+}
+
+/* Button row */
+.thumbs-rating__buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--component-thumbs-rating-gap);
+}
+
+/* Individual thumb button */
+.thumbs-rating__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-thumbs-rating-button-size);
+  height: var(--component-thumbs-rating-button-size);
+  border: none;
+  border-radius: var(--component-thumbs-rating-button-radius);
+  background-color: var(--component-thumbs-rating-button-bg);
+  color: var(--component-thumbs-rating-button-color);
+  font-size: var(--component-thumbs-rating-button-font-size);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.thumbs-rating__btn:hover {
+  background-color: var(--component-thumbs-rating-button-hover-bg);
+  transform: scale(1.1);
+}
+
+.thumbs-rating__btn:active {
+  transform: scale(0.95);
+}
+
+.thumbs-rating__btn:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Active up state */
+.thumbs-rating__btn--up.thumbs-rating__btn--active {
+  background-color: var(--component-thumbs-rating-up-active-bg);
+  color: var(--component-thumbs-rating-up-active-color);
+}
+
+/* Active down state */
+.thumbs-rating__btn--down.thumbs-rating__btn--active {
+  background-color: var(--component-thumbs-rating-down-active-bg);
+  color: var(--component-thumbs-rating-down-active-color);
+}
+
+/* Label text */
+.thumbs-rating__label {
+  font-size: var(--primitive-font-size-xs);
+  color: var(--semantic-text-muted);
+}
+
+/* Feedback textarea (shown after selection) */
+.thumbs-rating__feedback {
+  display: none;
+}
+
+.thumbs-rating--has-feedback .thumbs-rating__feedback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-2);
+}
+
+.thumbs-rating__textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: var(--primitive-spacing-2);
+  border: 1px solid var(--component-thumbs-rating-feedback-border);
+  border-radius: var(--component-thumbs-rating-feedback-radius);
+  background-color: var(--component-thumbs-rating-feedback-bg);
+  color: var(--component-thumbs-rating-feedback-color);
+  font-size: var(--component-thumbs-rating-feedback-font-size);
+  font-family: var(--primitive-font-family-sans);
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.thumbs-rating__textarea::placeholder {
+  color: var(--component-thumbs-rating-feedback-placeholder);
+}
+
+.thumbs-rating__textarea:focus {
+  border-color: var(--semantic-color-primary-default);
+}
+
+.thumbs-rating__submit {
+  align-self: flex-end;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumbs-rating__btn {
+    transition: none;
+  }
+
+  .thumbs-rating__btn:hover,
+  .thumbs-rating__btn:active {
+    transform: none;
+  }
+
+  .thumbs-rating__textarea {
+    transition: none;
+  }
+}

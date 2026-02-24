@@ -1,0 +1,97 @@
+/* ==========================================================================
+   Source Citation — Inline reference chip for AI source attribution
+   ========================================================================== */
+
+.source-citation {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--primitive-spacing-1);
+  padding: var(--component-source-citation-padding-y) var(--component-source-citation-padding-x);
+  background-color: var(--component-source-citation-bg);
+  border: 1px solid var(--component-source-citation-border);
+  border-radius: var(--component-source-citation-radius);
+  font-size: var(--component-source-citation-font-size);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+  vertical-align: baseline;
+}
+
+.source-citation:hover {
+  background-color: var(--component-source-citation-bg-hover);
+  box-shadow: var(--semantic-shadow-sm);
+}
+
+.source-citation:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Index number badge (e.g., [1], [2]) */
+.source-citation__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-source-citation-index-size);
+  height: var(--component-source-citation-index-size);
+  border-radius: var(--primitive-radius-sm);
+  background-color: var(--component-source-citation-index-bg);
+  color: var(--component-source-citation-index-color);
+  font-weight: var(--primitive-font-weight-bold);
+  font-size: var(--primitive-font-size-xs);
+  flex-shrink: 0;
+}
+
+/* Title text */
+.source-citation__title {
+  color: var(--component-source-citation-title-color);
+  font-weight: var(--component-source-citation-title-font-weight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+/* Domain / URL hint */
+.source-citation__domain {
+  color: var(--component-source-citation-domain-color);
+  white-space: nowrap;
+}
+
+/* Relevance dot indicator */
+.source-citation__relevance {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-full);
+  flex-shrink: 0;
+}
+
+.source-citation__relevance--high {
+  background-color: var(--component-source-citation-relevance-high);
+}
+
+.source-citation__relevance--medium {
+  background-color: var(--component-source-citation-relevance-medium);
+}
+
+.source-citation__relevance--low {
+  background-color: var(--component-source-citation-relevance-low);
+}
+
+/* Inline variant — smaller, fits within text flow */
+.source-citation--inline {
+  padding: 0 var(--primitive-spacing-1);
+  font-size: var(--primitive-font-size-xs);
+}
+
+.source-citation--inline .source-citation__index {
+  width: var(--primitive-spacing-4);
+  height: var(--primitive-spacing-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .source-citation {
+    transition: none;
+  }
+}

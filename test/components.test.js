@@ -1,7 +1,7 @@
 /**
  * Component Generator Agent - Comprehensive Test Suite
  *
- * Tests all 31 COMPONENT_TEMPLATES, variant/size generation,
+ * Tests all 55 COMPONENT_TEMPLATES, variant/size generation,
  * natural language parsing, error handling, and full integration
  * via createAgentSystem.
  */
@@ -30,11 +30,11 @@ beforeAll(() => {
 // 1. Every template generates valid output
 // ===========================================================================
 
-describe('All 43 component templates generate successfully', () => {
+describe('All 55 component templates generate successfully', () => {
   const templateKeys = Object.keys(COMPONENT_TEMPLATES);
 
-  it('should have exactly 43 templates', () => {
-    expect(templateKeys.length).toBe(43);
+  it('should have exactly 55 templates', () => {
+    expect(templateKeys.length).toBe(55);
   });
 
   describe.each(templateKeys)('template: %s', (key) => {
@@ -188,6 +188,115 @@ describe('parseDescription — natural language parsing', () => {
     // "select" appears first in the string so earliest-match-position wins
     expect(response.data.componentType).toBe('select');
   });
+
+  // AI-Native Component NL parsing
+  it('"chat bubble with avatar" -> type: chat-bubble', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'chat bubble with avatar',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('chat-bubble');
+  });
+
+  it('"typing indicator with timer" -> type: typing-indicator', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'typing indicator with timer',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('typing-indicator');
+  });
+
+  it('"prompt input for AI chat" -> type: prompt-input', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'prompt input for AI chat',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('prompt-input');
+  });
+
+  it('"streaming text with cursor" -> type: streaming-text', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'streaming text with cursor',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('streaming-text');
+  });
+
+  it('"source citation for article" -> type: source-citation', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'source citation for article',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('source-citation');
+  });
+
+  it('"confidence score gauge" -> type: confidence-score', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'confidence score gauge',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('confidence-score');
+  });
+
+  it('"trust badge showing AI generated" -> type: trust-badge', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'trust badge showing AI generated',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('trust-badge');
+  });
+
+  it('"token counter for context window" -> type: token-counter', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'token counter for context window',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('token-counter');
+  });
+
+  it('"model selector with capabilities" -> type: model-selector', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'model selector with capabilities',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('model-selector');
+  });
+
+  it('"tool call card for search" -> type: tool-call-card', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'tool call card for search',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('tool-call-card');
+  });
+
+  it('"agent status pipeline" -> type: agent-status', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'agent status pipeline',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('agent-status');
+  });
+
+  it('"thumbs rating for feedback" -> type: thumbs-rating', () => {
+    const response = agents.component.handleRequest({
+      action: 'parseDescription',
+      description: 'thumbs rating for feedback',
+    });
+    expect(response.success).toBe(true);
+    expect(response.data.componentType).toBe('thumbs-rating');
+  });
 });
 
 // ===========================================================================
@@ -237,11 +346,11 @@ describe('Error handling', () => {
 // ===========================================================================
 
 describe('listComponents action', () => {
-  it('returns exactly 43 components', () => {
+  it('returns exactly 55 components', () => {
     const response = agents.component.handleRequest({ action: 'listComponents' });
     expect(response.success).toBe(true);
     expect(Array.isArray(response.data)).toBe(true);
-    expect(response.data.length).toBe(43);
+    expect(response.data.length).toBe(55);
   });
 
   it('each listed component has name, category, and description', () => {

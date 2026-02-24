@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Token Counter — Context window usage progress bar
+   ========================================================================== */
+
+.token-counter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-1);
+}
+
+/* Header — label + value */
+.token-counter__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-spacing-2);
+}
+
+.token-counter__label {
+  font-size: var(--component-token-counter-label-font-size);
+  color: var(--component-token-counter-label-color);
+  font-weight: var(--component-token-counter-label-font-weight);
+}
+
+.token-counter__value {
+  font-size: var(--component-token-counter-value-font-size);
+  color: var(--component-token-counter-value-color);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Progress track */
+.token-counter__track {
+  width: 100%;
+  height: var(--component-token-counter-height);
+  background-color: var(--component-token-counter-track-bg);
+  border-radius: var(--component-token-counter-radius);
+  overflow: hidden;
+}
+
+/* Progress fill */
+.token-counter__fill {
+  height: 100%;
+  border-radius: var(--component-token-counter-radius);
+  background-color: var(--component-token-counter-fill-bg);
+  transition: width var(--primitive-motion-duration-normal) var(--primitive-motion-easing-default);
+}
+
+/* Warning state (75-90%) */
+.token-counter--warning .token-counter__fill {
+  background-color: var(--component-token-counter-warning-bg);
+}
+
+.token-counter--warning .token-counter__value {
+  color: var(--semantic-color-warning-default);
+  font-weight: var(--primitive-font-weight-semibold);
+}
+
+/* Danger state (>90%) */
+.token-counter--danger .token-counter__fill {
+  background-color: var(--component-token-counter-danger-bg);
+}
+
+.token-counter--danger .token-counter__value {
+  color: var(--semantic-color-danger-default);
+  font-weight: var(--primitive-font-weight-bold);
+}
+
+/* Segments — shows breakdown (system, user, assistant) */
+.token-counter__segments {
+  display: flex;
+  gap: var(--primitive-spacing-3);
+  font-size: var(--primitive-font-size-xs);
+  color: var(--semantic-text-muted);
+}
+
+.token-counter__segment {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-1);
+}
+
+.token-counter__segment-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--primitive-radius-full);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .token-counter__fill {
+    transition: none;
+  }
+}

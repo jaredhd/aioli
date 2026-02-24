@@ -1,0 +1,135 @@
+{
+  "component": {
+    "agentStatus": {
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.card.default}",
+        "$description": "Status container background"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Status container border"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Container border radius"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.4}",
+        "$description": "Container padding"
+      },
+      "step": {
+        "gap": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.3}",
+          "$description": "Gap between steps"
+        },
+        "iconSize": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.8}",
+          "$description": "Step icon container size"
+        }
+      },
+      "connector": {
+        "width": {
+          "$type": "dimension",
+          "$value": "2px",
+          "$description": "Connector line width"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.border.default}",
+          "$description": "Inactive connector color"
+        },
+        "activeColor": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Completed connector color"
+        }
+      },
+      "pending": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.card.default}",
+          "$description": "Pending step background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Pending step text"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.border.default}",
+          "$description": "Pending step border"
+        }
+      },
+      "active": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.subtle}",
+          "$description": "Active step background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Active step text"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Active step border"
+        }
+      },
+      "complete": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.success.subtle}",
+          "$description": "Complete step background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Complete step text"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "Complete step border"
+        }
+      },
+      "error": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.subtle}",
+          "$description": "Error step background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Error step text"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.color.danger.default}",
+          "$description": "Error step border"
+        }
+      },
+      "label": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.sm}",
+          "$description": "Step label font size"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.medium}",
+          "$description": "Step label font weight"
+        }
+      }
+    }
+  }
+}

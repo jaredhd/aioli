@@ -14,9 +14,9 @@ Three-layer system:
 ## Key Principles
 
 ### Atomic Design
-Components follow Atomic Design methodology (43 components):
-- **Atoms** → Button, Input, Badge, Avatar, Spinner, Link, Chip, Divider, Skeleton, Progress, Checkbox, Radio, Rating, Toggle
-- **Molecules** → Tooltip, Select, Textarea, Alert, Tabs, Accordion, Dropdown, Toast, Breadcrumb, Pagination, Stepper, Popover, Form-Group, Search-Autocomplete
+Components follow Atomic Design methodology (55 components):
+- **Atoms** → Button, Input, Badge, Avatar, Spinner, Link, Chip, Divider, Skeleton, Progress, Checkbox, Radio, Rating, Toggle, Typing-Indicator, Streaming-Text, Source-Citation, Confidence-Score, Trust-Badge, Token-Counter
+- **Molecules** → Tooltip, Select, Textarea, Alert, Tabs, Accordion, Dropdown, Toast, Breadcrumb, Pagination, Stepper, Popover, Form-Group, Search-Autocomplete, Chat-Bubble, Prompt-Input, Model-Selector, Tool-Call-Card, Agent-Status, Thumbs-Rating
 - **Organisms** → Card, Modal, Table, Navigation, Card-Product, Card-Profile, Card-Stats, Hero, Feature-Grid, Pricing-Table, Data-Table, Form-Wizard
 - **Templates** → Layout-Dashboard, Layout-Marketing, Layout-Blog
 - **Pages** → Generated via PAGE_COMPOSITIONS (marketing, dashboard, blog, pricing)
@@ -54,7 +54,7 @@ tokens/
 
 agents/
 ├── index.js                      # Agent barrel export
-├── component-generator-agent.js  # 43 templates, 8 style modifiers, 4 page compositions
+├── component-generator-agent.js  # 55 templates, 8 style modifiers, 4 page compositions
 ├── design-token-agent.js         # Token CRUD, resolution, validation
 ├── accessibility-validator-agent.js  # WCAG AA/AAA checks
 ├── motion-agent.js               # Animation validation & presets
@@ -67,7 +67,7 @@ css/
 ├── base.css                      # Reset, dark mode, typography
 ├── tokens.css                    # Generated from Style Dictionary
 └── components/
-    ├── index.css                 # 43 component @imports
+    ├── index.css                 # 55 component @imports
     └── *.css                     # Individual component stylesheets (BEM)
 
 src/
@@ -162,8 +162,8 @@ npm run dev          # Vite dev server (playground, demo, docs)
 
 ### Tier 4: Component Sophistication
 - 12 enhanced templates: card-product, card-profile, card-stats, hero, feature-grid, pricing-table, layout-dashboard, layout-marketing, layout-blog, search-autocomplete, data-table, form-wizard
-- 43 total component templates (up from 31)
-- 40 component token files, 1,543 total tokens
+- 55 total component templates (up from 43)
+- 52 component token files
 
 ### Tier 5: Smarter NL Parsing
 - 8 style modifiers: glass, gradient, neumorphic, brutalist, elevated, dark-luxury, colored-shadow, animated
@@ -172,11 +172,20 @@ npm run dev          # Vite dev server (playground, demo, docs)
 - Full page generation from single prompt (e.g., "marketing landing page")
 - New handleRequest actions: `generatePageComposition`, `listPageCompositions`, `listStyleModifiers`
 
+### Phase 5: AI-Native Components
+- 12 new components purpose-built for AI interfaces (chat, trust, agent UIs)
+- **Conversation**: chat-bubble, typing-indicator, prompt-input, streaming-text
+- **Trust & Attribution**: source-citation, confidence-score, trust-badge, token-counter
+- **Agent & Feedback**: model-selector, tool-call-card, agent-status, thumbs-rating
+- 4 stateful components with framework adapter support (prompt-input, model-selector, tool-call-card, thumbs-rating)
+- Full NL parsing for all 12 components (e.g., "chat bubble with avatar", "confidence score gauge")
+- 52 component token files, ~1,700+ total tokens
+
 ## Exported Constants
 
 ```js
 import {
-  COMPONENT_TEMPLATES,  // 43 component template definitions
+  COMPONENT_TEMPLATES,  // 55 component template definitions
   STYLE_MODIFIERS,      // 8 visual style modifiers
   PAGE_COMPOSITIONS,    // 4 page composition templates
   createComponentGenerator,

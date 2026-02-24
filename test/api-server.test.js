@@ -18,8 +18,8 @@ describe('GET /api/v1/health', () => {
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
     expect(res.body.data.status).toBe('ok');
-    expect(res.body.data.tokenCount).toBe(1561);
-    expect(res.body.data.componentCount).toBe(43);
+    expect(res.body.data.tokenCount).toBe(1754);
+    expect(res.body.data.componentCount).toBe(55);
     expect(res.body.data.themeCount).toBe(6);
     expect(res.body.data.endpoints).toBe(13);
   });
@@ -95,12 +95,12 @@ describe('POST /api/v1/generate/page', () => {
 // ============================================================================
 
 describe('GET /api/v1/components', () => {
-  it('lists all 43 component templates', async () => {
+  it('lists all 55 component templates', async () => {
     const res = await request(app).get('/api/v1/components');
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
     expect(res.body.data).toBeInstanceOf(Array);
-    expect(res.body.data.length).toBe(43);
+    expect(res.body.data.length).toBe(55);
   });
 
   it('each component has name and category', async () => {
@@ -209,7 +209,7 @@ describe('GET /api/v1/tokens', () => {
   it('returns summary when no params given', async () => {
     const res = await request(app).get('/api/v1/tokens');
     expect(res.status).toBe(200);
-    expect(res.body.data.totalTokens).toBe(1561);
+    expect(res.body.data.totalTokens).toBe(1754);
     expect(res.body.data.topLevelCategories).toBeInstanceOf(Array);
     expect(res.body.data.hint).toBeTruthy();
   });

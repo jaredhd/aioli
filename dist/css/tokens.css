@@ -4,6 +4,7 @@
 
 :root {
   --component-accordion-trigger-bg-default: rgba(0, 0, 0, 0);
+  --component-agent-status-connector-width: 2px; /** Connector line width */
   --component-avatar-border-width: 2px;
   --component-badge-variant-outline-bg: rgba(0, 0, 0, 0);
   --component-breadcrumb-max-width: 200px; /** Max width before truncation */
@@ -51,6 +52,7 @@
   --component-card-media-aspect-ratio: 16/9;
   --component-card-interactive-cursor: pointer;
   --component-card-focus-ring-width: 2px;
+  --component-chat-bubble-max-width: 80%; /** Maximum width of chat bubble */
   --component-checkbox-border-width: 2px;
   --component-checkbox-icon-size: 70%;
   --component-checkbox-focus-ring-width: 2px;
@@ -111,6 +113,7 @@
   --component-progress-size-sm: 4px;
   --component-progress-size-md: 8px;
   --component-progress-size-lg: 12px;
+  --component-prompt-input-max-height: 200px; /** Maximum expandable height */
   --component-radio-border-width: 2px;
   --component-radio-dot-size: 50%;
   --component-radio-focus-ring-width: 2px;
@@ -133,6 +136,10 @@
   --component-stepper-connector-height: 2px;
   --component-stepper-step-size: 32px;
   --component-stepper-orientation-vertical-connector-width: 2px;
+  --component-streaming-text-text-line-height: 1.6; /** Line height for readability */
+  --component-streaming-text-cursor-width: 2px; /** Cursor width */
+  --component-streaming-text-cursor-height: 1.2em; /** Cursor height relative to text */
+  --component-streaming-text-cursor-blink-duration: 1000ms; /** Cursor blink animation duration */
   --component-table-header-letter-spacing: 0.05em;
   --component-table-header-text-transform: uppercase;
   --component-table-row-bg-default: rgba(0, 0, 0, 0);
@@ -143,6 +150,7 @@
   --component-tabs-variant-boxed-active-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --component-textarea-resize: vertical;
   --component-textarea-focus-ring-width: 2px;
+  --component-thumbs-rating-button-bg: rgba(0, 0, 0, 0); /** Default button background */
   --component-toast-container-max-width: 420px;
   --component-toast-container-z-index: 100;
   --component-toast-item-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -156,6 +164,7 @@
   --component-toggle-focus-ring-offset: 2px;
   --component-tooltip-variant-light-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --component-tooltip-animation-delay: 200ms;
+  --component-typing-indicator-dot-size: 8px; /** Dot diameter */
   --primitive-border-width-none: 0px;
   --primitive-border-width-thin: 1px;
   --primitive-border-width-default: 1px;
@@ -544,6 +553,12 @@
   --component-accordion-variant-default-item-gap: var(--primitive-spacing-0);
   --component-accordion-variant-separated-item-gap: var(--primitive-spacing-2);
   --component-accordion-variant-separated-item-radius: var(--primitive-radius-lg);
+  --component-agent-status-radius: var(--primitive-radius-lg); /** Container border radius */
+  --component-agent-status-padding: var(--primitive-spacing-4); /** Container padding */
+  --component-agent-status-step-gap: var(--primitive-spacing-3); /** Gap between steps */
+  --component-agent-status-step-icon-size: var(--primitive-spacing-8); /** Step icon container size */
+  --component-agent-status-label-font-size: var(--primitive-font-size-sm); /** Step label font size */
+  --component-agent-status-label-font-weight: var(--primitive-font-weight-medium); /** Step label font weight */
   --component-alert-padding-x: var(--primitive-spacing-4);
   --component-alert-padding-y: var(--primitive-spacing-3);
   --component-alert-radius: var(--primitive-radius-lg);
@@ -706,6 +721,15 @@
   --component-card-size-compact-padding: var(--primitive-spacing-3);
   --component-card-size-default-padding: var(--primitive-spacing-5);
   --component-card-size-spacious-padding: var(--primitive-spacing-8);
+  --component-chat-bubble-radius: var(--primitive-radius-lg); /** Border radius for chat bubbles */
+  --component-chat-bubble-padding: var(--primitive-spacing-4); /** Internal padding */
+  --component-chat-bubble-gap: var(--primitive-spacing-3); /** Gap between bubble elements */
+  --component-chat-bubble-human-text: var(--primitive-color-neutral-0); /** Human message text color */
+  --component-chat-bubble-human-radius-corner: var(--primitive-radius-sm); /** Reduced radius on sender corner */
+  --component-chat-bubble-ai-radius-corner: var(--primitive-radius-sm); /** Reduced radius on sender corner */
+  --component-chat-bubble-avatar-size: var(--primitive-spacing-8); /** Avatar size */
+  --component-chat-bubble-timestamp-font-size: var(--primitive-font-size-xs); /** Timestamp font size */
+  --component-chat-bubble-copy-button-size: var(--primitive-spacing-6); /** Copy button size */
   --component-checkbox-size-sm: var(--primitive-spacing-4);
   --component-checkbox-size-md: var(--primitive-spacing-5);
   --component-checkbox-size-lg: var(--primitive-spacing-6);
@@ -726,6 +750,12 @@
   --component-chip-variant-filled-bg-hover: var(--primitive-color-neutral-200);
   --component-chip-variant-outlined-bg-hover: var(--primitive-color-neutral-50);
   --component-chip-close-button-radius: var(--primitive-radius-full);
+  --component-confidence-score-height: var(--primitive-spacing-2); /** Bar height */
+  --component-confidence-score-radius: var(--primitive-radius-full); /** Bar border radius */
+  --component-confidence-score-label-font-size: var(--primitive-font-size-sm); /** Label font size */
+  --component-confidence-score-label-font-weight: var(--primitive-font-weight-semibold); /** Label font weight */
+  --component-confidence-score-value-font-size: var(--primitive-font-size-lg); /** Percentage value font size */
+  --component-confidence-score-value-font-weight: var(--primitive-font-weight-bold); /** Percentage value font weight */
   --component-data-table-radius: var(--primitive-radius-lg); /** Table container radius */
   --component-data-table-toolbar-padding: var(--primitive-spacing-4); /** Toolbar padding */
   --component-data-table-toolbar-gap: var(--primitive-spacing-3); /** Toolbar gap */
@@ -849,6 +879,18 @@
   --component-modal-animation-content-easing: var(--primitive-motion-easing-enter);
   --component-modal-animation-exit-duration: var(--primitive-motion-duration-fast);
   --component-modal-animation-exit-easing: var(--primitive-motion-easing-exit);
+  --component-model-selector-radius: var(--primitive-radius-md); /** Selector border radius */
+  --component-model-selector-padding: var(--primitive-spacing-3); /** Selector padding */
+  --component-model-selector-trigger-font-size: var(--primitive-font-size-sm); /** Trigger text font size */
+  --component-model-selector-dropdown-shadow: var(--semantic-shadow-lg); /** Dropdown shadow */
+  --component-model-selector-dropdown-radius: var(--primitive-radius-lg); /** Dropdown border radius */
+  --component-model-selector-option-padding-x: var(--primitive-spacing-3); /** Option horizontal padding */
+  --component-model-selector-option-padding-y: var(--primitive-spacing-2); /** Option vertical padding */
+  --component-model-selector-tag-font-size: var(--primitive-font-size-xs); /** Capability tag font size */
+  --component-model-selector-tag-radius: var(--primitive-radius-sm); /** Capability tag border radius */
+  --component-model-selector-model-name-font-size: var(--primitive-font-size-sm); /** Model name font size */
+  --component-model-selector-model-name-font-weight: var(--primitive-font-weight-semibold); /** Model name font weight */
+  --component-model-selector-model-description-font-size: var(--primitive-font-size-xs); /** Model description font size */
   --component-nav-height: var(--primitive-spacing-16);
   --component-nav-border-width: var(--primitive-spacing-px);
   --component-nav-padding-x: var(--primitive-spacing-4);
@@ -902,6 +944,14 @@
   --component-progress-track-bg: var(--primitive-color-neutral-200);
   --component-progress-bar-radius: var(--primitive-radius-full);
   --component-progress-label-font-size: var(--primitive-font-size-xs);
+  --component-prompt-input-radius: var(--primitive-radius-lg); /** Border radius */
+  --component-prompt-input-padding: var(--primitive-spacing-4); /** Internal padding */
+  --component-prompt-input-min-height: var(--primitive-spacing-12); /** Minimum height */
+  --component-prompt-input-text-font-size: var(--primitive-font-size-base); /** Input font size */
+  --component-prompt-input-send-button-color: var(--primitive-color-neutral-0); /** Send button icon color */
+  --component-prompt-input-send-button-size: var(--primitive-spacing-8); /** Send button size */
+  --component-prompt-input-send-button-radius: var(--primitive-radius-full); /** Send button border radius */
+  --component-prompt-input-token-count-font-size: var(--primitive-font-size-xs); /** Token count font size */
   --component-radio-size-sm: var(--primitive-spacing-4);
   --component-radio-size-md: var(--primitive-spacing-5);
   --component-radio-size-lg: var(--primitive-spacing-6);
@@ -959,6 +1009,12 @@
   --component-skeleton-height-card: var(--primitive-spacing-48);
   --component-skeleton-animation-easing: var(--primitive-motion-easing-linear);
   --component-skeleton-gap: var(--primitive-spacing-2);
+  --component-source-citation-radius: var(--primitive-radius-md); /** Citation chip border radius */
+  --component-source-citation-padding-x: var(--primitive-spacing-2); /** Horizontal padding */
+  --component-source-citation-padding-y: var(--primitive-spacing-1); /** Vertical padding */
+  --component-source-citation-font-size: var(--primitive-font-size-xs); /** Citation text font size */
+  --component-source-citation-title-font-weight: var(--primitive-font-weight-medium); /** Citation title font weight */
+  --component-source-citation-index-size: var(--primitive-spacing-5); /** Citation index badge size */
   --component-spinner-size-xs: var(--primitive-spacing-3);
   --component-spinner-size-sm: var(--primitive-spacing-4);
   --component-spinner-size-md: var(--primitive-spacing-6);
@@ -978,6 +1034,7 @@
   --component-stepper-step-description-font-size: var(--primitive-font-size-xs);
   --component-stepper-gap: var(--primitive-spacing-4);
   --component-stepper-orientation-vertical-gap: var(--primitive-spacing-6);
+  --component-streaming-text-text-font-size: var(--primitive-font-size-base); /** Streaming text font size */
   --component-table-radius: var(--primitive-radius-lg);
   --component-table-border-width: var(--primitive-spacing-px);
   --component-table-header-padding-x: var(--primitive-spacing-4);
@@ -1022,6 +1079,12 @@
   --component-textarea-font-size: var(--primitive-font-size-sm);
   --component-textarea-line-height: var(--primitive-font-line-height-normal);
   --component-textarea-min-height: var(--primitive-spacing-24);
+  --component-thumbs-rating-gap: var(--primitive-spacing-2); /** Gap between buttons */
+  --component-thumbs-rating-button-size: var(--primitive-spacing-8); /** Button size */
+  --component-thumbs-rating-button-radius: var(--primitive-radius-md); /** Button border radius */
+  --component-thumbs-rating-button-font-size: var(--primitive-font-size-lg); /** Icon font size */
+  --component-thumbs-rating-feedback-radius: var(--primitive-radius-md); /** Feedback textarea border radius */
+  --component-thumbs-rating-feedback-font-size: var(--primitive-font-size-sm); /** Feedback text font size */
   --component-toast-container-padding: var(--primitive-spacing-4);
   --component-toast-container-gap: var(--primitive-spacing-3);
   --component-toast-item-radius: var(--primitive-radius-lg);
@@ -1063,6 +1126,19 @@
   --component-toggle-label-font-size: var(--primitive-font-size-sm);
   --component-toggle-transition-duration: var(--primitive-motion-duration-fast);
   --component-toggle-transition-easing: var(--primitive-motion-easing-default);
+  --component-token-counter-height: var(--primitive-spacing-2); /** Progress bar height */
+  --component-token-counter-radius: var(--primitive-radius-full); /** Progress bar border radius */
+  --component-token-counter-label-font-size: var(--primitive-font-size-sm); /** Label font size */
+  --component-token-counter-label-font-weight: var(--primitive-font-weight-medium); /** Label font weight */
+  --component-token-counter-value-font-size: var(--primitive-font-size-xs); /** Value font size */
+  --component-tool-call-card-radius: var(--primitive-radius-md); /** Card border radius */
+  --component-tool-call-card-padding: var(--primitive-spacing-3); /** Card padding */
+  --component-tool-call-card-header-gap: var(--primitive-spacing-2); /** Header gap */
+  --component-tool-call-card-tool-name-font-size: var(--primitive-font-size-sm); /** Tool name font size */
+  --component-tool-call-card-tool-name-font-weight: var(--primitive-font-weight-semibold); /** Tool name font weight */
+  --component-tool-call-card-code-font-size: var(--primitive-font-size-sm); /** Code font size */
+  --component-tool-call-card-code-radius: var(--primitive-radius-sm); /** Code block border radius */
+  --component-tool-call-card-duration-font-size: var(--primitive-font-size-xs); /** Duration font size */
   --component-tooltip-padding-x: var(--primitive-spacing-3);
   --component-tooltip-padding-y: var(--primitive-spacing-1-5);
   --component-tooltip-radius: var(--primitive-radius-md);
@@ -1075,6 +1151,17 @@
   --component-tooltip-offset: var(--primitive-spacing-2);
   --component-tooltip-animation-duration: var(--primitive-motion-duration-micro);
   --component-tooltip-animation-easing: var(--primitive-motion-easing-enter);
+  --component-trust-badge-radius: var(--primitive-radius-full); /** Pill-shaped border radius */
+  --component-trust-badge-padding-x: var(--primitive-spacing-3); /** Horizontal padding */
+  --component-trust-badge-padding-y: var(--primitive-spacing-1); /** Vertical padding */
+  --component-trust-badge-font-size: var(--primitive-font-size-xs); /** Badge font size */
+  --component-trust-badge-font-weight: var(--primitive-font-weight-semibold); /** Badge font weight */
+  --component-trust-badge-gap: var(--primitive-spacing-1); /** Gap between icon and label */
+  --component-typing-indicator-radius: var(--primitive-radius-full); /** Pill-shaped border radius */
+  --component-typing-indicator-padding: var(--primitive-spacing-3); /** Internal padding */
+  --component-typing-indicator-dot-gap: var(--primitive-spacing-1); /** Gap between dots */
+  --component-typing-indicator-dot-animation-duration: var(--primitive-motion-duration-slower); /** Full bounce cycle duration */
+  --component-typing-indicator-timer-font-size: var(--primitive-font-size-xs); /** Elapsed timer font size */
   --semantic-color-primary-default: var(--primitive-color-blue-600); /** Primary brand color for interactive elements */
   --semantic-color-primary-hover: var(--primitive-color-blue-700); /** Primary hover state */
   --semantic-color-primary-active: var(--primitive-color-blue-800); /** Primary active/pressed state */
@@ -1247,6 +1334,22 @@
   --component-accordion-trigger-bg-hover: var(--semantic-surface-page-subtle);
   --component-accordion-trigger-icon-color: var(--semantic-text-secondary);
   --component-accordion-content-color: var(--semantic-text-secondary);
+  --component-agent-status-bg: var(--semantic-surface-card-default); /** Status container background */
+  --component-agent-status-border: var(--semantic-border-default); /** Status container border */
+  --component-agent-status-connector-color: var(--semantic-border-default); /** Inactive connector color */
+  --component-agent-status-connector-active-color: var(--semantic-color-primary-default); /** Completed connector color */
+  --component-agent-status-pending-bg: var(--semantic-surface-card-default); /** Pending step background */
+  --component-agent-status-pending-color: var(--semantic-text-muted); /** Pending step text */
+  --component-agent-status-pending-border: var(--semantic-border-default); /** Pending step border */
+  --component-agent-status-active-bg: var(--semantic-color-primary-subtle); /** Active step background */
+  --component-agent-status-active-color: var(--semantic-color-primary-default); /** Active step text */
+  --component-agent-status-active-border: var(--semantic-color-primary-default); /** Active step border */
+  --component-agent-status-complete-bg: var(--semantic-color-success-subtle); /** Complete step background */
+  --component-agent-status-complete-color: var(--semantic-color-success-default); /** Complete step text */
+  --component-agent-status-complete-border: var(--semantic-color-success-default); /** Complete step border */
+  --component-agent-status-error-bg: var(--semantic-color-danger-subtle); /** Error step background */
+  --component-agent-status-error-color: var(--semantic-color-danger-default); /** Error step text */
+  --component-agent-status-error-border: var(--semantic-color-danger-default); /** Error step border */
   --component-avatar-bg-primary: var(--semantic-color-primary-subtle);
   --component-avatar-border-color: var(--semantic-surface-page-default);
   --component-avatar-group-border: var(--semantic-surface-page-default);
@@ -1312,6 +1415,16 @@
   --component-card-active-border-color: var(--semantic-color-primary-default);
   --component-card-selected-border-color: var(--semantic-color-primary-default);
   --component-card-selected-bg: var(--semantic-color-primary-muted);
+  --component-chat-bubble-human-bg: var(--semantic-color-primary-default); /** Human message background */
+  --component-chat-bubble-ai-bg: var(--semantic-surface-card-default); /** AI message background */
+  --component-chat-bubble-ai-text: var(--semantic-text-default); /** AI message text color */
+  --component-chat-bubble-ai-border: var(--semantic-border-default); /** AI message border */
+  --component-chat-bubble-system-bg: var(--semantic-color-warning-subtle); /** System message background */
+  --component-chat-bubble-system-text: var(--semantic-text-default); /** System message text color */
+  --component-chat-bubble-system-border: var(--semantic-color-warning-default); /** System message border */
+  --component-chat-bubble-timestamp-color: var(--semantic-text-muted); /** Timestamp text color */
+  --component-chat-bubble-copy-button-color: var(--semantic-text-muted); /** Copy button icon color */
+  --component-chat-bubble-copy-button-color-hover: var(--semantic-text-default); /** Copy button hover color */
   --component-checkbox-border-color-default: var(--semantic-border-strong);
   --component-checkbox-border-color-hover: var(--semantic-color-primary-default);
   --component-checkbox-border-color-checked: var(--semantic-color-primary-default);
@@ -1336,6 +1449,13 @@
   --component-chip-variant-danger-color: var(--semantic-color-danger-default);
   --component-chip-close-button-color: var(--semantic-text-muted);
   --component-chip-close-button-hover-color: var(--semantic-text-default);
+  --component-confidence-score-track-bg: var(--semantic-surface-card-default); /** Track background color */
+  --component-confidence-score-high-color: var(--semantic-color-success-default); /** High confidence color (>= 0.7) */
+  --component-confidence-score-high-label: var(--semantic-color-success-default); /** High confidence label color */
+  --component-confidence-score-medium-color: var(--semantic-color-warning-default); /** Medium confidence color (0.4 - 0.69) */
+  --component-confidence-score-medium-label: var(--semantic-color-warning-default); /** Medium confidence label color */
+  --component-confidence-score-low-color: var(--semantic-color-danger-default); /** Low confidence color (< 0.4) */
+  --component-confidence-score-low-label: var(--semantic-color-danger-default); /** Low confidence label color */
   --component-data-table-border-color: var(--semantic-border-default); /** Table border */
   --component-data-table-toolbar-bg: var(--semantic-surface-page-default); /** Toolbar background */
   --component-data-table-header-bg: var(--semantic-surface-page-subtle); /** Header background */
@@ -1416,6 +1536,18 @@
   --component-modal-body-color: var(--semantic-text-default);
   --component-modal-footer-border-color: var(--semantic-border-subtle);
   --component-modal-footer-bg: var(--semantic-surface-page-subtle);
+  --component-model-selector-bg: var(--semantic-surface-page-default); /** Selector background */
+  --component-model-selector-border: var(--semantic-border-default); /** Selector border */
+  --component-model-selector-border-focus: var(--semantic-color-primary-default); /** Selector focus border */
+  --component-model-selector-trigger-color: var(--semantic-text-default); /** Trigger text color */
+  --component-model-selector-dropdown-bg: var(--semantic-surface-page-default); /** Dropdown background */
+  --component-model-selector-dropdown-border: var(--semantic-border-default); /** Dropdown border */
+  --component-model-selector-option-hover-bg: var(--semantic-surface-card-hover); /** Option hover background */
+  --component-model-selector-option-selected-bg: var(--semantic-color-primary-subtle); /** Selected option background */
+  --component-model-selector-tag-bg: var(--semantic-surface-card-default); /** Capability tag background */
+  --component-model-selector-tag-color: var(--semantic-text-muted); /** Capability tag text color */
+  --component-model-selector-model-name-color: var(--semantic-text-default); /** Model name color */
+  --component-model-selector-model-description-color: var(--semantic-text-muted); /** Model description color */
   --component-nav-bg: var(--semantic-surface-page-default);
   --component-nav-border-color: var(--semantic-border-subtle);
   --component-nav-item-color-default: var(--semantic-text-secondary);
@@ -1455,6 +1587,15 @@
   --component-progress-bar-color-warning: var(--semantic-color-warning-default);
   --component-progress-bar-color-danger: var(--semantic-color-danger-default);
   --component-progress-label-color: var(--semantic-text-secondary);
+  --component-prompt-input-bg: var(--semantic-surface-page-default); /** Prompt input background */
+  --component-prompt-input-border: var(--semantic-border-default); /** Prompt input border */
+  --component-prompt-input-border-focus: var(--semantic-color-primary-default); /** Prompt input focus border */
+  --component-prompt-input-text-color: var(--semantic-text-default); /** Input text color */
+  --component-prompt-input-text-placeholder: var(--semantic-text-muted); /** Placeholder text color */
+  --component-prompt-input-send-button-bg: var(--semantic-color-primary-default); /** Send button background */
+  --component-prompt-input-send-button-bg-hover: var(--semantic-color-primary-hover); /** Send button hover background */
+  --component-prompt-input-token-count-color: var(--semantic-text-muted); /** Token count text color */
+  --component-prompt-input-token-count-warning-color: var(--semantic-color-warning-default); /** Token count warning color when near limit */
   --component-radio-border-color-default: var(--semantic-border-strong);
   --component-radio-border-color-hover: var(--semantic-color-primary-default);
   --component-radio-border-color-checked: var(--semantic-color-primary-default);
@@ -1496,6 +1637,16 @@
   --component-select-option-bg-selected: var(--semantic-color-primary-subtle);
   --component-select-option-text-default: var(--semantic-text-default);
   --component-select-option-text-selected: var(--semantic-color-primary-default);
+  --component-source-citation-bg: var(--semantic-surface-card-default); /** Citation chip background */
+  --component-source-citation-bg-hover: var(--semantic-surface-card-hover); /** Citation chip hover background */
+  --component-source-citation-border: var(--semantic-border-default); /** Citation chip border */
+  --component-source-citation-title-color: var(--semantic-color-primary-default); /** Citation title/link color */
+  --component-source-citation-domain-color: var(--semantic-text-muted); /** Domain/URL color */
+  --component-source-citation-relevance-high: var(--semantic-color-success-default); /** High relevance indicator */
+  --component-source-citation-relevance-medium: var(--semantic-color-warning-default); /** Medium relevance indicator */
+  --component-source-citation-relevance-low: var(--semantic-text-muted); /** Low relevance indicator */
+  --component-source-citation-index-bg: var(--semantic-color-primary-subtle); /** Citation index badge background */
+  --component-source-citation-index-color: var(--semantic-color-primary-default); /** Citation index badge text */
   --component-spinner-color-primary: var(--semantic-color-primary-default);
   --component-stepper-connector-color-default: var(--semantic-border-default);
   --component-stepper-connector-color-completed: var(--semantic-color-primary-default);
@@ -1506,6 +1657,8 @@
   --component-stepper-step-label-color-active: var(--semantic-text-default);
   --component-stepper-step-label-color-completed: var(--semantic-text-secondary);
   --component-stepper-step-description-color: var(--semantic-text-muted);
+  --component-streaming-text-text-color: var(--semantic-text-default); /** Streaming text color */
+  --component-streaming-text-cursor-color: var(--semantic-color-primary-default); /** Cursor color */
   --component-table-border-color: var(--semantic-border-default);
   --component-table-bg: var(--semantic-surface-card-default);
   --component-table-header-bg: var(--semantic-surface-page-subtle);
@@ -1542,6 +1695,16 @@
   --component-textarea-text-placeholder: var(--semantic-text-muted);
   --component-textarea-text-disabled: var(--semantic-text-disabled);
   --component-textarea-focus-ring-color: var(--semantic-color-primary-subtle);
+  --component-thumbs-rating-button-color: var(--semantic-text-muted); /** Default button icon color */
+  --component-thumbs-rating-button-hover-bg: var(--semantic-surface-card-hover); /** Button hover background */
+  --component-thumbs-rating-up-active-bg: var(--semantic-color-success-subtle); /** Active thumbs-up background */
+  --component-thumbs-rating-up-active-color: var(--semantic-color-success-default); /** Active thumbs-up color */
+  --component-thumbs-rating-down-active-bg: var(--semantic-color-danger-subtle); /** Active thumbs-down background */
+  --component-thumbs-rating-down-active-color: var(--semantic-color-danger-default); /** Active thumbs-down color */
+  --component-thumbs-rating-feedback-bg: var(--semantic-surface-page-default); /** Feedback textarea background */
+  --component-thumbs-rating-feedback-border: var(--semantic-border-default); /** Feedback textarea border */
+  --component-thumbs-rating-feedback-color: var(--semantic-text-default); /** Feedback text color */
+  --component-thumbs-rating-feedback-placeholder: var(--semantic-text-muted); /** Feedback placeholder color */
   --component-toast-item-bg: var(--semantic-surface-card-default);
   --component-toast-item-border-color: var(--semantic-border-subtle);
   --component-toast-title-color: var(--semantic-text-default);
@@ -1561,7 +1724,37 @@
   --component-toggle-label-color-default: var(--semantic-text-default);
   --component-toggle-label-color-disabled: var(--semantic-text-disabled);
   --component-toggle-focus-ring-color: var(--semantic-color-primary-subtle);
+  --component-token-counter-track-bg: var(--semantic-surface-card-default); /** Track background */
+  --component-token-counter-fill-bg: var(--semantic-color-primary-default); /** Normal fill color */
+  --component-token-counter-warning-bg: var(--semantic-color-warning-default); /** Warning fill color (75-90%) */
+  --component-token-counter-danger-bg: var(--semantic-color-danger-default); /** Danger fill color (>90%) */
+  --component-token-counter-label-color: var(--semantic-text-default); /** Label text color */
+  --component-token-counter-value-color: var(--semantic-text-muted); /** Value text color */
+  --component-tool-call-card-bg: var(--semantic-surface-card-default); /** Card background */
+  --component-tool-call-card-border: var(--semantic-border-default); /** Card border */
+  --component-tool-call-card-header-bg: var(--semantic-surface-page-default); /** Header background */
+  --component-tool-call-card-tool-name-color: var(--semantic-text-default); /** Tool name color */
+  --component-tool-call-card-status-running: var(--semantic-color-primary-default); /** Running status color */
+  --component-tool-call-card-status-success: var(--semantic-color-success-default); /** Success status color */
+  --component-tool-call-card-status-error: var(--semantic-color-danger-default); /** Error status color */
+  --component-tool-call-card-code-bg: var(--semantic-surface-page-default); /** Code block background */
+  --component-tool-call-card-code-color: var(--semantic-text-default); /** Code text color */
+  --component-tool-call-card-duration-color: var(--semantic-text-muted); /** Duration text color */
   --component-tooltip-variant-light-bg: var(--semantic-surface-page-default);
   --component-tooltip-variant-light-text: var(--semantic-text-default);
   --component-tooltip-variant-light-border: var(--semantic-border-default);
+  --component-trust-badge-ai-bg: var(--semantic-color-primary-subtle); /** AI-generated badge background */
+  --component-trust-badge-ai-color: var(--semantic-color-primary-default); /** AI-generated badge text */
+  --component-trust-badge-ai-border: var(--semantic-color-primary-default); /** AI-generated badge border */
+  --component-trust-badge-human-bg: var(--semantic-color-success-subtle); /** Human-authored badge background */
+  --component-trust-badge-human-color: var(--semantic-color-success-default); /** Human-authored badge text */
+  --component-trust-badge-human-border: var(--semantic-color-success-default); /** Human-authored badge border */
+  --component-trust-badge-verified-bg: var(--semantic-color-success-subtle); /** Verified badge background */
+  --component-trust-badge-verified-color: var(--semantic-color-success-default); /** Verified badge text */
+  --component-trust-badge-unverified-bg: var(--semantic-color-warning-subtle); /** Unverified badge background */
+  --component-trust-badge-unverified-color: var(--semantic-color-warning-default); /** Unverified badge text */
+  --component-typing-indicator-bg: var(--semantic-surface-card-default); /** Typing indicator background */
+  --component-typing-indicator-border: var(--semantic-border-default); /** Typing indicator border */
+  --component-typing-indicator-dot-color: var(--semantic-text-muted); /** Dot color */
+  --component-typing-indicator-timer-color: var(--semantic-text-muted); /** Elapsed timer text color */
 }

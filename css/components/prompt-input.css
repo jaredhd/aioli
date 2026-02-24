@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Prompt Input — Multiline AI prompt input with send button and token count
+   ========================================================================== */
+
+.prompt-input {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--component-prompt-input-border);
+  border-radius: var(--component-prompt-input-radius);
+  background-color: var(--component-prompt-input-bg);
+  transition: border-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              box-shadow var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.prompt-input:focus-within {
+  border-color: var(--component-prompt-input-border-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--component-prompt-input-border-focus) 20%, transparent);
+}
+
+/* Textarea */
+.prompt-input__textarea {
+  width: 100%;
+  min-height: var(--component-prompt-input-min-height);
+  max-height: var(--component-prompt-input-max-height);
+  padding: var(--component-prompt-input-padding);
+  padding-bottom: 0;
+  border: none;
+  background: transparent;
+  color: var(--component-prompt-input-text-color);
+  font-size: var(--component-prompt-input-text-font-size);
+  font-family: var(--primitive-font-family-sans);
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  overflow-y: auto;
+}
+
+.prompt-input__textarea::placeholder {
+  color: var(--component-prompt-input-text-placeholder);
+}
+
+/* Bottom toolbar */
+.prompt-input__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--primitive-spacing-2) var(--component-prompt-input-padding);
+  gap: var(--primitive-spacing-2);
+}
+
+/* Token count display */
+.prompt-input__token-count {
+  font-size: var(--component-prompt-input-token-count-font-size);
+  color: var(--component-prompt-input-token-count-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.prompt-input__token-count--warning {
+  color: var(--component-prompt-input-token-count-warning-color);
+  font-weight: var(--primitive-font-weight-semibold);
+}
+
+/* Actions group (right side of toolbar) */
+.prompt-input__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+}
+
+/* Send button */
+.prompt-input__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-prompt-input-send-button-size);
+  height: var(--component-prompt-input-send-button-size);
+  border: none;
+  border-radius: var(--component-prompt-input-send-button-radius);
+  background-color: var(--component-prompt-input-send-button-bg);
+  color: var(--component-prompt-input-send-button-color);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.prompt-input__send:hover {
+  background-color: var(--component-prompt-input-send-button-bg-hover);
+  transform: scale(1.05);
+}
+
+.prompt-input__send:active {
+  transform: scale(0.95);
+}
+
+.prompt-input__send:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: 2px;
+}
+
+.prompt-input__send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt-input,
+  .prompt-input__send {
+    transition: none;
+  }
+
+  .prompt-input__send:hover,
+  .prompt-input__send:active {
+    transform: none;
+  }
+}

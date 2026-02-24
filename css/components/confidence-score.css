@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Confidence Score — Visual gauge showing AI certainty level
+   ========================================================================== */
+
+.confidence-score {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-2);
+}
+
+/* Header — label + value */
+.confidence-score__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--primitive-spacing-2);
+}
+
+.confidence-score__label {
+  font-size: var(--component-confidence-score-label-font-size);
+  font-weight: var(--component-confidence-score-label-font-weight);
+  color: var(--semantic-text-default);
+}
+
+.confidence-score__value {
+  font-size: var(--component-confidence-score-value-font-size);
+  font-weight: var(--component-confidence-score-value-font-weight);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Color by level */
+.confidence-score--high .confidence-score__value {
+  color: var(--component-confidence-score-high-label);
+}
+
+.confidence-score--medium .confidence-score__value {
+  color: var(--component-confidence-score-medium-label);
+}
+
+.confidence-score--low .confidence-score__value {
+  color: var(--component-confidence-score-low-label);
+}
+
+/* Progress track */
+.confidence-score__track {
+  width: 100%;
+  height: var(--component-confidence-score-height);
+  background-color: var(--component-confidence-score-track-bg);
+  border-radius: var(--component-confidence-score-radius);
+  overflow: hidden;
+}
+
+/* Progress fill */
+.confidence-score__fill {
+  height: 100%;
+  border-radius: var(--component-confidence-score-radius);
+  transition: width var(--primitive-motion-duration-normal) var(--primitive-motion-easing-enter);
+}
+
+.confidence-score--high .confidence-score__fill {
+  background-color: var(--component-confidence-score-high-color);
+}
+
+.confidence-score--medium .confidence-score__fill {
+  background-color: var(--component-confidence-score-medium-color);
+}
+
+.confidence-score--low .confidence-score__fill {
+  background-color: var(--component-confidence-score-low-color);
+}
+
+/* Level label (High / Medium / Low) */
+.confidence-score__level {
+  font-size: var(--primitive-font-size-xs);
+  font-weight: var(--primitive-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.confidence-score--high .confidence-score__level {
+  color: var(--component-confidence-score-high-label);
+}
+
+.confidence-score--medium .confidence-score__level {
+  color: var(--component-confidence-score-medium-label);
+}
+
+.confidence-score--low .confidence-score__level {
+  color: var(--component-confidence-score-low-label);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confidence-score__fill {
+    transition: none;
+  }
+}

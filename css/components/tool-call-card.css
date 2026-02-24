@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Tool Call Card — Displays AI tool/function invocations
+   ========================================================================== */
+
+.tool-call-card {
+  border: 1px solid var(--component-tool-call-card-border);
+  border-radius: var(--component-tool-call-card-radius);
+  overflow: hidden;
+  background-color: var(--component-tool-call-card-bg);
+}
+
+/* Header — tool name, status, toggle */
+.tool-call-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--component-tool-call-card-header-gap);
+  padding: var(--component-tool-call-card-padding);
+  background-color: var(--component-tool-call-card-header-bg);
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--primitive-font-family-sans);
+  transition: background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.tool-call-card__header:hover {
+  opacity: 0.9;
+}
+
+.tool-call-card__header:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Status indicator */
+.tool-call-card__status {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--primitive-radius-full);
+  flex-shrink: 0;
+}
+
+.tool-call-card__status--running {
+  background-color: var(--component-tool-call-card-status-running);
+  animation: tool-call-pulse 1.5s ease-in-out infinite;
+}
+
+.tool-call-card__status--success {
+  background-color: var(--component-tool-call-card-status-success);
+}
+
+.tool-call-card__status--error {
+  background-color: var(--component-tool-call-card-status-error);
+}
+
+@keyframes tool-call-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Tool name */
+.tool-call-card__name {
+  flex: 1;
+  font-size: var(--component-tool-call-card-tool-name-font-size);
+  font-weight: var(--component-tool-call-card-tool-name-font-weight);
+  color: var(--component-tool-call-card-tool-name-color);
+  font-family: var(--primitive-font-family-mono);
+}
+
+/* Duration */
+.tool-call-card__duration {
+  font-size: var(--component-tool-call-card-duration-font-size);
+  color: var(--component-tool-call-card-duration-color);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Toggle chevron */
+.tool-call-card__toggle {
+  display: inline-flex;
+  font-size: var(--primitive-font-size-xs);
+  transition: transform var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.tool-call-card--expanded .tool-call-card__toggle {
+  transform: rotate(180deg);
+}
+
+/* Collapsible body */
+.tool-call-card__body {
+  display: none;
+  padding: var(--component-tool-call-card-padding);
+  padding-top: 0;
+  gap: var(--primitive-spacing-3);
+  flex-direction: column;
+}
+
+.tool-call-card--expanded .tool-call-card__body {
+  display: flex;
+}
+
+/* Input/output sections */
+.tool-call-card__section-label {
+  font-size: var(--primitive-font-size-xs);
+  font-weight: var(--primitive-font-weight-semibold);
+  color: var(--semantic-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--primitive-spacing-1);
+}
+
+/* Code blocks for input/output */
+.tool-call-card__code {
+  background-color: var(--component-tool-call-card-code-bg);
+  color: var(--component-tool-call-card-code-color);
+  font-family: var(--primitive-font-family-mono);
+  font-size: var(--component-tool-call-card-code-font-size);
+  border-radius: var(--component-tool-call-card-code-radius);
+  padding: var(--primitive-spacing-3);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-call-card__header,
+  .tool-call-card__toggle {
+    transition: none;
+  }
+
+  .tool-call-card__status--running {
+    animation: none;
+    opacity: 1;
+  }
+}

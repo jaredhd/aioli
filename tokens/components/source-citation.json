@@ -1,0 +1,94 @@
+{
+  "component": {
+    "sourceCitation": {
+      "bg": {
+        "$type": "color",
+        "$value": "{semantic.surface.card.default}",
+        "$description": "Citation chip background"
+      },
+      "bgHover": {
+        "$type": "color",
+        "$value": "{semantic.surface.card.hover}",
+        "$description": "Citation chip hover background"
+      },
+      "border": {
+        "$type": "color",
+        "$value": "{semantic.border.default}",
+        "$description": "Citation chip border"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.md}",
+        "$description": "Citation chip border radius"
+      },
+      "paddingX": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.2}",
+        "$description": "Horizontal padding"
+      },
+      "paddingY": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.1}",
+        "$description": "Vertical padding"
+      },
+      "fontSize": {
+        "$type": "dimension",
+        "$value": "{primitive.font.size.xs}",
+        "$description": "Citation text font size"
+      },
+      "title": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Citation title/link color"
+        },
+        "fontWeight": {
+          "$type": "number",
+          "$value": "{primitive.font.weight.medium}",
+          "$description": "Citation title font weight"
+        }
+      },
+      "domain": {
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Domain/URL color"
+        }
+      },
+      "relevance": {
+        "high": {
+          "$type": "color",
+          "$value": "{semantic.color.success.default}",
+          "$description": "High relevance indicator"
+        },
+        "medium": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.default}",
+          "$description": "Medium relevance indicator"
+        },
+        "low": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Low relevance indicator"
+        }
+      },
+      "index": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.subtle}",
+          "$description": "Citation index badge background"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Citation index badge text"
+        },
+        "size": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.5}",
+          "$description": "Citation index badge size"
+        }
+      }
+    }
+  }
+}

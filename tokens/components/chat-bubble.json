@@ -1,0 +1,118 @@
+{
+  "component": {
+    "chatBubble": {
+      "maxWidth": {
+        "$type": "dimension",
+        "$value": "80%",
+        "$description": "Maximum width of chat bubble"
+      },
+      "radius": {
+        "$type": "dimension",
+        "$value": "{primitive.radius.lg}",
+        "$description": "Border radius for chat bubbles"
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.4}",
+        "$description": "Internal padding"
+      },
+      "gap": {
+        "$type": "dimension",
+        "$value": "{primitive.spacing.3}",
+        "$description": "Gap between bubble elements"
+      },
+      "human": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.primary.default}",
+          "$description": "Human message background"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{primitive.color.neutral.0}",
+          "$description": "Human message text color"
+        },
+        "radiusCorner": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.sm}",
+          "$description": "Reduced radius on sender corner"
+        }
+      },
+      "ai": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.surface.card.default}",
+          "$description": "AI message background"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "AI message text color"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.border.default}",
+          "$description": "AI message border"
+        },
+        "radiusCorner": {
+          "$type": "dimension",
+          "$value": "{primitive.radius.sm}",
+          "$description": "Reduced radius on sender corner"
+        }
+      },
+      "system": {
+        "bg": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.subtle}",
+          "$description": "System message background"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "System message text color"
+        },
+        "border": {
+          "$type": "color",
+          "$value": "{semantic.color.warning.default}",
+          "$description": "System message border"
+        }
+      },
+      "avatar": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.8}",
+          "$description": "Avatar size"
+        }
+      },
+      "timestamp": {
+        "fontSize": {
+          "$type": "dimension",
+          "$value": "{primitive.font.size.xs}",
+          "$description": "Timestamp font size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Timestamp text color"
+        }
+      },
+      "copyButton": {
+        "size": {
+          "$type": "dimension",
+          "$value": "{primitive.spacing.6}",
+          "$description": "Copy button size"
+        },
+        "color": {
+          "$type": "color",
+          "$value": "{semantic.text.muted}",
+          "$description": "Copy button icon color"
+        },
+        "colorHover": {
+          "$type": "color",
+          "$value": "{semantic.text.default}",
+          "$description": "Copy button hover color"
+        }
+      }
+    }
+  }
+}

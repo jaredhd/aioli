@@ -1924,6 +1924,487 @@ export const COMPONENT_TEMPLATES = {
       };
     },
   },
+
+  // ==========================================================================
+  // AI-Native Components — Phase 5
+  // ==========================================================================
+
+  'chat-bubble': {
+    category: 'molecule',
+    description: 'Chat message bubble for AI conversations',
+    variants: ['human', 'ai', 'system'],
+    template: ({ sender = 'ai', message = 'Hello! How can I help you today?', avatar = null, timestamp = null, showCopy = true, id }) => {
+      const bubbleId = id || `chat-bubble-${Date.now()}`;
+      const senderLabel = sender === 'ai' ? 'AI' : sender === 'human' ? 'You' : 'System';
+      const avatarContent = avatar || (sender === 'ai' ? '&#x2728;' : sender === 'human' ? '&#x1F464;' : '&#x2699;');
+      return {
+        html: `<div class="chat-bubble chat-bubble--${sender}" id="${bubbleId}" role="log" aria-label="${senderLabel} message">
+  <div class="chat-bubble__avatar" aria-hidden="true">${avatarContent}</div>
+  <div class="chat-bubble__content">
+    <span class="chat-bubble__sender">${senderLabel}</span>
+    <div class="chat-bubble__body">${message}</div>
+    <div class="chat-bubble__footer">
+      ${timestamp ? `<time class="chat-bubble__timestamp" datetime="${timestamp}">${timestamp}</time>` : ''}
+      ${showCopy ? `<button type="button" class="chat-bubble__copy" aria-label="Copy message" title="Copy to clipboard">&#x1F4CB;</button>` : ''}
+    </div>
+  </div>
+</div>`,
+        tokens: [
+          `component.chatBubble.${sender}.bg`,
+          `component.chatBubble.${sender}.text`,
+          'component.chatBubble.radius',
+          'component.chatBubble.padding',
+          'component.chatBubble.avatar.size',
+          'component.chatBubble.timestamp.color',
+        ],
+        a11y: {
+          role: 'log',
+          senderIdentification: true,
+          copyAction: showCopy,
+          focusable: true,
+        },
+      };
+    },
+  },
+
+  'typing-indicator': {
+    category: 'atom',
+    description: 'Animated dots showing AI is thinking',
+    template: ({ label = 'AI is thinking', showTimer = false, elapsed = '0s', id }) => {
+      const indicatorId = id || `typing-indicator-${Date.now()}`;
+      return {
+        html: `<div class="typing-indicator" id="${indicatorId}" role="status" aria-live="polite" aria-label="${label}">
+  <div class="typing-indicator__dots" aria-hidden="true">
+    <span class="typing-indicator__dot"></span>
+    <span class="typing-indicator__dot"></span>
+    <span class="typing-indicator__dot"></span>
+  </div>
+  <span class="typing-indicator__label">${label}</span>
+  ${showTimer ? `<span class="typing-indicator__timer" aria-label="Elapsed time: ${elapsed}">${elapsed}</span>` : ''}
+</div>`,
+        tokens: [
+          'component.typingIndicator.bg',
+          'component.typingIndicator.border',
+          'component.typingIndicator.radius',
+          'component.typingIndicator.dot.size',
+          'component.typingIndicator.dot.color',
+          'component.typingIndicator.dot.animationDuration',
+        ],
+        a11y: {
+          role: 'status',
+          liveRegion: true,
+          ariaLabel: label,
+        },
+      };
+    },
+  },
+
+  'prompt-input': {
+    category: 'molecule',
+    description: 'AI prompt input with send button and token count',
+    template: ({ placeholder = 'Type your message...', tokenCount = null, tokenLimit = null, disabled = false, id }) => {
+      const inputId = id || `prompt-input-${Date.now()}`;
+      const isWarning = tokenCount && tokenLimit && (tokenCount / tokenLimit) > 0.9;
+      return {
+        html: `<div class="prompt-input${disabled ? ' prompt-input--disabled' : ''}" id="${inputId}">
+  <textarea
+    class="prompt-input__textarea"
+    placeholder="${placeholder}"
+    aria-label="Message input"
+    rows="1"
+    ${disabled ? 'disabled' : ''}
+  ></textarea>
+  <div class="prompt-input__toolbar">
+    <div class="prompt-input__meta">
+      ${tokenCount !== null ? `<span class="prompt-input__token-count${isWarning ? ' prompt-input__token-count--warning' : ''}" aria-label="Token usage: ${tokenCount}${tokenLimit ? ` of ${tokenLimit}` : ''}">${tokenCount}${tokenLimit ? ` / ${tokenLimit}` : ''} tokens</span>` : ''}
+    </div>
+    <div class="prompt-input__actions">
+      <button type="button" class="prompt-input__send" aria-label="Send message" ${disabled ? 'disabled' : ''}>
+        &#x27A4;
+      </button>
+    </div>
+  </div>
+</div>`,
+        tokens: [
+          'component.promptInput.bg',
+          'component.promptInput.border',
+          'component.promptInput.borderFocus',
+          'component.promptInput.radius',
+          'component.promptInput.sendButton.bg',
+          'component.promptInput.sendButton.color',
+          'component.promptInput.tokenCount.color',
+        ],
+        a11y: {
+          role: 'textbox',
+          multiline: true,
+          focusable: true,
+          keyboardNav: ['Enter', 'Shift+Enter'],
+          hasLabel: true,
+        },
+      };
+    },
+  },
+
+  'streaming-text': {
+    category: 'atom',
+    description: 'Progressive text reveal with typewriter cursor',
+    variants: ['active', 'complete', 'idle'],
+    template: ({ text = 'The AI response is being generated...', state = 'active', id }) => {
+      const textId = id || `streaming-text-${Date.now()}`;
+      return {
+        html: `<div class="streaming-text streaming-text--${state}" id="${textId}" role="status" aria-live="polite" aria-label="AI response">
+  <span class="streaming-text__content">${text}</span>
+  <span class="streaming-text__cursor" aria-hidden="true"></span>
+</div>`,
+        tokens: [
+          'component.streamingText.text.color',
+          'component.streamingText.text.fontSize',
+          'component.streamingText.cursor.color',
+          'component.streamingText.cursor.width',
+          'component.streamingText.cursor.blinkDuration',
+        ],
+        a11y: {
+          role: 'status',
+          liveRegion: true,
+          ariaLabel: 'AI response',
+        },
+      };
+    },
+  },
+
+  'source-citation': {
+    category: 'atom',
+    description: 'Inline source reference chip for AI attribution',
+    variants: ['default', 'inline'],
+    template: ({ index = 1, title = 'Source Title', domain = 'example.com', url = '#', relevance = 'high', variant = 'default', id }) => {
+      const citationId = id || `source-citation-${Date.now()}`;
+      return {
+        html: `<a class="source-citation${variant === 'inline' ? ' source-citation--inline' : ''}" id="${citationId}" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="Source ${index}: ${title} from ${domain}">
+  <span class="source-citation__index" aria-hidden="true">${index}</span>
+  <span class="source-citation__title">${title}</span>
+  <span class="source-citation__domain">${domain}</span>
+  <span class="source-citation__relevance source-citation__relevance--${relevance}" aria-label="Relevance: ${relevance}" title="Relevance: ${relevance}"></span>
+</a>`,
+        tokens: [
+          'component.sourceCitation.bg',
+          'component.sourceCitation.border',
+          'component.sourceCitation.radius',
+          'component.sourceCitation.title.color',
+          'component.sourceCitation.domain.color',
+          `component.sourceCitation.relevance.${relevance}`,
+          'component.sourceCitation.index.bg',
+          'component.sourceCitation.index.color',
+        ],
+        a11y: {
+          role: 'link',
+          externalLink: true,
+          hasLabel: true,
+          focusable: true,
+        },
+      };
+    },
+  },
+
+  'confidence-score': {
+    category: 'atom',
+    description: 'Visual gauge showing AI confidence level',
+    template: ({ score = 0.85, label = 'Confidence', id }) => {
+      const scoreId = id || `confidence-score-${Date.now()}`;
+      const percentage = Math.round(score * 100);
+      const level = score >= 0.7 ? 'high' : score >= 0.4 ? 'medium' : 'low';
+      const levelLabel = level.charAt(0).toUpperCase() + level.slice(1);
+      return {
+        html: `<div class="confidence-score confidence-score--${level}" id="${scoreId}" role="meter" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" aria-label="${label}: ${percentage}%">
+  <div class="confidence-score__header">
+    <span class="confidence-score__label">${label}</span>
+    <span class="confidence-score__value">${percentage}%</span>
+  </div>
+  <div class="confidence-score__track">
+    <div class="confidence-score__fill" style="width: ${percentage}%"></div>
+  </div>
+  <span class="confidence-score__level">${levelLabel}</span>
+</div>`,
+        tokens: [
+          'component.confidenceScore.trackBg',
+          'component.confidenceScore.height',
+          'component.confidenceScore.radius',
+          `component.confidenceScore.${level}.color`,
+          `component.confidenceScore.${level}.label`,
+          'component.confidenceScore.label.fontSize',
+          'component.confidenceScore.value.fontSize',
+        ],
+        a11y: {
+          role: 'meter',
+          hasLabel: true,
+          valueRange: true,
+        },
+      };
+    },
+  },
+
+  'trust-badge': {
+    category: 'atom',
+    description: 'AI-generated vs human-authored content indicator',
+    variants: ['ai', 'human', 'verified', 'unverified'],
+    template: ({ source = 'ai', verified = false, model = null, id }) => {
+      const badgeId = id || `trust-badge-${Date.now()}`;
+      const variant = source === 'ai' ? 'ai' : 'human';
+      const verifyVariant = verified ? 'verified' : 'unverified';
+      const icon = source === 'ai' ? '&#x2728;' : '&#x270D;';
+      const verifyIcon = verified ? '&#x2713;' : '&#x26A0;';
+      const label = source === 'ai' ? 'AI-Generated' : 'Human-Authored';
+      const verifyLabel = verified ? 'Verified' : 'Unverified';
+      return {
+        html: `<span class="trust-badge trust-badge--${variant}" id="${badgeId}" role="status" aria-label="${label}${model ? ` by ${model}` : ''}, ${verifyLabel}">
+  <span class="trust-badge__icon" aria-hidden="true">${icon}</span>
+  <span class="trust-badge__label">${label}</span>
+  ${model ? `<span class="trust-badge__model">&middot; ${model}</span>` : ''}
+</span>`,
+        tokens: [
+          `component.trustBadge.${variant}.bg`,
+          `component.trustBadge.${variant}.color`,
+          `component.trustBadge.${variant}.border`,
+          'component.trustBadge.radius',
+          'component.trustBadge.fontSize',
+        ],
+        a11y: {
+          role: 'status',
+          hasLabel: true,
+          contentAttribution: true,
+        },
+      };
+    },
+  },
+
+  'token-counter': {
+    category: 'atom',
+    description: 'Context window token usage progress bar',
+    template: ({ used = 2048, total = 8192, label = 'Context Window', id }) => {
+      const counterId = id || `token-counter-${Date.now()}`;
+      const percentage = Math.round((used / total) * 100);
+      const level = percentage > 90 ? 'danger' : percentage > 75 ? 'warning' : 'normal';
+      const remaining = total - used;
+      return {
+        html: `<div class="token-counter${level !== 'normal' ? ` token-counter--${level}` : ''}" id="${counterId}" role="meter" aria-valuenow="${used}" aria-valuemin="0" aria-valuemax="${total}" aria-label="${label}: ${used.toLocaleString()} of ${total.toLocaleString()} tokens used">
+  <div class="token-counter__header">
+    <span class="token-counter__label">${label}</span>
+    <span class="token-counter__value">${used.toLocaleString()} / ${total.toLocaleString()}</span>
+  </div>
+  <div class="token-counter__track">
+    <div class="token-counter__fill" style="width: ${percentage}%"></div>
+  </div>
+  <div class="token-counter__segments">
+    <span class="token-counter__segment">${remaining.toLocaleString()} tokens remaining</span>
+  </div>
+</div>`,
+        tokens: [
+          'component.tokenCounter.trackBg',
+          'component.tokenCounter.fillBg',
+          'component.tokenCounter.height',
+          'component.tokenCounter.radius',
+          'component.tokenCounter.label.fontSize',
+          'component.tokenCounter.label.color',
+          'component.tokenCounter.value.fontSize',
+        ],
+        a11y: {
+          role: 'meter',
+          hasLabel: true,
+          valueRange: true,
+        },
+      };
+    },
+  },
+
+  'model-selector': {
+    category: 'molecule',
+    description: 'AI model picker dropdown with capability tags',
+    template: ({ models = null, selected = 'claude-sonnet', id }) => {
+      const selectorId = id || `model-selector-${Date.now()}`;
+      const defaultModels = models || [
+        { id: 'claude-opus', name: 'Claude Opus', description: 'Most capable, best for complex tasks', tags: ['reasoning', 'coding', 'analysis'] },
+        { id: 'claude-sonnet', name: 'Claude Sonnet', description: 'Balanced performance and speed', tags: ['general', 'coding', 'fast'] },
+        { id: 'claude-haiku', name: 'Claude Haiku', description: 'Fastest, best for simple tasks', tags: ['fast', 'lightweight', 'chat'] },
+      ];
+      const selectedModel = defaultModels.find(m => m.id === selected) || defaultModels[0];
+      return {
+        html: `<div class="model-selector" id="${selectorId}">
+  <button type="button" class="model-selector__trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Select AI model, current: ${selectedModel.name}">
+    <span class="model-selector__selected">
+      <span class="model-selector__selected-name">${selectedModel.name}</span>
+    </span>
+    <span class="model-selector__chevron" aria-hidden="true">&#x25BC;</span>
+  </button>
+  <div class="model-selector__dropdown" role="listbox" aria-label="Available models">
+    <ul class="model-selector__options">
+      ${defaultModels.map(m => `<li class="model-selector__option${m.id === selected ? ' model-selector__option--selected' : ''}" role="option" aria-selected="${m.id === selected}" data-model="${m.id}">
+        <span class="model-selector__model-name">${m.name}</span>
+        <span class="model-selector__model-description">${m.description}</span>
+        <div class="model-selector__tags">
+          ${m.tags.map(t => `<span class="model-selector__tag">${t}</span>`).join('\n          ')}
+        </div>
+      </li>`).join('\n      ')}
+    </ul>
+  </div>
+</div>`,
+        tokens: [
+          'component.modelSelector.bg',
+          'component.modelSelector.border',
+          'component.modelSelector.radius',
+          'component.modelSelector.dropdown.bg',
+          'component.modelSelector.dropdown.shadow',
+          'component.modelSelector.option.hoverBg',
+          'component.modelSelector.option.selectedBg',
+          'component.modelSelector.tag.bg',
+          'component.modelSelector.tag.color',
+          'component.modelSelector.modelName.fontSize',
+        ],
+        a11y: {
+          role: 'listbox',
+          hasPopup: true,
+          focusable: true,
+          keyboardNav: ['ArrowUp', 'ArrowDown', 'Enter', 'Escape'],
+        },
+      };
+    },
+  },
+
+  'tool-call-card': {
+    category: 'molecule',
+    description: 'Displays AI tool/function invocation with inputs and outputs',
+    variants: ['running', 'success', 'error'],
+    template: ({ toolName = 'search_web', status = 'success', input = '{ "query": "design tokens" }', output = '{ "results": [...] }', duration = '1.2s', expanded = false, id }) => {
+      const cardId = id || `tool-call-card-${Date.now()}`;
+      return {
+        html: `<div class="tool-call-card${expanded ? ' tool-call-card--expanded' : ''}" id="${cardId}">
+  <button type="button" class="tool-call-card__header" aria-expanded="${expanded}" aria-controls="${cardId}-body">
+    <span class="tool-call-card__status tool-call-card__status--${status}" aria-label="Status: ${status}"></span>
+    <span class="tool-call-card__name">${toolName}</span>
+    ${duration ? `<span class="tool-call-card__duration">${duration}</span>` : ''}
+    <span class="tool-call-card__toggle" aria-hidden="true">&#x25BC;</span>
+  </button>
+  <div class="tool-call-card__body" id="${cardId}-body" role="region" aria-label="Tool call details">
+    <div class="tool-call-card__section">
+      <div class="tool-call-card__section-label">Input</div>
+      <pre class="tool-call-card__code">${input}</pre>
+    </div>
+    <div class="tool-call-card__section">
+      <div class="tool-call-card__section-label">Output</div>
+      <pre class="tool-call-card__code">${output}</pre>
+    </div>
+  </div>
+</div>`,
+        tokens: [
+          'component.toolCallCard.bg',
+          'component.toolCallCard.border',
+          'component.toolCallCard.radius',
+          'component.toolCallCard.header.bg',
+          'component.toolCallCard.toolName.fontSize',
+          'component.toolCallCard.toolName.color',
+          `component.toolCallCard.status.${status}`,
+          'component.toolCallCard.code.bg',
+          'component.toolCallCard.code.fontSize',
+          'component.toolCallCard.duration.color',
+        ],
+        a11y: {
+          role: 'region',
+          expandable: true,
+          focusable: true,
+          keyboardNav: ['Enter', 'Space'],
+        },
+      };
+    },
+  },
+
+  'agent-status': {
+    category: 'molecule',
+    description: 'Multi-step agent pipeline status visualization',
+    variants: ['vertical', 'horizontal'],
+    template: ({ steps = null, variant = 'vertical', id }) => {
+      const statusId = id || `agent-status-${Date.now()}`;
+      const defaultSteps = steps || [
+        { label: 'Thinking', icon: '&#x1F4AD;', state: 'complete', description: 'Analyzing your request' },
+        { label: 'Searching', icon: '&#x1F50D;', state: 'complete', description: 'Finding relevant information' },
+        { label: 'Generating', icon: '&#x2728;', state: 'active', description: 'Creating the response' },
+        { label: 'Reviewing', icon: '&#x2705;', state: 'pending', description: 'Quality check' },
+      ];
+      return {
+        html: `<div class="agent-status${variant === 'horizontal' ? ' agent-status--horizontal' : ''}" id="${statusId}" role="group" aria-label="Agent pipeline status">
+  ${defaultSteps.map((step, i) => `<div class="agent-status__step agent-status__step--${step.state}" aria-current="${step.state === 'active' ? 'step' : 'false'}">
+    <div class="agent-status__icon" aria-hidden="true">${step.state === 'complete' ? '&#x2713;' : step.state === 'error' ? '&#x2717;' : step.icon}</div>
+    <div class="agent-status__content">
+      <span class="agent-status__label">${step.label}</span>
+      ${step.description ? `<span class="agent-status__description">${step.description}</span>` : ''}
+    </div>
+  </div>`).join('\n  ')}
+</div>`,
+        tokens: [
+          'component.agentStatus.bg',
+          'component.agentStatus.border',
+          'component.agentStatus.radius',
+          'component.agentStatus.step.iconSize',
+          'component.agentStatus.connector.width',
+          'component.agentStatus.connector.color',
+          'component.agentStatus.active.bg',
+          'component.agentStatus.active.color',
+          'component.agentStatus.complete.bg',
+          'component.agentStatus.complete.color',
+          'component.agentStatus.pending.bg',
+          'component.agentStatus.label.fontSize',
+        ],
+        a11y: {
+          role: 'group',
+          stepIndicator: true,
+          currentStep: true,
+          hasLabels: true,
+        },
+      };
+    },
+  },
+
+  'thumbs-rating': {
+    category: 'molecule',
+    description: 'Thumbs up/down feedback with optional comment textarea',
+    template: ({ rating = null, showFeedback = false, feedbackPlaceholder = 'Tell us more...', label = 'Was this helpful?', id }) => {
+      const ratingId = id || `thumbs-rating-${Date.now()}`;
+      return {
+        html: `<div class="thumbs-rating${showFeedback ? ' thumbs-rating--has-feedback' : ''}" id="${ratingId}" role="group" aria-label="${label}">
+  <div class="thumbs-rating__buttons">
+    <span class="thumbs-rating__label">${label}</span>
+    <button type="button" class="thumbs-rating__btn thumbs-rating__btn--up${rating === 'up' ? ' thumbs-rating__btn--active' : ''}" aria-label="Thumbs up" aria-pressed="${rating === 'up'}">
+      &#x1F44D;
+    </button>
+    <button type="button" class="thumbs-rating__btn thumbs-rating__btn--down${rating === 'down' ? ' thumbs-rating__btn--active' : ''}" aria-label="Thumbs down" aria-pressed="${rating === 'down'}">
+      &#x1F44E;
+    </button>
+  </div>
+  <div class="thumbs-rating__feedback">
+    <textarea class="thumbs-rating__textarea" placeholder="${feedbackPlaceholder}" aria-label="Additional feedback" rows="2"></textarea>
+    <button type="button" class="thumbs-rating__submit btn btn--primary btn--sm">Submit Feedback</button>
+  </div>
+</div>`,
+        tokens: [
+          'component.thumbsRating.gap',
+          'component.thumbsRating.button.size',
+          'component.thumbsRating.button.radius',
+          'component.thumbsRating.button.bg',
+          'component.thumbsRating.button.color',
+          'component.thumbsRating.up.activeBg',
+          'component.thumbsRating.up.activeColor',
+          'component.thumbsRating.down.activeBg',
+          'component.thumbsRating.down.activeColor',
+          'component.thumbsRating.feedback.bg',
+          'component.thumbsRating.feedback.border',
+        ],
+        a11y: {
+          role: 'group',
+          toggleButtons: true,
+          focusable: true,
+          keyboardNav: ['Enter', 'Space'],
+          hasLabel: true,
+        },
+      };
+    },
+  },
 };
 
 // ============================================================================
@@ -2428,6 +2909,19 @@ export class ComponentGeneratorAgent {
       'search-autocomplete': /\b(search\s*autocomplete|search\s*with\s*suggestions|autocomplete\s*search|search\s*combo)\b/,
       'data-table': /\b(data\s*table|advanced\s*table|sortable\s*table|filterable\s*table)\b/,
       'form-wizard': /\b(form\s*wizard|multi\s*step\s*form|step\s*form|wizard\s*form)\b/,
+      // AI-Native Components
+      'chat-bubble': /\b(chat\s*bubble|chat\s*message|message\s*bubble|ai\s*message|conversation\s*message)\b/,
+      'typing-indicator': /\b(typing\s*indicator|thinking\s*indicator|typing\s*dots|ai\s*thinking|loading\s*dots)\b/,
+      'prompt-input': /\b(prompt\s*input|prompt\s*box|ai\s*input|chat\s*input|prompt\s*field)\b/,
+      'streaming-text': /\b(streaming\s*text|typewriter|stream\s*output|ai\s*output|live\s*text)\b/,
+      'source-citation': /\b(source\s*citation|citation|source\s*reference|cite|footnote)\b/,
+      'confidence-score': /\b(confidence\s*score|confidence\s*meter|ai\s*confidence|certainty|trust\s*score)\b/,
+      'trust-badge': /\b(trust\s*badge|ai\s*badge|verified\s*badge|ai\s*generated|human\s*authored)\b/,
+      'token-counter': /\b(token\s*counter|token\s*count|context\s*window|token\s*usage|token\s*meter)\b/,
+      'model-selector': /\b(model\s*selector|model\s*picker|model\s*chooser|ai\s*model|llm\s*selector)\b/,
+      'tool-call-card': /\b(tool\s*call|function\s*call|tool\s*use|api\s*call\s*card|tool\s*invocation)\b/,
+      'agent-status': /\b(agent\s*status|agent\s*pipeline|agent\s*progress|workflow\s*status|agent\s*steps)\b/,
+      'thumbs-rating': /\b(thumbs\s*rating|thumbs\s*up|feedback\s*rating|like\s*dislike|rate\s*response)\b/,
     };
 
     // Merge community component NL patterns

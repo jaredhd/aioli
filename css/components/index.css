@@ -1,6 +1,6 @@
 /**
  * Aioli Design System — Component CSS Roll-up
- * Imports all 43 component stylesheets.
+ * Imports all 55 component stylesheets.
  *
  * Usage:
  *   @import 'aioli/css/components';
@@ -67,3 +67,17 @@
 @import './search-autocomplete.css';
 @import './data-table.css';
 @import './form-wizard.css';
+
+/* AI-Native Components */
+@import './chat-bubble.css';
+@import './typing-indicator.css';
+@import './prompt-input.css';
+@import './streaming-text.css';
+@import './source-citation.css';
+@import './confidence-score.css';
+@import './trust-badge.css';
+@import './token-counter.css';
+@import './model-selector.css';
+@import './tool-call-card.css';
+@import './agent-status.css';
+@import './thumbs-rating.css';

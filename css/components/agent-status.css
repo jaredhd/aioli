@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Agent Status — Multi-step pipeline visualization
+   ========================================================================== */
+
+.agent-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--component-agent-status-bg);
+  border: 1px solid var(--component-agent-status-border);
+  border-radius: var(--component-agent-status-radius);
+  padding: var(--component-agent-status-padding);
+}
+
+/* Individual step */
+.agent-status__step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--component-agent-status-step-gap);
+  position: relative;
+  padding-bottom: var(--component-agent-status-step-gap);
+}
+
+.agent-status__step:last-child {
+  padding-bottom: 0;
+}
+
+/* Step icon container */
+.agent-status__icon {
+  width: var(--component-agent-status-step-icon-size);
+  height: var(--component-agent-status-step-icon-size);
+  border-radius: var(--primitive-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: var(--primitive-font-size-sm);
+  border: 2px solid transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* Step states */
+.agent-status__step--pending .agent-status__icon {
+  background-color: var(--component-agent-status-pending-bg);
+  color: var(--component-agent-status-pending-color);
+  border-color: var(--component-agent-status-pending-border);
+}
+
+.agent-status__step--active .agent-status__icon {
+  background-color: var(--component-agent-status-active-bg);
+  color: var(--component-agent-status-active-color);
+  border-color: var(--component-agent-status-active-border);
+  animation: agent-status-pulse 2s ease-in-out infinite;
+}
+
+.agent-status__step--complete .agent-status__icon {
+  background-color: var(--component-agent-status-complete-bg);
+  color: var(--component-agent-status-complete-color);
+  border-color: var(--component-agent-status-complete-border);
+}
+
+.agent-status__step--error .agent-status__icon {
+  background-color: var(--component-agent-status-error-bg);
+  color: var(--component-agent-status-error-color);
+  border-color: var(--component-agent-status-error-border);
+}
+
+@keyframes agent-status-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--component-agent-status-active-border) 40%, transparent); }
+  50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--component-agent-status-active-border) 0%, transparent); }
+}
+
+/* Connector line between steps */
+.agent-status__step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--component-agent-status-step-icon-size) / 2 - var(--component-agent-status-connector-width) / 2);
+  top: var(--component-agent-status-step-icon-size);
+  bottom: 0;
+  width: var(--component-agent-status-connector-width);
+  background-color: var(--component-agent-status-connector-color);
+}
+
+.agent-status__step--complete:not(:last-child)::before {
+  background-color: var(--component-agent-status-connector-active-color);
+}
+
+/* Step content */
+.agent-status__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-1);
+  padding-top: var(--primitive-spacing-1);
+  min-width: 0;
+}
+
+.agent-status__label {
+  font-size: var(--component-agent-status-label-font-size);
+  font-weight: var(--component-agent-status-label-font-weight);
+  color: var(--semantic-text-default);
+}
+
+.agent-status__step--pending .agent-status__label {
+  color: var(--component-agent-status-pending-color);
+}
+
+.agent-status__description {
+  font-size: var(--primitive-font-size-xs);
+  color: var(--semantic-text-muted);
+}
+
+/* Horizontal variant */
+.agent-status--horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.agent-status--horizontal .agent-status__step {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 0;
+  padding-right: var(--component-agent-status-step-gap);
+  flex: 1;
+}
+
+.agent-status--horizontal .agent-status__step:last-child {
+  padding-right: 0;
+}
+
+.agent-status--horizontal .agent-status__step:not(:last-child)::before {
+  top: calc(var(--component-agent-status-step-icon-size) / 2 - var(--component-agent-status-connector-width) / 2);
+  left: var(--component-agent-status-step-icon-size);
+  right: 0;
+  bottom: auto;
+  width: auto;
+  height: var(--component-agent-status-connector-width);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-status__step--active .agent-status__icon {
+    animation: none;
+  }
+}

@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Streaming Text — Progressive text reveal with typewriter cursor
+   ========================================================================== */
+
+.streaming-text {
+  color: var(--component-streaming-text-text-color);
+  font-size: var(--component-streaming-text-text-font-size);
+  line-height: var(--component-streaming-text-text-line-height);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Cursor — appears at end of streaming content */
+.streaming-text__cursor {
+  display: inline-block;
+  width: var(--component-streaming-text-cursor-width);
+  height: var(--component-streaming-text-cursor-height);
+  background-color: var(--component-streaming-text-cursor-color);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: streaming-blink var(--component-streaming-text-cursor-blink-duration) step-end infinite;
+}
+
+@keyframes streaming-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Active state — cursor solid when text is being received */
+.streaming-text--active .streaming-text__cursor {
+  animation: none;
+  opacity: 1;
+}
+
+/* Complete state — cursor hidden when streaming is done */
+.streaming-text--complete .streaming-text__cursor {
+  display: none;
+}
+
+/* Character-by-character reveal animation */
+.streaming-text__char {
+  opacity: 0;
+  animation: streaming-reveal 0.05s ease-out forwards;
+}
+
+@keyframes streaming-reveal {
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .streaming-text__cursor {
+    animation: none;
+    opacity: 1;
+  }
+
+  .streaming-text__char {
+    animation: none;
+    opacity: 1;
+  }
+}

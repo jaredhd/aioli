@@ -14,6 +14,11 @@ const STATEFUL_COMPONENTS = {
   accordion: { state: 'expandedItems', setter: 'setExpandedItems', type: 'set', default: 'new Set()' },
   dropdown: { state: 'isOpen', setter: 'setIsOpen', type: 'boolean', default: false },
   toast: { state: 'visible', setter: 'setVisible', type: 'boolean', default: true },
+  // AI-Native Components
+  'prompt-input': { state: 'value', setter: 'setValue', type: 'string', default: "''" },
+  'model-selector': { state: 'isOpen', setter: 'setIsOpen', type: 'boolean', default: false },
+  'tool-call-card': { state: 'isExpanded', setter: 'setIsExpanded', type: 'boolean', default: false },
+  'thumbs-rating': { state: 'rating', setter: 'setRating', type: 'string', default: null },
 };
 
 // HTML attr → JSX attr mapping

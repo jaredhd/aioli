@@ -14,6 +14,11 @@ const STATEFUL_COMPONENTS = {
   accordion: { ref: 'expandedItems', type: 'Set', default: 'new Set()' },
   dropdown: { ref: 'isOpen', type: 'Boolean', default: false },
   toast: { ref: 'visible', type: 'Boolean', default: true },
+  // AI-Native Components
+  'prompt-input': { ref: 'value', type: 'String', default: "''" },
+  'model-selector': { ref: 'isOpen', type: 'Boolean', default: false },
+  'tool-call-card': { ref: 'isExpanded', type: 'Boolean', default: false },
+  'thumbs-rating': { ref: 'rating', type: 'String', default: null },
 };
 
 // Components that emit events

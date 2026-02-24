@@ -61,6 +61,19 @@ const EXPECTED_COMPONENTS = [
   'modal',
   'table',
   'navigation',
+  // AI-Native Components
+  'chat-bubble',
+  'typing-indicator',
+  'prompt-input',
+  'streaming-text',
+  'source-citation',
+  'confidence-score',
+  'trust-badge',
+  'token-counter',
+  'model-selector',
+  'tool-call-card',
+  'agent-status',
+  'thumbs-rating',
 ];
 
 // ---------------------------------------------------------------------------
@@ -128,10 +141,10 @@ describe('Component CSS files exist', () => {
     expect(existsSync(filePath), `Missing: css/components/${name}.css`).toBe(true);
   });
 
-  it('directory contains exactly 43 component files (plus index.css)', () => {
+  it('directory contains exactly 55 component files (plus index.css)', () => {
     const files = readdirSync(componentsDir).filter((f) => f.endsWith('.css'));
-    // 43 components + index.css = 44 CSS files
-    expect(files.length).toBe(44);
+    // 55 components + index.css = 56 CSS files
+    expect(files.length).toBe(56);
   });
 });
 
@@ -197,9 +210,9 @@ describe('components/index.css imports all 31 components', () => {
     ).toMatch(pattern);
   });
 
-  it('contains exactly 43 @import statements', () => {
+  it('contains exactly 55 @import statements', () => {
     const imports = indexCss.match(/^@import\s/gm) || [];
-    expect(imports.length).toBe(43);
+    expect(imports.length).toBe(55);
   });
 });
 

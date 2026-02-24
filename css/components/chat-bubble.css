@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Chat Bubble — AI conversation message container
+   Supports human, AI, and system sender types with avatars and timestamps.
+   ========================================================================== */
+
+.chat-bubble {
+  display: flex;
+  gap: var(--component-chat-bubble-gap);
+  max-width: var(--component-chat-bubble-max-width);
+  align-items: flex-start;
+}
+
+/* Alignment — human messages right, AI/system messages left */
+.chat-bubble--human {
+  margin-left: auto;
+  flex-direction: row-reverse;
+}
+
+.chat-bubble--ai,
+.chat-bubble--system {
+  margin-right: auto;
+}
+
+/* Avatar */
+.chat-bubble__avatar {
+  width: var(--component-chat-bubble-avatar-size);
+  height: var(--component-chat-bubble-avatar-size);
+  border-radius: var(--primitive-radius-full);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--primitive-font-size-sm);
+  font-weight: var(--primitive-font-weight-semibold);
+  overflow: hidden;
+}
+
+.chat-bubble--human .chat-bubble__avatar {
+  background-color: var(--component-chat-bubble-human-bg);
+  color: var(--component-chat-bubble-human-text);
+}
+
+.chat-bubble--ai .chat-bubble__avatar {
+  background-color: var(--semantic-color-primary-subtle);
+  color: var(--semantic-color-primary-default);
+}
+
+.chat-bubble--system .chat-bubble__avatar {
+  background-color: var(--component-chat-bubble-system-bg);
+  color: var(--semantic-color-warning-default);
+}
+
+/* Message content wrapper */
+.chat-bubble__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--primitive-spacing-1);
+  min-width: 0;
+}
+
+/* Sender label */
+.chat-bubble__sender {
+  font-size: var(--primitive-font-size-xs);
+  font-weight: var(--primitive-font-weight-semibold);
+  color: var(--semantic-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Message body */
+.chat-bubble__body {
+  padding: var(--component-chat-bubble-padding);
+  border-radius: var(--component-chat-bubble-radius);
+  font-size: var(--primitive-font-size-base);
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.chat-bubble--human .chat-bubble__body {
+  background-color: var(--component-chat-bubble-human-bg);
+  color: var(--component-chat-bubble-human-text);
+  border-bottom-right-radius: var(--component-chat-bubble-human-radius-corner);
+}
+
+.chat-bubble--ai .chat-bubble__body {
+  background-color: var(--component-chat-bubble-ai-bg);
+  color: var(--component-chat-bubble-ai-text);
+  border: 1px solid var(--component-chat-bubble-ai-border);
+  border-bottom-left-radius: var(--component-chat-bubble-ai-radius-corner);
+}
+
+.chat-bubble--system .chat-bubble__body {
+  background-color: var(--component-chat-bubble-system-bg);
+  color: var(--component-chat-bubble-system-text);
+  border: 1px solid var(--component-chat-bubble-system-border);
+  border-left: 3px solid var(--component-chat-bubble-system-border);
+  border-radius: var(--primitive-radius-md);
+  font-size: var(--primitive-font-size-sm);
+  font-style: italic;
+}
+
+/* Footer — timestamp + actions */
+.chat-bubble__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--primitive-spacing-2);
+}
+
+.chat-bubble--human .chat-bubble__footer {
+  justify-content: flex-end;
+}
+
+.chat-bubble__timestamp {
+  font-size: var(--component-chat-bubble-timestamp-font-size);
+  color: var(--component-chat-bubble-timestamp-color);
+}
+
+/* Copy button */
+.chat-bubble__copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--component-chat-bubble-copy-button-size);
+  height: var(--component-chat-bubble-copy-button-size);
+  border: none;
+  background: transparent;
+  color: var(--component-chat-bubble-copy-button-color);
+  border-radius: var(--primitive-radius-sm);
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default),
+              background-color var(--primitive-motion-duration-fast) var(--primitive-motion-easing-default);
+}
+
+.chat-bubble__copy:hover {
+  color: var(--component-chat-bubble-copy-button-color-hover);
+  background-color: var(--semantic-surface-card-default);
+}
+
+.chat-bubble__copy:focus-visible {
+  outline: 2px solid var(--semantic-focus-ring-color);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-bubble__copy {
+    transition: none;
+  }
+}
