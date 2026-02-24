@@ -95,7 +95,7 @@ All tokens follow the W3C DTCG (Design Tokens Community Group) specification:
 
 ```bash
 npm install          # Install dependencies
-npm run build        # Build tokens → CSS, JS, JSON (1,543 tokens)
+npm run build        # Build tokens → CSS, JS, JSON (1,754 tokens)
 npm run build:watch  # Watch mode
 npm run validate     # Validate all token references (0 errors)
 npm run test         # Run vitest suite (272 tests)

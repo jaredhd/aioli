@@ -28,7 +28,7 @@ const FEATURES = [
   {
     icon: '\uD83C\uDFA8',
     title: 'Design Tokens',
-    desc: '1,543 tokens in W3C DTCG format across three tiers: primitives, semantic, and component-scoped. Build to CSS, JSON, or SCSS.',
+    desc: '1,754 tokens in W3C DTCG format across three tiers: primitives, semantic, and component-scoped. Build to CSS, JSON, or SCSS.',
   },
   {
     icon: '\uD83E\uDD16',
@@ -42,8 +42,8 @@ const FEATURES = [
   },
   {
     icon: '\uD83E\uDDE9',
-    title: '43 Components',
-    desc: 'Atoms, molecules, organisms, templates, and full pages \u2014 all from natural language. 8 style modifiers and 4 page compositions built in.',
+    title: '55 Components',
+    desc: 'Atoms, molecules, organisms, templates, and full pages \u2014 all from natural language. 12 AI-native components, 8 style modifiers, and 4 page compositions built in.',
   },
   {
     icon: '\uD83D\uDD17',
@@ -69,8 +69,8 @@ const FEATURES = [
 
 /** Stats shown in the hero ribbon. */
 const HERO_STATS = [
-  { value: '1,543', label: 'Design Tokens' },
-  { value: '43', label: 'Components' },
+  { value: '1,754', label: 'Design Tokens' },
+  { value: '55', label: 'Components' },
   { value: '4', label: 'Frameworks' },
   { value: '6', label: 'AI Agents' },
   { value: '120/120', label: 'WCAG AA Pairs' },
@@ -80,7 +80,7 @@ const HERO_STATS = [
 const ARCHITECTURE_LAYERS = [
   {
     title: 'Tokens',
-    desc: '1,543 W3C DTCG tokens: primitives \u2192 semantic \u2192 component',
+    desc: '1,754 W3C DTCG tokens: primitives \u2192 semantic \u2192 component',
   },
   {
     title: 'Agents',

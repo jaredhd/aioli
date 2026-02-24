@@ -62,9 +62,9 @@ npx aioli-design generate "primary button with icon"
 
 | Capability | Details |
 |---|---|
-| **43 Components** | Atoms, Molecules, Organisms, Templates, Pages -- all from natural language |
+| **55 Components** | Atoms, Molecules, Organisms, Templates, Pages -- all from natural language |
 | **4 Output Formats** | HTML, React (JSX), Vue (SFC), Svelte -- one prompt, any framework |
-| **1,543 Design Tokens** | W3C DTCG format, 3-tier hierarchy (primitives, semantic, component) |
+| **1,754 Design Tokens** | W3C DTCG format, 3-tier hierarchy (primitives, semantic, component) |
 | **6 Theme Presets** | Default, Glass, Neumorphic, Brutalist, Gradient, Dark Luxury |
 | **120/120 WCAG AA** | Every contrast pair passes across every theme |
 | **12 MCP Tools** | Plug into Claude, Cursor, Copilot, or any AI assistant |
@@ -113,7 +113,7 @@ Aioli exposes its full design intelligence via [Model Context Protocol](https://
 |---|---|
 | `generate_component` | Natural language -> accessible component (HTML/React/Vue/Svelte) |
 | `generate_page` | Full multi-section page from a description |
-| `list_components` | Discover all 43+ available component templates |
+| `list_components` | Discover all 55+ available component templates |
 | `list_style_modifiers` | 8 visual modifiers + 4 page composition types |
 | `list_themes` | 6 theme presets with descriptions |
 | `get_theme_css` | CSS custom properties for any theme preset |
@@ -210,7 +210,7 @@ Tokens (W3C DTCG)     Agents (6)           Interfaces          Output
 | primitives/    |--->| design-token    |->| MCP (12)     |--->| HTML     |
 | semantic/      |    | accessibility   |  | REST API (13)|    | React    |
 | components/    |    | motion          |  | JS SDK (12)  |    | Vue      |
-+----------------+    | component (43)  |  | CLI (7)      |    | Svelte   |
++----------------+    | component (55)  |  | CLI (7)      |    | Svelte   |
                       | code-review     |  +--------------+    | CSS vars |
                       | orchestrator    |                      | JSON     |
                       +-----------------+                      +----------+
@@ -222,10 +222,10 @@ Tokens (W3C DTCG)     Agents (6)           Interfaces          Output
 3. **Component** -- Scoped: `component.button.primary.bg` -> `{semantic.color.primary.default}`
 
 **Agent System** -- 6 specialized agents:
-- **Design Token** -- CRUD, resolution, validation across 1,543 tokens
+- **Design Token** -- CRUD, resolution, validation across 1,754 tokens
 - **Accessibility Validator** -- WCAG AA/AAA contrast, semantic HTML, ARIA, theme validation
 - **Motion** -- Duration/easing presets, GPU-safe property enforcement, `prefers-reduced-motion`
-- **Component Generator** -- 43 templates, 8 style modifiers, 4 page compositions, NL parsing
+- **Component Generator** -- 55 templates, 8 style modifiers, 4 page compositions, NL parsing
 - **Code Review** -- Quality scoring across 6 categories
 - **Orchestrator** -- Multi-agent coordination, validation-fix cycles
 
@@ -287,7 +287,7 @@ Every piece of output follows these rules -- no exceptions:
 
 ## Roadmap
 
-- [x] **Design System Engine** -- 1,543 tokens, 43 components, 6 agents
+- [x] **Design System Engine** -- 1,754 tokens, 55 components, 6 agents
 - [x] **Visual Enhancements** -- Glassmorphism, gradients, neumorphism, animations, themes
 - [x] **MCP Server** -- 12 tools for AI assistant integration
 - [x] **REST API + JS SDK** -- 13 HTTP endpoints, 12 SDK methods

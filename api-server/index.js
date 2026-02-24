@@ -156,7 +156,7 @@ app.post('/api/v1/generate/page', (req, res) => {
 
 /**
  * GET /api/v1/components
- * List all 43 available component templates.
+ * List all 55 available component templates.
  */
 app.get('/api/v1/components', (_req, res) => {
   try {
@@ -446,7 +446,7 @@ if (isDirectRun) {
 =========================
 http://localhost:${PORT}/api/v1/health
 
-Tokens: ${agents.token.countTokens()} | Components: 43 | Themes: 6
+Tokens: ${agents.token.countTokens()} | Components: 55 | Themes: 6
 
 Endpoints:
   GET  /api/v1/health

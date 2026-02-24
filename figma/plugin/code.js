@@ -323,7 +323,7 @@ const COMPONENT_SIZES = {
 };
 
 /**
- * Create all 43 component definitions as Figma Component Sets.
+ * Create all 55 component definitions as Figma Component Sets.
  */
 async function createComponents(componentDefs, allVariables) {
   var created = [];

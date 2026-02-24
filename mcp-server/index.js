@@ -41,7 +41,7 @@ const tokensPath = resolve(__dirname, '..', 'tokens');
 
 // Create agent system once at startup — reused across all tool calls
 const agents = createAgentSystem(tokensPath);
-console.error('Aioli MCP Server: Agent system initialized (1,543 tokens loaded)');
+console.error('Aioli MCP Server: Agent system initialized (1,754 tokens loaded)');
 
 // Load community components if registry exists
 const projectRoot = resolve(__dirname, '..');
@@ -86,7 +86,7 @@ function errorResult(error) {
 server.tool(
   'generate_component',
   'Generate an accessible UI component from a natural language description. ' +
-  'Supports 43 component types, 8 style modifiers (glass, gradient, neumorphic, brutalist, ' +
+  'Supports 55 component types, 8 style modifiers (glass, gradient, neumorphic, brutalist, ' +
   'elevated, dark-luxury, colored-shadow, animated), and auto-detects page compositions. ' +
   'All output is WCAG AA accessible with semantic HTML. ' +
   'Use output_format to get React, Vue, or Svelte component code instead of raw HTML.',
@@ -182,7 +182,7 @@ server.tool(
 
 server.tool(
   'list_components',
-  'List all 43 available Aioli component templates with their categories, ' +
+  'List all 55 available Aioli component templates with their categories, ' +
   'descriptions, supported variants, and sizes. Use this to discover what ' +
   'components are available before generating.',
   {},
@@ -307,7 +307,7 @@ server.tool(
   'get_tokens',
   'Query Aioli design tokens. Get a single token by path, filter by prefix, ' +
   'or export all tokens as CSS custom properties or JSON. ' +
-  'The system has 1,543 tokens across primitives, semantic, and component tiers.',
+  'The system has 1,754 tokens across primitives, semantic, and component tiers.',
   {
     path: z.string().optional()
       .describe('Dot-notation token path, e.g. "semantic.color.primary.default"'),

@@ -1,7 +1,7 @@
 /**
  * Aioli Design System — Component Gallery
  *
- * A visual catalog of all 43 Aioli components rendered from the
+ * A visual catalog of all 55 Aioli components rendered from the
  * component-generator-agent templates.  Each section shows variants,
  * sizes, states, and a collapsible raw-HTML code panel.
  *

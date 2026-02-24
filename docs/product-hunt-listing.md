@@ -7,7 +7,7 @@
 ## Tagline (60 chars max)
 
 ```
-Free AI design system: 43 components, any framework, WCAG AA
+Free AI design system: 55 components, any framework, WCAG AA
 ```
 
 ---
@@ -15,7 +15,7 @@ Free AI design system: 43 components, any framework, WCAG AA
 ## Description (260 chars max)
 
 ```
-Free, open-source AI design system engine. Natural language to production UI in HTML, React, Vue, or Svelte. 1,543 design tokens, 43 components, 6 WCAG AA themes. No API keys. No subscription. Plugs into Claude, Cursor, and any AI assistant via MCP.
+Free, open-source AI design system engine. Natural language to production UI in HTML, React, Vue, or Svelte. 1,754 design tokens, 55 components, 6 WCAG AA themes. No API keys. No subscription. Plugs into Claude, Cursor, and any AI assistant via MCP.
 ```
 
 ---
@@ -34,9 +34,9 @@ paywall.
 
 So I built the open-source answer:
 
-- 43 components from natural language (atoms → pages)
+- 55 components from natural language (atoms → pages)
 - 4 output formats: HTML, React, Vue, Svelte — one prompt, any framework
-- 1,543 W3C design tokens across 3 tiers
+- 1,754 W3C design tokens across 3 tiers
 - 6 theme presets, all WCAG AA verified (120/120 contrast pairs pass)
 - 12-tool MCP server — plug into Claude, Cursor, Copilot
 - 13-endpoint REST API + JavaScript SDK
@@ -82,7 +82,7 @@ TypeScript output? Figma plugin? VS Code extension? Let me know!
 1. **Hero image** — Use `public/og-image.svg` (updated with latest stats)
 2. **Screenshot: Playground** — AI playground generating a component from NL
 3. **Screenshot: Theme Builder** — Switching between 6 theme presets
-4. **Screenshot: Component Gallery** — Grid of all 43 components
+4. **Screenshot: Component Gallery** — Grid of all 55 components
 5. **GIF: Framework Output** — Tabbing through HTML → React → Vue → Svelte
 6. **Screenshot: Terminal** — CLI generating a component + audit output
 

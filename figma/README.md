@@ -1,6 +1,6 @@
 # Aioli Figma Plugin
 
-Generates a complete Figma component library from Aioli's design tokens — 1,309 Variables, 21 Styles, and 43 Components with proper variant properties and 6 theme modes.
+Generates a complete Figma component library from Aioli's design tokens — 1,309 Variables, 21 Styles, and 55 Components with proper variant properties and 6 theme modes.
 
 ## Quick Start (Development)
 
@@ -54,7 +54,7 @@ This runs the token transformer and embeds all 1,309 variables directly into `co
 1. In Figma: right-click the plugin in Plugins panel > **Publish**
 2. Fill in the listing:
    - **Name**: Aioli Design System
-   - **Tagline**: Free, open-source design system — 1,300+ variables, 6 themes, 43 components
+   - **Tagline**: Free, open-source design system — 1,300+ variables, 6 themes, 55 components
    - **Description**: Full description of what gets created
    - **Tags**: design-system, design-tokens, variables, components, themes, accessibility, wcag, open-source, free
    - **Icon**: 128x128 PNG
@@ -87,11 +87,11 @@ Display, Heading, Body, Caption, Label, and Code styles using Inter.
 
 Shadow XS through 2XL, Inner Shadow, and Focus Ring.
 
-### Components (43)
+### Components (55)
 
 All Aioli components organized by Atomic Design category:
-- **Atoms** (14): Button, Input, Badge, Avatar, Spinner, Link, Chip, Divider, Skeleton, Progress, Checkbox, Radio, Rating, Toggle
-- **Molecules** (14): Tooltip, Select, Textarea, Alert, Tabs, Accordion, Dropdown, Toast, Breadcrumb, Pagination, Stepper, Popover, Form Group, Search Autocomplete
+- **Atoms** (20): Button, Input, Badge, Avatar, Spinner, Link, Chip, Divider, Skeleton, Progress, Checkbox, Radio, Rating, Toggle, Typing Indicator, Streaming Text, Source Citation, Confidence Score, Trust Badge, Token Counter
+- **Molecules** (20): Tooltip, Select, Textarea, Alert, Tabs, Accordion, Dropdown, Toast, Breadcrumb, Pagination, Stepper, Popover, Form Group, Search Autocomplete, Chat Bubble, Prompt Input, Model Selector, Tool Call Card, Agent Status, Thumbs Rating
 - **Organisms** (12): Card, Modal, Table, Navigation, Card Product, Card Profile, Card Stats, Hero, Feature Grid, Pricing Table, Data Table, Form Wizard
 - **Templates** (3): Layout Dashboard, Layout Marketing, Layout Blog
 
