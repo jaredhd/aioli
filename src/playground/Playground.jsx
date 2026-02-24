@@ -34,6 +34,10 @@ const SUGGESTIONS = [
   'dark luxury pricing table',
   'animated feature grid',
   'brutalist alert notification',
+  'ai chat bubble',
+  'confidence score meter',
+  'agent status pipeline',
+  'tool call card',
 ];
 
 /** Instantiate a generator once (no token/motion agents needed for preview). */

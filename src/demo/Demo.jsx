@@ -54,7 +54,15 @@ const CATEGORIES = [
   { key: 'atom', label: 'Atoms' },
   { key: 'molecule', label: 'Molecules' },
   { key: 'organism', label: 'Organisms' },
+  { key: 'ai-native', label: 'AI-Native' },
 ];
+
+/** AI-native component names for the AI-Native filter tab. */
+const AI_NATIVE_COMPONENTS = new Set([
+  'chat-bubble', 'typing-indicator', 'prompt-input', 'streaming-text',
+  'source-citation', 'confidence-score', 'trust-badge', 'token-counter',
+  'model-selector', 'tool-call-card', 'agent-status', 'thumbs-rating',
+]);
 
 // ---------------------------------------------------------------------------
 // Per-component demo definitions
@@ -639,6 +647,168 @@ const COMPONENT_DEMOS = [
       },
     ],
   },
+
+  // ===== AI-NATIVE (12) =====================================================
+
+  {
+    name: 'chat-bubble',
+    showcases: [
+      {
+        label: 'Sender Variants',
+        items: [
+          { sender: 'human', message: 'Can you explain design tokens?', id: 'demo-chat-human' },
+          { sender: 'ai', message: 'Design tokens are named values that store visual design decisions like colors, spacing, and typography. They act as a single source of truth across your design system.', id: 'demo-chat-ai' },
+          { sender: 'system', message: 'Session started. Model: Claude Sonnet.', showCopy: false, id: 'demo-chat-system' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'typing-indicator',
+    showcases: [
+      {
+        label: 'Variants',
+        items: [
+          { id: 'demo-typing-default' },
+          { showTimer: true, elapsed: '3.2s', id: 'demo-typing-timer' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'prompt-input',
+    showcases: [
+      {
+        label: 'Variants',
+        items: [
+          { placeholder: 'Ask me anything...', id: 'demo-prompt-default' },
+          { placeholder: 'Describe a component...', tokenCount: 1847, tokenLimit: 4096, id: 'demo-prompt-tokens' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'streaming-text',
+    showcases: [
+      {
+        label: 'States',
+        items: [
+          { text: 'Generating your component with accessible markup, semantic tokens, and ARIA attributes...', state: 'active', id: 'demo-stream-active' },
+          { text: 'The response has been fully generated and is ready to use.', state: 'complete', id: 'demo-stream-complete' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'source-citation',
+    showcases: [
+      {
+        label: 'Relevance Levels',
+        items: [
+          { index: 1, title: 'W3C Design Tokens Spec', domain: 'w3.org', relevance: 'high', id: 'demo-cite-1' },
+          { index: 2, title: 'Atomic Design Methodology', domain: 'atomicdesign.bradfrost.com', relevance: 'medium', id: 'demo-cite-2' },
+          { index: 3, title: 'CSS Custom Properties', domain: 'developer.mozilla.org', relevance: 'low', id: 'demo-cite-3' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'confidence-score',
+    showcases: [
+      {
+        label: 'Levels',
+        items: [
+          { score: 0.92, label: 'Answer Confidence', id: 'demo-conf-high' },
+          { score: 0.55, label: 'Relevance Score', id: 'demo-conf-med' },
+          { score: 0.25, label: 'Certainty', id: 'demo-conf-low' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'trust-badge',
+    showcases: [
+      {
+        label: 'Variants',
+        items: [
+          { source: 'ai', id: 'demo-trust-ai' },
+          { source: 'human', id: 'demo-trust-human' },
+          { source: 'ai', verified: true, model: 'Claude Sonnet', id: 'demo-trust-verified' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'token-counter',
+    showcases: [
+      {
+        label: 'Usage Levels',
+        items: [
+          { used: 2048, total: 8192, label: 'Context Window', id: 'demo-tokens-normal' },
+          { used: 6400, total: 8192, label: 'Context Window', id: 'demo-tokens-warning' },
+          { used: 7800, total: 8192, label: 'Context Window', id: 'demo-tokens-danger' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'model-selector',
+    showcases: [
+      {
+        label: 'Default',
+        items: [
+          { selected: 'claude-sonnet', id: 'demo-model-selector' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'tool-call-card',
+    showcases: [
+      {
+        label: 'Status Variants',
+        items: [
+          { toolName: 'search_web', status: 'success', input: '{ "query": "design tokens" }', output: '{ "results": [3 items] }', duration: '1.2s', expanded: true, id: 'demo-tool-success' },
+          { toolName: 'generate_code', status: 'running', input: '{ "language": "jsx" }', output: '', duration: '', id: 'demo-tool-running' },
+          { toolName: 'validate_a11y', status: 'error', input: '{ "html": "<div>..." }', output: '{ "error": "Missing alt text" }', duration: '0.3s', id: 'demo-tool-error' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'agent-status',
+    showcases: [
+      {
+        label: 'Pipeline',
+        items: [
+          { id: 'demo-agent-status' },
+        ],
+      },
+    ],
+  },
+
+  {
+    name: 'thumbs-rating',
+    showcases: [
+      {
+        label: 'Variants',
+        items: [
+          { label: 'Was this helpful?', id: 'demo-thumbs-default' },
+          { label: 'Rate this response', rating: 'up', showFeedback: true, id: 'demo-thumbs-feedback' },
+        ],
+      },
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -662,6 +832,7 @@ export default function Demo() {
 
   const filteredDemos = useMemo(() => {
     if (filter === 'all') return COMPONENT_DEMOS;
+    if (filter === 'ai-native') return COMPONENT_DEMOS.filter((d) => AI_NATIVE_COMPONENTS.has(d.name));
     return COMPONENT_DEMOS.filter((d) => {
       const tpl = COMPONENT_TEMPLATES[d.name];
       return tpl && tpl.category === filter;

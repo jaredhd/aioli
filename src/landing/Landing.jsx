@@ -23,6 +23,9 @@ import { useDarkMode } from '../hooks/useDarkMode';
 /** Components to render in the live preview section. */
 const PREVIEW_COMPONENTS = ['button', 'card', 'alert', 'badge', 'input', 'tabs'];
 
+/** AI-native components to render in the AI preview section. */
+const AI_PREVIEW_COMPONENTS = ['chat-bubble', 'confidence-score', 'agent-status', 'tool-call-card'];
+
 /** Feature cards for the features grid. */
 const FEATURES = [
   {
@@ -180,6 +183,10 @@ const COMPONENT_DEFAULTS = {
   badge:   { children: 'Badge', variant: 'primary' },
   input:   { label: 'Label', placeholder: 'Placeholder…' },
   tabs:    {},
+  'chat-bubble':       { sender: 'ai', message: 'Design tokens are named values that store visual design decisions.' },
+  'confidence-score':  { score: 0.92, label: 'Answer Confidence' },
+  'agent-status':      {},
+  'tool-call-card':    { toolName: 'search_web', status: 'success', input: '{ "query": "design tokens" }', output: '{ "results": [3 items] }', duration: '1.2s', expanded: true },
 };
 
 /**
@@ -469,6 +476,22 @@ export default function Landing() {
 
         <div className="landing-preview__grid">
           {PREVIEW_COMPONENTS.map((name) => renderComponent(name))}
+        </div>
+      </section>
+
+      {/* =================================================================== */}
+      {/* AI-NATIVE COMPONENT PREVIEW                                         */}
+      {/* =================================================================== */}
+      <section className="landing-preview landing-preview--ai">
+        <h2 className="landing-preview__heading">AI-Native Components</h2>
+        <p className="landing-preview__subtitle">
+          Purpose-built UI for AI interfaces &mdash; chat bubbles, confidence
+          scores, tool call cards, agent pipelines, and more. No other
+          open-source design system ships these out of the box.
+        </p>
+
+        <div className="landing-preview__grid">
+          {AI_PREVIEW_COMPONENTS.map((name) => renderComponent(name))}
         </div>
       </section>
 
