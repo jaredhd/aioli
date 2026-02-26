@@ -122,6 +122,9 @@ table {
   --semantic-color-primary-active: var(--semantic-color-dark-primary-active);
   --semantic-color-primary-subtle: var(--semantic-color-dark-primary-subtle);
 
+  --semantic-color-secondary-default: var(--semantic-color-dark-secondary-default);
+  --semantic-color-secondary-subtle: var(--semantic-color-dark-secondary-subtle);
+
   --semantic-color-success-default: var(--semantic-color-dark-success-default);
   --semantic-color-success-hover: var(--semantic-color-dark-success-hover);
   --semantic-color-success-subtle: var(--semantic-color-dark-success-subtle);
@@ -160,6 +163,10 @@ table {
   /* Focus */
   --semantic-focus-ring-color: var(--semantic-border-dark-focus);
 
+  /* Ghost & outline buttons — bg-hover must flip for dark surfaces */
+  --component-button-ghost-bg-hover: var(--primitive-color-neutral-800, #1e293b);
+  --component-button-outline-bg-hover: var(--primitive-color-neutral-800, #1e293b);
+
   color-scheme: dark;
 }
 
@@ -176,6 +183,9 @@ table {
     --semantic-color-primary-hover: var(--semantic-color-dark-primary-hover);
     --semantic-color-primary-active: var(--semantic-color-dark-primary-active);
     --semantic-color-primary-subtle: var(--semantic-color-dark-primary-subtle);
+
+    --semantic-color-secondary-default: var(--semantic-color-dark-secondary-default);
+    --semantic-color-secondary-subtle: var(--semantic-color-dark-secondary-subtle);
 
     --semantic-color-success-default: var(--semantic-color-dark-success-default);
     --semantic-color-success-hover: var(--semantic-color-dark-success-hover);
@@ -214,6 +224,10 @@ table {
 
     /* Focus */
     --semantic-focus-ring-color: var(--semantic-border-dark-focus);
+
+    /* Ghost & outline buttons — bg-hover must flip for dark surfaces */
+    --component-button-ghost-bg-hover: var(--primitive-color-neutral-800, #1e293b);
+    --component-button-outline-bg-hover: var(--primitive-color-neutral-800, #1e293b);
 
     color-scheme: dark;
   }
