@@ -1,7 +1,7 @@
 {
   "name": "aioli-design",
-  "version": "0.6.0",
-  "description": "Free, open-source AI design system engine. Natural language to React, Vue, Svelte, or HTML components with WCAG AA accessibility, 1,561 design tokens, and MCP server integration.",
+  "version": "0.7.0",
+  "description": "Free, open-source AI design system engine. Natural language to React, Vue, Svelte, or HTML components with WCAG AA accessibility, 1,754 design tokens, 6 theme presets, and MCP server integration.",
   "type": "module",
   "main": "./lib/index.js",
   "style": "./css/aioli.css",
