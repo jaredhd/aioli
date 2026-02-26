@@ -29,8 +29,9 @@ import { dirname, resolve } from 'path';
 
 // Aioli imports
 import { createAgentSystem } from '../agents/index.js';
-import { listPresets, getPresetOverrides, derivePalette } from '../lib/theme-presets.js';
+import { listPresets, getPresetOverrides, derivePalette, deriveBrandTheme, suggestHarmonies, validateTheme, auditTheme } from '../lib/theme-presets.js';
 import { createTheme } from '../lib/theme.js';
+import { validateThemeFile, importThemeFile, exportThemeFile } from '../lib/theme-file.js';
 
 // ============================================================================
 // INITIALIZATION
@@ -495,13 +496,174 @@ server.tool(
 );
 
 // ============================================================================
+// TOOL 13: derive_brand_theme
+// ============================================================================
+
+server.tool(
+  'derive_brand_theme',
+  'Generate a complete brand theme from multiple colors. Accepts primary (required) plus ' +
+  'optional secondary, accent, neutral, success, danger colors. Missing colors are ' +
+  'auto-derived using color harmony rules. Returns WCAG AA-verified token overrides and CSS. ' +
+  'Can optionally apply a preset base (glass, neumorphic, etc.) and set radius/font.',
+  {
+    primary: z.string().regex(/^#[0-9a-fA-F]{6}$/)
+      .describe('Primary brand color as 6-digit hex (required)'),
+    secondary: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional()
+      .describe('Secondary color (auto-derived from complementary if omitted)'),
+    accent: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional()
+      .describe('Accent color (auto-derived from analogous if omitted)'),
+    neutral: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional()
+      .describe('Neutral/gray base color'),
+    success: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional()
+      .describe('Success color (default: #10b981)'),
+    danger: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional()
+      .describe('Danger/error color (default: #ef4444)'),
+    preset: z.enum(['default', 'glass', 'neumorphic', 'brutalist', 'gradient', 'darkLuxury']).optional()
+      .describe('Optional base preset to merge with'),
+    radius: z.string().optional()
+      .describe('Border radius override, e.g. "8px"'),
+    font: z.string().optional()
+      .describe('Font family override, e.g. "Inter, sans-serif"'),
+  },
+  async ({ primary, secondary, accent, neutral, success, danger, preset, radius, font }) => {
+    try {
+      const config = { primary };
+      if (secondary) config.secondary = secondary;
+      if (accent) config.accent = accent;
+      if (neutral) config.neutral = neutral;
+      if (success) config.success = success;
+      if (danger) config.danger = danger;
+      const options = {};
+      if (preset) options.preset = preset;
+      if (radius) options.radius = radius;
+      if (font) options.font = font;
+      if (Object.keys(options).length > 0) config.options = options;
+
+      const overrides = deriveBrandTheme(config);
+      const validation = validateTheme(overrides);
+      const themeObj = createTheme(overrides);
+      return safeResult({
+        tokenOverrides: overrides,
+        css: themeObj.toCSS(),
+        tokenCount: Object.keys(overrides).length,
+        validation: validation.summary,
+        valid: validation.valid,
+        failures: validation.failures,
+      });
+    } catch (e) {
+      return errorResult(e);
+    }
+  }
+);
+
+// ============================================================================
+// TOOL 14: suggest_harmonies
+// ============================================================================
+
+server.tool(
+  'suggest_harmonies',
+  'Suggest color harmonies from a primary color. Returns 5 harmony types ' +
+  '(complementary, analogous, split-complementary, triadic, tetradic), each with ' +
+  'raw colors and WCAG AA-safe shades with contrast ratios on white.',
+  {
+    color: z.string().regex(/^#[0-9a-fA-F]{6}$/)
+      .describe('Primary color as 6-digit hex, e.g. "#2563eb"'),
+  },
+  async ({ color }) => {
+    try {
+      const harmonies = suggestHarmonies(color);
+      return safeResult({
+        sourceColor: color,
+        harmonies,
+      });
+    } catch (e) {
+      return errorResult(e);
+    }
+  }
+);
+
+// ============================================================================
+// TOOL 15: validate_theme
+// ============================================================================
+
+server.tool(
+  'validate_theme',
+  'Validate a set of theme overrides against WCAG AA contrast requirements. ' +
+  'Checks 20 critical text/surface contrast pairs and returns pass/fail report. ' +
+  'Use "audit" mode for detailed per-pair results.',
+  {
+    overrides: z.record(z.string(), z.string())
+      .describe('Token overrides to validate, e.g. {"semantic.color.primary.default": "#2563eb"}'),
+    audit: z.boolean().optional().default(false)
+      .describe('If true, return detailed per-pair results (audit mode)'),
+  },
+  async ({ overrides, audit: auditMode }) => {
+    try {
+      if (auditMode) {
+        const result = auditTheme(overrides);
+        return safeResult(result);
+      }
+      const result = validateTheme(overrides);
+      return safeResult(result);
+    } catch (e) {
+      return errorResult(e);
+    }
+  }
+);
+
+// ============================================================================
+// TOOL 16: import_theme
+// ============================================================================
+
+server.tool(
+  'import_theme',
+  'Import a .aioli-theme.json file and generate complete theme overrides. ' +
+  'The file must contain a name and brand.primary at minimum. Returns overrides, ' +
+  'CSS, and WCAG validation results.',
+  {
+    themeFile: z.object({
+      name: z.string().describe('Theme name'),
+      brand: z.object({
+        primary: z.string().describe('Primary hex color'),
+        secondary: z.string().optional(),
+        accent: z.string().optional(),
+        neutral: z.string().optional(),
+        success: z.string().optional(),
+        danger: z.string().optional(),
+      }).describe('Brand colors'),
+      options: z.object({
+        preset: z.string().optional(),
+        radius: z.string().optional(),
+        font: z.string().optional(),
+      }).optional().describe('Theme options'),
+      overrides: z.record(z.string(), z.string()).optional().describe('Manual overrides'),
+    }).describe('Theme file content (JSON)'),
+  },
+  async ({ themeFile }) => {
+    try {
+      const result = importThemeFile(themeFile);
+      return safeResult({
+        name: result.metadata.name,
+        tokenOverrides: result.overrides,
+        css: result.theme.toCSS(),
+        tokenCount: Object.keys(result.overrides).length,
+        validation: result.validation.summary,
+        valid: result.validation.valid,
+      });
+    } catch (e) {
+      return errorResult(e);
+    }
+  }
+);
+
+// ============================================================================
 // CONNECT
 // ============================================================================
 
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('Aioli MCP Server: Connected via stdio, 12 tools available');
+  console.error('Aioli MCP Server: Connected via stdio, 16 tools available');
 }
 
 main().catch((error) => {

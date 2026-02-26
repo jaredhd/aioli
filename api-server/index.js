@@ -16,8 +16,9 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
 import { createAgentSystem } from '../agents/index.js';
-import { listPresets, getPresetOverrides, derivePalette } from '../lib/theme-presets.js';
+import { listPresets, getPresetOverrides, derivePalette, deriveBrandTheme, suggestHarmonies, validateTheme, auditTheme } from '../lib/theme-presets.js';
 import { createTheme } from '../lib/theme.js';
+import { validateThemeFile, importThemeFile, exportThemeFile } from '../lib/theme-file.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const tokensPath = resolve(__dirname, '..', 'tokens');
@@ -433,6 +434,109 @@ app.post('/api/v1/validate/code', (req, res) => {
 });
 
 // ============================================================================
+// BRAND THEME ENDPOINTS
+// ============================================================================
+
+/**
+ * POST /api/v1/brand-theme
+ * Derive a complete brand theme from multiple colors.
+ * Body: { brand: { primary, secondary?, accent?, neutral?, success?, danger? }, options?: { preset?, radius?, font? } }
+ */
+app.post('/api/v1/brand-theme', (req, res) => {
+  try {
+    const { brand, options } = req.body;
+    if (!brand || !brand.primary) return sendError(res, 'brand.primary is required');
+
+    const config = { ...brand };
+    if (options) config.options = options;
+
+    const overrides = deriveBrandTheme(config);
+    const validation = validateTheme(overrides);
+    const themeObj = createTheme(overrides);
+
+    sendSuccess(res, {
+      tokenOverrides: overrides,
+      css: themeObj.toCSS(),
+      tokenCount: Object.keys(overrides).length,
+      validation: validation.summary,
+      valid: validation.valid,
+      failures: validation.failures,
+    });
+  } catch (e) {
+    sendError(res, e.message, 500);
+  }
+});
+
+/**
+ * GET /api/v1/harmonies/:color
+ * Suggest color harmonies from a primary color.
+ */
+app.get('/api/v1/harmonies/:color', (req, res) => {
+  try {
+    const color = '#' + req.params.color;
+    const harmonies = suggestHarmonies(color);
+    sendSuccess(res, { sourceColor: color, harmonies });
+  } catch (e) {
+    sendError(res, e.message, 400);
+  }
+});
+
+/**
+ * POST /api/v1/validate/theme
+ * Validate theme overrides against WCAG AA contrast requirements.
+ * Body: { overrides: Record<string, string>, audit?: boolean }
+ */
+app.post('/api/v1/validate/theme', (req, res) => {
+  try {
+    const { overrides, audit: auditMode } = req.body;
+    if (!overrides || typeof overrides !== 'object') return sendError(res, 'overrides object is required');
+
+    if (auditMode) {
+      sendSuccess(res, auditTheme(overrides));
+    } else {
+      sendSuccess(res, validateTheme(overrides));
+    }
+  } catch (e) {
+    sendError(res, e.message, 500);
+  }
+});
+
+/**
+ * POST /api/v1/theme/import
+ * Import a .aioli-theme.json file and generate overrides.
+ * Body: { ...themeFileContent }
+ */
+app.post('/api/v1/theme/import', (req, res) => {
+  try {
+    const result = importThemeFile(req.body);
+    sendSuccess(res, {
+      name: result.metadata.name,
+      tokenOverrides: result.overrides,
+      css: result.theme.toCSS(),
+      tokenCount: Object.keys(result.overrides).length,
+      validation: result.validation.summary,
+      valid: result.validation.valid,
+    });
+  } catch (e) {
+    sendError(res, e.message, 400);
+  }
+});
+
+/**
+ * POST /api/v1/theme/export
+ * Export brand colors to .aioli-theme.json format.
+ * Body: { name, brand: { primary, ... }, options?, overrides? }
+ */
+app.post('/api/v1/theme/export', (req, res) => {
+  try {
+    const json = exportThemeFile(req.body);
+    sendSuccess(res, { themeFile: JSON.parse(json) });
+  } catch (e) {
+    sendError(res, e.message, 400);
+  }
+});
+
+// ============================================================================
 // START SERVER (conditional — allows supertest to import without auto-start)
 // ============================================================================
 
@@ -462,6 +566,11 @@ Endpoints:
   POST /api/v1/validate/contrast
   POST /api/v1/validate/accessibility
   POST /api/v1/validate/code
+  POST /api/v1/brand-theme
+  GET  /api/v1/harmonies/:color
+  POST /api/v1/validate/theme
+  POST /api/v1/theme/import
+  POST /api/v1/theme/export
 `);
   });
 }

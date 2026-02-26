@@ -39,12 +39,26 @@ beforeAll(() => {
 
 /**
  * Resolve a token path: check overrides first, then fall back to token agent.
+ * Handles kebab-case → camelCase mapping for component tokens.
+ * Style Dictionary converts camelCase DTCG keys to kebab-case CSS vars,
+ * so we use kebab-case in overrides but camelCase for DTCG resolution.
  */
 function resolveColor(path, overrides) {
   if (overrides[path] !== undefined) return overrides[path];
-  const r = tokenAgent.handleRequest({ action: 'get', path });
-  if (!r.success || !r.data) return null;
-  return r.data.resolvedValue || r.data.rawValue || r.data.$value || null;
+  // Convert kebab-case segments to camelCase for DTCG lookup (e.g. bg-hover → bgHover)
+  const dtcgPath = path.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+  if (dtcgPath !== path && overrides[dtcgPath] !== undefined) return overrides[dtcgPath];
+  // Try DTCG path first (token agent uses nested JSON with camelCase keys)
+  const r = tokenAgent.handleRequest({ action: 'get', path: dtcgPath });
+  if (r.success && r.data) {
+    return r.data.resolvedValue || r.data.rawValue || r.data.$value || null;
+  }
+  // Fallback: try original path
+  const r2 = tokenAgent.handleRequest({ action: 'get', path });
+  if (r2.success && r2.data) {
+    return r2.data.resolvedValue || r2.data.rawValue || r2.data.$value || null;
+  }
+  return null;
 }
 
 /**
@@ -100,13 +114,13 @@ const INTENT_PAIRS = [
 
 const BUTTON_PAIRS = [
   { fg: 'component.button.primary.text', bg: 'component.button.primary.bg', label: 'Btn primary text/bg' },
-  { fg: 'component.button.primary.text', bg: 'component.button.primary.bgHover', label: 'Btn primary text/hover' },
+  { fg: 'component.button.primary.text', bg: 'component.button.primary.bg-hover', label: 'Btn primary text/hover' },
   { fg: 'component.button.danger.text', bg: 'component.button.danger.bg', label: 'Btn danger text/bg' },
 ];
 
 const GRADIENT_TOKENS = [
   { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient', label: 'Btn primary gradient' },
-  { text: 'component.button.primary.text', gradient: 'component.button.primary.gradientHover', label: 'Btn primary grad hover' },
+  { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient-hover', label: 'Btn primary grad hover' },
   { text: 'component.button.danger.text', gradient: 'component.button.danger.gradient', label: 'Btn danger gradient' },
 ];
 

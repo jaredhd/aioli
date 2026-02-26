@@ -452,12 +452,19 @@ export class AccessibilityValidatorAgent {
       return { valid: false, results, failures, summary: { total: 0, pass: 0, fail: 0 } };
     }
 
-    // Resolve a color from overrides first, then token agent
+    // Resolve a color from overrides first, then token agent.
+    // Handles kebab-case → camelCase mapping (preset overrides use kebab-case
+    // like bg-hover, but DTCG tokens use camelCase like bgHover).
     const resolve = (path) => {
       if (overrides[path] !== undefined) return overrides[path];
-      const r = this.tokenAgent.handleRequest({ action: 'get', path });
-      if (!r.success || !r.data) return null;
-      return r.data.resolvedValue || r.data.rawValue || r.data.$value || null;
+      // Convert kebab-case to camelCase for DTCG lookup
+      const dtcgPath = path.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+      if (dtcgPath !== path && overrides[dtcgPath] !== undefined) return overrides[dtcgPath];
+      const r = this.tokenAgent.handleRequest({ action: 'get', path: dtcgPath });
+      if (r.success && r.data) {
+        return r.data.resolvedValue || r.data.rawValue || r.data.$value || null;
+      }
+      return null;
     };
 
     // Get page background (needed for rgba compositing)
@@ -483,7 +490,7 @@ export class AccessibilityValidatorAgent {
       { fg: 'semantic.color.success.default', bg: 'semantic.surface.page.default', label: 'Success on page' },
       { fg: 'semantic.color.danger.default', bg: 'semantic.surface.page.default', label: 'Danger on page' },
       { fg: 'component.button.primary.text', bg: 'component.button.primary.bg', label: 'Btn primary text/bg' },
-      { fg: 'component.button.primary.text', bg: 'component.button.primary.bgHover', label: 'Btn primary text/hover' },
+      { fg: 'component.button.primary.text', bg: 'component.button.primary.bg-hover', label: 'Btn primary text/hover' },
       { fg: 'component.button.danger.text', bg: 'component.button.danger.bg', label: 'Btn danger text/bg' },
     ];
 
@@ -513,7 +520,7 @@ export class AccessibilityValidatorAgent {
     // Check gradient pairs (text color against all gradient stops + midpoint)
     const gradientPairs = [
       { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient', label: 'Btn primary gradient' },
-      { text: 'component.button.primary.text', gradient: 'component.button.primary.gradientHover', label: 'Btn primary grad hover' },
+      { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient-hover', label: 'Btn primary grad hover' },
       { text: 'component.button.danger.text', gradient: 'component.button.danger.gradient', label: 'Btn danger gradient' },
     ];
 

@@ -103,8 +103,8 @@ const CONTRAST_PAIRS = [
 
   // Button text on button bg
   { fg: 'component.button.primary.text', bg: 'component.button.primary.bg', label: 'Btn primary text/bg', type: 'text' },
-  { fg: 'component.button.primary.text', bg: 'component.button.primary.bgHover', label: 'Btn primary text/hover', type: 'text' },
-  { fg: 'component.button.primary.text', bg: 'component.button.primary.bgActive', label: 'Btn primary text/active', type: 'ui' },
+  { fg: 'component.button.primary.text', bg: 'component.button.primary.bg-hover', label: 'Btn primary text/hover', type: 'text' },
+  { fg: 'component.button.primary.text', bg: 'component.button.primary.bg-active', label: 'Btn primary text/active', type: 'ui' },
   { fg: 'component.button.danger.text', bg: 'component.button.danger.bg', label: 'Btn danger text/bg', type: 'text' },
   { fg: 'component.button.secondary.text', bg: 'component.button.secondary.bg', label: 'Btn secondary text/bg', type: 'text' },
   { fg: 'component.button.outline.text', bg: 'semantic.surface.page.default', label: 'Btn outline text/page', type: 'text' },
@@ -113,9 +113,9 @@ const CONTRAST_PAIRS = [
 
 const GRADIENT_PAIRS = [
   { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient', label: 'Btn primary gradient' },
-  { text: 'component.button.primary.text', gradient: 'component.button.primary.gradientHover', label: 'Btn primary grad hover' },
+  { text: 'component.button.primary.text', gradient: 'component.button.primary.gradient-hover', label: 'Btn primary grad hover' },
   { text: 'component.button.danger.text', gradient: 'component.button.danger.gradient', label: 'Btn danger gradient' },
-  { text: 'component.button.danger.text', gradient: 'component.button.danger.gradientHover', label: 'Btn danger grad hover' },
+  { text: 'component.button.danger.text', gradient: 'component.button.danger.gradient-hover', label: 'Btn danger grad hover' },
 ];
 
 // ============================================================================

@@ -92,5 +92,26 @@ export function createHttpClient(options = {}) {
     reviewCode(html, css) {
       return request('POST', '/validate/code', { html, css });
     },
+
+    deriveBrandTheme(brand, options) {
+      return request('POST', '/brand-theme', { brand, options });
+    },
+
+    suggestHarmonies(color) {
+      const hex = color.replace('#', '');
+      return request('GET', `/harmonies/${encodeURIComponent(hex)}`);
+    },
+
+    validateTheme(overrides, opts = {}) {
+      return request('POST', '/validate/theme', { overrides, audit: opts.audit });
+    },
+
+    importTheme(themeFileJSON) {
+      return request('POST', '/theme/import', themeFileJSON);
+    },
+
+    exportTheme(config) {
+      return request('POST', '/theme/export', config);
+    },
   };
 }

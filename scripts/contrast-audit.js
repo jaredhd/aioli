@@ -63,7 +63,7 @@ const pairs = [
 
   // ── Component-specific: button text ──
   ['component.button.primary.text', 'component.button.primary.bg', 'Btn primary text/bg'],
-  ['component.button.primary.text', 'component.button.primary.bgHover', 'Btn primary text/bgHov'],
+  ['component.button.primary.text', 'component.button.primary.bg-hover', 'Btn primary text/bgHov'],
   ['component.button.secondary.text', 'component.button.secondary.bg', 'Btn secondary text/bg'],
   ['component.button.danger.text', 'component.button.danger.bg', 'Btn danger text/bg'],
   ['component.button.outline.text', 'semantic.surface.page.default', 'Btn outline text/page'],

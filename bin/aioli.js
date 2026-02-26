@@ -11,6 +11,7 @@
  *   audit      Run accessibility audit
  *   export     Export tokens in different formats
  *   registry   Manage community component packages
+ *   theme      Brand theming — derive, audit, import/export
  */
 
 import { createRequire } from 'module';
@@ -35,6 +36,7 @@ import { registerGenerateCommand } from '../cli/commands/generate.js';
 import { registerAuditCommand } from '../cli/commands/audit.js';
 import { registerExportCommand } from '../cli/commands/export.js';
 import { registerRegistryCommand } from '../cli/commands/registry.js';
+import { registerThemeCommand } from '../cli/commands/theme.js';
 
 registerInitCommand(program);
 registerBuildCommand(program);
@@ -43,5 +45,6 @@ registerGenerateCommand(program);
 registerAuditCommand(program);
 registerExportCommand(program);
 registerRegistryCommand(program);
+registerThemeCommand(program);
 
 program.parse();

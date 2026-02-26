@@ -11,6 +11,8 @@ import { resolve } from 'path';
 export async function createDirectClient(options = {}) {
   // Import Aioli — try peer dependency first, then monorepo fallback
   let createAgentSystem, listPresets, getPresetOverrides, derivePalette, createTheme;
+  let deriveBrandTheme, suggestHarmonies, validateTheme, auditTheme;
+  let validateThemeFile, importThemeFile, exportThemeFile;
 
   try {
     const aioli = await import('aioli-design');
@@ -19,17 +21,32 @@ export async function createDirectClient(options = {}) {
     getPresetOverrides = aioli.getPresetOverrides;
     derivePalette = aioli.derivePalette;
     createTheme = aioli.createTheme;
+    deriveBrandTheme = aioli.deriveBrandTheme;
+    suggestHarmonies = aioli.suggestHarmonies;
+    validateTheme = aioli.validateTheme;
+    auditTheme = aioli.auditTheme;
+    validateThemeFile = aioli.validateThemeFile;
+    importThemeFile = aioli.importThemeFile;
+    exportThemeFile = aioli.exportThemeFile;
   } catch (_) {
     try {
       // Monorepo fallback — resolve relative to sdk/
       const agents = await import('../agents/index.js');
       const presets = await import('../lib/theme-presets.js');
       const theme = await import('../lib/theme.js');
+      const themeFile = await import('../lib/theme-file.js');
       createAgentSystem = agents.createAgentSystem;
       listPresets = presets.listPresets;
       getPresetOverrides = presets.getPresetOverrides;
       derivePalette = presets.derivePalette;
       createTheme = theme.createTheme;
+      deriveBrandTheme = presets.deriveBrandTheme;
+      suggestHarmonies = presets.suggestHarmonies;
+      validateTheme = presets.validateTheme;
+      auditTheme = presets.auditTheme;
+      validateThemeFile = themeFile.validateThemeFile;
+      importThemeFile = themeFile.importThemeFile;
+      exportThemeFile = themeFile.exportThemeFile;
     } catch (e2) {
       throw new Error(
         '@aioli/sdk direct mode requires aioli-design to be installed or ' +
@@ -252,6 +269,56 @@ export async function createDirectClient(options = {}) {
         issues: data.issues,
         suggestions: data.suggestions,
       };
+    },
+
+    async deriveBrandTheme(brand, options) {
+      if (!brand || !brand.primary) throw new Error('brand.primary is required');
+      const config = { ...brand };
+      if (options) config.options = options;
+      const overrides = deriveBrandTheme(config);
+      const validation = validateTheme(overrides);
+      const themeObj = createTheme(overrides);
+      return {
+        tokenOverrides: overrides,
+        css: themeObj.toCSS(),
+        tokenCount: Object.keys(overrides).length,
+        validation: validation.summary,
+        valid: validation.valid,
+        failures: validation.failures,
+      };
+    },
+
+    async suggestHarmonies(color) {
+      if (!color) throw new Error('color is required');
+      const harmonies = suggestHarmonies(color);
+      return { sourceColor: color, harmonies };
+    },
+
+    async validateTheme(overrides, opts = {}) {
+      if (!overrides || typeof overrides !== 'object') throw new Error('overrides object is required');
+      if (opts.audit) {
+        return auditTheme(overrides);
+      }
+      return validateTheme(overrides);
+    },
+
+    async importTheme(themeFileJSON) {
+      if (!themeFileJSON) throw new Error('theme file JSON is required');
+      const result = importThemeFile(themeFileJSON);
+      return {
+        name: result.metadata.name,
+        tokenOverrides: result.overrides,
+        css: result.theme.toCSS(),
+        tokenCount: Object.keys(result.overrides).length,
+        validation: result.validation.summary,
+        valid: result.validation.valid,
+      };
+    },
+
+    async exportTheme(config) {
+      if (!config || !config.name || !config.brand) throw new Error('name and brand are required');
+      const json = exportThemeFile(config);
+      return { themeFile: JSON.parse(json) };
     },
   };
 }
